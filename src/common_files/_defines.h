@@ -1,9 +1,6 @@
 #pragma once
 
 
-#define __STDC_WANT_SECURE_LIB__ 1 //-V2573
-
-
 typedef unsigned char      uint8;
 typedef unsigned short     uint16;
 typedef unsigned int       uint;

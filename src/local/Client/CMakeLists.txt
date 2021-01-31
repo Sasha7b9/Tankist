@@ -53,13 +53,13 @@ set_source_files_properties(stdafx.cpp
 
 add_executable(${PROJECT_NAME} ${SRC} ${FILESYSTEM} ${NETWORK} ${UTILS})
 
-include(../../../RuntimeLibrary.cmake)
+include(../../RuntimeLibrary.cmake)
 
 target_link_libraries(Client PiEngine)
 
 set(DIR $ENV{TANKIST_OUT_DIR})
-include(../../../CopyToDirEXE.cmake)
-include(../../../SetWorkingDirectory.cmake)
+include(../../CopyToDirEXE.cmake)
+include(../../SetWorkingDirectory.cmake)
 
 include(../../LinkLibraries.cmake)        # Подключаем дополнительные библиотеки
 include(../../Install.cmake)

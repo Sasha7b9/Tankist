@@ -3,45 +3,6 @@
 #define __restrict //-V2573
 
 
-// PiEgnine
-
-#include <Base/PiBase.h>
-#include <Base/PiMemory.h>
-#include <Graphics/PiRender.h>
-#include <System/PiAudioCapture.h>
-#include <Physics/PiCharacter.h>
-#include <Graphics/PiGraphics.h>
-#include <System/PiApplication.h>
-#include <Geometry/PiMesh.h>
-#include <Geometry/PiGizmo.h>
-#include <Interface/PiConfiguration.h>
-#include <Interface/PiToolWindows.h>
-#include <Geometry/PiPrimitives.h>
-#include <Controllers/PiController.h>
-#include <Effects/PiParticles.h>
-#include <World/PiCameras.h>
-#include <World/PiModels.h>
-#include <World/PiSources.h>
-#include <World/PiWorld.h>
-#include <Math/PiRandom.h>
-#include <Interface/PiPaint.h>
-#include <Physics/PiContacts.h>
-#include <Physics/PiPhysics.h>
-#include <World/PiWorld.h>
-#include <Resource/PiPacking.h>
-#include <System/PiTypes.h>
-#include <System/PiSound.h>
-#include <Interface/PiMutators.h>
-#include <Interface/PiViewports.h>
-#include <Physics/PiSimulation.h>
-#include <Interface/PiWidgets.h>
-#include <System/PiMain.h>
-#include <Network/PiMessages.h>
-#include <Utilities/PiString.h>
-#include <World/PiCameras.h>
-#include <Utilities/PiLogger.h>
-
-
 #define SIZE_CHUNK_HEADER 4
 
 
@@ -57,22 +18,7 @@
 #include <sstream>
 #include <string>
 #include <thread>
-
-
-// Third party
-
-#ifdef WIN32
-    #pragma warning(push, 0)
-#endif
-
-    #undef Bool
-    #include <rapidjson/document.h>
-    #include <sockpp/tcp_acceptor.h>
-    #include <sockpp/tcp_connector.h>
-
-#ifdef WIN32
-    #pragma warning(pop)
-#endif
+#include <vector>
 
 
 // Tankist

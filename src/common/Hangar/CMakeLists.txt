@@ -77,13 +77,13 @@ endif()
 
 add_executable(${PROJECT_NAME} ${SRC} ${FILE_SYSTEM} ${NETWORK} ${NETWORK_MESSAGES} ${UTILS})
 
-include(../../../RuntimeLibrary.cmake)
+include(../../RuntimeLibrary.cmake)
 
 target_link_libraries(${PROJECT_NAME} PiEngine)
 
 set(DIR $ENV{TANKIST_OUT_DIR})
-include(../../../CopyToDirEXE.cmake)
-include(../../../SetWorkingDirectory.cmake)
+include(../../CopyToDirEXE.cmake)
+include(../../SetWorkingDirectory.cmake)
 
 include(../../LinkLibraries.cmake)          # Подключаем дополнительные библиотеки
 include(../../Install.cmake)

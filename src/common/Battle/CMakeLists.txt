@@ -1,10 +1,7 @@
 project (Battle)
 
 include_directories(.
-                    ../../common_files
-                    ../../../../Source/PiEngine
-                    ../../../../ThirdParty/sockpp_/sockpp/include
-                    ../../../../ThirdParty/rapidjson_/rapidjson/include)
+                    ../../common_files)
 
 
 set(USE_SOCKPP 1)
@@ -13,11 +10,6 @@ include(../../AddPathsToLibraries.cmake)    # Добавляем пути к п�
 
 
 if(WIN32)
-
-    add_definitions(
-        -D__PLACEMENT_NEW_INLINE        # без этого ругается на placement operator new
-        -D__PLACEMENT_VEC_NEW_INLINE    # без этого ругается на placement operator new
-    )
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
@@ -84,13 +76,11 @@ source_group(Utils             FILES ${UTILS})
 
 add_executable(${PROJECT_NAME} ${SRC} ${FILE_SYSTEM} ${GAME} ${_GUI} ${INPUT} ${NETWORK} ${NETWORK_MESSAGES} ${OBJECTS} ${UTILS})
 
-include(../../../RuntimeLibrary.cmake)
-
-target_link_libraries(${PROJECT_NAME} PiEngine)
+include(../../RuntimeLibrary.cmake)
 
 set(DIR $ENV{TANKIST_OUT_DIR})
-include(../../../CopyToDirEXE.cmake)
-include(../../../SetWorkingDirectory.cmake)
+include(../../CopyToDirEXE.cmake)
+include(../../SetWorkingDirectory.cmake)
 
 include(../../LinkLibraries.cmake)          # Подключаем дополнительные библиотеки
 include(../../Install.cmake)

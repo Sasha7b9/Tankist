@@ -60,11 +60,11 @@ add_executable(${PROJECT_NAME} ${SRC} ${CONTAINER} ${FILE_SYSTEM} ${NETWORK} ${U
 
 include(../../LinkLibraries.cmake)          # Линкуем необходимые библиотеки
 
-include(../../../RuntimeLibrary.cmake)      # Удаление зависимостей от динамических библиотек VS времени выполнения
+include(../../RuntimeLibrary.cmake)      # Удаление зависимостей от динамических библиотек VS времени выполнения
 
 set(DIR $ENV{TANKIST_OUT_DIR})
-include(../../../CopyToDirEXE.cmake)        # Копируем файлы в нужные каталоги
-include(../../../SetWorkingDirectory.cmake) # Устанавливаем рабочий каталог для VS
+include(../../CopyToDirEXE.cmake)        # Копируем файлы в нужные каталоги
+include(../../SetWorkingDirectory.cmake) # Устанавливаем рабочий каталог для VS
 
 include(../../Install.cmake)
 
