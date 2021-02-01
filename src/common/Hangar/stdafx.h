@@ -1,18 +1,6 @@
 #pragma once
 
 
-// PiEngine
-
-#include <Base/PiBase.h>
-
-#include <System/PiApplication.h>
-#include <System/PiEngine.h>
-#include <System/PiMain.h>
-
-#include <Utilities/PiLogger.h>
-#include <Utilities/PiString.h>
-
-
 // C++
 
 #include <cstdarg>
