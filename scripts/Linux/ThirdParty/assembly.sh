@@ -60,7 +60,7 @@ function BuildProjects {
 
 set -e
 
-PROJECT_TANKIST_DIR=/home/sasha/PiEngine2
+PROJECT_TANKIST_DIR=/home/sasha/TankistU3D
 
 # Tune parameters
 isMake=0                      # If 1, then run cmake
