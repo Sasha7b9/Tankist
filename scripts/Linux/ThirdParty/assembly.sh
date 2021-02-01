@@ -10,7 +10,7 @@ function ShowHint {
 
 function MakeProject {
     rm -R -f ../../../generated/$1/ThirdParty
-    cmake ../../../Source/ThirdParty/CMakeLists.txt -G "CodeBlocks - Unix Makefiles" -B../../../generated/$1/ThirdParty -DCMAKE_BUILD_TYPE=$2
+    cmake ../../../src/ThirdParty/CMakeLists.txt -G "CodeBlocks - Unix Makefiles" -B../../../generated/$1/ThirdParty -DCMAKE_BUILD_TYPE=$2
 }
 
 
