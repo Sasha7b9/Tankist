@@ -1,7 +1,10 @@
 #include "stdafx.h"
+
+#ifdef WIN32
 #pragma warning(push, 0)
 #include <shlobj_core.h>
 #pragma warning(pop)
+#endif
 
 
 #ifdef WIN32

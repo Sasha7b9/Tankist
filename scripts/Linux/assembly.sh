@@ -9,8 +9,8 @@ function ShowHint {
 
 
 function MakeProject {
-    rm -R -f ../../generated/$1/Engine
-    cmake ../../Source/Source/CMakeLists.txt -G "CodeBlocks - Unix Makefiles" -B../../generated/$1/Engine -DCMAKE_BUILD_TYPE=$2
+    rm -R -f ../../generated/$1/TankistU3D
+    cmake ../../src/CMakeLists.txt -G "CodeBlocks - Unix Makefiles" -B../../generated/$1/TankistU3D -DCMAKE_BUILD_TYPE=$2
 }
 
 
@@ -33,17 +33,17 @@ function MakeProjects {
 
 function BuildProject {
     dir=$PWD
-    cd ../../generated/$1/Engine
+    cd ../../generated/$1/TankistU3D
     make -j$(nproc)
     make install
     cd $dir
-    cp ../../generated/$1/Engine/Tankist/remote/DataBase/DataBase ../../Tankist/out/$1
-    cp ../../generated/$1/Engine/Tankist/remote/Master/Master ../../Tankist/out/$1
-    cp ../../generated/$1/Engine/Tankist/common/Battle/Battle ../../Tankist/out/$1
-    cp ../../generated/$1/Engine/Tankist/common/Configurator/Configurator ../../Tankist/out/$1
-    cp ../../generated/$1/Engine/Tankist/common/Hangar/Hangar ../../Tankist/out/$1
-    cp ../../generated/$1/Engine/Tankist/common/Monitor/Monitor ../../Tankist/out/$1
-    cp ../../generated/$1/Engine/Tankist/common/Uploader/Uploader ../../Tankist/out/$1
+#    cp ../../generated/$1/Engine/Tankist/remote/DataBase/DataBase ../../Tankist/out/$1
+#    cp ../../generated/$1/Engine/Tankist/remote/Master/Master ../../Tankist/out/$1
+#    cp ../../generated/$1/Engine/Tankist/common/Battle/Battle ../../Tankist/out/$1
+#    cp ../../generated/$1/Engine/Tankist/common/Configurator/Configurator ../../Tankist/out/$1
+#    cp ../../generated/$1/Engine/Tankist/common/Hangar/Hangar ../../Tankist/out/$1
+#    cp ../../generated/$1/Engine/Tankist/common/Monitor/Monitor ../../Tankist/out/$1
+#    cp ../../generated/$1/Engine/Tankist/common/Uploader/Uploader ../../Tankist/out/$1
 }
 
 
@@ -66,7 +66,7 @@ function BuildProjects {
 
 # Start here <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-./stop.sh all
+#./stop.sh all
 
 set -e              # Exit immediately if a command exits with a non-zero status.
 
