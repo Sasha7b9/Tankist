@@ -3,15 +3,6 @@
 #define __restrict //-V2573
 
 
-// PiEngine
-
-#include <Base/PiMemory.h>
-
-#include <System/PiApplication.h>
-#include <System/PiEngine.h>
-#include <System/PiMain.h>
-
-
 // C++
 
 #include <cstdarg>

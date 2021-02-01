@@ -1,33 +1,6 @@
 #pragma once
 
 
-// PiEngine
-
-#include <Base/PiBase.h>
-
-#include <Graphics/PiGraphics.h>
-
-#include <Interface/PiInterface.h>
-#include <Interface/PiToolWindows.h>
-#include <Interface/PiWidgets.h>
-
-#include <Network/PiMessages.h>
-#include <Network/PiNetwork.h>
-
-#include <Resource/PiConfigData.h>
-
-#include <System/PiApplication.h>
-#include <System/PiEngine.h>
-#include <System/PiInput.h>
-#include <System/PiMain.h>
-
-#include <Utilities/PiLogger.h>
-#include <Utilities/PiString.h>
-
-#include <World/PiCameras.h>
-#include <World/PiWorld.h>
-
-
 // C++
 
 #undef alignas

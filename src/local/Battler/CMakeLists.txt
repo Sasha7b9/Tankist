@@ -2,19 +2,12 @@ project (Battler)
 
 include_directories(.
                     ../../common_files
-                    ../../../../Source/PiEngine
-                    ../../../../ThirdParty/sockpp_/sockpp/include
-                    ../../../../ThirdParty/rapidjson_/rapidjson/include)
+                    ../../ThirdParty/sockpp_/sockpp/include
+                    ../../ThirdParty/rapidjson_/rapidjson/include)
 
 set(USE_SOCKPP 1)
 
 include(../../AddPathsToLibraries.cmake)    # Добавляем пути к подключаемым библиотекам
-
-add_definitions(
-    -D__PLACEMENT_NEW_INLINE        # без этого ругается на placement operator new
-    -D__PLACEMENT_VEC_NEW_INLINE    # без этого ругается на placement operator new
-    -D_CORECRT_BUILD
-)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
@@ -73,8 +66,6 @@ set_source_files_properties(stdafx.cpp
 add_executable(${PROJECT_NAME} ${SRC} ${FILE_SYSTEM} ${INPUT} ${INTERFACE} ${NETWORK} ${NETWORK_MESSAGES} ${GAME} ${OBJECTS} ${UTILS})
 
 include(../../RuntimeLibrary.cmake)
-
-target_link_libraries(${PROJECT_NAME} PiEngine)
 
 set(DIR $ENV{TANKIST_OUT_DIR})
 include(../../CopyToDirEXE.cmake)
