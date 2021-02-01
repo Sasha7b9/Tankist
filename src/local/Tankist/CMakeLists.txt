@@ -55,8 +55,6 @@ add_executable(Tankist ${SRC} ${FILE_SYSTEM} ${INTERFACE} ${NETWORK} ${UTILS})
 
 include(../../RuntimeLibrary.cmake)
 
-target_link_libraries(Tankist PiEngine)
-
 set(DIR $ENV{TANKIST_OUT_DIR})
 include(../../CopyToDirEXE.cmake)
 include(../../SetWorkingDirectory.cmake)
