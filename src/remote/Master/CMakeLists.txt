@@ -2,9 +2,8 @@ project (Master)
 
 include_directories(.
                     ../../common_files
-                    ../../../../Source/PiEngine
-                    ../../../../ThirdParty/sockpp_/sockpp/include
-                    ../../../../ThirdParty/rapidjson_/rapidjson/include)
+                    ../../ThirdParty/sockpp_/sockpp/include
+                    ../../ThirdParty/rapidjson_/rapidjson/include)
 
 set(USE_SOCKPP 1)
 
@@ -14,8 +13,6 @@ if(WIN32)
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")
-
-    add_definitions(-DNOT_OVERLOAD_OPERATOR_NEW)
 
     add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
     add_compile_options(/wd4625)    # 'derived class' : copy constructor was implicitly defined as deleted because a base class copy constructor is inaccessible or deleted

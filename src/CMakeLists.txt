@@ -10,9 +10,9 @@ cmake_policy (SET CMP0015 NEW)
 cmake_policy(SET CMP0091 NEW)
 
 
-project (PiEngine2)
+project (TankistU3D)
 
-set (TARGET_NAME PiEngine2)
+set (TARGET_NAME TankistU3D)
 
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                              # Для отладочной версии
 

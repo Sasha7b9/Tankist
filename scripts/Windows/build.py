@@ -8,7 +8,7 @@ if len(sys.argv) < 3:
   
 startTime = datetime.now()
 
-command = "MSBuild.exe ..\\..\\generated\\" + sys.argv[1] + "\\Engine\\PiEngine2.sln /p:Configuration=" + sys.argv[1] +" /t:" + sys.argv[2] +" -clp:ErrorsOnly;WarningsOnly -nologo /m";
+command = "MSBuild.exe ..\\..\\generated\\" + sys.argv[1] + "\\TankistU3D\\TankistU3D.sln /p:Configuration=" + sys.argv[1] +" /t:" + sys.argv[2] +" -clp:ErrorsOnly;WarningsOnly -nologo /m";
 print(command)
 os.system(command)
   
