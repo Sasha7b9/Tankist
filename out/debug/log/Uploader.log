@@ -1,12 +1,6 @@
-FileSystem\_ConfigurationFile.cpp:37    | Configuration file Uploader.conf is parsed
-Uploader\Uploader.cpp:46                | Prepare list files ...
-FileSystem\_FileSystem.cpp:97   *ERROR* | Can't open file log\Master.log
-FileSystem\_FileSystem.cpp:97   *ERROR* | Can't open file log\Uploader.log
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:99 : Error 32 : Процесс не может получить доступ к файлу, так как этот файл занят другим процессом.
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:99 : Error 32 : Процесс не может получить доступ к файлу, так как этот файл занят другим процессом.
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:374 : Error 6 : Неверный дескриптор.
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:374 : Error 6 : Неверный дескриптор.
-Uploader\Uploader.cpp:63                | ... done
-Network\_SocketsTCP.cpp:26              | Connect to 127.0.0.1:30000 success
-Network\_SocketsTCP.cpp:135             | Bind to port 30001 success
-Uploader\Uploader.cpp:93                | Wait connections ...
+FileSystem/_ConfigurationFile.cpp:37    | Configuration file Uploader.conf is parsed
+Uploader/Uploader.cpp:46                | Prepare list files ...
+Uploader/Uploader.cpp:63                | ... done
+Network/_SocketsTCP.cpp:26              | Connect to 127.0.0.1:30000 success
+Network/_SocketsTCP.cpp:135             | Bind to port 30001 success
+Uploader/Uploader.cpp:93                | Wait connections ...

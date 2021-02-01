@@ -1,5 +1,2 @@
-FileSystem\_ConfigurationFile.cpp:37    | Configuration file Uploader.conf is parsed
-Uploader\Uploader.cpp:46                | Prepare list files ...
-FileSystem\_FileSystem.cpp:100  *ERROR* | Can't open file "log\Uploader.log"
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:102 : Error 32 : Процесс не может получить доступ к файлу, так как этот файл занят другим процессом.
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:379 : Error 6 : Неверный дескриптор.
+FileSystem/_ConfigurationFile.cpp:37    | Configuration file Uploader.conf is parsed
+Uploader/Uploader.cpp:46                | Prepare list files ...

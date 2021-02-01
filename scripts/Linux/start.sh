@@ -3,7 +3,7 @@
 # Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function ShowHint {
     echo "    Usage:"
-    echo "          ./start.sh [ master | uploader | all ]"
+    echo "          ./start.sh [ master | uploader | all ] [ debug | release ]"
 }
 
 function Start {
@@ -11,7 +11,7 @@ function Start {
     then
         dir=$PWD
         ./stop.sh $3
-        cd ../../Tankist/out/debug
+        cd ../../out/$4
         ./$2 &
         cd $dir
     fi
@@ -24,7 +24,9 @@ set -e              # Немедленно выйти, если команда �
 runMaster=0
 runUploader=0
 
-if [[ $# -ne 1 ]]
+type="debug"
+
+if [[ $# -ne 2 ]]
 then
     ShowHint
     exit
@@ -42,6 +44,15 @@ case $1 in
                  exit          ;;
 esac
 
-Start $runMaster Master master
-Start $runUploader Uploader uploader
+case $2 in
+    "release"  ) type="release" ;;
+
+    "debug"    ) type="debug"   ;;
+
+    *          ) ShowHint
+                 exit             ;;
+esac
+
+Start $runMaster Master master $type
+Start $runUploader Uploader uploader $type
 

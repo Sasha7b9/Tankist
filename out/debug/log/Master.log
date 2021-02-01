@@ -1,6 +1,4 @@
-Master\main.cpp:10                      | Start Master
-FileSystem\_ConfigurationFile.cpp:37    | Configuration file Master.conf is parsed
-Network\_SocketsTCP.cpp:135             | Bind to port 30000 success
-Master\Master.cpp:24                    | Wait connections ...
-Network\_SocketsTCP.cpp:159             | Accept connection from 127.0.0.1:6462
-Network\_SocketsTCP.cpp:178             | Close connection 127.0.0.1:6462
+Master/main.cpp:10                      | Start Master
+FileSystem/_ConfigurationFile.cpp:37    | Configuration file Master.conf is parsed
+Network/_SocketsTCP.cpp:135             | Bind to port 30000 success
+Master/Master.cpp:24                    | Wait connections ...

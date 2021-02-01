@@ -23,6 +23,7 @@ set -e              # Немедленно выйти, если команда �
 stopMaster=0
 stopUploader=0
 
+
 if [[ $# -ne 1 ]]
 then
     ShowHint
@@ -40,8 +41,6 @@ case $1 in
     *          ) ShowHint
                  exit           ;;
 esac
-
-cd ../../Tankist/out/debug
 
 Stop $stopUploader Uploader
 Stop $stopMaster Master
