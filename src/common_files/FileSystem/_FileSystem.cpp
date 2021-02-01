@@ -93,7 +93,7 @@ bool FS::File::Open(pchar _name, ModeAccess::E mode)
         access |= GENERIC_WRITE;
     }
 
-    handle = CreateFileA(_name, access, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    handle = CreateFileA(_name, access, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
     if (handle == INVALID_HANDLE_VALUE)
     {
@@ -154,7 +154,7 @@ bool FS::File::Create(pchar _name, ModeAccess::E mode)
         access |= GENERIC_WRITE;
     }
 
-    handle = CreateFileA(_name, access, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    handle = CreateFileA(_name, access, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
     if (GetLastError() == 3)            // Системе не удаётся найти указанный путь
     {
