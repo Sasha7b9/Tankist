@@ -19,7 +19,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                          
     add_definitions(-DDEBUG)
 
     if(WIN32)
-        link_directories($ENV{PROJECT_TANKIST_DIR}/generated/release/ThirdParty/sockpp_/sockpp/Debug)
+        link_directories($ENV{PROJECT_TANKIST_DIR}/generated/debug/ThirdParty/sockpp_/sockpp/Debug)
     else()
         link_directories(../generated/debug/ThirdParty/bin)
         add_definitions(-g -Og)
