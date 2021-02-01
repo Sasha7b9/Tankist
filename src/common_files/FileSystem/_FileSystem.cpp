@@ -97,7 +97,7 @@ bool FS::File::Open(pchar _name, ModeAccess::E mode)
 
     if (handle == INVALID_HANDLE_VALUE)
     {
-        LOG_ERROR("Can't open file %s", name.c_str());
+        LOG_ERROR("Can't open file \"%s\"", name.c_str());
 
         DISPLAY_LAST_ERROR();
 
@@ -120,7 +120,7 @@ bool FS::File::Open(pchar _name, ModeAccess::E mode)
 
     if (fileDesc == -1)
     {
-        LOG_ERROR("Can't open file %s", name.c_str());
+        LOG_ERROR("Can't open file \"%s\"", name.c_str());
 
         DISPLAY_LAST_ERROR();
 
@@ -174,6 +174,8 @@ bool FS::File::Create(pchar _name, ModeAccess::E mode)
 
     if (handle == INVALID_HANDLE_VALUE)
     {
+        LOG_ERROR("Can't create file \"%s\"", name.c_str());
+
         DISPLAY_LAST_ERROR();
 
         handle = nullptr;
@@ -195,7 +197,7 @@ bool FS::File::Create(pchar _name, ModeAccess::E mode)
 
     if (fileDesc < 0)
     {
-        LOG_ERROR("Can't open file %s", name);
+        LOG_ERROR("Can't open file \"%s\"", name);
 
         DISPLAY_LAST_ERROR();
 
