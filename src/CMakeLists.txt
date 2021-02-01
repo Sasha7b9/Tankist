@@ -23,7 +23,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                          
                          ../../generated/debug/Engine/WorldEditor/Debug
                          ../../generated/debug/Engine/Plugins/TextureTool/Debug)
     else()
-        link_directories(../../generated/debug/ThirdParty/bin)
+        link_directories(../generated/debug/ThirdParty/bin)
         add_definitions(-g -Og)
     endif()
 
@@ -36,7 +36,7 @@ elseif(${CMAKE_BUILD_TYPE} STREQUAL Release)                                    
                          ../../generated/release/Engine/WorldEditor/Release
                          ../../generated/release/Engine/Plugins/TextureTool/Release)
     else()
-        link_directories(../../generated/release/ThirdParty/bin)
+        link_directories(../generated/release/ThirdParty/bin)
     endif()
 
 endif()
