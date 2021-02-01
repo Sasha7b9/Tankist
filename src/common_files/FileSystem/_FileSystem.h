@@ -25,7 +25,7 @@ namespace FS
         ~File() { Close(); };
 
         // Открывает существующий файл
-        bool Open(pchar name, ModeAccess::E mode = (ModeAccess::E)(ModeAccess::Read | ModeAccess::Write));
+        bool Open(pchar name, char *file, int line, ModeAccess::E mode = (ModeAccess::E)(ModeAccess::Read | ModeAccess::Write));
 
         // Создаёт новый файл. Если файл с таким именем уже существует, стирает его содержимое
         bool Create(pchar name, ModeAccess::E mode = (ModeAccess::E)(ModeAccess::Read | ModeAccess::Write));

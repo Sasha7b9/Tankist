@@ -10,7 +10,7 @@ bool ConfigurationFile::Load(pchar name) //-V2506
     document = new rapidjson::Document(); //-V2511
 
     FS::File file;
-    file.Open((std::string("conf") + FS::delimiter + name).c_str());
+    file.Open((std::string("conf") + FS::delimiter + name).c_str(), __FILE__, __LINE__);
 
     if (!file.IsOpened())
     {

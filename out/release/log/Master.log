@@ -1,4 +1,5 @@
 Master\main.cpp:10                      | Start Master
 FileSystem\_ConfigurationFile.cpp:37    | Configuration file Master.conf is parsed
+Master\Master.cpp:18                    | 
 Network\_SocketsTCP.cpp:135             | Bind to port 30000 success
-Master\Master.cpp:24                    | Wait connections ...
+Master\Master.cpp:26                    | Wait connections ...

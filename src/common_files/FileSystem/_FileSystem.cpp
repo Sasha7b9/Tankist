@@ -76,7 +76,7 @@ void FS::RemoveFile(const std::string &nameFile)
 }
 
 
-bool FS::File::Open(pchar _name, ModeAccess::E mode)
+bool FS::File::Open(pchar _name, char *file, int line, ModeAccess::E mode)
 {
     name = _name;
 
@@ -97,7 +97,7 @@ bool FS::File::Open(pchar _name, ModeAccess::E mode)
 
     if (handle == INVALID_HANDLE_VALUE)
     {
-        LOG_ERROR("Can't open file \"%s\"", name.c_str());
+        LOG_ERROR("Can't open file \"%s\" from %s : %d", name.c_str(), file, line);
 
         DISPLAY_LAST_ERROR();
 

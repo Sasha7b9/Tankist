@@ -1,5 +1,34 @@
 FileSystem\_ConfigurationFile.cpp:37    | Configuration file Uploader.conf is parsed
-Uploader\Uploader.cpp:46                | Prepare list files ...
-FileSystem\_FileSystem.cpp:100  *ERROR* | Can't open file "log\Uploader.log"
+Uploader\Uploader.cpp:38                | 
+Uploader\Uploader.cpp:50                | Prepare list files ...
+Uploader\Uploader.cpp:55                | 
+Uploader\Uploader.cpp:63                | 
+FileSystem\_ListFiles.cpp:304           | 
+FileSystem\_ListFiles.cpp:255           | Battle.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:255           | Battler.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:255           | Client.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:255           | Hangar.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:255           | Master.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:255           | Tankist.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:255           | Updater.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:255           | Uploader.exe
+FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:313           | 
+FileSystem\_FileSystem.cpp:100  *ERROR* | Can't open file "log\Uploader.log" from C:\My\prog\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 193
 Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:102 : Error 32 : Процесс не может получить доступ к файлу, так как этот файл занят другим процессом.
 Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:379 : Error 6 : Неверный дескриптор.

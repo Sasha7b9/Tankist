@@ -35,7 +35,11 @@ static void HandlerReceivedSocket(AcceptorTCP::Socket &socket, pchar data, int s
 
 int Uploader::Run() //-V2504
 {
+    LOG_WRITE("");
+
     PrepareListFiles();
+
+    LOG_WRITE("");
 
     return RunServer();
 }
@@ -48,13 +52,19 @@ void Uploader::PrepareListFiles()
     FS::RemoveFile(LIST_NEW_FILES);
     FS::RemoveFile(LIST_IGNORED_FILES);
 
+    LOG_WRITE("");
+
     std::vector<std::string> ignoredFiles;
     std::vector<std::string> ignoredExtensions;
 
     gConfig.GetVectorStrings("list ignored files", ignoredFiles);
     gConfig.GetVectorStrings("list ignored extensions", ignoredExtensions);
 
+    LOG_WRITE("");
+
     ListFiles allFiles(".", &ignoredFiles, &ignoredExtensions);
+
+    LOG_WRITE("");
 
     allFiles.Write(LIST_NEW_FILES);
 
@@ -139,7 +149,7 @@ static void HandlerReceivedSocket(AcceptorTCP::Socket &socket, pchar data, int s
     if (words[0] == "get" && words[1] == "list")
     {
         FS::File file;
-        file.Open(LIST_NEW_FILES);
+        file.Open(LIST_NEW_FILES, __FILE__, __LINE__);
 
         std::string trans;
         trans.resize((size_t)(file.Size())); //-V201
@@ -151,7 +161,7 @@ static void HandlerReceivedSocket(AcceptorTCP::Socket &socket, pchar data, int s
     else if (words[0] == "get" && words[1] == "ignored" && words[2] == "list")
     {
         FS::File file;
-        file.Open(LIST_IGNORED_FILES);
+        file.Open(LIST_IGNORED_FILES, __FILE__, __LINE__);
 
         std::string trans;
         trans.resize(file.Size()); //-V106
@@ -171,7 +181,7 @@ static void HandlerReceivedSocket(AcceptorTCP::Socket &socket, pchar data, int s
         SU::ReplaceSymbols(fileName, '\\', '/');
 #endif
 
-        file.Open(fileName.c_str());
+        file.Open(fileName.c_str(), __FILE__, __LINE__);
 
         std::string trans;
         trans.resize(file.Size()); //-V106

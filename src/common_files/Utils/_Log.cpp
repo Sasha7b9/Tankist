@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <mutex>
 
 
 #ifdef WIN32
@@ -138,6 +139,10 @@ void Log::Warning(pchar file, int line, pchar format, ...)
 
 void Log::Write(pchar file, int line, pchar format, ...)
 {
+    static std::mutex mutex;
+
+    mutex.lock();
+
     file = ExtractName(file, numSymbolsForMarker);
 
     std::va_list args;
@@ -168,6 +173,8 @@ void Log::Write(pchar file, int line, pchar format, ...)
     ConsoleLog::Write(v.data());
 
 #endif
+
+    mutex.unlock();
 }
 
 
