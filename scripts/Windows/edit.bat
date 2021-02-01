@@ -1,21 +1,26 @@
 @echo off
 
-set _BUILD_TYPE_=debug
+if "%1" EQU "" goto SHOW_HINT
+if %1==debug   goto START_DEBUG
+if %1==release goto START_RELEASE
 
-if "%1"=="" goto START
-if %1==release set _BUILD_TYPE_=release
-
-:START
-
-if %_BUILD_TYPE_%==release goto START_RELEASE
+goto SHOW_HINT
 
 :START_DEBUG
 @echo on
-start devenv.exe ../../generated/%_BUILD_TYPE_%/TankistU3D/TankistU3D.sln
+start devenv.exe ../../generated/debug/TankistU3D/TankistU3D.sln /projectconfig Debug
 goto EXIT
 
 :START_RELEASE
 @echo on
-start devenv.exe ../../generated/%_BUILD_TYPE_%/TankistU3D/TankistU3D.sln /projectconfig Release
+start devenv.exe ../../generated/release/TankistU3D/TankistU3D.sln /projectconfig Release
+goto EXIT
+
+:SHOW_HINT
+echo.
+echo Using edit.bat:
+echo                 edit [ debug ^| release ]
+echo.
+
 
 :EXIT
