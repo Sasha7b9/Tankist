@@ -14,7 +14,6 @@
 // Third party
 
 #ifdef WIN32
-    #include "OS_specific/PiPrefixWindows.h"
     #pragma warning(push, 0)
 #endif
 

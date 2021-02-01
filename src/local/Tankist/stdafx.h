@@ -3,28 +3,6 @@
 #define __restrict //-V2573
 
 
-// PiEngine
-
-#include <Base/PiBase.h>
-#include <Base/PiDefines.h>
-
-#include <Graphics/PiGraphics.h>
-
-#include <Interface/PiConfiguration.h>
-#include <Interface/PiInterface.h>
-#include <Interface/PiWidgets.h>
-
-#include <Resource/PiConfigData.h>
-
-#include <System/PiApplication.h>
-#include <System/PiEngine.h>
-#include <System/PiMain.h>
-
-#include <Utilities/PiString.h>
-
-#include <World/PiWorld.h>
-
-
 // C++
 
 #include <cstdarg>

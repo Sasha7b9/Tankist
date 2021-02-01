@@ -17,9 +17,6 @@ if %1==release set CMAKE_BUILD=Release
 rem Путь к каталогу с решением PiEngine2.sln
 set CMAKE_PROJECT_DIR="generated/%BUILDING%/TankistU3D"
 
-rem Путь к каталогу с релизной версией PiEngine
-rem set ENGINE_OUT_DIR=%PROJECT_TANKIST_DIR%\out\%BUILDING%
-
 rem Путь к каталогу Tankist
 set TANKIST_OUT_DIR=%PROJECT_TANKIST_DIR%\out\%BUILDING%
 

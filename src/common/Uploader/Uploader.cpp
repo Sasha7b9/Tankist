@@ -166,7 +166,8 @@ static void HandlerReceivedSocket(AcceptorTCP::Socket &socket, pchar data, int s
 
         std::string fileName(words[2]);
 
-#if PiLINUX
+#ifdef WIN32
+#else
         SU::ReplaceSymbols(fileName, '\\', '/');
 #endif
 

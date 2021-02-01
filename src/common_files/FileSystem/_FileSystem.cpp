@@ -43,7 +43,7 @@ uint FS::File::CalculateCheckSum(size_t size)
 
 void FS::RemoveFile(const std::string &nameFile)
 {
-#if PiWINDOWS
+#ifdef WIN32
 
     if (DeleteFileA(nameFile.c_str()) == 0)
     {
@@ -77,7 +77,7 @@ bool FS::File::Open(pchar _name, ModeAccess::E mode)
 {
     name = _name;
 
-#if PiWINDOWS
+#ifdef WIN32
 
     DWORD access = 0;
 
@@ -138,7 +138,7 @@ bool FS::File::Create(pchar _name, ModeAccess::E mode)
 
     FS::RemoveFile(_name);
 
-#if PiWINDOWS
+#ifdef WIN32
 
     DWORD access = 0;
 
@@ -209,7 +209,7 @@ bool FS::File::Create(pchar _name, ModeAccess::E mode)
 
 void FS::File::Write(const void *buffer, int numBytes)
 {
-#if PiWINDOWS
+#ifdef WIN32
 
     DWORD counter = 0;
 
@@ -244,7 +244,7 @@ void FS::File::Read(std::string &string, size_t size)
 
 void FS::File::Read(void *buffer, size_t numBytes)
 {
-#if PiWINDOWS
+#ifdef WIN32
 
     DWORD counter = 0;
 
@@ -272,7 +272,7 @@ bool FS::File::ReadString(std::string &string)
 {
     string.clear();
 
-#if PiWINDOWS
+#ifdef WIN32
 
     DWORD counter = 0;
 
@@ -306,7 +306,7 @@ bool FS::File::ReadString(std::string &string)
 
 void FS::CreateDirectory(std::string &path)
 {
-#if PiWINDOWS
+#ifdef WIN32
 
 #define CP_UTF8                   65001       // UTF-8 translation
 
@@ -361,7 +361,7 @@ namespace FS
 
 size_t FS::File::Size()
 {
-#if PiWINDOWS
+#ifdef WIN32
 
 #define INVALID_FILE_SIZE ((DWORD)0xFFFFFFFF)
 
@@ -394,7 +394,7 @@ size_t FS::File::Size()
 
 void FS::File::Close()
 {
-#if PiWINDOWS
+#ifdef WIN32
 
     if (handle != nullptr)
     {
@@ -416,7 +416,7 @@ void FS::File::Close()
 
 bool FS::File::IsOpened()
 {
-#if PiWINDOWS
+#ifdef WIN32
 
     return (handle != nullptr);
 

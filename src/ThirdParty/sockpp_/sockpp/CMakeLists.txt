@@ -14,7 +14,7 @@ file(GLOB SOURCES src/*)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
-include(../../../Source/RuntimeLibrary.cmake)
+include(../../../RuntimeLibrary.cmake)
 
 add_definitions(-DCOMPILE_LIBRARY)
 

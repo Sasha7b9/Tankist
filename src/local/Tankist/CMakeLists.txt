@@ -2,19 +2,12 @@ project (Tankist)
 
 include_directories(.
                     ../../common_files
-                    ../../../../Source/PiEngine
-                    ../../../../ThirdParty/sockpp_/sockpp/include
-                    ../../../../ThirdParty/rapidjson_/rapidjson/include)
+                    ../../ThirdParty/sockpp_/sockpp/include
+                    ../../ThirdParty/rapidjson_/rapidjson/include)
 
 set(USE_SOCKPP 1)
 
 include(../../AddPathsToLibraries.cmake)    # Добавляем пути к подключаемым библиотекам
-
-add_definitions(
-    -D__PLACEMENT_NEW_INLINE        # без этого ругается на placement operator new
-    -D__PLACEMENT_VEC_NEW_INLINE    # без этого ругается на placement operator new
-    -DPiWINDOWS
-)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")

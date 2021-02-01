@@ -2,16 +2,11 @@ project (Updater)
 
 include_directories(.
                     ../../common_files
-                    ../../../../Source/PiEngine
-                    ../../../../ThirdParty/sockpp_/sockpp/include
-                    ../../../../ThirdParty/rapidjson_/rapidjson/include
+                    ../../ThirdParty/sockpp_/sockpp/include
+                    ../../ThirdParty/rapidjson_/rapidjson/include
                     )
 
 set(USE_SOCKPP 1)
-
-add_definitions(
-    -DNOT_OVERLOAD_OPERATOR_NEW
-)
 
 include(../../AddPathsToLibraries.cmake)        # Добавить пути к подключаемым библиотекам
 
