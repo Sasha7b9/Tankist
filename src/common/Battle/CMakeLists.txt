@@ -1,7 +1,9 @@
 project (Battle)
 
 include_directories(.
-                    ../../common_files)
+                    ../../common_files
+                    ../../ThirdParty/sockpp_/sockpp/include
+                    ../../ThirdParty/rapidjson_/rapidjson/include)
 
 
 set(USE_SOCKPP 1)

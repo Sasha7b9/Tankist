@@ -3,9 +3,6 @@
 #define __restrict //-V2573
 
 
-#define SIZE_CHUNK_HEADER 4
-
-
 // C++
 
 #include <cmath>
@@ -18,7 +15,22 @@
 #include <sstream>
 #include <string>
 #include <thread>
-#include <vector>
+
+
+// Third party
+
+#ifdef WIN32
+    #pragma warning(push, 0)
+#endif
+
+    #undef Bool
+    #include <rapidjson/document.h>
+    #include <sockpp/tcp_acceptor.h>
+    #include <sockpp/tcp_connector.h>
+
+#ifdef WIN32
+    #pragma warning(pop)
+#endif
 
 
 // Tankist
