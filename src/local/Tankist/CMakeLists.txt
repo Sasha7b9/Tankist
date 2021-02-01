@@ -18,6 +18,7 @@ add_compile_options(/wd4595)    # 'operator 'xxx'': non-member operator new or d
 add_compile_options(/wd4623)    # 'xxx': default constructor was implicitly defined as deleted 
 add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
+add_compile_options(/wd4710)
 add_compile_options(/wd4711)    #  function 'xxx' selected for automatic inline expansion
 add_compile_options(/wd4820)    # 'xxx': 'n' bytes padding added after base class 'yyy'
 add_compile_options(/wd4996)    # 

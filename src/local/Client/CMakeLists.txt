@@ -17,6 +17,7 @@ add_compile_options(/wd4514)
 add_compile_options(/wd4595)    # 'operator 'xxx'': non-member operator new or delete functions may not be declared inline
 add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
+add_compile_options(/wd4710)
 add_compile_options(/wd4711)    # function 'function' selected for inline expansion
 add_compile_options(/wd4820)
 add_compile_options(/wd4996)    # 
