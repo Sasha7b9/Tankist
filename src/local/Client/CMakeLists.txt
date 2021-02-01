@@ -8,8 +8,6 @@ include_directories(.
 
 set(USE_SOCKPP 1)
 
-include(../../AddPathsToLibraries.cmake)    # Добавляем пути к подключаемым библиотекам
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
