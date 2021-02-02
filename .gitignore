@@ -1,14 +1,12 @@
-*.log
-
 generated/*
 out/debug/*.exe
-out/release/*.exe
+out/debug/log/*
+out/release/*
 
 out/debug/remote_list_ignored_files.txt
 out/debug/remote_list_new_files.txt
 out/release/remote_list_ignored_files.txt
 out/release/remote_list_new_files.txt
-
 
 out/debug/Battle
 out/debug/Configurator
