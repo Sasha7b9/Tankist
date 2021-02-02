@@ -3,32 +3,118 @@ Uploader\Uploader.cpp:38                |
 Uploader\Uploader.cpp:50                | Prepare list files ...
 Uploader\Uploader.cpp:55                | 
 Uploader\Uploader.cpp:63                | 
-FileSystem\_ListFiles.cpp:304           | 
-FileSystem\_ListFiles.cpp:255           | Battle.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:255           | Battler.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:255           | Client.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:255           | Hangar.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:255           | Master.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:255           | Tankist.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:255           | Updater.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:255           | Uploader.exe
-FileSystem\_ListFiles.cpp:263           | Обнаружено расширение log
-FileSystem\_ListFiles.cpp:273           | Расширение log не оправдалось
-FileSystem\_ListFiles.cpp:313           | 
-FileSystem\_FileSystem.cpp:100  *ERROR* | Can't open file "log\Uploader.log" from C:\My\prog\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 193
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:102 : Error 32 : Процесс не может получить доступ к файлу, так как этот файл занят другим процессом.
-Utils\_SystemUtils.cpp:28       *ERROR* | C:\My\prog\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:379 : Error 6 : Неверный дескриптор.
+FileSystem\_ListFiles.cpp:306           | 
+FileSystem\_ListFiles.cpp:257           | Battle.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | Battler.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | Client.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:257           | Configurator.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | DataBase.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | Hangar.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:257           | Master.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | Monitor.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | Tankist.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | Updater.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:257           | Uploader.exe
+FileSystem\_ListFiles.cpp:265           | Обнаружено расширение log
+FileSystem\_ListFiles.cpp:275           | Расширение log не оправдалось
+FileSystem\_ListFiles.cpp:315           | 
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_FileSystem.cpp:100  *ERROR* | Can't open file "log\Uploader.log" from D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 195
+Utils\_SystemUtils.cpp:28       *ERROR* | D:\My\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:102 : Error 32 : Процесс не может получить доступ к файлу, так как этот файл занят другим процессом.
+Utils\_SystemUtils.cpp:28       *ERROR* | D:\My\TankistU3D\src\common_files\FileSystem\_FileSystem.cpp:379 : Error 6 : Неверный дескриптор.
+FileSystem\_ListFiles.cpp:192           | Запуск потока из D:\My\TankistU3D\src\common_files\FileSystem\_ListFiles.cpp : 244
+FileSystem\_ListFiles.cpp:323           | 
+Uploader\Uploader.cpp:67                | 
+Uploader\Uploader.cpp:73                | ... done
+Uploader\Uploader.cpp:42                | 
+Network\_SocketsTCP.cpp:30      *ERROR* | 0 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 1 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 2 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 3 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 4 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 5 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 6 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 7 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 8 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 9 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 10 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 11 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 12 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 13 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 14 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 15 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 16 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 17 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 18 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 19 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 20 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 21 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 22 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 23 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 24 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 25 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 26 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 27 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 28 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 29 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 30 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+Network\_SocketsTCP.cpp:30      *ERROR* | 31 - Connect to 127.0.0.1:30000 failed. Error : Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
