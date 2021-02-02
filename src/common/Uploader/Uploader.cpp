@@ -35,11 +35,7 @@ static void HandlerReceivedSocket(AcceptorTCP::Socket &socket, pchar data, int s
 
 int Uploader::Run() //-V2504
 {
-    LOG_WRITE("");
-
     PrepareListFiles();
-
-    LOG_WRITE("");
 
     return RunServer();
 }
@@ -52,19 +48,13 @@ void Uploader::PrepareListFiles()
     FS::RemoveFile(LIST_NEW_FILES);
     FS::RemoveFile(LIST_IGNORED_FILES);
 
-    LOG_WRITE("");
-
     std::vector<std::string> ignoredFiles;
     std::vector<std::string> ignoredExtensions;
 
     gConfig.GetVectorStrings("list ignored files", ignoredFiles);
     gConfig.GetVectorStrings("list ignored extensions", ignoredExtensions);
 
-    LOG_WRITE("");
-
     ListFiles allFiles(".", &ignoredFiles, &ignoredExtensions);
-
-    LOG_WRITE("");
 
     allFiles.Write(LIST_NEW_FILES);
 

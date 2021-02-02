@@ -189,7 +189,7 @@ void ListFiles::AppendSubDirectory(pchar directory, std::vector<std::string> *ig
 
 static void ThreadFunction(FileInfo *info, bool *run, const char *f, int l)
 {
-    LOG_WRITE("Запуск потока из %s : %d", f, l);
+//    LOG_WRITE("Запуск потока из %s : %d", f, l);
 
     FS::File file;
     file.Open(info->name.c_str(), __FILE__, __LINE__, FS::File::ModeAccess::Read);
@@ -254,32 +254,11 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
 
 bool ListFiles::ExtensionIs(std::string &fullName, const std::vector<std::string> *ignoredExtensions)
 {
-    LOG_WRITE("%s", fullName.c_str());
-
     for (const std::string &ext : *ignoredExtensions)
     {
-        size_t size = ext.size();
-
-        if (ext[size - 1] == 'g' && ext[size - 2] == 'o' && ext[size - 3] == 'l')
+        if (fullName.find(ext) == fullName.size() - ext.size())
         {
-            LOG_WRITE("Обнаружено расширение log");
-            size = size;
-
-            if (fullName.find(ext) == fullName.size() - ext.size())
-            {
-                LOG_WRITE("Расширение соотвествует");
-
-                return true;
-            }
-
-            LOG_WRITE("Расширение log не оправдалось");
-        }
-        else
-        {
-            if (fullName.find(ext) == fullName.size() - ext.size())
-            {
-                return true;
-            }
+            return true;
         }
     }
 
@@ -303,7 +282,6 @@ bool ListFiles::FileIs(std::string &fullName, const std::vector<std::string> *ig
 
 void ListFiles::Build(pchar directory, std::vector<std::string> *ignoredFiles, std::vector<std::string> *ignoredExtensions)
 {
-    LOG_WRITE("");
     startBuild = std::chrono::steady_clock::now();
 
     files.clear();
@@ -312,15 +290,11 @@ void ListFiles::Build(pchar directory, std::vector<std::string> *ignoredFiles, s
 
     AppendSubDirectory(directory, ignoredFiles, ignoredExtensions);
 
-    LOG_WRITE("");
-
     while (NumThreads() != 0)
     {
     }
 
     std::cout << "\r" << prevSeconds.count() << " seconds : " << files.size() << " files\n\n";
-
-    LOG_WRITE("");
 }
 
 
