@@ -187,10 +187,8 @@ void ListFiles::AppendSubDirectory(pchar directory, std::vector<std::string> *ig
 }
 
 
-static void ThreadFunction(FileInfo *info, bool *run, const char *f, int l)
+static void ThreadFunction(FileInfo *info, bool *run)
 {
-//    LOG_WRITE("Запуск потока из %s : %d", f, l);
-
     FS::File file;
     file.Open(info->name.c_str(), __FILE__, __LINE__, FS::File::ModeAccess::Read);
 
@@ -241,7 +239,7 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
 
                 files.emplace_back(FileInfo(fullName.c_str()));
 
-                std::thread(ThreadFunction, &files.back(), &run, __FILE__, __LINE__).detach();
+                std::thread(ThreadFunction, &files.back(), &run).detach();
 
                 return;
             }
