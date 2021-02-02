@@ -229,7 +229,9 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
         return;
     }
 
-    while (true)
+    bool cycle = true;
+
+    while (cycle)
     {
         for(bool &run : runThread)
         {
@@ -241,7 +243,9 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
 
                 std::thread(ThreadFunction, &files.back(), &run).detach();
 
-                return;
+                cycle = false;
+
+                break;
             }
         }
 
