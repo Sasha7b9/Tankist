@@ -76,7 +76,7 @@ void FS::RemoveFile(const std::string &nameFile)
 }
 
 
-bool FS::File::Open(pchar _name, char *file, int line, ModeAccess::E mode)
+bool FS::File::Open(pchar _name, pchar file, int line, ModeAccess::E mode)
 {
     name = _name;
 
