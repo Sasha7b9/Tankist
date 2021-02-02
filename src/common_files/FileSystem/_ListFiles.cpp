@@ -114,7 +114,7 @@ void ListFiles::AppendSubDirectory(pchar directory, std::vector<std::string> *ig
                 if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
                 {
                     std::string path = std::string(directory) + FS::delimiter + findData.cFileName;
-                    AppendSubDirectory(path.c_str());
+                    AppendSubDirectory(path.c_str(), ignoredFiles, ignoredExtensions);
                 }
                 else
                 {
