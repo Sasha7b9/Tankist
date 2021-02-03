@@ -207,7 +207,7 @@ static void ThreadFunction(FileInfo *info, bool *run)
 void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string> *ignoredFiles,
     const std::vector<std::string> *ignoredExtensions)
 {
-    LOG_WRITE("Exit in %s with file %s", __FUNCTION__, fullName.c_str());
+    LOG_WRITE("Enter in %s with file %s", __FUNCTION__, fullName.c_str());
 
     fullName.erase(0, 2);
 
@@ -257,6 +257,8 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
 
 bool ListFiles::ExtensionIs(std::string &fullName, const std::vector<std::string> *ignoredExtensions)
 {
+    LOG_WRITE("Enter in %s this %s", __FUNCTION__, fullName.c_str());
+
     for (const std::string &ext : *ignoredExtensions)
     {
         size_t start = fullName.find(ext);
