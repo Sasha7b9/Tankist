@@ -162,7 +162,7 @@ void ListFiles::AppendSubDirectory(pchar directory, std::vector<std::string> *ig
             {
                 if (dirent->d_type == DT_DIR || dirent->d_type == DT_LNK)
                 {
-                    AppendSubDirectory((path + FS::delimiter + name).c_str());
+                    AppendSubDirectory((path + FS::delimiter + name).c_str(), ignoredFiles, ignoredExtensions);
                 }
                 else if(dirent->d_type != DT_REG)
                 {
