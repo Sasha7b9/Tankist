@@ -204,7 +204,8 @@ static void ThreadFunction(FileInfo *info, bool *run)
 }
 
 
-void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string> *ignoredFiles, const std::vector<std::string> *ignoredExtensions)
+void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string> *ignoredFiles,
+    const std::vector<std::string> *ignoredExtensions)
 {
     fullName.erase(0, 2);
 

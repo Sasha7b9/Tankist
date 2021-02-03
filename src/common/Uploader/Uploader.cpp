@@ -26,8 +26,11 @@
 */
 
 
-#define LIST_NEW_FILES          "remote_list_new_files.txt"             // Список новых файлов, подлежащих сравнению и апгрейду, если необходимо      
-#define LIST_IGNORED_FILES      "remote_list_ignored_files.txt"         // Список игнорируемых файлов - передаётся Updater-у, чтобы он их не трогал
+// Список новых файлов, подлежащих сравнению и апгрейду, если необходимо
+#define LIST_NEW_FILES          "remote_list_new_files.txt"
+
+// Список игнорируемых файлов - передаётся Updater-у, чтобы он их не трогал
+#define LIST_IGNORED_FILES      "remote_list_ignored_files.txt"
 
 
 static void HandlerReceivedSocket(AcceptorTCP::Socket &socket, pchar data, int size);
@@ -53,6 +56,13 @@ void Uploader::PrepareListFiles()
 
     gConfig.GetVectorStrings("list ignored files", ignoredFiles);
     gConfig.GetVectorStrings("list ignored extensions", ignoredExtensions);
+
+    LOG_WRITE("ignored extensions : %d", ignoredExtensions.size());
+
+    for (uint i = 0; i < ignoredExtensions.size(); i++)
+    {
+        LOG_WRITE(ignoredExtensions[i].c_str());
+    }
 
     ListFiles allFiles(".", &ignoredFiles, &ignoredExtensions);
 
