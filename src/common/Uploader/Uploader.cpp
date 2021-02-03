@@ -57,13 +57,6 @@ void Uploader::PrepareListFiles()
     gConfig.GetVectorStrings("list ignored files", ignoredFiles);
     gConfig.GetVectorStrings("list ignored extensions", ignoredExtensions);
 
-    LOG_WRITE("ignored extensions : %d", ignoredExtensions.size());
-
-    for (uint i = 0; i < ignoredExtensions.size(); i++)
-    {
-        LOG_WRITE(ignoredExtensions[i].c_str());
-    }
-
     ListFiles allFiles(".", &ignoredFiles, &ignoredExtensions);
 
     allFiles.Write(LIST_NEW_FILES);

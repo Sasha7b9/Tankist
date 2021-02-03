@@ -207,36 +207,21 @@ static void ThreadFunction(FileInfo *info, bool *run)
 void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string> *ignoredFiles,
     const std::vector<std::string> *ignoredExtensions)
 {
-    LOG_WRITE("Enter in %s with file %s", __FUNCTION__, fullName.c_str());
-
     fullName.erase(0, 2);
-
-    LOG_WRITE("");
 
     auto now = std::chrono::steady_clock::now();
 
-    LOG_WRITE("");
-
     auto seconds = std::chrono::duration_cast<std::chrono::seconds>(now - startBuild);
-
-    LOG_WRITE("");
 
     if (seconds != prevSeconds)
     {
-        LOG_WRITE("");
         std::cout << seconds.count() << " seconds : " << files.size() << " files\n";
-
-        LOG_WRITE("");
 
         prevSeconds = seconds;
     }
 
-    LOG_WRITE("");
-
     if (ignoredExtensions && ExtensionIs(fullName, ignoredExtensions))
     {
-        LOG_WRITE("     Ignore file");
-
         return;
     }
 
@@ -268,17 +253,9 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
 
 bool ListFiles::ExtensionIs(std::string &fullName, const std::vector<std::string> *ignoredExtensions)
 {
-    LOG_WRITE("Enter in %s this %s", __FUNCTION__, fullName.c_str());
-
     for (const std::string &ext : *ignoredExtensions)
     {
-        size_t start = fullName.find(ext);
-        size_t size = fullName.size();
-        size_t ext_size = ext.size();
-
-        LOG_WRITE("%s : %d == %d - %d", fullName.c_str(), start, size, ext_size);
-
-        if (start == size - ext_size)
+        if (fullName.find(ext) == fullName.size() - ext.size())
         {
             return true;
         }
