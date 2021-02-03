@@ -207,6 +207,8 @@ static void ThreadFunction(FileInfo *info, bool *run)
 void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string> *ignoredFiles,
     const std::vector<std::string> *ignoredExtensions)
 {
+    LOG_WRITE("Exit in %s with file %s", __FUNCTION__, fullName.c_str());
+
     fullName.erase(0, 2);
 
     auto now = std::chrono::steady_clock::now();
@@ -222,6 +224,8 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
 
     if (ignoredExtensions && ExtensionIs(fullName, ignoredExtensions))
     {
+        LOG_WRITE("     Ignore file");
+
         return;
     }
 
