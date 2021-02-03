@@ -259,7 +259,13 @@ bool ListFiles::ExtensionIs(std::string &fullName, const std::vector<std::string
 {
     for (const std::string &ext : *ignoredExtensions)
     {
-        if (fullName.find(ext) == fullName.size() - ext.size())
+        size_t start = fullName.find(ext);
+        size_t size = fullName.size();
+        size_t ext_size = ext.size();
+
+        LOG_WRITE("%s : %d == %d - %d", fullName.c_str(), start, size, ext_size);
+
+        if (start == size - ext_size)
         {
             return true;
         }
