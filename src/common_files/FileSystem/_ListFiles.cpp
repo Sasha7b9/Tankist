@@ -211,16 +211,27 @@ void ListFiles::AppendFile(std::string &fullName, const std::vector<std::string>
 
     fullName.erase(0, 2);
 
+    LOG_WRITE("");
+
     auto now = std::chrono::steady_clock::now();
+
+    LOG_WRITE("");
 
     auto seconds = std::chrono::duration_cast<std::chrono::seconds>(now - startBuild);
 
+    LOG_WRITE("");
+
     if (seconds != prevSeconds)
     {
+        LOG_WRITE("");
         std::cout << seconds.count() << " seconds : " << files.size() << " files\n";
+
+        LOG_WRITE("");
 
         prevSeconds = seconds;
     }
+
+    LOG_WRITE("");
 
     if (ignoredExtensions && ExtensionIs(fullName, ignoredExtensions))
     {
