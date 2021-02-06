@@ -1,62 +1,131 @@
 #pragma once
 
+#pragma warning(push)
+#pragma warning(disable:4100 4127 4244 4251 4263 4264 4265 4266 4275 4305 4312 4365 4464 4571 4514 4582 4583 4625 4626 4640 4668 4710 4777 4820 5026 5027)
 
-// C++
+#include <Bullet/src/BulletDynamics/ConstraintSolver/btSliderConstraint.h>
 
-#undef alignas
-#include <cstdarg>
-#include <cstdio>
-#include <map>
-#include <mutex>
-#include <sstream>
-#include <string>
+#include <Urho3D/UI/LineEdit.h>
+#include <Urho3D/UI/Text.h>
+#include <Urho3D/UI/Window.h>
+#include <Urho3D/UI/Font.h>
+#include <Urho3D/UI/Sprite.h>
+#include <Urho3D/ui/Button.h>
+#include <Urho3d/ui/UIEvents.h>
+#include <Urho3D/UI/DropDownList.h>
+#include <Urho3D/UI/CheckBox.h>
 
+#include <Urho3D/Audio/Audio.h>
 
-// Third party
+#include <Urho3D/Container/Ptr.h>
 
-#ifdef WIN32
-    #pragma warning(push, 0)
+#include <Urho3D/Core/CoreEvents.h>
+#include <Urho3D/Core/Object.h>
+#include <Urho3D/Core/Timer.h>
+#include <Urho3D/Core/Thread.h>
+#include <Urho3D/Core/Variant.h>
+
+#include <Urho3D/Engine/Application.h>
+#include <Urho3D/Engine/Console.h>
+#include <Urho3D/Engine/DebugHud.h>
+
+#include <Urho3D/Graphics/Camera.h>
+#include <Urho3D/Graphics/Graphics.h>
+#include <Urho3D/Graphics/Geometry.h>
+#include <Urho3D/Graphics/Light.h>
+#include <Urho3D/Graphics/Model.h>
+#include <Urho3D/Graphics/Octree.h>
+#include <Urho3D/Graphics/Renderer.h>
+#include <Urho3D/Graphics/StaticModel.h>
+#include <Urho3D/Graphics/StaticModelGroup.h>
+#include <Urho3D/Graphics/Terrain.h>
+#include <Urho3D/Graphics/Zone.h>
+#include <Urho3D/Graphics/GraphicsEvents.h>
+#include <Urho3D/Graphics/Texture2D.h>
+#include <Urho3D/Graphics/VertexBuffer.h>
+#include <Urho3D/Graphics/DebugRenderer.h>
+
+#include <Urho3D/Input/Controls.h>
+#include <Urho3D/Input/Input.h>
+
+#include <Urho3D/IO/FileSystem.h>
+#include <Urho3D/IO/File.h>
+#include <Urho3D/IO/Log.h>
+#include <Urho3D/IO/MemoryBuffer.h>
+
+#include <Urho3D/Math/Ray.h>
+
+#ifdef SendMessage
+#undef SendMessage
 #endif
 
-    #undef Bool
-    #include <rapidjson/document.h>
-    #include <sockpp/tcp_acceptor.h>
-    #include <sockpp/tcp_connector.h>
+#include <Urho3D/Network/Network.h>
+#include <Urho3D/Network/NetworkEvents.h>
+
+#include <Urho3D/Physics/CollisionShape.h>
+#include <Urho3D/Physics/Constraint.h>
+#include <Urho3D/Physics/PhysicsWorld.h>
+#include <Urho3D/Physics/RigidBody.h>
+#include <Urho3D/Physics/PhysicsEvents.h>
+
+#include <Urho3D/Resource/ResourceCache.h>
+#include <Urho3D/Resource/Localization.h>
+#include <Urho3D/Resource/ResourceEvents.h>
+
+#include <Urho3D/Scene/Scene.h>
+#include <Urho3D/Scene/LogicComponent.h>
+
+//#include <Urho3D/UI/Button.h>
+//#include <Urho3D/UI/UIEvents.h>
+//#include <Urho3D/UI/Font.h>
+//#include <Urho3D/UI/LineEdit.h>
+//#include <Urho3D/UI/UI.h>
+//#include <Urho3D/UI/Text.h>
+//#include <Urho3D/UI/Window.h>
+//#include <Urho3D/UI/DropDownList.h>
+//#include <Urho3D/UI/CheckBox.h>
+//#include <Urho3D/UI/Sprite.h>
+
+#include <Urho3D/DebugNew.h>
+
+#include <Urho3D/Urho2D/Sprite2D.h>
+#include <Urho3D/Urho2D/StaticSprite2D.h>
+
+#include <thread>
 
 #ifdef WIN32
-    #pragma warning(pop)
+
+#pragma comment(lib, "ws2_32.lib")
+#include <d3d9types.h>
+
+#else
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
 #endif
 
+#pragma warning(pop)
 
-// Tankist
+#ifndef WIN32
+#define SOCKET int
+#define closesocket close
+#define WSAGetLastError() errno
+#endif
 
 #include "defines.h"
 
-#include "Client.h"
+using namespace Urho3D;
 
-#include "FileSystem/_ConfigurationFile.h"
-#include "FileSystem/_FileSystem.h"
+//For client only
+#include "Objects/CameraUni.h"
+#include "Network/Client.h"
 
-#include "Game/_Cameras.h"
-#include "Game/_GameWorld.h"
-
-#include "Input/_Input.h"
-
-#include "Interface/HangarWidgets.h"
-#include "Interface/Settings.h"
-
-#include "Network/MainServer.h"
-#include "Network/_MasterServer.h"
-#include "Network/Messages/_MessagesHangar.h"
-#include "Network/Messages/_MessagesServer.h"
-
-#include "Objects/_GamePlayer.h"
-#include "Objects/_Vehicle.h"
-
-#include "Utils/_Log.h"
-#include "Utils/_StringUtils.h"
-#include "Utils/_SystemFunctions.h"
-#include "Utils/_SystemUtils.h"
-
-#include "globals.h"
-
+#include "GUI/Elements/DropDownListButtons.h"
+#include "GUI/Elements/Governor.h"
+#include "Network/Server.h"
+#include "Tankist.h"
+#include "GlobalVars.h"
