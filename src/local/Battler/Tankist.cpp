@@ -166,7 +166,7 @@ void Tankist::Start()
     gGame->Start();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Tankist::Stop()
 {
     if (gClient)
@@ -182,7 +182,7 @@ void Tankist::Stop()
     //engine_->DumpResources(true);
     //engine_->DumpProfiler();
     //engine_->DumpMemory();
-    gLog->Write(__FILE__, __LINE__, 0, "out");
+    LOG_WRITE("out");
     gLog->Close();
 
     SAFE_DELETE(gCounters);
@@ -196,7 +196,7 @@ void Tankist::Stop()
     SAFE_DELETE(gChatLog);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Tankist::CreateScene()
 {
     gScene = new Scene(context_);

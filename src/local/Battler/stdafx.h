@@ -1,7 +1,6 @@
 #pragma once
 
-#pragma warning(push)
-#pragma warning(disable:4100 4127 4244 4251 4263 4264 4265 4266 4275 4305 4312 4365 4464 4571 4514 4582 4583 4625 4626 4640 4668 4710 4777 4820 5026 5027)
+#pragma warning(push, 0)
 
 #include <Bullet/src/BulletDynamics/ConstraintSolver/btSliderConstraint.h>
 
@@ -75,17 +74,6 @@
 #include <Urho3D/Scene/Scene.h>
 #include <Urho3D/Scene/LogicComponent.h>
 
-//#include <Urho3D/UI/Button.h>
-//#include <Urho3D/UI/UIEvents.h>
-//#include <Urho3D/UI/Font.h>
-//#include <Urho3D/UI/LineEdit.h>
-//#include <Urho3D/UI/UI.h>
-//#include <Urho3D/UI/Text.h>
-//#include <Urho3D/UI/Window.h>
-//#include <Urho3D/UI/DropDownList.h>
-//#include <Urho3D/UI/CheckBox.h>
-//#include <Urho3D/UI/Sprite.h>
-
 #include <Urho3D/DebugNew.h>
 
 #include <Urho3D/Urho2D/Sprite2D.h>
@@ -129,3 +117,4 @@ using namespace Urho3D;
 #include "Network/Server.h"
 #include "Tankist.h"
 #include "GlobalVars.h"
+#include "Utils/_LogU3D.h"
