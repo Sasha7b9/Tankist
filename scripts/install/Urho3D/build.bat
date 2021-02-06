@@ -1,9 +1,26 @@
-set current_dir=%CD%
-cd ../../../..
-if not exist Urho3D git clone https://github.com/urho3d/Urho3D.git
-cd Urho3D
-:MAKE_URHO3D
-rmdir generated\debug /S /Q
-cmake . -Bgenerated/debug -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_GENERATOR="Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Debug -DURHO3D_64BIT=1 -DURHO3D_THREADING=1 -DURHO3D_C++11=1 -DURHO3D_LIB_TYPE=SHARED -DURHO3D_STATIC_RUNTIME=0
-MSBuild.exe generated/debug/Urho3D.sln /p:Configuration=debug /t:build -clp:ErrorsOnly;WarningsOnly -nologo /m
-cd %current_dir%
+rem @echo off
+
+if "%1" equ "" goto HINT
+if "%2" neq "" goto HINT
+
+set directory=1
+set configuration=1
+
+if %1 equ debug set directory=debug& set configuration=Debug & goto BUILD
+if %1 equ release set directory=release& set configuration=Release & goto BUILD
+
+goto HINT
+
+
+:BUILD
+MSBuild.exe generated/%directory%/Urho3D.sln /p:Configuration=%configuration% /t:build -clp:ErrorsOnly;WarningsOnly -nologo -m
+goto EXIT
+
+:HINT
+echo.
+echo Using build.bat:
+echo                 build.bat [debug^|release]
+echo.
+goto EXIT
+
+:EXIT
