@@ -7,7 +7,7 @@ class Governor : public Object
     URHO3D_OBJECT(Governor, Object)
 
 public:
-    Governor(Context *context, UIElement *parent, char *nameGovernor, int min = 0, int max = 100);
+    Governor(Context *context, UIElement *parent, const char *nameGovernor, int min = 0, int max = 100);
 
     int GetValue();
 

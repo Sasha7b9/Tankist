@@ -5,7 +5,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Governor::Governor(Context *context, UIElement *parent, char *nameGovernor, int min, int max) : Object(context)
+Governor::Governor(Context *context, UIElement *parent, const char *nameGovernor, int min, int max) : Object(context)
 {
     this->min = min;
     this->max = max;
