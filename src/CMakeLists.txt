@@ -42,7 +42,8 @@ elseif(${CMAKE_BUILD_TYPE} STREQUAL Release)                                    
         link_directories(../generated/release/ThirdParty/bin
                          ../../Urho3D/generated/release/lib
                          ThirdParty/opus/generated
-                         ThirdParty/bass)
+                         ThirdParty/bass
+                         ../../Urho3D/generated/release/Source/ThirdParty/Bullet)
     endif()
 
 endif()
