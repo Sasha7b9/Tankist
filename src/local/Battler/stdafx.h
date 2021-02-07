@@ -12,7 +12,7 @@
 #include <Urho3D/UI/Font.h>
 #include <Urho3D/UI/Sprite.h>
 #include <Urho3D/UI/Button.h>
-#include <Urho3d/UI/UIEvents.h>
+#include <Urho3D/UI/UIEvents.h>
 #include <Urho3D/UI/DropDownList.h>
 #include <Urho3D/UI/CheckBox.h>
 
