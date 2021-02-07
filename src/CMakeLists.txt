@@ -27,7 +27,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                          
         link_directories(../generated/debug/ThirdParty/bin
                          ../../Urho3D/generated/debug/lib
                          ThirdParty/opus/generated
-                         ThirdParty/bass)
+                         ../../Urho3D/generated/debug/Source/ThirdParty/Bullet)
         add_definitions(-g -Og)
     endif()
 

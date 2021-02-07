@@ -49,7 +49,8 @@ if(WIN32)
                                     # that compiler generated copy/move constructors and copy/move assignment operators are
                                     # not trivial
 else()
-    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread -lpthread")
+    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread -lGL -lGLX -lX11 -lGLdispatch")
+    SET(LDFLAGS "${LDFLAGS} -ldl")
 endif()
 
 file(GLOB SRC                ../../common_files/_defines.h
@@ -93,5 +94,5 @@ if(WIN32)
     endif()
 else()
     target_link_libraries(${PROJECT_NAME} Urho3D)
-#    target_link_libraries(${PROJECT_NAME} bass)
+    target_link_libraries(${PROJECT_NAME} Bullet)
 endif()

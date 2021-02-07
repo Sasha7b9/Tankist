@@ -90,4 +90,10 @@ Sight::Sight(Context *context) : Window(context)
     SetFocusMode(FM_NOTFOCUSABLE);
 }
 
+#else
+
+Sight::Sight(Context *context) : Window(context)
+{
+}
+
 #endif
