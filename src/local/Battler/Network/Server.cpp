@@ -198,7 +198,7 @@ void Server::HandleNetworkMessage(StringHash, VariantMap &eventData)
         {
             if(connection == connections[i])
             {
-                Vehicle *tank = tanks[i];
+//                Vehicle *tank = tanks[i];
 //                tank->SetControl(cntrl, type);
                 break;
             }
