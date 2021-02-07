@@ -1,6 +1,6 @@
 #pragma once
 
-#fdef WIN32
+#ifdef WIN32
 #pragma warning(push, 0)
 #endif
 
