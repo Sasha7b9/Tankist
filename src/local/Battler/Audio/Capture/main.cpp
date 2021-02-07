@@ -1,7 +1,10 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #ifdef WIN32
 
+#ifndef STRICT
 #define STRICT
+#endif
+
 #include <windows.h>
 #include <mmsystem.h>
 #include <dsound.h>
@@ -10,7 +13,7 @@
 
 typedef short Sample;
 
-#define SAFE_DELETE(p)  { if(p) { delete (p);     (p)=NULL; } }
+//#define SAFE_DELETE(p)  { if(p) { delete (p);     (p)=NULL; } }
 #define SAFE_RELEASE(p) { if(p) { (p)->Release(); (p)=NULL; } }
 
 
@@ -120,7 +123,7 @@ int main()
                 break;
             default:
                 break;
-                DWORD resultCopy = result;
+                //DWORD resultCopy = result;
                 break;
         }
     }
@@ -164,7 +167,7 @@ HRESULT InitDirectSound()
     format.nSamplesPerSec = kSoundInputSampleRate;
     format.wBitsPerSample = 16;
     format.nChannels = 1;
-    format.nBlockAlign = format.nChannels * (format.wBitsPerSample / 8);
+    format.nBlockAlign = (WORD)(format.nChannels * (format.wBitsPerSample / 8));
     format.nAvgBytesPerSec = format.nBlockAlign * format.nSamplesPerSec;
 
     pState->dwNotifySize = max(4096, format.nAvgBytesPerSec / 8);
@@ -405,7 +408,7 @@ HRESULT HandleNotification()
 
     int numColumns = 15;
 
-    int wordInCol = dwDSOutputLockedBufferSize / numColumns;
+    int wordInCol = (int)(dwDSOutputLockedBufferSize / numColumns);
     signed short *inBuffer = (signed short*)pDSOutputLockedBuffer;
 
     static int numBytes = 0;

@@ -96,7 +96,7 @@ void Vehicle::Init()
     // Back right
     connectionPoints_[3] = Vector3(wheelX, connectionHeight, -2.5f + GetWheelRadius() * 2.0f);
     const Color LtBrown(0.972f, 0.780f, 0.412f);
-    for (size_t id = 0; id < sizeof(connectionPoints_) / sizeof(connectionPoints_[0]); id++)
+    for (int id = 0; id < sizeof(connectionPoints_) / sizeof(connectionPoints_[0]); id++)
     {
         Node* wheelNode = GetScene()->CreateChild();
         Vector3 connectionPoint = connectionPoints_[id];
@@ -148,7 +148,7 @@ void Vehicle::ApplyAttributes()
     emittersCreated = true;
 }
 
-void Vehicle::FixedUpdate(float timeStep)
+void Vehicle::FixedUpdate(float)
 {
     float newSteering = 0.0f;
     float accelerator = 0.0f;
@@ -219,12 +219,12 @@ void Vehicle::PostUpdate(float timeStep)
     float planeAccel = Vector3(accel.x_, 0.0f, accel.z_).Length();
     for (int i = 0; i < vehicle->GetNumWheels(); i++)
     {
-        Node* emitter = particleEmitterNodeList_[i];
+        Node* emitter = particleEmitterNodeList_[(uint)i];
         auto* particleEmitter = emitter->GetComponent<ParticleEmitter>();
         if (vehicle->WheelIsGrounded(i) && (vehicle->GetWheelSkidInfoCumulative(i) < 0.9f || vehicle->GetBrake(i) > 2.0f ||
             planeAccel > 15.0f))
         {
-            particleEmitterNodeList_[i]->SetWorldPosition(vehicle->GetContactPosition(i));
+            particleEmitterNodeList_[(uint)i]->SetWorldPosition(vehicle->GetContactPosition(i));
             if (!particleEmitter->IsEmitting())
             {
                 particleEmitter->SetEmitting(true);
