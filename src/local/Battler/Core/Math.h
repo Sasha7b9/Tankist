@@ -8,6 +8,11 @@ public:
     /// Возвращает 1, если значение больше нуля, -1, если меньше, и 0, если val == 0
     template <class T> static int Sign(T val)
     {
-        if(val == T(0)) return 0; return val < 0 ? -1 : 1;
+        if(val == T(0))
+        {
+             return 0;
+        }
+
+        return val < 0 ? -1 : 1;
     }
 };
