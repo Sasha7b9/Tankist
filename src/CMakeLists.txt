@@ -21,7 +21,8 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                          
     if(WIN32)
         link_directories($ENV{PROJECT_TANKIST_DIR}/generated/debug/ThirdParty/sockpp_/sockpp/Debug
                          ../../Urho3D/generated/debug/lib
-                         ThirdParty/bass)
+                         ThirdParty/bass
+                         ThirdParty/opus/generated/Release)
     else()
         link_directories(../generated/debug/ThirdParty/bin)
         add_definitions(-g -Og)
@@ -32,7 +33,8 @@ elseif(${CMAKE_BUILD_TYPE} STREQUAL Release)                                    
     if(WIN32)
         link_directories($ENV{PROJECT_TANKIST_DIR}/generated/release/ThirdParty/sockpp_/sockpp/Release
                          ../../Urho3D/generated/release/lib
-                         ThirdParty/bass)
+                         ThirdParty/bass
+                         ThirdParty/opus/generated/Release)
     else()
         link_directories(../generated/release/ThirdParty/bin)
     endif()

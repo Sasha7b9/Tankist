@@ -7,9 +7,9 @@
 
 #pragma comment(lib, "bass.lib")
 #pragma comment(lib, "opus.lib")
-#pragma comment(lib, "silk_common.lib")
-#pragma comment(lib, "silk_float.lib")
-#pragma comment(lib, "celt.lib")
+//#pragma comment(lib, "silk_common.lib")
+//#pragma comment(lib, "silk_float.lib")
+//#pragma comment(lib, "celt.lib")
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

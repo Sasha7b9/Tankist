@@ -29,7 +29,8 @@ add_compile_options(/wd4251)
 add_compile_options(/wd4355)    # 'this': used in base member initializer list
 add_compile_options(/wd4464)
 add_compile_options(/wd4514)    # 'xxx': unreferenced inline function has been removed
-add_compile_options(/wd4595)    # 'operator 'xxx'': non-member operator new or delete functions may not be declared inline
+add_compile_options(/wd4595)    # 'operator 'xxx'': non-member operator new or delete functions may not be declared
+                                # inline
 add_compile_options(/wd4623)    # 'xxx': default constructor was implicitly defined as deleted 
 add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
@@ -41,22 +42,28 @@ add_compile_options(/wd5026)    # 'xxx': move constructor was implicitly defined
 add_compile_options(/wd5027)    # 'xxx': move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 add_compile_options(/wd5219)
-add_compile_options(/wd5220)    # 'xxx:yyy': a non-static data member with a volatile qualified type no longer implies that compiler generated copy/move constructors and copy/move assignment operators are not trivial
+add_compile_options(/wd5220)    # 'xxx:yyy': a non-static data member with a volatile qualified type no longer implies
+                                # that compiler generated copy/move constructors and copy/move assignment operators are
+                                # not trivial
 
 file(GLOB SRC                ../../common_files/_defines.h
                                                 *.h
                                                 *.cpp)
-file(GLOB AUDIO              Audio/*.h
-                             Audio/*.cpp)
-file(GLOB AUDIO_CAPTURE      Audio/Capture/*)
-file(GLOB NETWORK            Network/*)
-file(GLOB OBJECTS            Objects/*.h
-                             Objects/*.cpp)
+file(GLOB AUDIO              Audio/*.*)
+file(GLOB AUDIO_CAPTURE      Audio/Capture/*.*)
+file(GLOB GRAPHICS           Graphics/*.*)
+file(GLOB GUI                GUI/*.*)
+file(GLOB GUI_ELEMENTS       GUI/Elements/*.*)
+file(GLOB NETWORK            Network/*.*)
+file(GLOB OBJECTS            Objects/*.*)
 file(GLOB UTILS              ../../common_files/Utils/_LogU.*)
                              
 source_group(src             FILES ${SRC})
 source_group(Audio           FILES ${AUDIO})
 source_group(Audio\\Capture  FILES ${AUDIO_CAPTURE})
+source_group(Graphics        FILES ${GRAPHICS})
+source_group(GUI             FILES ${GUI})
+source_group(GUI\\Elements   FILES ${GUI_ELEMENTS})
 source_group(Network         FILES ${NETWORK})
 source_group(Objects         FILES ${OBJECTS})
 source_group(Utils           FILES ${UTILS})
@@ -66,7 +73,7 @@ set_source_files_properties(stdafx.cpp
     COMPILE_FLAGS "/Ycstdafx.h"
 )
 
-add_executable(${PROJECT_NAME} ${SRC} ${AUDIO} ${AUDIO_CAPTURE} ${NETWORK} ${OBJECTS} ${UTILS})
+add_executable(${PROJECT_NAME} ${SRC} ${AUDIO} ${AUDIO_CAPTURE} ${GRAPHICS} ${GUI} ${GUI_ELEMENTS} ${AUDIO_CAPTURE} ${NETWORK} ${OBJECTS} ${UTILS})
 
 if(WIN32)
     if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
