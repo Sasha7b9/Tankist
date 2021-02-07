@@ -102,7 +102,7 @@ static void AcceptTask(SOCKET sockServer, SocketParam *sockParam)
 #endif
                               "%d.%d.%d.%d", longAddr & 0xff, (longAddr >> 8) & 0xff, (longAddr >> 16) & 0xff, (longAddr >> 24) & 0xff);
 
-            t = new std::thread(ExchangeTaks, (int)newSock, sockParam);
+            t = new std::thread(ExchangeTaks, newSock, sockParam);
 
             sockParam->funcOnConnect(sockParam->server, newSock, buffAddr, addrClient.sin_port);
         }
