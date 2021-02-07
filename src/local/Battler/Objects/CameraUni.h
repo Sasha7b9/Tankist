@@ -57,5 +57,5 @@ private:
     Sight *sight = nullptr;
 
     CameraUni(CameraUni const&) : Object(nullptr) {};
-    CameraUni operator=(CameraUni const&) {};
+    CameraUni operator=(CameraUni const&) { return *this; };
 };
