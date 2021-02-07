@@ -2,23 +2,19 @@
 
 if "%1" equ "" goto HINT
 if "%2" equ "" goto HINT
-if "%3" equ "" goto HINT
-if "%4" neq "" goto HINT
+if "%3" neq "" goto HINT
 
 set current_dir=%CD%
 cd ../../../..
 if not exist Urho3D git clone https://github.com/urho3d/Urho3D.git
 cd Urho3D
 
+git pull
+
 set isMake=0
 set isBuild=0
 set isDebug=0
 set isRelease=0
-
-if %3==0 goto START
-if %3==1 goto START
-
-goto HINT
 
 :START
 if %1==make  set isMake=1  & goto LABEL1
@@ -38,8 +34,8 @@ goto HINT
 if %isMake% equ 0 goto BUILD
 
 :MAKE
-if %isDebug%   equ 1 call %current_dir%\make.bat debug %3
-if %isRelease% equ 1 call %current_dir%\make.bat release %3
+if %isDebug%   equ 1 call %current_dir%\make.bat debug
+if %isRelease% equ 1 call %current_dir%\make.bat release
 
 :BUILD
 if %isBuild%   equ 0 goto EXIT
@@ -50,8 +46,7 @@ goto EXIT
 :HINT
 echo.
 echo Using assembly.bat:
-echo                    assembly.bat [make^|build^|full] [debug^|release^|all] [0^|1]
-echo  Third parameter - if equal 1 - static runtime
+echo                    assembly.bat [make^|build^|full] [debug^|release^|all]
 echo.
 goto EXIT
 
