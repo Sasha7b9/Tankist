@@ -22,6 +22,8 @@ include_directories(.
                     ../../../../Urho3D/Source/ThirdParty/Bullet/src)
 endif()
 
+if(WIN32)
+else()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
@@ -45,6 +47,7 @@ add_compile_options(/wd5219)
 add_compile_options(/wd5220)    # 'xxx:yyy': a non-static data member with a volatile qualified type no longer implies
                                 # that compiler generated copy/move constructors and copy/move assignment operators are
                                 # not trivial
+endif()
 
 file(GLOB SRC                ../../common_files/_defines.h
                                                 *.h
