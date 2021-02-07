@@ -28,3 +28,6 @@ out/release/Hangar
 out/release/Master
 out/release/Monitor
 out/release/Uploader
+
+
+src/ThirdParty/opus/generated/*
