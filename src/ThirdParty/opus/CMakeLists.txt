@@ -558,6 +558,11 @@ if(OPUS_INSTALL_CMAKE_CONFIG_MODULE)
           DESTINATION ${CMAKE_INSTALL_PACKAGEDIR})
 endif()
 
+if(WIN32)
+    set_property(GLOBAL PROPERTY
+        MSVC_RUNTIME_LIBRARY "MultiThreaded")   # Устанавливаем статическую линковку рантайм-библиотек
+endif()
+
 if(OPUS_BUILD_PROGRAMS)
   # demo
   if(OPUS_CUSTOM_MODES)
