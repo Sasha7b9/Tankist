@@ -74,8 +74,6 @@ static void ExchangeTaks(SOCKET sock, SocketParam *sockParam)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void AcceptTask(SOCKET sockServer, SocketParam *sockParam)
 {
-    std::thread *t = nullptr;
-
     sockaddr_in addrClient;
 #ifdef WIN32
     int lenClient = sizeof(addrClient);
@@ -102,7 +100,7 @@ static void AcceptTask(SOCKET sockServer, SocketParam *sockParam)
 #endif
                               "%d.%d.%d.%d", longAddr & 0xff, (longAddr >> 8) & 0xff, (longAddr >> 16) & 0xff, (longAddr >> 24) & 0xff);
 
-            t = new std::thread(ExchangeTaks, newSock, sockParam);
+            new std::thread(ExchangeTaks, newSock, sockParam);
 
             sockParam->funcOnConnect(sockParam->server, newSock, buffAddr, addrClient.sin_port);
         }
