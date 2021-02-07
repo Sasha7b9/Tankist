@@ -35,7 +35,7 @@ bool SocketServerTCP::Init(SocketParam *sockParam_)
     sockServer = socket(AF_INET, SOCK_STREAM, 0);
     if(sockServer < 0)
     {
-        LOG_ERROR("Can not create socket");
+//        LOG_ERROR("Can not create socket");
         return false;
     }
 
@@ -74,7 +74,7 @@ static void ExchangeTaks(SOCKET sock, SocketParam *sockParam)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void AcceptTask(SOCKET sockServer, SocketParam *sockParam)
 {
-    std::thread *t;
+    std::thread *t = nullptr;
 
     sockaddr_in addrClient;
 #ifdef WIN32

@@ -25,7 +25,7 @@ endif()
 if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
-    
+
     add_compile_options(/wd4251)
     add_compile_options(/wd4355)    # 'this': used in base member initializer list
     add_compile_options(/wd4464)
@@ -59,7 +59,7 @@ file(GLOB GUI_ELEMENTS       GUI/Elements/*.*)
 file(GLOB NETWORK            Network/*.*)
 file(GLOB OBJECTS            Objects/*.*)
 file(GLOB UTILS              ../../common_files/Utils/_LogU.*)
-                             
+
 source_group(src             FILES ${SRC})
 source_group(Audio           FILES ${AUDIO})
 source_group(Audio\\Capture  FILES ${AUDIO_CAPTURE})
@@ -70,10 +70,12 @@ source_group(Network         FILES ${NETWORK})
 source_group(Objects         FILES ${OBJECTS})
 source_group(Utils           FILES ${UTILS})
 
+if(WIN32)
 set_source_files_properties(stdafx.cpp
     PROPERTIES
     COMPILE_FLAGS "/Ycstdafx.h"
 )
+endif()
 
 add_executable(${PROJECT_NAME} ${SRC} ${AUDIO} ${AUDIO_CAPTURE} ${GRAPHICS} ${GUI} ${GUI_ELEMENTS} ${AUDIO_CAPTURE} ${NETWORK} ${OBJECTS} ${UTILS})
 
@@ -84,7 +86,5 @@ if(WIN32)
         target_link_libraries(${PROJECT_NAME} Urho3D) 
     endif()
 else()
-    if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
-    else()
-    endif()
+    target_link_libraries(${PROJECT_NAME} Urho3D)
 endif()

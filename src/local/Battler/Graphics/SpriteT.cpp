@@ -1,4 +1,7 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
+
+#ifdef WIN32
+
 #include <stdafx.h>
 #include "SpriteT.h"
 
@@ -34,3 +37,6 @@ void SpriteT::FillRectangle(int x, int y, int width, int height, const Color &co
     SetTexture(texture);
     SetFullImageRect();
 }
+
+#endif
+

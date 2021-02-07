@@ -11,5 +11,5 @@ public:
 
 private:
     Sight(Sight const&) : Window(nullptr) {};
-    Sight operator=(Sight const&) {};
+    Sight operator=(Sight const&) { return *this; };
 };

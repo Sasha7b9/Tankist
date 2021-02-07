@@ -57,14 +57,14 @@ void ProgressBar::DrawProgress()
     sprite->FillRectangle(0, 0, (int)(width * progress), (int)height, Color::BLUE);
 
     char buffer[100];
-    sprintf_s(buffer, 99, "%5.1f%%", progress * 100.0f);
+    sprintf(buffer, "%5.1f%%", progress * 100.0f);
 
     textPercents->SetText(String(buffer));
 
-    sprintf_s(buffer, 99, "Size: all %5.1fMB, recieved %5.1fMB\n", bytesAll / 1024.0f / 1024.0f, bytesRecieved / 1024.0f / 1024.0f);
+    sprintf(buffer, "Size: all %5.1fMB, recieved %5.1fMB\n", bytesAll / 1024.0f / 1024.0f, bytesRecieved / 1024.0f / 1024.0f);
     String str1(buffer);
 
-    sprintf_s(buffer, 99, "Speed %5.1fkB/s, time: passed %5.1fs, elapsed %5.1fs", speed / 1024.0f, timePassed, timeElapsed);
+    sprintf(buffer, "Speed %5.1fkB/s, time: passed %5.1fs, elapsed %5.1fs", speed / 1024.0f, timePassed, timeElapsed);
     String str2(buffer);
 
     text->SetText(currentFile + String("\n") + str1 + str2);

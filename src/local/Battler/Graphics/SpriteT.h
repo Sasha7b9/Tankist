@@ -19,7 +19,7 @@ public:
 
 private:
     SpriteT(SpriteT const&) : Sprite(nullptr) {};
-    SpriteT operator=(SpriteT const &) {};
+    SpriteT operator=(SpriteT const &) { return *this; };
 
     SharedPtr<ImageT> image;
 };

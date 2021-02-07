@@ -1,4 +1,7 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
+
+#ifdef WIN32
+
 #include "TWTThreads.h"
 
 
@@ -12,3 +15,6 @@ Signal::Signal(int count)
         signalEvent[a] = CreateEventA(nullptr, false, false, nullptr);
     }
 }
+
+#endif
+

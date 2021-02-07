@@ -19,7 +19,7 @@ public:
     void SetBytes(int all, int recieved);
 
 private:
-    ProgressBar& operator=(const ProgressBar&) {};
+    ProgressBar& operator=(const ProgressBar&) { return *this; };
     ProgressBar(const ProgressBar&) : UIElement(nullptr)  {};
 
     SharedPtr<SpriteT> sprite;

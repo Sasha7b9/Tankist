@@ -1,7 +1,9 @@
 #include "Vehicle.h"
 
-#pragma warning(push)
-#pragma warning(disable:4244 4305)
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
+
 #include <Urho3D/Core/Context.h>
 #include <Urho3D/Graphics/DebugRenderer.h>
 #include <Urho3D/Graphics/DecalSet.h>
@@ -18,7 +20,10 @@
 #include <Urho3D/Physics/RaycastVehicle.h>
 #include <Urho3D/Resource/ResourceCache.h>
 #include <Urho3D/Scene/Scene.h>
+
+#ifdef WIN32
 #pragma warning(pop)
+#endif
 
 using namespace Urho3D;
 
@@ -91,7 +96,7 @@ void Vehicle::Init()
     // Back right
     connectionPoints_[3] = Vector3(wheelX, connectionHeight, -2.5f + GetWheelRadius() * 2.0f);
     const Color LtBrown(0.972f, 0.780f, 0.412f);
-    for (int id = 0; id < sizeof(connectionPoints_) / sizeof(connectionPoints_[0]); id++)
+    for (size_t id = 0; id < sizeof(connectionPoints_) / sizeof(connectionPoints_[0]); id++)
     {
         Node* wheelNode = GetScene()->CreateChild();
         Vector3 connectionPoint = connectionPoints_[id];
