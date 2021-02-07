@@ -96,3 +96,9 @@ else()
     target_link_libraries(${PROJECT_NAME} Urho3D)
     target_link_libraries(${PROJECT_NAME} Bullet)
 endif()
+
+set(DIR $ENV{TANKIST_OUT_DIR})
+include(../../CopyToDirEXE.cmake)
+include(../../SetWorkingDirectory.cmake)
+
+include(../../Install.cmake)
