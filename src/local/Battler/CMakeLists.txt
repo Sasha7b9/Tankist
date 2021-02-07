@@ -1,14 +1,22 @@
 project (Battler)
 
+if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
 include_directories(.
                     ../../common_files
-                    ../../../../Urho3D/generated/include
-                    ../../../../Urho3D/generated/include/Urho3D/ThirdParty
+                    ../../../../Urho3D/generated/debug/include
+                    ../../../../Urho3D/generated/debug/include/Urho3D/ThirdParty
                     ../../../../Urho3D/Source
                     ../../../../Urho3D/Source/ThirdParty
                     ../../../../Urho3D/Source/ThirdParty/Bullet/src)
-
-#set(USE_SOCKPP 1)
+else()
+include_directories(.
+                    ../../common_files
+                    ../../../../Urho3D/generated/release/include
+                    ../../../../Urho3D/generated/release/include/Urho3D/ThirdParty
+                    ../../../../Urho3D/Source
+                    ../../../../Urho3D/Source/ThirdParty
+                    ../../../../Urho3D/Source/ThirdParty/Bullet/src)
+endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
@@ -46,14 +54,14 @@ set_source_files_properties(stdafx.cpp
 
 add_executable(${PROJECT_NAME} ${SRC} ${AUDIO_CAPTURE})
 
-target_link_libraries(${PROJECT_NAME} PiEngine)
-
-
-#include(../../RuntimeLibrary.cmake)
-#
-#set(DIR $ENV{TANKIST_OUT_DIR})
-#include(../../CopyToDirEXE.cmake)
-#include(../../SetWorkingDirectory.cmake)
-#
-#include(../../LinkLibraries.cmake)          # Подключаем дополнительные библиотеки
-#include(../../Install.cmake)
+if(WIN32)
+    if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
+        target_link_libraries(${PROJECT_NAME} Urho3D_d)
+    else()
+        target_link_libraries(${PROJECT_NAME} Urho3D) 
+    endif()
+else()
+    if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
+    else()
+    endif()
+endif()
