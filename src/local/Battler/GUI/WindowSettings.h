@@ -15,7 +15,7 @@ public:
 
 private:
     WindowSettings(WindowSettings const&) : Object(nullptr) {};
-    WindowSettings operator=(WindowSettings const&) {};
+    WindowSettings operator=(WindowSettings const&) { return *this; };
 
     SharedPtr<UIElement> window;
 
