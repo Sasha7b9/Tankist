@@ -62,16 +62,16 @@ function(add_subdirectory_with_folder _folder_name _folder)
 endfunction()
 
 if(WIN32)
-   add_subdirectory_with_folder("local" local/Battler)
    add_subdirectory_with_folder("local" local/Client)
    add_subdirectory_with_folder("local" local/Tankist)
    add_subdirectory_with_folder("local" local/Updater)
 endif()
 
+add_subdirectory_with_folder("local" local/Battler)
+
 add_subdirectory_with_folder("remote" remote/DataBase)
 add_subdirectory_with_folder("remote" remote/Master)
 
-add_subdirectory_with_folder("common" common/Battle)
 add_subdirectory_with_folder("common" common/Configurator)
 add_subdirectory_with_folder("common" common/Hangar)
 add_subdirectory_with_folder("common" common/Monitor)
