@@ -1,0 +1,1 @@
+cmake . -Bgenerated -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_GENERATOR="Visual Studio 16 2019"
