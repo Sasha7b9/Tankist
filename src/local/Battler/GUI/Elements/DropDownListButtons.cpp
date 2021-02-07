@@ -5,7 +5,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-DropDownListButtons::DropDownListButtons(Context *context, UIElement *parent, char *nameDDLB) : Object(context)
+DropDownListButtons::DropDownListButtons(Context *context, UIElement *parent, const char *nameDDLB) : Object(context)
 {
     UIElement *ddlb = parent->GetChild(nameDDLB, true);
 

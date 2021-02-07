@@ -7,7 +7,7 @@ class DropDownListButtons : public Object
     URHO3D_OBJECT(DropDownListButtons, Object)
 
 public:
-    DropDownListButtons(Context *context, UIElement *parent, char *nameDDLB);
+    DropDownListButtons(Context *context, UIElement *parent, const char *nameDDLB);
 
     void AddItem(const String &item);
 
