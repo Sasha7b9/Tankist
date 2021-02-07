@@ -6,6 +6,7 @@
 
 generated/*
 out/debug/*.exe
+out/debug/*.log
 out/debug/log/*
 out/release/*
 
