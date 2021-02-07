@@ -117,4 +117,4 @@ using namespace Urho3D;
 #include "Network/Server.h"
 #include "Tankist.h"
 #include "GlobalVars.h"
-#include "Utils/_LogU3D.h"
+#include "Utils/_LogU.h"

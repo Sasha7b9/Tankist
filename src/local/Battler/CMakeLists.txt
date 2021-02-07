@@ -3,6 +3,8 @@ project (Battler)
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
 include_directories(.
                     ../../common_files
+                    ../../ThirdParty/bass
+                    ../../ThirdParty/opus/include
                     ../../../../Urho3D/generated/debug/include
                     ../../../../Urho3D/generated/debug/include/Urho3D/ThirdParty
                     ../../../../Urho3D/Source
@@ -11,6 +13,8 @@ include_directories(.
 else()
 include_directories(.
                     ../../common_files
+                    ../../ThirdParty/bass
+                    ../../ThirdParty/opus/include
                     ../../../../Urho3D/generated/release/include
                     ../../../../Urho3D/generated/release/include/Urho3D/ThirdParty
                     ../../../../Urho3D/Source
@@ -21,6 +25,7 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
+add_compile_options(/wd4251)
 add_compile_options(/wd4355)    # 'this': used in base member initializer list
 add_compile_options(/wd4464)
 add_compile_options(/wd4514)    # 'xxx': unreferenced inline function has been removed
@@ -35,16 +40,25 @@ add_compile_options(/wd4996)    #
 add_compile_options(/wd5026)    # 'xxx': move constructor was implicitly defined as deleted
 add_compile_options(/wd5027)    # 'xxx': move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+add_compile_options(/wd5219)
 add_compile_options(/wd5220)    # 'xxx:yyy': a non-static data member with a volatile qualified type no longer implies that compiler generated copy/move constructors and copy/move assignment operators are not trivial
 
 file(GLOB SRC                ../../common_files/_defines.h
                                                 *.h
                                                 *.cpp)
-file(GLOB AUDIO_CAPTURE      Auto/Capture/*)
+file(GLOB AUDIO              Audio/*.h
+                             Audio/*.cpp)
+file(GLOB AUDIO_CAPTURE      Audio/Capture/*)
+file(GLOB NETWORK            Network/*)
+file(GLOB OBJECTS            Objects/*.h
+                             Objects/*.cpp)
 file(GLOB UTILS              ../../common_files/Utils/_LogU.*)
                              
 source_group(src             FILES ${SRC})
+source_group(Audio           FILES ${AUDIO})
 source_group(Audio\\Capture  FILES ${AUDIO_CAPTURE})
+source_group(Network         FILES ${NETWORK})
+source_group(Objects         FILES ${OBJECTS})
 source_group(Utils           FILES ${UTILS})
 
 set_source_files_properties(stdafx.cpp
@@ -52,7 +66,7 @@ set_source_files_properties(stdafx.cpp
     COMPILE_FLAGS "/Ycstdafx.h"
 )
 
-add_executable(${PROJECT_NAME} ${SRC} ${AUDIO_CAPTURE})
+add_executable(${PROJECT_NAME} ${SRC} ${AUDIO} ${AUDIO_CAPTURE} ${NETWORK} ${OBJECTS} ${UTILS})
 
 if(WIN32)
     if(${CMAKE_BUILD_TYPE} STREQUAL Debug)

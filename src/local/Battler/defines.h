@@ -62,6 +62,3 @@ union BitSet32
 #define SAFE_DELETE(x)  \
     if(x) delete x;     \
     x = nullptr;
-
-#define LOG_FUNC_ENTER Log::Write(__FILE__, __LINE__, LOG_INFO, ToString("%s enter", __FUNCTION__));
-#define LOG_FUNC_LEAVE Log::Write(__FILE__, __LINE__, LOG_INFO, ToString("%s leave", __FUNCTION__));

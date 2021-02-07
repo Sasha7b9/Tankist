@@ -1,7 +1,14 @@
 #pragma once
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
 #include <Urho3D/Input/Controls.h>
 #include <Urho3D/Physics/PhysicsUtils.h>
 #include <Urho3D/Scene/LogicComponent.h>
+#ifdef WIN32
+#pragma warning(pop)
+#endif
+
 
 enum Control
 {
