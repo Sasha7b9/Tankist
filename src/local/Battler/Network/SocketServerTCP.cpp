@@ -74,7 +74,9 @@ static void ExchangeTaks(SOCKET sock, SocketParam *sockParam)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 static void AcceptTask(SOCKET sockServer, SocketParam *sockParam)
 {
+#ifdef WIN32
     std::thread *t = nullptr;
+#endif
 
     sockaddr_in addrClient;
 #ifdef WIN32

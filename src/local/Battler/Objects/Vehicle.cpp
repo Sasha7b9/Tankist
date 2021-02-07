@@ -80,7 +80,7 @@ void Vehicle::Init()
     hullObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
     hullObject->SetCastShadows(true);
     float connectionHeight = -0.4f;
-    bool isFrontWheel = true;
+//    bool isFrontWheel = true;
     Vector3 wheelDirection(0, -1, 0);
     Vector3 wheelAxle(-1, 0, 0);
     // We use not scaled coordinates here as everything will be scaled.
@@ -125,7 +125,7 @@ void Vehicle::Init()
 
 void Vehicle::CreateEmitter(Vector3 place)
 {
-    auto* cache = GetSubsystem<ResourceCache>();
+//    auto* cache = GetSubsystem<ResourceCache>();
     Node* emitter = GetScene()->CreateChild();
     emitter->SetWorldPosition(node_->GetWorldPosition() + node_->GetWorldRotation() * place + Vector3(0, -wheelRadius_, 0));
     //auto* particleEmitter = emitter->CreateComponent<ParticleEmitter>();
@@ -138,7 +138,7 @@ void Vehicle::CreateEmitter(Vector3 place)
 /// Applying attributes
 void Vehicle::ApplyAttributes()
 {
-    auto* vehicle = node_->GetOrCreateComponent<RaycastVehicle>();
+//    auto* vehicle = node_->GetOrCreateComponent<RaycastVehicle>();
     if (emittersCreated)
         return;
     for (const auto& connectionPoint : connectionPoints_)
