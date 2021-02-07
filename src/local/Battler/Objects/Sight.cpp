@@ -88,5 +88,6 @@ Sight::Sight(Context *context) : Window(context)
     SetTexture(texture);
     SetBringToBack(true);
     SetFocusMode(FM_NOTFOCUSABLE);
-#endif
 }
+
+#endif
