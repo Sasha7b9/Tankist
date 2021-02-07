@@ -2,7 +2,9 @@
 
 #ifdef WIN32
 
+#pragma warning(push, 0)
 #include <xaudio2.h>
+#pragma warning(pop)
 
 #include "defines.h"
 #include "TWTThreads.h"
@@ -29,6 +31,8 @@ private:
 
     struct VoiceCallback : IXAudio2VoiceCallback
     {
+        virtual ~VoiceCallback() {}
+
         SoundMgr *soundMgr;
 
         void STDMETHODCALLTYPE OnVoiceProcessingPassStart(UINT32);

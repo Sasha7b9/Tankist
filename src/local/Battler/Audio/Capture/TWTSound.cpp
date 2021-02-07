@@ -86,15 +86,15 @@ void SoundMgr::VoiceCallback::OnVoiceProcessingPassEnd() {}
 
 void SoundMgr::VoiceCallback::OnStreamEnd() {}
 
-void SoundMgr::VoiceCallback::OnBufferStart(void *context) {}
+void SoundMgr::VoiceCallback::OnBufferStart(void *) {}
 
 void SoundMgr::VoiceCallback::OnBufferEnd(void *context)
 {
     soundMgr->soundSignal->Trigger(context == &soundMgr->sourceBuffer[0] ? 1 : 2);
 }
 
-void SoundMgr::VoiceCallback::OnLoopEnd(void *context) {}
+void SoundMgr::VoiceCallback::OnLoopEnd(void *) {}
 
-void SoundMgr::VoiceCallback::OnVoiceError(void *context, HRESULT) {}
+void SoundMgr::VoiceCallback::OnVoiceError(void *, HRESULT) {}
 
 #endif
