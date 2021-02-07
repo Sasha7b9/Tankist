@@ -191,8 +191,8 @@ void Server::HandleNetworkMessage(StringHash, VariantMap &eventData)
     }
     else if(msgID == MSG_CONTROL)
     {
-        Control cntrl = (Control)msg.ReadInt();
-        TypeControl type = (TypeControl)msg.ReadInt();
+//        Control cntrl = (Control)msg.ReadInt();
+//        TypeControl type = (TypeControl)msg.ReadInt();
         
         for(uint i = 0; i < connections.Size(); i++)
         {
