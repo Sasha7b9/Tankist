@@ -35,5 +35,5 @@ private:
     void HandleNewVar(StringHash, VariantMap&);
 
     GameGUI(GameGUI const&) : GameGUI(nullptr) {};
-    GameGUI operator=(GameGUI const &)  {};
+    GameGUI operator=(GameGUI const &)  { return *this; };
 };
