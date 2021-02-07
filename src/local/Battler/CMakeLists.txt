@@ -81,6 +81,8 @@ endif()
 
 add_executable(${PROJECT_NAME} ${SRC} ${AUDIO} ${AUDIO_CAPTURE} ${GRAPHICS} ${GUI} ${GUI_ELEMENTS} ${AUDIO_CAPTURE} ${NETWORK} ${OBJECTS} ${UTILS})
 
+target_link_libraries(${PROJECT_NAME} opus)
+
 if(WIN32)
     if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
         target_link_libraries(${PROJECT_NAME} Urho3D_d)
