@@ -9,5 +9,5 @@
 class LogT
 {
 public:
-    static void Write(char *file, int line, char *format, ...);
+    static void Write(const char *file, int line, const char *format, ...);
 };

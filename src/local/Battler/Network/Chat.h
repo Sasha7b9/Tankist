@@ -49,5 +49,5 @@ private:
     Vector<String> messages;
 
     Chat(Chat const&) : Object(nullptr) {};
-    Chat operator=(Chat const&) {};
+    Chat operator=(Chat const&) { return *this; };
 };

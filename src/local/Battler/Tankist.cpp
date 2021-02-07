@@ -8,9 +8,13 @@
 #include "Graphics/ImageT.h"
 
 
-#pragma warning(disable:4100)
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
 URHO3D_DEFINE_APPLICATION_MAIN(Tankist)
-#pragma warning(default:4100)
+#ifdef WIN32
+#pragma warning(pop)
+#endif
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

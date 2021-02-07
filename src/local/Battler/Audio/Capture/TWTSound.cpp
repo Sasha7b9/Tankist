@@ -1,4 +1,7 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
+
+#ifdef WIN32
+
 #include "TWTSound.h"
 
 
@@ -93,3 +96,5 @@ void SoundMgr::VoiceCallback::OnBufferEnd(void *context)
 void SoundMgr::VoiceCallback::OnLoopEnd(void *context) {}
 
 void SoundMgr::VoiceCallback::OnVoiceError(void *context, HRESULT) {}
+
+#endif

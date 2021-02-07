@@ -16,5 +16,5 @@ private:
     File *file = nullptr;
 
     ChatLog(ChatLog const&) : Object(nullptr) {};
-    ChatLog operator=(ChatLog const&) {};
+    ChatLog operator=(ChatLog const&) { return *this; };
 };

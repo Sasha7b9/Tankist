@@ -51,5 +51,5 @@ private:
     float timePing = 0.0f;
 
     Client(Client const&) : Object(nullptr) {};
-    Client operator=(Client const&) {};
+    Client operator=(Client const&) { return *this; };
 };

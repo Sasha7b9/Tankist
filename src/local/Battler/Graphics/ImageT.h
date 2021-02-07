@@ -31,7 +31,7 @@ public:
     void SetHotSpot(int x, int y);
 
 private:
-    ImageT& operator=(const ImageT&) {};
+    ImageT& operator=(const ImageT&) { return *this; };
 
     void Replace4Points(int x, int y, const Color &color);
 

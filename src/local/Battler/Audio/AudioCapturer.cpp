@@ -5,11 +5,10 @@
 #include "AudioCapturer.h"
 
 
+#ifdef WIN32
 #pragma comment(lib, "bass.lib")
 #pragma comment(lib, "opus.lib")
-//#pragma comment(lib, "silk_common.lib")
-//#pragma comment(lib, "silk_float.lib")
-//#pragma comment(lib, "celt.lib")
+#endif
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +17,9 @@
 
 static HSTREAM chan = 0;
 static DWORD prebuf = 0;
+#ifdef WIN32
 static DWORD targbuf = 0;
+#endif
 static DWORD rate = 0;
 static HRECORD rchan = 0;
 
@@ -316,7 +317,7 @@ bool AudioCapturer::Init()
 
     prebuf = (DWORD)BASS_ChannelSeconds2Bytes(chan, bi.minbuf / 1000.0f);  // prebuffer at least "minbuf" worth of data
 
-    if(prebuf == -1)
+    if(prebuf == (uint)-1)
     {
         URHO3D_LOGERRORF("Error %d", BASS_ErrorGetCode());
         return false;

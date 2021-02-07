@@ -45,5 +45,5 @@ private:
     Vector<Connection*> connections;    // ј это соответствующие им соединени€ к клиентам
 
     Server(Server const&) : Object(nullptr) {};
-    Server operator=(Server const&) {};
+    Server operator=(Server const&) { return *this; };
 };

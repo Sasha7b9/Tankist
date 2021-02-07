@@ -15,7 +15,7 @@ public:
 
 private:
     WindowGameESC(WindowGameESC const&) : Object(nullptr) {};
-    WindowGameESC operator=(WindowGameESC const&) {};
+    WindowGameESC operator=(WindowGameESC const&) { return *this; };
 
     SharedPtr<UIElement> window;
 

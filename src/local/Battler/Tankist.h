@@ -81,7 +81,7 @@ private:
     void SubscribeToEvents();
 
     Tankist(Tankist const&) : Application(nullptr) {};
-    Tankist operator=(Tankist const &) {};
+    Tankist operator=(Tankist const &) { return *this; };
 
     bool exit = false;
 

@@ -176,8 +176,9 @@ void Settings::SetDefault()
 {
     settings.Clear();
 
-#pragma warning(push)
-#pragma warning(disable:4548 4709)
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
 
     settings.Push(Variant(1280));   // WINDOW_WIDTH     0
     settings.Push(Variant(1024));   // WINDOW_HEIGHT    1
@@ -187,5 +188,7 @@ void Settings::SetDefault()
     settings.Push(Variant(50));     // MIC_LEVEL        5
     settings.Push(Variant(0));      // LANGUAGE         6
 
+#ifdef WIN32
 #pragma warning(pop)
+#endif
 }

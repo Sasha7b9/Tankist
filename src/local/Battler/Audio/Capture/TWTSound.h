@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef WIN32
+
 #include <xaudio2.h>
 
 #include "defines.h"
@@ -48,4 +50,6 @@ private:
 
     Signal* soundSignal;
 };
+
+#endif
 

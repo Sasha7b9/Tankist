@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-void LogT::Write(char *, int , char *, ...)
+void LogT::Write(const char *, int , const char *, ...)
 {
 
 }

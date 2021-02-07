@@ -24,7 +24,7 @@ public:
 
 private:
     Governor(Governor const&) : Object(nullptr) {};
-    Governor operator=(Governor const&) {};
+    Governor operator=(Governor const&) { return *this; };
 
 
     void HandleButtonLess(StringHash, VariantMap&);

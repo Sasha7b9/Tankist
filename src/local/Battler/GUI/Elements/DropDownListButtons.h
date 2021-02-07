@@ -18,7 +18,7 @@ public:
 private:
 
     DropDownListButtons(DropDownListButtons const&) : Object(nullptr) {};
-    DropDownListButtons operator=(DropDownListButtons const&) {};
+    DropDownListButtons operator=(DropDownListButtons const&) { return *this; };
 
 
     DropDownList *list;

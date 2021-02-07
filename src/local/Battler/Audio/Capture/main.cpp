@@ -1,4 +1,6 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
+#ifdef WIN32
+
 #define STRICT
 #include <windows.h>
 #include <mmsystem.h>
@@ -470,3 +472,5 @@ HRESULT FreeDirectSound()
 
     return S_OK;
 }
+
+#endif
