@@ -39,7 +39,7 @@ public:
 
 private:
     Game(Game const&) : Object(nullptr) {};
-    Game operator=(Game const&) {};
+    Game operator=(Game const&) { return *this; };
 
     HashMap<Connection*, WeakPtr<Vehicle>> objects;
 
