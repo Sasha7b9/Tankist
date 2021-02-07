@@ -26,7 +26,8 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                          
     else()
         link_directories(../generated/debug/ThirdParty/bin
                          ../../Urho3D/generated/debug/lib
-                         ThirdParty/opus/generated)
+                         ThirdParty/opus/generated
+                         ThirdParty/bass)
         add_definitions(-g -Og)
     endif()
 
@@ -40,7 +41,8 @@ elseif(${CMAKE_BUILD_TYPE} STREQUAL Release)                                    
     else()
         link_directories(../generated/release/ThirdParty/bin
                          ../../Urho3D/generated/release/lib
-                         ThirdParty/opus/generated)
+                         ThirdParty/opus/generated
+                         ThirdParty/bass)
     endif()
 
 endif()

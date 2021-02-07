@@ -1,9 +1,11 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
+
+#ifdef WIN32
+
 #include <stdafx.h>
 #include <bass.h>
 #include <opus.h>
 #include "AudioCapturer.h"
-
 
 #ifdef WIN32
 #pragma comment(lib, "bass.lib")
@@ -344,3 +346,6 @@ bool AudioCapturer::InPause()
 {
     return pause;
 }
+
+#endif
+

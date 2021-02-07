@@ -1,9 +1,10 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 
-#ifdef WIN32
-
 #include <stdafx.h>
 #include "SpriteT.h"
+
+
+#ifdef WIN32
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +38,29 @@ void SpriteT::FillRectangle(int x, int y, int width, int height, const Color &co
     SetTexture(texture);
     SetFullImageRect();
 }
+
+#else
+
+
+void SpriteT::Clear(const Color &)
+{
+}
+
+
+void SpriteT::FillRectangle(int, int, int, int, const Color &)
+{
+}
+
+
+SpriteT::SpriteT(Context *context) : Sprite(context)
+{
+}
+
+
+void SpriteT::SetSize(int, int)
+{
+}
+
 
 #endif
 
