@@ -3,8 +3,10 @@
 #ifdef WIN32
 
 #include <stdafx.h>
+#pragma warning(push, 0)
 #include <bass.h>
 #include <opus.h>
+#pragma warning(pop)
 #include "AudioCapturer.h"
 
 #ifdef WIN32
@@ -278,7 +280,9 @@ bool AudioCapturer::Start()
             return false;
         }
 
+#pragma warning(push, 0)
         rchan = BASS_RecordStart(SAMPLERATE, 2, MAKELONG(0, 10), RecordingCallback, &pause);
+#pragma warning(pop)
 
         if(rchan == 0)
         {
