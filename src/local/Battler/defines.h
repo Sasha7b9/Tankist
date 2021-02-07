@@ -1,12 +1,15 @@
 #pragma once
 
-#pragma warning(push)
-#pragma warning(disable:4251 4668)
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
 
 #include <Urho3D/Math/StringHash.h>
 #include <Urho3D/Container/Str.h>
 
+#ifdef WIN32
 #pragma warning(pop)
+#endif
 
 
 using namespace Urho3D;
