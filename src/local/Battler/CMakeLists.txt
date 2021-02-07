@@ -22,6 +22,8 @@ include_directories(.
                     ../../../../Urho3D/Source/ThirdParty/Bullet/src)
 endif()
 
+add_definitions(-DURHO3D_LOGGING)
+
 if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
