@@ -1,6 +1,8 @@
 #pragma once
 
+#fdef WIN32
 #pragma warning(push, 0)
+#endif
 
 #include <Bullet/src/BulletDynamics/ConstraintSolver/btSliderConstraint.h>
 
@@ -96,7 +98,9 @@
 
 #endif
 
+#ifdef WIN32
 #pragma warning(pop)
+#endif
 
 #ifndef WIN32
 #define SOCKET int
