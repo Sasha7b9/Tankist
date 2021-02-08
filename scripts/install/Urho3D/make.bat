@@ -27,7 +27,6 @@ goto EXIT
 echo.
 echo Using make.bat:
 echo                make.bat [debug^|release]
-echo If second parameter==1 - static runtime
 echo.
 goto EXIT
 
