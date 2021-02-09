@@ -1,0 +1,1 @@
+Battler.exe -server -port:30000
