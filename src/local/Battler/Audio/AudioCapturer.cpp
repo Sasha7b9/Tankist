@@ -5,13 +5,13 @@
 #include <stdafx.h>
 #pragma warning(push, 0)
 #include <bass.h>
-#include <opus.h>
+//#include <opus.h>
 #pragma warning(pop)
 #include "AudioCapturer.h"
 
 #ifdef WIN32
 #pragma comment(lib, "bass.lib")
-#pragma comment(lib, "opus.lib")
+//#pragma comment(lib, "opus.lib")
 #endif
 
 
@@ -115,80 +115,83 @@ AudioCapturer::AudioCapturer()
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void CreateEncodeDecode()
 {
-    int error = 0;
-
-    enc = opus_encoder_create(8000, 2, OPUS_APPLICATION_AUDIO, &error);
-
-    opus_encoder_ctl(enc, OPUS_SET_COMPLEXITY(1));
-    opus_encoder_ctl(enc, OPUS_SET_BITRATE(6000));
-    opus_encoder_ctl(enc, OPUS_SET_SIGNAL(OPUS_SIGNAL_MUSIC));
-
-    dec = opus_decoder_create(8000, 2, &error);
-
-    //opus_decoder_ctl(dec, OPUS_SET_COMPLEXITY(5));
-    //opus_encoder_ctl(enc, OPUS_SET_BITRATE(32000));
-    //opus_decoder_ctl(dec, OPUS_SET_SIGNAL(OPUS_SIGNAL_VOICE));
+//    int error = 0;
+//
+//    enc = opus_encoder_create(8000, 2, OPUS_APPLICATION_AUDIO, &error);
+//
+//    opus_encoder_ctl(enc, OPUS_SET_COMPLEXITY(1));
+//    opus_encoder_ctl(enc, OPUS_SET_BITRATE(6000));
+//    opus_encoder_ctl(enc, OPUS_SET_SIGNAL(OPUS_SIGNAL_MUSIC));
+//
+//    dec = opus_decoder_create(8000, 2, &error);
+//
+//    //opus_decoder_ctl(dec, OPUS_SET_COMPLEXITY(5));
+//    //opus_encoder_ctl(enc, OPUS_SET_BITRATE(32000));
+//    //opus_decoder_ctl(dec, OPUS_SET_SIGNAL(OPUS_SIGNAL_VOICE));
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void* AudioCapturer::OPUS_Decode(void *bufIn, int *sizeInOut)
 {
-    static uint8 buffer[10000];
-
-    int numBytes = opus_decode(dec, (uint8*)bufIn, *sizeInOut, (opus_int16*)buffer, 2000, 0);
-
-    if(numBytes < 0)
-    {
-        URHO3D_LOGERRORF("Error decode with code %d", numBytes);
-    }
-    
-    *sizeInOut = numBytes * 4;
-    return buffer;
+//    static uint8 buffer[10000];
+//
+//    int numBytes = opus_decode(dec, (uint8*)bufIn, *sizeInOut, (opus_int16*)buffer, 2000, 0);
+//
+//    if(numBytes < 0)
+//    {
+//        URHO3D_LOGERRORF("Error decode with code %d", numBytes);
+//    }
+//    
+//    *sizeInOut = numBytes * 4;
+//    return buffer;
+    return nullptr;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void* OPUS_Encode(void *buffIn, int *sizeInOut)
 {
-    static const int SIZE_BUFFER = 320;
+//    static const int SIZE_BUFFER = 320;
+//
+//    static uint8 bufferIn[10000];
+//    static uint8 bufferOut[10000];
+//
+//    static int bytesInInput = 0;
+//    uint8 *pointerIn = bufferIn;
+//
+//    memcpy(bufferIn + bytesInInput, buffIn, (size_t)*sizeInOut);
+//    bytesInInput += *sizeInOut;
+//
+//    int encodeBytes = 0;
+//
+//#define LENGTH (SIZE_BUFFER * 4)
+//
+//    while(bytesInInput >= LENGTH)
+//    {
+//        int nextBytes = opus_encode(enc, (opus_int16*)pointerIn, SIZE_BUFFER, bufferOut + encodeBytes, 5000);
+//        if(nextBytes < 0)
+//        {
+//            URHO3D_LOGERRORF("Error encode %d", nextBytes);
+//        }
+//        encodeBytes += nextBytes;
+//        pointerIn += LENGTH;
+//        bytesInInput -= LENGTH;
+//    }
+//    
+//    if(encodeBytes <= 0)
+//    {
+//        return 0;
+//    }
+//
+//    if(bytesInInput)
+//    {
+//        memcpy(bufferIn, pointerIn, (size_t)bytesInInput);
+//    }
+//
+//    *sizeInOut = encodeBytes;
+//
+//    return bufferOut;
 
-    static uint8 bufferIn[10000];
-    static uint8 bufferOut[10000];
-
-    static int bytesInInput = 0;
-    uint8 *pointerIn = bufferIn;
-
-    memcpy(bufferIn + bytesInInput, buffIn, (size_t)*sizeInOut);
-    bytesInInput += *sizeInOut;
-
-    int encodeBytes = 0;
-
-#define LENGTH (SIZE_BUFFER * 4)
-
-    while(bytesInInput >= LENGTH)
-    {
-        int nextBytes = opus_encode(enc, (opus_int16*)pointerIn, SIZE_BUFFER, bufferOut + encodeBytes, 5000);
-        if(nextBytes < 0)
-        {
-            URHO3D_LOGERRORF("Error encode %d", nextBytes);
-        }
-        encodeBytes += nextBytes;
-        pointerIn += LENGTH;
-        bytesInInput -= LENGTH;
-    }
-    
-    if(encodeBytes <= 0)
-    {
-        return 0;
-    }
-
-    if(bytesInInput)
-    {
-        memcpy(bufferIn, pointerIn, (size_t)bytesInInput);
-    }
-
-    *sizeInOut = encodeBytes;
-
-    return bufferOut;
+    return nullptr;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
