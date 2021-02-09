@@ -108,7 +108,7 @@ void ImageT::FillRectangle(int x0, int y0, int width, int height, const Color &c
 
 void ImageT::FillRegion(int x, int y, const Color &color)
 {
-    /// @todo ѕосмотреть в интернете, как правильно это делаетс€. https://habrahabr.ru/post/116398/ https://habrahabr.ru/post/116374/
+    // @todo ѕосмотреть в интернете, как правильно это делаетс€. https://habrahabr.ru/post/116398/ https://habrahabr.ru/post/116374/
 
     SetPixel(x, y, color);
 

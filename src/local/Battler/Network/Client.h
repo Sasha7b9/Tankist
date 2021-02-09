@@ -21,7 +21,7 @@ public:
     void Disconnect();
 
     bool AttachCameraToNode();
-    /// Запрос пинга, загрузки ЩПУ, числа клиентов
+    // Запрос пинга, загрузки ЩПУ, числа клиентов
     void RequestSystemInformation();
 
     void MessageControl(Control control, TypeControl type);

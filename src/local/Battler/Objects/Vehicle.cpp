@@ -135,7 +135,7 @@ void Vehicle::CreateEmitter(Vector3 place)
     emitter->SetTemporary(true);
 }
 
-/// Applying attributes
+// Applying attributes
 void Vehicle::ApplyAttributes()
 {
 //    auto* vehicle = node_->GetOrCreateComponent<RaycastVehicle>();

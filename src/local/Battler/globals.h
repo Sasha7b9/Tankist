@@ -15,74 +15,63 @@
 #include <Urho3D/UI/UI.h>
 
 
-/** @defgroup GlovalVars Глобальные переменные
-    @{
-*/
-
-
-/** @defgroup GlobalVarsCommon Глобальные переменные для сервера и клиента
-    @{
-*/
-
 // Общие переменные для сервера и клиента
-/// Глобальный контекст
+// Глобальный контекст
 extern Context *gContext;
-/// Подсистема логгирования
+// Подсистема логгирования
 extern Log *gLog;
-/// Лог чата
+// Лог чата
 extern ChatLog *gChatLog;
-/// Сетевая система
+// Сетевая система
 extern Network *gNetwork;
-/// Подсистема для работы с файловой системы
+// Подсистема для работы с файловой системы
 extern FileSystem *gFileSystem;
-/// Подсистема ресурсов и кэширования
+// Подсистема ресурсов и кэширования
 extern ResourceCache *gCache;
-/// Указатель на корневой элемент сцены
+// Указатель на корневой элемент сцены
 extern Scene *gScene;
-/// Посистема времени
+// Посистема времени
 extern Time *gTime;
-/// Сервер
+// Сервер
 extern Server *gServer;
-/// Тип приложения - клиент или сервер
+// Тип приложения - клиент или сервер
 extern TypeApplication gTypeApplication;
-/// Текстовый чат   
+// Текстовый чат   
 extern Chat *gChat;
-
-/** @} */
 
 
 // Переменные для клиента
-/// Указатель на графическую подсистему
+// Указатель на графическую подсистему
 extern UI *gUI;
-/// Корневой элемент ГИП (Графический интерфейс пользователя - GUI)
+// Корневой элемент ГИП (Графический интерфейс пользователя - GUI)
 extern UIElement *gUIRoot;
-/// Указатель на подсистему ввода
+// Указатель на подсистему ввода
 extern Input *gInput;
-/// Указатель на рендер
+// Указатель на рендер
 extern Renderer *gRenderer;
-/// Указатель на графическую подсистему
+// Указатель на графическую подсистему
 extern Graphics *gGraphics;
-/// Консоль
+// Консоль
 extern Console *gConsole;
-/// Отладочный интерфейс
+// Отладочный интерфейс
 extern DebugHud *gDebugHud;
-/// Звуковая подсистема
+// Звуковая подсистема
 extern Audio *gAudio;
-/// Захват звука с микрофона
+// Захват звука с микрофона
 extern AudioCapturer *gAudioCapturer;
-/// Подсистема локализации
+// Подсистема локализации
 extern Localization *gLocale;
-/// Подсистема отладочного рендера
+// Подсистема отладочного рендера
 extern DebugRenderer *gDebugRenderer;
-/// Подсистема физической симуляции
+// Подсистема физической симуляции
 extern PhysicsWorld *gPhysicsWorld;
-/// Видовая камера
+// Видовая камера
 extern CameraUni *gCamera;
-/// Сетевой клиент для связи по сети
+// Сетевой клиент для связи по сети
 extern Client *gClient;
-/// Игровой ГИП
+// Игровой ГИП
 extern GameGUI *gGameGUI;
-/// Окно, открывающееся в игре по нажатию клавиши Esc
+// Окно, открывающееся в игре по нажатию клавиши Esc
 extern WindowGameESC *gWindowGameESC;
 
 extern String  gIPAddress;
@@ -93,6 +82,3 @@ extern Game *gGame;
 extern WindowSettings *gWindowSettings;
 extern Settings *gSet;
 extern Counters *gCounters;
-
-
-/** @} */

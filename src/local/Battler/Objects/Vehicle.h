@@ -60,38 +60,38 @@ class Vehicle : public LogicComponent
     URHO3D_OBJECT(Vehicle, LogicComponent)
 
 public :
-    /// Construct.
+    // Construct.
     explicit Vehicle(Context* context);
-    /// Destruct.
+    // Destruct.
     ~Vehicle() override;
 
-    /// Register object factory and attributes.
+    // Register object factory and attributes.
     static void RegisterObject(Context* context);
 
-    /// Perform post-load after deserialization. Acquire the components from the scene nodes.
+    // Perform post-load after deserialization. Acquire the components from the scene nodes.
     void ApplyAttributes() override;
 
-    /// Initialize the vehicle. Create rendering and physics components. Called by the application.
+    // Initialize the vehicle. Create rendering and physics components. Called by the application.
     void Init();
 
-    /// Handle physics world update. Called by LogicComponent base class.
+    // Handle physics world update. Called by LogicComponent base class.
     void FixedUpdate(float timeStep) override;
-    /// Updating wheel effects here.
+    // Updating wheel effects here.
     void PostUpdate(float timeStep) override;
 
-    /// Movement controls.
+    // Movement controls.
     Controls controls_;
 
-    /// Get steering value.
+    // Get steering value.
     float GetSteering() { return steering_; }
 
-    /// Set steering value.
+    // Set steering value.
     void SetSteering(float steering) { steering_ = steering; }
 
-    /// Get wheel radius.
+    // Get wheel radius.
     float GetWheelRadius() { return wheelRadius_; }
 
-    /// Get wheel width.
+    // Get wheel width.
     float GetWheelWidth() { return wheelWidth_; }
 
     void Delete();
@@ -99,41 +99,41 @@ public :
     void Logging();
 
 private:
-    /// Creates particle emitter.
+    // Creates particle emitter.
     void CreateEmitter(Vector3 place);
 
-    /// Current left/right steering amount (-1 to 1.)
+    // Current left/right steering amount (-1 to 1.)
     float steering_;
-    /// Tmp storage for steering
+    // Tmp storage for steering
     float vehicleSteering_;
-    /// Linear momentum supplied by engine to RigidBody
+    // Linear momentum supplied by engine to RigidBody
     float engineForce_;
-    /// Rotational momentum preventing (dampening) wheels rotation
+    // Rotational momentum preventing (dampening) wheels rotation
     float brakingForce_;
-    /// Maximum linear momentum supplied by engine to RigidBody
+    // Maximum linear momentum supplied by engine to RigidBody
     float maxEngineForce_;
-    /// Stored wheel radius
+    // Stored wheel radius
     float wheelRadius_;
-    /// Suspension rest length (in meters)
+    // Suspension rest length (in meters)
     float suspensionRestLength_;
-    /// Width of wheel (used only in calculation of wheel placement)
+    // Width of wheel (used only in calculation of wheel placement)
     float wheelWidth_;
-    /// Suspension stiffness
+    // Suspension stiffness
     float suspensionStiffness_;
-    /// Suspension damping
+    // Suspension damping
     float suspensionDamping_;
-    /// Suspension compression
+    // Suspension compression
     float suspensionCompression_;
-    /// Wheel friction
+    // Wheel friction
     float wheelFriction_;
-    /// Wheel roll influence (how much car will turn sidewise)
+    // Wheel roll influence (how much car will turn sidewise)
     float rollInfluence_;
-    /// Emitter data for saving.
+    // Emitter data for saving.
     Vector<Node*> particleEmitterNodeList_;
-    /// Value to calculate acceleration.
+    // Value to calculate acceleration.
     Vector3 prevVelocity_;
-    /// Storing points for emitters
+    // Storing points for emitters
     Vector3 connectionPoints_[4];
-    /// Do not recreate emitters if they are already created.
+    // Do not recreate emitters if they are already created.
     bool emittersCreated;
 };

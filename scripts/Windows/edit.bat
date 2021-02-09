@@ -8,12 +8,12 @@ goto SHOW_HINT
 
 :START_DEBUG
 @echo on
-start devenv.exe ../../generated/debug/TankistU3D/TankistU3D.sln /projectconfig Debug
+start devenv.exe ../../generated/debug/TankistU3D/TankistU3D.sln /ProjectConfig Debug
 goto EXIT
 
 :START_RELEASE
 @echo on
-start devenv.exe ../../generated/release/TankistU3D/TankistU3D.sln /projectconfig Release
+start devenv.exe ../../generated/release/TankistU3D/TankistU3D.sln /ProjectConfig Release
 goto EXIT
 
 :SHOW_HINT
