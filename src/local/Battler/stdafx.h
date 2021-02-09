@@ -120,5 +120,5 @@ using namespace Urho3D;
 #include "GUI/Elements/Governor.h"
 #include "Network/Server.h"
 #include "Battler.h"
-#include "GlobalVars.h"
+#include "globals.h"
 #include "Utils/_LogU.h"

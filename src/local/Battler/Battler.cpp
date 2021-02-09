@@ -2,7 +2,7 @@
 #include <stdafx.h>
 #include "Objects/Vehicle.h"
 #include "Battler.h"
-#include "GlobalVars.h"
+#include "globals.h"
 #include "CommonFunctions.h"
 #include "Network/Chat.h"
 #include "Graphics/ImageT.h"

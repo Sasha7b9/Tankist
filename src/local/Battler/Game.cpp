@@ -1,7 +1,7 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #include <stdafx.h>
 #include "Game.h"
-#include "GlobalVars.h"
+#include "globals.h"
 #include "defines.h"
 #include "Network/NetworkEvents.h"
 
