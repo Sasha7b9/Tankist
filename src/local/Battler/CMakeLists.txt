@@ -86,6 +86,8 @@ add_executable(${PROJECT_NAME} ${SRC} ${AUDIO} ${AUDIO_CAPTURE} ${GRAPHICS} ${GU
 
 target_link_libraries(${PROJECT_NAME} opus)
 
+include(../../RuntimeLibrary.cmake)
+
 if(WIN32)
     if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
         target_link_libraries(${PROJECT_NAME} Urho3D_d)
