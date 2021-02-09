@@ -12,19 +12,19 @@ Game::Game(Context *context) : Object(context)
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Game::Start()
 {
     SubscribeToEvents();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Game::SubscribeToEvents()
 {
     SubscribeToEvent(E_PHYSICSPRESTEP, URHO3D_HANDLER(Game, HandlePhysicsPreStep));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Game::HandlePhysicsPreStep(StringHash, VariantMap &)
 {
     // Client
@@ -50,7 +50,7 @@ void Game::HandlePhysicsPreStep(StringHash, VariantMap &)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Game::ClientDisconnected(Connection *connection)
 {
     Vehicle *object = objects[connection];
@@ -70,7 +70,7 @@ void Game::ClientDisconnected(Connection *connection)
 #endif
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 Vehicle* Game::ClientConnected(Connection *connection)
 {
     Vehicle *tank = CreateTank();
@@ -78,7 +78,7 @@ Vehicle* Game::ClientConnected(Connection *connection)
     return tank;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 Vehicle* Game::CreateTank()
 {
     Node* tankNode = gScene->CreateChild("Tank");
@@ -90,7 +90,7 @@ Vehicle* Game::CreateTank()
     return tank;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Game::Shot()
 {
     VariantMap eventData;

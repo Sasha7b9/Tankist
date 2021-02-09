@@ -12,7 +12,7 @@ SoundMgr::SoundMgr()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SoundMgr::Construct()
 {
     WAVEFORMATEX format;
@@ -79,7 +79,7 @@ bool SoundMgr::Construct()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SoundMgr::VoiceCallback::OnVoiceProcessingPassStart(UINT32) {}
 
 void SoundMgr::VoiceCallback::OnVoiceProcessingPassEnd() {}

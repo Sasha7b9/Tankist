@@ -20,7 +20,7 @@ CameraUni::CameraUni(Context *context) : Object(context)
     node->SetPosition({0.0f, 0.0f, 50.0f});
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CameraUni::SetupViewport()
 {
     node = gScene->CreateChild("CameraNode", LOCAL);
@@ -32,7 +32,7 @@ void CameraUni::SetupViewport()
     GetSubsystem<Renderer>()->SetViewport(0, viewport);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CameraUni::MoveFromMouse()
 {
     const float MOUSE_SENSITIVITY = 0.1f;
@@ -47,7 +47,7 @@ void CameraUni::MoveFromMouse()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool CameraUni::SetCameraMode(CameraMode mode_, Node *node_)
 {
     if(node_ && mode_ != mode)

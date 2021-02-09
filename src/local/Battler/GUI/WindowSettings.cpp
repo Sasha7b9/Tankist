@@ -39,7 +39,7 @@ WindowSettings::WindowSettings(Context *context) : Object(context)
     window->SetOpacity(0.75f);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowSettings::FillDropDownListResolutions()
 {
     PODVector<IntVector3> resolutions = gGraphics->GetResolutions(0);   // \todo –азобратьс€ с несколькими мониторами
@@ -51,7 +51,7 @@ void WindowSettings::FillDropDownListResolutions()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowSettings::FillControlsFromSettings()
 {
     CheckBox *chbFullscreen = (CheckBox*)window->GetChild("chbFullscreen", true);
@@ -66,19 +66,19 @@ void WindowSettings::FillControlsFromSettings()
     gMicLevel->SetValue(gSet->Get(MIC_LEVEL));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowSettings::Hide()
 {
     window->SetVisible(false);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowSettings::Show()
 {
     window->SetVisible(true);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowSettings::HandleButtonApplyChanges(StringHash, VariantMap&)
 {
     // Screen mode
@@ -121,13 +121,13 @@ void WindowSettings::HandleButtonApplyChanges(StringHash, VariantMap&)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowSettings::HandleButtonReturnToGame(StringHash, VariantMap&)
 {
     Hide();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowSettings::HandleChangedScreenMode(StringHash, VariantMap&)
 {
     using namespace ScreenMode;

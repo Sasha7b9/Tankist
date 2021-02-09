@@ -35,7 +35,7 @@ void CreateListFiles()
     file.Close();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void AddModelToNode(Node *node, char *nameModel, const Vector3 &offset)
 {
     Node *nodeModel = node->CreateChild(nameModel);
@@ -44,7 +44,7 @@ void AddModelToNode(Node *node, char *nameModel, const Vector3 &offset)
     nodeModel->SetPosition(offset);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void GetDimensionsCenter(const BoundingBox &box, Vector3 &dimensions, Vector3 &center, float scale)
 {
     dimensions.x_ = (box.max_.x_ - box.min_.x_) * scale;

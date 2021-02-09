@@ -28,7 +28,7 @@ Battler::Battler(Context* context) :
     gSet = new Settings();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::Setup()
 {
     Vector<String> argumensts = GetArguments();
@@ -107,7 +107,7 @@ void Battler::Setup()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::Start()
 {
     if (gTypeApplication == Type_Client)
@@ -261,7 +261,7 @@ void Battler::CreateScene()
     //gScene->GetComponent<PhysicsWorld>()->SetFps(300);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SubscribeToEvents()
 {
     if (gTypeApplication == Type_Client)
@@ -275,7 +275,7 @@ void Battler::SubscribeToEvents()
     SubscribeToEvent(E_POSTUPDATE, URHO3D_HANDLER(Battler, HandlePostUpdate));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::CreateUI()
 {
 #ifdef WIN32
@@ -310,7 +310,7 @@ void Battler::CreateUI()
 #endif
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::UpdateCamera()
 {
     if (gTypeApplication != Type_Server)
@@ -329,7 +329,7 @@ void Battler::UpdateCamera()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetWindowTitleAndIcon()
 {
     Image* icon = gCache->GetResource<Image>("Textures/UrhoIcon.png");
@@ -337,7 +337,7 @@ void Battler::SetWindowTitleAndIcon()
     //gGraphics->SetWindowTitle("Battler WaT");
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::CreateConsoleAndDebugHud()
 {
     XMLFile* xmlFile = gCache->GetResource<XMLFile>("UI/TankistStyle.xml");
@@ -351,7 +351,7 @@ void Battler::CreateConsoleAndDebugHud()
     gDebugHud->SetDefaultStyle(xmlFile);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Battler::ParseArguments(Vector<String> &arguments, TypeApplication &type, String &address, unsigned short &port)
 {
     if (arguments.Size() == 2 && arguments[0] == "-server")
@@ -380,7 +380,7 @@ bool Battler::ParseArguments(Vector<String> &arguments, TypeApplication &type, S
     return false;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Battler::GetNumPort(String &str, unsigned short &port)
 {
     String strPort = str.Substring(6);
@@ -397,7 +397,7 @@ bool Battler::GetNumPort(String &str, unsigned short &port)
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::CreateInstructions()
 {
     Text *instructionText = gUIRoot->CreateChild<Text>();
@@ -418,7 +418,7 @@ void Battler::CreateInstructions()
     instructionText->SetVisible(false);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::UpdateStatisticWindow()
 {
     statisticsWindow->SetText(ToString("%d users online\n\n", numClients) +
@@ -431,56 +431,56 @@ void Battler::UpdateStatisticWindow()
                               );
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetPing(float pingMS)
 {
     this->ping = pingMS;
     UpdateStatisticWindow();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetLoadCPU(float loadCPU_)
 {
     loadCPU = loadCPU_;
     UpdateStatisticWindow();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetNumClients(int numClients_)
 {
     numClients = numClients_;
     UpdateStatisticWindow();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetBytesInPerSec(float bytesInPerSec_)
 {
     bytesInPerSec = bytesInPerSec_;
     UpdateStatisticWindow();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetBytesOutPerSec(float bytesOutPerSec_)
 {
     bytesOutPerSec = bytesOutPerSec_;
     UpdateStatisticWindow();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetBytesInPerSecServer(float bytes)
 {
     bytesInPerSecServer = bytes;
     UpdateStatisticWindow();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::SetBytesOutPerSecServer(float bytes)
 {
     bytesOutPerSecServer = bytes;
     UpdateStatisticWindow();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::Exit()
 {
     engine_->Exit();

@@ -245,7 +245,7 @@ void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
 #define SEND_CONTROL_OFF(k, ctrl) if(key == k) { gClient->MessageControl(ctrl, CTRL_OFF); }
 #define SEND_CONTROL_MODECAMERA_OFF(k, mode, ctrl) if(key == k && mode) { gClient->MessageControl(ctrl, CTRL_OFF); }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::HandleKeyUp(StringHash, VariantMap& eventData)
 {
 #ifdef WIN32
@@ -279,7 +279,7 @@ void Battler::HandleKeyUp(StringHash, VariantMap& eventData)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::HandlePostUpdate(StringHash, VariantMap &)
 {
     gCounters->Update();
@@ -311,7 +311,7 @@ void Battler::HandlePostUpdate(StringHash, VariantMap &)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::HandleLanguageChanged(StringHash, VariantMap&)
 {
     PODVector<UIElement*> elements;
@@ -337,7 +337,7 @@ void Battler::HandleLanguageChanged(StringHash, VariantMap&)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Battler::HandlePostRenderUpdate(StringHash, VariantMap&)
 {
     if(gDebugRenderer && gScene->GetComponent<PhysicsWorld>())

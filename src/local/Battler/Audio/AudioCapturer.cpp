@@ -84,7 +84,7 @@ void DisplayDeviceInfo(BASS_DEVICEINFO *di)
     URHO3D_LOGINFOF(" (%x)\n", di->flags);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 AudioCapturer::AudioCapturer()
 {
     /*
@@ -112,7 +112,7 @@ AudioCapturer::AudioCapturer()
     CreateEncodeDecode();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void CreateEncodeDecode()
 {
     int error = 0;
@@ -130,7 +130,7 @@ void CreateEncodeDecode()
     //opus_decoder_ctl(dec, OPUS_SET_SIGNAL(OPUS_SIGNAL_VOICE));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void* AudioCapturer::OPUS_Decode(void *bufIn, int *sizeInOut)
 {
     static uint8 buffer[10000];
@@ -146,7 +146,7 @@ void* AudioCapturer::OPUS_Decode(void *bufIn, int *sizeInOut)
     return buffer;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void* OPUS_Encode(void *buffIn, int *sizeInOut)
 {
     static const int SIZE_BUFFER = 320;
@@ -191,7 +191,7 @@ void* OPUS_Encode(void *buffIn, int *sizeInOut)
     return bufferOut;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static BOOL CALLBACK RecordingCallback(HRECORD /*handle*/, const void *buffer, DWORD length, void *user)
 {
     bool *pause = (bool*)user;
@@ -246,7 +246,7 @@ static BOOL CALLBACK RecordingCallback(HRECORD /*handle*/, const void *buffer, D
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void AudioCapturer::PlayData(void *buffer, uint length)
 {
     DWORD bl;
@@ -265,7 +265,7 @@ void AudioCapturer::PlayData(void *buffer, uint length)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool AudioCapturer::Start()
 {
     Init();
@@ -296,7 +296,7 @@ bool AudioCapturer::Start()
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool AudioCapturer::Init()
 {
     BASS_INFO bi;
@@ -332,20 +332,20 @@ bool AudioCapturer::Init()
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void AudioCapturer::Stop()
 {
     BASS_RecordFree();
     BASS_Free();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void AudioCapturer::Pause(bool pause_)
 {
     this->pause = pause_;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool AudioCapturer::InPause()
 {
     return pause;

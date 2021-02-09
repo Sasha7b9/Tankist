@@ -29,7 +29,7 @@ ProgressBar::ProgressBar(Context *context) : UIElement(context)
     DrawProgress();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ProgressBar::SetParameters(float progress_, float timePassed_, float timeElapsed_, float speed_, String currentFile_)
 {
     this->currentFile = currentFile_;
@@ -41,7 +41,7 @@ void ProgressBar::SetParameters(float progress_, float timePassed_, float timeEl
     DrawProgress();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ProgressBar::SetBytes(int all, int recieved)
 {
     bytesAll = all;
@@ -50,7 +50,7 @@ void ProgressBar::SetBytes(int all, int recieved)
     DrawProgress();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ProgressBar::DrawProgress()
 {
     sprite->Clear(Color::GRAY);

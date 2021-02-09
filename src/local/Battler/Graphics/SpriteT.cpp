@@ -13,20 +13,20 @@ SpriteT::SpriteT(Context *context) : Sprite(context)
     image = new ImageT(context);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SpriteT::SetSize(int width, int height)
 {
     SetFixedSize(width, height);
     image->SetSize(width, height);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SpriteT::Clear(const Color &color)
 {
     FillRectangle(0, 0, GetWidth(), GetHeight(), color);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SpriteT::FillRectangle(int x, int y, int width, int height, const Color &color)
 {
     image->FillRectangle(x, y, width, height, color);

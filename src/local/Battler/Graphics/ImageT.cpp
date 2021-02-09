@@ -11,19 +11,19 @@ ImageT::ImageT(Context *context) :
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::SetSize(int width, int height)
 {
     Image::SetSize(width, height, 4);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::RegisterObject(Context* context)
 {
     context->RegisterFactory<ImageT>();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::SetPoint(int x, int y, const Color& color)
 {
     if(x < GetWidth() && y < GetHeight())
@@ -32,7 +32,7 @@ void ImageT::SetPoint(int x, int y, const Color& color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::DrawLine(int x0, int y0, int x1, int y1, const Color &color)
 {
     if((x1 - x0) == 0 && (y1 - y0) == 0)
@@ -87,7 +87,7 @@ void ImageT::DrawLine(int x0, int y0, int x1, int y1, const Color &color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::DrawRectangle(int x, int y, int width, int height, const Color &color)
 {
     DrawLine(x, y, x + width, y, color);
@@ -96,7 +96,7 @@ void ImageT::DrawRectangle(int x, int y, int width, int height, const Color &col
     DrawLine(x, y, x, y + height, color);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::FillRectangle(int x0, int y0, int width, int height, const Color &color)
 {
     for(int x = x0; x < x0 + width; x++)
@@ -105,7 +105,7 @@ void ImageT::FillRectangle(int x0, int y0, int width, int height, const Color &c
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::FillRegion(int x, int y, const Color &color)
 {
     /// @todo ѕосмотреть в интернете, как правильно это делаетс€. https://habrahabr.ru/post/116398/ https://habrahabr.ru/post/116374/
@@ -149,7 +149,7 @@ void ImageT::FillRegion(int x, int y, const Color &color)
     Replace4Points(x - 1, y + 1, color);
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::Replace4Points(int x, int y, const Color &color)
 {
     if(y > 0)                       // upper pixel
@@ -186,7 +186,7 @@ void ImageT::Replace4Points(int x, int y, const Color &color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 #define FILL(a, b)                              \
     Color col = GetPixel(a, b);                 \
     if(col != boundingColor && col != color)    \
@@ -195,7 +195,7 @@ void ImageT::Replace4Points(int x, int y, const Color &color)
         Replace4PointsBound(a, b, color);       \
     }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::Replace4PointsBound(int x, int y, const Color &color)
 {
     if(y > 0)
@@ -216,7 +216,7 @@ void ImageT::Replace4PointsBound(int x, int y, const Color &color)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::DrawCircle(float x, float y, float radius, const Color &color, float step)
 {
     for (float angle = 0.0f; angle < 360.0f; angle += step)
@@ -225,13 +225,13 @@ void ImageT::DrawCircle(float x, float y, float radius, const Color &color, floa
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 IntVector2 ImageT::GetHotSpot() const
 {
     return hotSpot;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ImageT::SetHotSpot(int x, int y)
 {
     hotSpot.x_ = x;

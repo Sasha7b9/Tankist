@@ -14,7 +14,7 @@ static void DrawTriangle(ImageT *image, int x, int y)
     image->DrawLine(x, y, x + 5, y + 10, Color::WHITE);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 Sight::Sight(Context *context) : Window(context)
 {
     ImageT *imageSight = new ImageT(context_);

@@ -72,7 +72,7 @@ static DWORD startTime = 0;
 static bool first = true;
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 HRESULT InitDirectSound();
 HRESULT StartBuffers();
 HRESULT StopBuffers();
@@ -81,7 +81,7 @@ HRESULT HandleNotification();
 HRESULT FreeDirectSound();
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 int main()
 {
     if(FAILED(InitDirectSound()))
@@ -134,7 +134,7 @@ int main()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 HRESULT InitDirectSound()
 {
     pState->hNotificationEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
@@ -231,7 +231,7 @@ HRESULT InitDirectSound()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 HRESULT StartBuffers()
 {
     void* pDSLockedBuffer = NULL;
@@ -295,7 +295,7 @@ HRESULT StartBuffers()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 HRESULT RestoreBuffer(LPDIRECTSOUNDBUFFER pDSBuffer, BOOL *pbRestored)
 {
     HRESULT hr;
@@ -340,7 +340,7 @@ HRESULT RestoreBuffer(LPDIRECTSOUNDBUFFER pDSBuffer, BOOL *pbRestored)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 HRESULT StopBuffers()
 {
     if(pState->pDSBCapture)
@@ -355,7 +355,7 @@ HRESULT StopBuffers()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Handle the notification that tells us to copy data from the capture buffer to the output buffer
 HRESULT HandleNotification()
 {
@@ -462,7 +462,7 @@ HRESULT HandleNotification()
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 HRESULT FreeDirectSound()
 {
     SAFE_RELEASE(pState->pDSNotify);

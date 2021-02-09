@@ -9,13 +9,13 @@ SocketClientTCP::SocketClientTCP()
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 SocketClientTCP::~SocketClientTCP()
 {
     Close();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SocketClientTCP::Init(TypeSocket type_, pFuncVpVpVI funcOnRecieve_, void *clientTCP_)
 {
     type = type_;
@@ -55,7 +55,7 @@ bool SocketClientTCP::Init(TypeSocket type_, pFuncVpVpVI funcOnRecieve_, void *c
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CallbackOnRecieve(SOCKET sock, void *buffer, int sizeBuffer, bool *run, pFuncVpVpVI funcOnRecieve, void *clientTCP)
 {
     while(*run)
@@ -66,7 +66,7 @@ static void CallbackOnRecieve(SOCKET sock, void *buffer, int sizeBuffer, bool *r
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SocketClientTCP::Connect(const char *address, uint16 port)
 {
     destAddr.sin_family = AF_INET;
@@ -96,7 +96,7 @@ bool SocketClientTCP::Connect(const char *address, uint16 port)
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SocketClientTCP::Transmit(void *data, int size)
 {
     send((SOCKET)sockClient, (char*)data, size, 0);
@@ -104,7 +104,7 @@ void SocketClientTCP::Transmit(void *data, int size)
     gCounters->AddClientOut(size);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 int SocketClientTCP::Recieve(char *buffer, int sizeBuffer)
 {
     if(type == Socket_Asynch)
@@ -116,7 +116,7 @@ int SocketClientTCP::Recieve(char *buffer, int sizeBuffer)
     return recv((SOCKET)sockClient, buffer, sizeBuffer, 0);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SocketClientTCP::Close()
 {
     run = false;

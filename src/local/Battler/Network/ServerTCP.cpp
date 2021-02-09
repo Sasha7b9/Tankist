@@ -42,7 +42,7 @@ static void CallbackOnConnect(void *server, SOCKET numClient, char *address, uin
     ((ServerTCP*)server)->param.funcOnConnect(numClient, address, port);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ProcessNextByte(ClientData &data, uint8 b)
 {
     if(data.stateRecieve == WAIT_MSG)
@@ -78,7 +78,7 @@ static void ProcessNextByte(ClientData &data, uint8 b)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CallbackOnReceive(void *server, SOCKET numClient, void *buffer, int size)
 {
     ClientData &data = datas[server][numClient];
@@ -92,7 +92,7 @@ static void CallbackOnReceive(void *server, SOCKET numClient, void *buffer, int 
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CallbackOnDisconnect(void *server, SOCKET numClient)
 {
     datas[server].Erase(numClient);
@@ -107,7 +107,7 @@ ServerTCP::ServerTCP()
     socket = new SocketServerTCP();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool ServerTCP::Init(const ServerParam &servParam)
 {
     param = servParam;
@@ -133,7 +133,7 @@ bool ServerTCP::Init(const ServerParam &servParam)
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ServerTCP::SendMessage(SOCKET numClient, uint8 typeMessage, void* data, uint size)
 {
     send(numClient, (char*)&typeMessage, 1, 0);
@@ -143,7 +143,7 @@ void ServerTCP::SendMessage(SOCKET numClient, uint8 typeMessage, void* data, uin
     gCounters->AddServerOut(1 + 4 + (int)size);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ServerTCP::Close()
 {
     socket->Close();

@@ -18,7 +18,7 @@ DropDownListButtons::DropDownListButtons(Context *context, UIElement *parent, co
     list = (DropDownList*)ddlb->GetChild("DropDownList", true);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DropDownListButtons::AddItem(const String &item)
 {
     Text *text = list->CreateChild<Text>();
@@ -27,7 +27,7 @@ void DropDownListButtons::AddItem(const String &item)
     list->AddItem(text);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint DropDownListButtons::CurrentItem(String &item)
 {
     item = ((Text*)list->GetSelectedItem())->GetText();
@@ -35,7 +35,7 @@ uint DropDownListButtons::CurrentItem(String &item)
     return list->GetSelection();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DropDownListButtons::SetCurrentItem(const String &item)
 {
     for(uint i = 0; i < list->GetNumItems(); i++)
@@ -47,7 +47,7 @@ void DropDownListButtons::SetCurrentItem(const String &item)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DropDownListButtons::HandleButtonLess(StringHash, VariantMap&)
 {
     uint numItems = list->GetNumItems();
@@ -58,7 +58,7 @@ void DropDownListButtons::HandleButtonLess(StringHash, VariantMap&)
     list->SetSelection(newSelection);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void DropDownListButtons::HandleButtonMore(StringHash, VariantMap&)
 {
     uint numItems = list->GetNumItems();

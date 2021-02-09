@@ -20,13 +20,13 @@ Client::Client(Context *context) : Object(context)
     SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(Client, HandleNetworkMessage));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 Client::~Client()
 {
     Disconnect();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Client::ConnectToServer()
 {
     towerID = 0;
@@ -34,7 +34,7 @@ bool Client::ConnectToServer()
     return GetSubsystem<Network>()->Connect(gIPAddress, gNumPort, gScene);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::Disconnect()
 {
     Connection *serverConnnection = gNetwork->GetServerConnection();
@@ -46,7 +46,7 @@ void Client::Disconnect()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::HandleClientObjectID(StringHash, VariantMap &eventData)
 {
     towerID = eventData[P_ID_TOWER].GetUInt();
@@ -54,7 +54,7 @@ void Client::HandleClientObjectID(StringHash, VariantMap &eventData)
     caseID = eventData[P_ID_CASE].GetUInt();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::HandleStringMessage(StringHash, VariantMap& eventData)
 {
     String var = eventData[P_STRING_VAR].GetString();
@@ -63,25 +63,25 @@ void Client::HandleStringMessage(StringHash, VariantMap& eventData)
     gGameGUI->SetVar(var, value);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Client::AttachCameraToNode()
 {
     return gCamera->SetCameraMode(ModeCommander, gScene->GetNode(towerID));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::HandleServerConnected(StringHash, VariantMap &)
 {
     serverIsConnected = true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::HandleServerDisconnected(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::HandleConnectFailed(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
@@ -91,7 +91,7 @@ void Client::HandleConnectFailed(StringHash, VariantMap &)
     URHO3D_LOGERRORF("Failed connection %d, time %f ms", count++, (gTime->GetElapsedTime() - timeStart) * 1000.0f);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::HandleNetworkMessage(StringHash, VariantMap &eventData)
 {
     using namespace NetworkMessage;
@@ -124,7 +124,7 @@ void Client::HandleNetworkMessage(StringHash, VariantMap &eventData)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 /*
 void Client::TranslateChatMessage(const String &message)
 {
@@ -134,7 +134,7 @@ void Client::TranslateChatMessage(const String &message)
 }
 */
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::RequestSystemInformation()
 {
     Connection *connection = gNetwork->GetServerConnection();
@@ -154,7 +154,7 @@ void Client::RequestSystemInformation()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Client::MessageControl(Control control, TypeControl type)
 {
     VectorBuffer buffer;

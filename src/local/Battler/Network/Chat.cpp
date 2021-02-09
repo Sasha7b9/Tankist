@@ -33,7 +33,7 @@ Chat::Chat(Context *context, Type type) : Object(context)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CallbackClientOnRecieve(uint8 typeMessage, void *buffer, int sizeBuffer)
 {
     if(typeMessage == MSG_CHAT)
@@ -49,7 +49,7 @@ static void CallbackClientOnRecieve(uint8 typeMessage, void *buffer, int sizeBuf
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Chat::Connect(const char *address, uint16 port)
 {
     if (type == Chat_Client)
@@ -71,20 +71,20 @@ bool Chat::Connect(const char *address, uint16 port)
     return false;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Chat::IsActive()
 {
     return messageEdit->HasFocus();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::SetActive(bool active)
 {
     messageEdit->SetVisible(active);
     messageEdit->SetFocus(active);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::PressEnter()
 {
     String text = messageEdit->GetText();
@@ -99,19 +99,19 @@ void Chat::PressEnter()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::SendToServer(const String &message)
 {
     client.SendMessage(MSG_CHAT, (void*)message.CString(), message.Length());
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::SendAudioData(void *buffer, uint sizeBuffer)
 {
     client.SendMessage(MSG_VOICE_CHAT, buffer, sizeBuffer);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::UpdateChat()
 {
     if(messages.Size() == 0)
@@ -137,7 +137,7 @@ void Chat::UpdateChat()
     } while(historyText->GetHeight() > 0.8f * gUIRoot->GetHeight());
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::AddMessage(const String &message)
 {
     messages.Push(message);
@@ -172,10 +172,10 @@ struct DataClient
     }
 };
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static Vector<DataClient> clients;
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ServerCallbackOnConnect(SOCKET clientID, char *address, uint16 port)
 {
     URHO3D_LOGINFOF("Chat from %s:%d connected", address, (int)port);
@@ -183,7 +183,7 @@ static void ServerCallbackOnConnect(SOCKET clientID, char *address, uint16 port)
     clients.Push(DataClient(clientID, address, port));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ServerCallbackOnRecieve(SOCKET clientID, uint8 typeMessage, void *data, int sizeData)
 {
     if(typeMessage == MSG_CHAT)
@@ -198,7 +198,7 @@ static void ServerCallbackOnRecieve(SOCKET clientID, uint8 typeMessage, void *da
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ServerCallbackOnDisconnect(SOCKET clientID)
 {
     LOG_FUNC_ENTER
@@ -219,7 +219,7 @@ static void ServerCallbackOnDisconnect(SOCKET clientID)
     LOG_FUNC_LEAVE
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Chat::Listen(uint16 port)
 {
     if (type == Chat_Server)
@@ -246,7 +246,7 @@ bool Chat::Listen(uint16 port)
     return false;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::SendToAll(uint8 typeMessage, const String &message)
 {
     if(typeMessage == MSG_CHAT)
@@ -260,7 +260,7 @@ void Chat::SendToAll(uint8 typeMessage, const String &message)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Chat::SendToAllExcept(uint8 typeMessage, const String &message, SOCKET except)
 {
     for(DataClient &cl : clients)

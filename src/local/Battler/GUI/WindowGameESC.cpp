@@ -28,13 +28,13 @@ WindowGameESC::WindowGameESC(Context *context) : Object(context)
     window->SetOpacity(0.75f);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowGameESC::Hide()
 {
     window->SetVisible(false);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowGameESC::Show()
 {
     window->SetVisible(true);
@@ -43,20 +43,20 @@ void WindowGameESC::Show()
     window->BringToFront();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowGameESC::HandleButtonExit(StringHash, VariantMap&)
 {
     gTankist->Exit();
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowGameESC::HandleButtonLanguage(StringHash, VariantMap&)
 {
     gSet->Set(LANGUAGE, gLocale->GetLanguage() == String("ru") ? 0 : 1);
     gLocale->SetLanguage(gSet->Get(LANGUAGE) == 0 ? "en" : "ru");
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WindowGameESC::HandleButtonSettings(StringHash, VariantMap&)
 {
     Hide();

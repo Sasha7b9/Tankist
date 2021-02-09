@@ -48,7 +48,7 @@ static void ProcessingNextByte(void *clientTCP, uint8 byte)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void CallbackOnRecieve(void *clientTCP, void *buffer_, int sizeBuffer)
 {
     uint8 *pointer = (uint8*)buffer_;
@@ -67,13 +67,13 @@ bool ClientTCP::Init(pFuncVU8pVI funcOnRecieve)
     return socket.Init(SocketClientTCP::Socket_Asynch, CallbackOnRecieve, this);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool ClientTCP::Connect(const char *address, uint16 port)
 {
     return socket.Connect(address, port);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ClientTCP::SendMessage(uint8 numMessage, void *data, uint size)
 {
     socket.Transmit((void*)&numMessage, 1);
@@ -81,7 +81,7 @@ void ClientTCP::SendMessage(uint8 numMessage, void *data, uint size)
     socket.Transmit(data, (int)size);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void ClientTCP::Close()
 {
     socket.Close();

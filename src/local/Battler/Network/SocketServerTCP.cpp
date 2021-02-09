@@ -9,7 +9,7 @@ SocketServerTCP::SocketServerTCP()
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SocketServerTCP::Init(SocketParam *sockParam_)
 {
     sockParam = sockParam_;
@@ -45,7 +45,7 @@ bool SocketServerTCP::Init(SocketParam *sockParam_)
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void ExchangeTaks(SOCKET sock, SocketParam *sockParam)
 {
     char *buffer = new char[sockParam->sizeBuffer];
@@ -71,7 +71,7 @@ static void ExchangeTaks(SOCKET sock, SocketParam *sockParam)
     delete[] buffer;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 static void AcceptTask(SOCKET sockServer, SocketParam *sockParam)
 {
     sockaddr_in addrClient;
@@ -111,7 +111,7 @@ static void AcceptTask(SOCKET sockServer, SocketParam *sockParam)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool SocketServerTCP::Listen(uint16 port)
 {
     address.sin_family = AF_INET;
@@ -144,7 +144,7 @@ bool SocketServerTCP::Listen(uint16 port)
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SocketServerTCP::Transmit(const void *data, uint size)
 {
     int numBytes = send(sockServer, (const char*)data, (int)size, 0);

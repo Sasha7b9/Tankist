@@ -29,7 +29,7 @@ Server::Server(Context *context) : Object(context)
     SubscribeToEvent(E_PHYSICSPOSTSTEP, URHO3D_HANDLER(Server, HandlePhysicsPostStep));
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::Start(unsigned short port)
 {
     gNetwork->StartServer(port);
@@ -40,7 +40,7 @@ static Vector<Node*> boxNodes;
 static const String ATTR_TIME_DEATH = "TimeDeath";
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleShoot(StringHash, VariantMap& eventData)
 {
     uint trunkID = eventData[P_ID_TRUNK].GetUInt();
@@ -69,7 +69,7 @@ void Server::HandleShoot(StringHash, VariantMap& eventData)
     boxNodes.Push(boxNode);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandlePhysicsPostStep(StringHash, VariantMap&)
 {
     for(Node *node : boxNodes)
@@ -83,7 +83,7 @@ void Server::HandlePhysicsPostStep(StringHash, VariantMap&)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleClientConnected(StringHash, VariantMap &eventData)
 {
     URHO3D_LOGINFO("New client connected");
@@ -110,7 +110,7 @@ void Server::HandleClientConnected(StringHash, VariantMap &eventData)
     gChat->SendToAll(MSG_CHAT, newConnection->GetAddress() + " enter");
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::SendStringMessage(Vehicle *tank, const String &var, const String &value)
 {
     VariantMap eventData;
@@ -137,7 +137,7 @@ void Server::SendStringMessage(Vehicle *tank, const String &var, const String &v
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleNetworkMessage(StringHash, VariantMap &eventData)
 {
     using namespace NetworkMessage;
@@ -206,7 +206,7 @@ void Server::HandleNetworkMessage(StringHash, VariantMap &eventData)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleClientDisconnected(StringHash, VariantMap &eventData)
 {
     using namespace ClientDisconnected;
@@ -224,13 +224,13 @@ void Server::HandleClientDisconnected(StringHash, VariantMap &eventData)
     gChat->SendToAll(MSG_CHAT, conn->GetAddress() + " leave");
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleControlMessage(StringHash, VariantMap&)
 {
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleCloseConnection(StringHash, VariantMap &eventData)
 {
     Connection *connection = static_cast<Connection*>(eventData[CloseConnection::P_CONNECT].GetPtr());
@@ -238,55 +238,55 @@ void Server::HandleCloseConnection(StringHash, VariantMap &eventData)
     gGame->ClientDisconnected(connection);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleServerConnected(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleServerDisconnected(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleConnectFailed(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleClientIdentity(StringHash, VariantMap &)
 {
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleClientSceneLoaded(StringHash, VariantMap &)
 {
 
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleNetworkUpdate(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleNetworkUpdateSent(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleNetworkSceneLoadFailed(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Server::HandleRemoteEventData(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
