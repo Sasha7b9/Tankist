@@ -1,30 +1,29 @@
 @echo off
 
-if "%1" EQU "" goto HINT
+if "%1" equ "" goto HINT
+if "%2" neq "" goto HINT
 
-if %1==debug   goto RUN_DEBUG
-if %1==release goto RUN_RELEASE
-if %1==all     goto RUN_ALL
+set configuration=1
+
+if %1 equ debug set configuration=Debug & goto BUILD
+if %1 equ release set configuration=Release & goto BUILD
 
 goto HINT
 
-:RUN_DEBUG
-    python build.py debug build
-    goto EXIT
-
-:RUN_RELEASE
-    python build.py release build
-    goto EXIT
-
-:RUN_ALL
-    python build.py debug build
-    python build.py release build
-    goto EXIT
+:BUILD
+set current_dir=%CD%
+cd ../../generated/%1/TankistU3D
+@echo on
+MSBuild.exe TankistU3D.sln /p:Configuration=%configuration% /t:build -clp:ErrorsOnly;WarningsOnly -nologo -m
+@echo off
+cd %current_dir%
+goto EXIT
 
 :HINT
-    echo.
-    echo Using build.bat:  build [debug^|release^|all]
-    echo.
-    goto EXIT
+echo.
+echo Using build.bat:
+echo                 build.bat [debug^|release]
+echo.
+goto EXIT
 
 :EXIT
