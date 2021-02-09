@@ -17,7 +17,7 @@ Chat::Chat(Context *context, Type type) : Object(context)
         container->SetLayoutMode(LM_VERTICAL);
         container->SetStyleAuto();
 
-        Font *font = gCache->GetResource<Font>("Fonts/CRL.ttf");
+        Font *font = TheCache->GetResource<Font>("Fonts/CRL.ttf");
 
         historyText = container->CreateChild<Text>();
         historyText->SetColor(Color::WHITE);
@@ -38,7 +38,7 @@ static void CallbackClientOnRecieve(uint8 typeMessage, void *buffer, int sizeBuf
 {
     if(typeMessage == MSG_CHAT)
     {
-        gChat->AddMessage(String((char*)buffer, (uint)sizeBuffer));
+        TheChat->AddMessage(String((char*)buffer, (uint)sizeBuffer));
     }
     else if(typeMessage == MSG_VOICE_CHAT)
     {
@@ -189,12 +189,12 @@ static void ServerCallbackOnRecieve(SOCKET clientID, uint8 typeMessage, void *da
     if(typeMessage == MSG_CHAT)
     {
         String message((char*)data, (uint)sizeData);
-        gChat->SendToAll(MSG_CHAT, message);
+        TheChat->SendToAll(MSG_CHAT, message);
     }
     else if(typeMessage == MSG_VOICE_CHAT)
     {
         String message((char*)data, (uint)sizeData);
-        gChat->SendToAllExcept(MSG_VOICE_CHAT, message, clientID);
+        TheChat->SendToAllExcept(MSG_VOICE_CHAT, message, clientID);
     }
 }
 
@@ -214,7 +214,7 @@ static void ServerCallbackOnDisconnect(SOCKET clientID)
             break;
         }
     }
-    gChat->SendToAll(MSG_CHAT, message);
+    TheChat->SendToAll(MSG_CHAT, message);
 
     LOG_FUNC_LEAVE
 }
@@ -251,7 +251,7 @@ void Chat::SendToAll(uint8 typeMessage, const String &message)
 {
     if(typeMessage == MSG_CHAT)
     {
-        gChatLog->WriteMessage(message);
+        TheChatLog->WriteMessage(message);
     }
 
     for (DataClient &cl : clients)

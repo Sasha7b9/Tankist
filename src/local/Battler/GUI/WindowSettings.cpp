@@ -6,7 +6,7 @@
 
 WindowSettings::WindowSettings(Context *context) : Object(context)
 {
-    window = gUI->LoadLayout(gCache->GetResource<XMLFile>("UI/Elements/WindowSettings.xml"));
+    window = gUI->LoadLayout(TheCache->GetResource<XMLFile>("UI/Elements/WindowSettings.xml"));
     gUIRoot->AddChild(window);
 
     int posX = gUIRoot->GetWidth() / 2 - window->GetWidth() / 2;

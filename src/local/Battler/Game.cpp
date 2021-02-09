@@ -28,9 +28,9 @@ void Game::SubscribeToEvents()
 void Game::HandlePhysicsPreStep(StringHash, VariantMap &)
 {
     // Client
-    if(gTypeApplication == Type_Client)
+    if(TheTypeApplication == Type_Client)
     {
-        Connection *serverConnection = gNetwork->GetServerConnection();
+        Connection *serverConnection = TheNetwork->GetServerConnection();
 
         if(serverConnection)
         {
@@ -39,9 +39,9 @@ void Game::HandlePhysicsPreStep(StringHash, VariantMap &)
     // Server
     else
     {
-        if(gNetwork->IsServerRunning())
+        if(TheNetwork->IsServerRunning())
         {
-            const Vector<SharedPtr<Connection>> &connections = gNetwork->GetClientConnections();
+            const Vector<SharedPtr<Connection>> &connections = TheNetwork->GetClientConnections();
 
             for(uint i = 0; i < connections.Size(); ++i)
             {
@@ -81,7 +81,7 @@ Vehicle* Game::ClientConnected(Connection *connection)
 
 Vehicle* Game::CreateTank()
 {
-    Node* tankNode = gScene->CreateChild("Tank");
+    Node* tankNode = TheScene->CreateChild("Tank");
     tankNode->SetPosition(Vector3(0.0f, 110.0f, 0.0f));
 
     Vehicle *tank = tankNode->CreateComponent<Vehicle>();
@@ -95,5 +95,5 @@ void Game::Shot()
 {
     VariantMap eventData;
     eventData[P_ID_TRUNK] = gClient->trunkID;
-    gNetwork->GetServerConnection()->SendRemoteEvent(E_SHOOT, true, eventData);
+    TheNetwork->GetServerConnection()->SendRemoteEvent(E_SHOOT, true, eventData);
 }

@@ -11,24 +11,24 @@ CameraUni::CameraUni(Context *context) : Object(context)
     sight = new Sight(context);
     gUIRoot->AddChild(sight);
     sight->SetVisible(false);
-    this->node = gScene->CreateChild("CameraNode", LOCAL);
+    this->node = TheScene->CreateChild("CameraNode", LOCAL);
     camera = this->node->CreateComponent<Camera>();
     camera->SetFarClip(5000.0f);
     camera->SetFov(45.0f);
     //camera->SetFillMode(FILL_WIREFRAME);
-    GetSubsystem<Renderer>()->SetViewport(0, new Viewport(context_, gScene, camera));
+    GetSubsystem<Renderer>()->SetViewport(0, new Viewport(context_, TheScene, camera));
     node->SetPosition({0.0f, 0.0f, 50.0f});
 }
 
 
 void CameraUni::SetupViewport()
 {
-    node = gScene->CreateChild("CameraNode", LOCAL);
+    node = TheScene->CreateChild("CameraNode", LOCAL);
     node->CreateComponent<Camera>()->SetFarClip(5000.0f);
 
     node->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 
-    SharedPtr<Viewport> viewport(new Viewport(context_, gScene, node->GetComponent<Camera>()));
+    SharedPtr<Viewport> viewport(new Viewport(context_, TheScene, node->GetComponent<Camera>()));
     GetSubsystem<Renderer>()->SetViewport(0, viewport);
 }
 

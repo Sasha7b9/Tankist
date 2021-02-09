@@ -12,7 +12,7 @@ Settings::Settings()
 {
     SetDefault();
 
-    File file(gContext, FILE_NAME, FILE_READ);
+    File file(TheContext, FILE_NAME, FILE_READ);
 
     if(file.IsOpen())
     {
@@ -49,7 +49,7 @@ Settings::~Settings()
 
 void Settings::Save()
 {
-    File file(gContext, FILE_NAME, FILE_WRITE);
+    File file(TheContext, FILE_NAME, FILE_WRITE);
 
     for(uint i = 0; i < settings.Size(); i++)
     {

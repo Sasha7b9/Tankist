@@ -7,8 +7,8 @@
 
 Server::Server(Context *context) : Object(context)
 {
-    //gNetwork->RegisterRemoteEvent(E_CLIENTOBJECTID);
-    gNetwork->RegisterRemoteEvent(E_SHOOT);
+    //TheNetwork->RegisterRemoteEvent(E_CLIENTOBJECTID);
+    TheNetwork->RegisterRemoteEvent(E_SHOOT);
     SubscribeToEvent(E_SHOOT, URHO3D_HANDLER(Server, HandleShoot));
 
     SubscribeToEvent(E_CLOSECONNECTION, URHO3D_HANDLER(Server, HandleCloseConnection));
@@ -32,7 +32,7 @@ Server::Server(Context *context) : Object(context)
 
 void Server::Start(unsigned short port)
 {
-    gNetwork->StartServer(port);
+    TheNetwork->StartServer(port);
 }
 
 
@@ -44,16 +44,16 @@ static const String ATTR_TIME_DEATH = "TimeDeath";
 void Server::HandleShoot(StringHash, VariantMap& eventData)
 {
     uint trunkID = eventData[P_ID_TRUNK].GetUInt();
-    Node* nodeTrunk = gScene->GetNode(trunkID);
+    Node* nodeTrunk = TheScene->GetNode(trunkID);
 
-    Node *boxNode = gScene->CreateChild("SmallBox", REPLICATED);
-    boxNode->SetVar(ATTR_TIME_DEATH, Variant(gTime->GetElapsedTime() + 60.0f));
+    Node *boxNode = TheScene->CreateChild("SmallBox", REPLICATED);
+    boxNode->SetVar(ATTR_TIME_DEATH, Variant(TheTime->GetElapsedTime() + 60.0f));
     boxNode->SetPosition(nodeTrunk->GetWorldPosition() + nodeTrunk->GetWorldRotation() * Vector3::UP * 1.0f);
     boxNode->SetScale(0.5f);
 
     StaticModel *boxObject = boxNode->CreateComponent<StaticModel>();
-    boxObject->SetModel(gCache->GetResource<Model>("Models/Box.mdl"));
-    boxObject->SetMaterial(gCache->GetResource<Material>("Materials/StoneEnvMapSmall.xml"));
+    boxObject->SetModel(TheCache->GetResource<Model>("Models/Box.mdl"));
+    boxObject->SetMaterial(TheCache->GetResource<Material>("Materials/StoneEnvMapSmall.xml"));
     boxObject->SetCastShadows(true);
 
     RigidBody *body = boxNode->CreateComponent<RigidBody>();
@@ -75,10 +75,10 @@ void Server::HandlePhysicsPostStep(StringHash, VariantMap&)
     for(Node *node : boxNodes)
     {
         RigidBody *body = node->GetComponent<RigidBody>();
-        if(body->GetLinearVelocity() == Vector3::ZERO || body->GetPosition().y_ < -100.0f || node->GetVar(ATTR_TIME_DEATH).GetFloat() < gTime->GetElapsedTime())
+        if(body->GetLinearVelocity() == Vector3::ZERO || body->GetPosition().y_ < -100.0f || node->GetVar(ATTR_TIME_DEATH).GetFloat() < TheTime->GetElapsedTime())
         {
             boxNodes.Remove(node);
-            gScene->RemoveChild(node);
+            TheScene->RemoveChild(node);
         }
     }
 }
@@ -92,7 +92,7 @@ void Server::HandleClientConnected(StringHash, VariantMap &eventData)
 
     Connection *newConnection = static_cast<Connection*>(eventData[P_CONNECTION].GetPtr());
 
-    newConnection->SetScene(gScene);
+    newConnection->SetScene(TheScene);
 
     Vehicle* tank = gGame->ClientConnected(newConnection);
 
@@ -107,7 +107,7 @@ void Server::HandleClientConnected(StringHash, VariantMap &eventData)
 
     numClients++;
 
-    gChat->SendToAll(MSG_CHAT, newConnection->GetAddress() + " enter");
+    TheChat->SendToAll(MSG_CHAT, newConnection->GetAddress() + " enter");
 }
 
 
@@ -160,7 +160,7 @@ void Server::HandleNetworkMessage(StringHash, VariantMap &eventData)
 #ifndef WIN32
         // uint numCPU = GetNumPhysicalCPUs(); On virtual server not work
         int rez = system("uptime > out.uptime");
-        File file(gContext, "out.uptime", FILE_READ);
+        File file(TheContext, "out.uptime", FILE_READ);
         Vector<String> list = file.ReadLine().Split(' ');
         file.Close();
         buffer.WriteFloat(rez == -1 ? 0.0f : (ToFloat(list[list.Size() - 3]) / /* (float)numCPU */ 2.0f));
@@ -174,7 +174,7 @@ void Server::HandleNetworkMessage(StringHash, VariantMap &eventData)
     }
     else if(msgID == MSG_SERVER_SPEED)
     {
-        Vector<SharedPtr<Connection>> connections_ = gNetwork->GetClientConnections();
+        Vector<SharedPtr<Connection>> connections_ = TheNetwork->GetClientConnections();
 
         float speedIn = 0.0f;
         float speedOut = 0.0f;
@@ -221,7 +221,7 @@ void Server::HandleClientDisconnected(StringHash, VariantMap &eventData)
 
     numClients--;
 
-    gChat->SendToAll(MSG_CHAT, conn->GetAddress() + " leave");
+    TheChat->SendToAll(MSG_CHAT, conn->GetAddress() + " leave");
 }
 
 

@@ -8,9 +8,9 @@ void CreateListFiles()
 {
     Vector<String> files;
 
-    gFileSystem->ScanDir(files, ".", "*", SCAN_FILES | SCAN_HIDDEN, true);
+    TheFileSystem->ScanDir(files, ".", "*", SCAN_FILES | SCAN_HIDDEN, true);
 
-    File file(gContext, "files.txt", FILE_WRITE);
+    File file(TheContext, "files.txt", FILE_WRITE);
 
     files.Remove(".");
     files.Remove("..");
@@ -23,7 +23,7 @@ void CreateListFiles()
 
         if (parts[parts.Size() - 1] != "." && parts[parts.Size() - 1] != "..")
         {
-            File nextFile(gContext, fileName);
+            File nextFile(TheContext, fileName);
             uint checkSum = nextFile.GetChecksum();
             uint size = nextFile.GetSize();
             nextFile.Close();
@@ -40,7 +40,7 @@ void AddModelToNode(Node *node, char *nameModel, const Vector3 &offset)
 {
     Node *nodeModel = node->CreateChild(nameModel);
     StaticModel *model = nodeModel->CreateComponent<StaticModel>();
-    model->SetModel(gCache->GetResource<Model>(nameModel));
+    model->SetModel(TheCache->GetResource<Model>(nameModel));
     nodeModel->SetPosition(offset);
 }
 

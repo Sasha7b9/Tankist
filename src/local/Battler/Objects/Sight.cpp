@@ -50,7 +50,7 @@ Sight::Sight(Context *context) : Window(context)
             if(i % 2 == 0)
             {
                 SharedPtr<Text> text(CreateChild<Text>());
-                text->SetFont(gCache->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 8);
+                text->SetFont(TheCache->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 8);
                 text->SetText(String(i));
                 text->SetMinWidth(20);
                 text->SetMaxWidth(20);

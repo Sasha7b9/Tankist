@@ -68,13 +68,13 @@ void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
     {
         if(!gConsole->IsVisible())
         {
-            if(!gChat->IsActive())
+            if(!TheChat->IsActive())
             {
-                gChat->SetActive(true);
+                TheChat->SetActive(true);
             }
             else
             {
-                gChat->PressEnter();
+                TheChat->PressEnter();
             }
         }
     }
@@ -131,12 +131,12 @@ void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
 
     else if(key == KEY_SPACE)
     {
-        gCamera->SetCameraMode(ModeShooter, gScene->GetNode(gClient->trunkID));
+        gCamera->SetCameraMode(ModeShooter, TheScene->GetNode(gClient->trunkID));
     }
 
     else if(key == KEY_F9)
     {
-        gCamera->SetCameraMode(ModeCommander, gScene->GetNode(gClient->towerID));
+        gCamera->SetCameraMode(ModeCommander, TheScene->GetNode(gClient->towerID));
     }
 
     else if(key == KEY_CTRL)
@@ -230,7 +230,7 @@ void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
             Image screenshot(context_);
             gGraphics->TakeScreenShot(screenshot);
             // Here we save in the Data folder with date and time appended
-            screenshot.SavePNG(gFileSystem->GetProgramDir() + "Data/Screenshot_" +
+            screenshot.SavePNG(TheFileSystem->GetProgramDir() + "Data/Screenshot_" +
                                Time::GetTimeStamp().Replaced(':', '_').Replaced('.', '_').Replaced(' ', '_') + ".png");
         }
         else if(key == KEY_F12)
@@ -286,7 +286,7 @@ void Battler::HandlePostUpdate(StringHash, VariantMap &)
 
     static float prevTime = 0.0f;
 
-    float curTime = gTime->GetElapsedTime();
+    float curTime = TheTime->GetElapsedTime();
 
     if((curTime - prevTime) > 1.0f)
     {
@@ -294,7 +294,7 @@ void Battler::HandlePostUpdate(StringHash, VariantMap &)
         prevTime = curTime;
     }
 
-    if(gTypeApplication == Type_Client)
+    if(TheTypeApplication == Type_Client)
     {
         UpdateCamera();
     }
@@ -304,9 +304,9 @@ void Battler::HandlePostUpdate(StringHash, VariantMap &)
         engine_->Exit();
     }
 
-    if(gChat)
+    if(TheChat)
     {
-        gChat->UpdateChat();
+        TheChat->UpdateChat();
     }
 }
 
@@ -340,12 +340,12 @@ void Battler::HandleLanguageChanged(StringHash, VariantMap&)
 
 void Battler::HandlePostRenderUpdate(StringHash, VariantMap&)
 {
-    if(gDebugRenderer && gScene->GetComponent<PhysicsWorld>())
+    if(gDebugRenderer && TheScene->GetComponent<PhysicsWorld>())
     {
-        gScene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
+        TheScene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
 
         PODVector<Node*> nodes;
-        gScene->GetChildren(nodes, true);
+        TheScene->GetChildren(nodes, true);
         for(Node *node : nodes)
         {
             if(node->GetName() == "damper")

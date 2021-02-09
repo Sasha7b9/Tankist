@@ -17,27 +17,27 @@
 
 // Общие переменные для сервера и клиента
 // Глобальный контекст
-extern Context *gContext;
+extern Context *TheContext;
 // Подсистема логгирования
-extern Log *gLog;
+extern Log *TheLog;
 // Лог чата
-extern ChatLog *gChatLog;
+extern ChatLog *TheChatLog;
 // Сетевая система
-extern Network *gNetwork;
+extern Network *TheNetwork;
 // Подсистема для работы с файловой системы
-extern FileSystem *gFileSystem;
+extern FileSystem *TheFileSystem;
 // Подсистема ресурсов и кэширования
-extern ResourceCache *gCache;
+extern ResourceCache *TheCache;
 // Указатель на корневой элемент сцены
-extern Scene *gScene;
+extern Scene *TheScene;
 // Посистема времени
-extern Time *gTime;
+extern Time *TheTime;
 // Сервер
-extern Server *gServer;
+extern Server *TheServer;
 // Тип приложения - клиент или сервер
-extern TypeApplication gTypeApplication;
+extern TypeApplication TheTypeApplication;
 // Текстовый чат   
-extern Chat *gChat;
+extern Chat *TheChat;
 
 
 // Переменные для клиента

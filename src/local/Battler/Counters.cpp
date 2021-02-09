@@ -31,9 +31,9 @@ void Counters::AddServerOut(int numBytes)
 void Counters::Update()
 {
     static float prevTime = 0.0f;
-    if(gTime->GetElapsedTime() - prevTime >= 1.0f)
+    if(TheTime->GetElapsedTime() - prevTime >= 1.0f)
     {
-        prevTime = gTime->GetElapsedTime();
+        prevTime = TheTime->GetElapsedTime();
 
         speedClientIn = bytesClientIn;
         speedClientOut = bytesClientOut;

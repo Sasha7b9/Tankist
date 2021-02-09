@@ -22,7 +22,7 @@ DropDownListButtons::DropDownListButtons(Context *context, UIElement *parent, co
 void DropDownListButtons::AddItem(const String &item)
 {
     Text *text = list->CreateChild<Text>();
-    text->SetFont(gCache->GetResource<Font>("Fonts/CRL.ttf"), 15);
+    text->SetFont(TheCache->GetResource<Font>("Fonts/CRL.ttf"), 15);
     text->SetText(item);
     list->AddItem(text);
 }

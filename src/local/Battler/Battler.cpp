@@ -23,7 +23,7 @@ Battler::Battler(Context* context) :
 {
     Vehicle::RegisterObject(context);
 
-    gContext = context_;
+    TheContext = context_;
 
     gSet = new Settings();
 }
@@ -33,7 +33,7 @@ void Battler::Setup()
 {
     Vector<String> argumensts = GetArguments();
 
-    if (!ParseArguments(argumensts, gTypeApplication, gIPAddress, gNumPort))
+    if (!ParseArguments(argumensts, TheTypeApplication, gIPAddress, gNumPort))
     {
 #ifdef WIN32
         URHO3D_LOGERROR("To rum application type tankist.exe -{client|server} [-ip:xxx.xxx.xxx.xxx] -port:xxx");
@@ -43,16 +43,16 @@ void Battler::Setup()
         exit = true;
     }
 
-    gLog = new Log(context_);
-    gLog->SetLevel(LOG_INFO);
+    TheLog = new Log(context_);
+    TheLog->SetLevel(LOG_INFO);
 
-    if (gTypeApplication == Type_Client)
+    if (TheTypeApplication == Type_Client)
     {
-        gLog->Open("client.log");
+        TheLog->Open("client.log");
     }
     else
     {
-        gLog->Open("server.log");
+        TheLog->Open("server.log");
     }
 
     gAudio = GetSubsystem<Audio>();
@@ -62,29 +62,29 @@ void Battler::Setup()
     gAudioCapturer->Start();
 #endif
 
-    gNetwork = GetSubsystem<Network>();
-    gFileSystem = GetSubsystem<FileSystem>();
-    gCache = GetSubsystem<ResourceCache>();
+    TheNetwork = GetSubsystem<Network>();
+    TheFileSystem = GetSubsystem<FileSystem>();
+    TheCache = GetSubsystem<ResourceCache>();
 
 
-    gCache->AddResourceDir(gFileSystem->GetProgramDir() + "TankistData");
+    TheCache->AddResourceDir(TheFileSystem->GetProgramDir() + "TankistData");
     
-    gCache->AddResourceDir(gFileSystem->GetProgramDir() + "../../../../../../out/debug/TankistData");
-    //gCache->AddResourceDir(gFileSystem->GetProgramDir() + "distr\\TankistData");
-    //gCache->AddResourceDir(gFileSystem->GetProgramDir() + "..\\..\\out\\distr\\TankistData");
+    TheCache->AddResourceDir(TheFileSystem->GetProgramDir() + "../../../../../../out/debug/TankistData");
+    //TheCache->AddResourceDir(TheFileSystem->GetProgramDir() + "distr\\TankistData");
+    //TheCache->AddResourceDir(TheFileSystem->GetProgramDir() + "..\\..\\out\\distr\\TankistData");
 
-    gTime = GetSubsystem<Time>();
+    TheTime = GetSubsystem<Time>();
 
-    if (gTypeApplication == Type_Client)
+    if (TheTypeApplication == Type_Client)
     {
         gUI = GetSubsystem<UI>();
         gUIRoot = gUI->GetRoot();
         gInput = GetSubsystem<Input>();
     }
 
-    engineParameters_["Headless"] = gTypeApplication == Type_Server;
+    engineParameters_["Headless"] = TheTypeApplication == Type_Server;
     engineParameters_["WindowTitle"] = "Battler WaT";
-    engineParameters_["LogName"] = gFileSystem->GetAppPreferencesDir("urho3d", "logs") + GetTypeName() + ".log";
+    engineParameters_["LogName"] = TheFileSystem->GetAppPreferencesDir("urho3d", "logs") + GetTypeName() + ".log";
 
     engineParameters_["FrameLimiter"] = false;
     engineParameters_["FullScreen"] = gSet->Get(FULLSCREEN);
@@ -110,7 +110,7 @@ void Battler::Setup()
 
 void Battler::Start()
 {
-    if (gTypeApplication == Type_Client)
+    if (TheTypeApplication == Type_Client)
     {
         gLocale = GetSubsystem<Localization>();
         gLocale->LoadJSONFile("Strings.json");
@@ -145,21 +145,21 @@ void Battler::Start()
 
     gCounters = new Counters();
 
-    if (gTypeApplication == Type_Server)
+    if (TheTypeApplication == Type_Server)
     {
-        gServer = new Server(context_);
-        gServer->Start(gNumPort);
+        TheServer = new Server(context_);
+        TheServer->Start(gNumPort);
 
         CreateListFiles();
 
-        gChatLog = new ChatLog(context_);
+        TheChatLog = new ChatLog(context_);
 
-        gChat = new Chat(gContext, Chat::Chat_Server);
-        gChat->Listen(PORT_CHAT);
+        TheChat = new Chat(TheContext, Chat::Chat_Server);
+        TheChat->Listen(PORT_CHAT);
 
     }
     
-    if (gTypeApplication == Type_Client)
+    if (TheTypeApplication == Type_Client)
     {
         gCamera = new CameraUni(context_);
         gCamera->SetupViewport();
@@ -169,11 +169,11 @@ void Battler::Start()
 
         CreateInstructions();
 
-        gChat = new Chat(gContext, Chat::Chat_Client);
-        gChat->Connect(gIPAddress.CString(), PORT_CHAT);
+        TheChat = new Chat(TheContext, Chat::Chat_Client);
+        TheChat->Connect(gIPAddress.CString(), PORT_CHAT);
     }
 
-    gGame = new Game(gContext);
+    gGame = new Game(TheContext);
     gGame->Start();
 }
 
@@ -194,33 +194,33 @@ void Battler::Stop()
     //engine_->DumpProfiler();
     //engine_->DumpMemory();
     LOG_WRITE("out");
-    gLog->Close();
+    TheLog->Close();
 
     SAFE_DELETE(gCounters);
     SAFE_DELETE(gGame);
     SAFE_DELETE(gCamera);
-    SAFE_DELETE(gLog);
+    SAFE_DELETE(TheLog);
     SAFE_DELETE(gClient);
-    SAFE_DELETE(gServer);
-    SAFE_DELETE(gScene);
-    SAFE_DELETE(gChat);
-    SAFE_DELETE(gChatLog);
+    SAFE_DELETE(TheServer);
+    SAFE_DELETE(TheScene);
+    SAFE_DELETE(TheChat);
+    SAFE_DELETE(TheChatLog);
 }
 
 
 void Battler::CreateScene()
 {
-    gScene = new Scene(context_);
+    TheScene = new Scene(context_);
 
-    gScene->CreateComponent<Octree>(LOCAL);
-    gPhysicsWorld = gScene->CreateComponent<PhysicsWorld>(LOCAL);
+    TheScene->CreateComponent<Octree>(LOCAL);
+    gPhysicsWorld = TheScene->CreateComponent<PhysicsWorld>(LOCAL);
 
-    if(gTypeApplication == Type_Client)
+    if(TheTypeApplication == Type_Client)
     {
-        gDebugRenderer = gScene->CreateComponent<DebugRenderer>(LOCAL);
+        gDebugRenderer = TheScene->CreateComponent<DebugRenderer>(LOCAL);
     }
 
-    Node* zoneNode = gScene->CreateChild("Zone", LOCAL);
+    Node* zoneNode = TheScene->CreateChild("Zone", LOCAL);
     Zone* zone = zoneNode->CreateComponent<Zone>();
     zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
     zone->SetFogColor(Color(0.5f, 0.5f, 0.7f));
@@ -229,7 +229,7 @@ void Battler::CreateScene()
     zone->SetBoundingBox(BoundingBox(-2000.0f, 2000.0f));
 
     // Create a directional light with cascaded shadow mapping
-    Node* lightNode = gScene->CreateChild("DirectionalLight", LOCAL);
+    Node* lightNode = TheScene->CreateChild("DirectionalLight", LOCAL);
     lightNode->SetDirection(Vector3(0.3f, -0.5f, 0.425f));
     Light* light = lightNode->CreateComponent<Light>();
     light->SetLightType(LIGHT_DIRECTIONAL);
@@ -239,15 +239,15 @@ void Battler::CreateScene()
     light->SetSpecularIntensity(0.5f);
 
     // Create heightmap terrain with collision
-    Node* terrainNode = gScene->CreateChild("Terrain");
+    Node* terrainNode = TheScene->CreateChild("Terrain");
     terrainNode->SetPosition(Vector3::ZERO);
     Terrain* terrain = terrainNode->CreateComponent<Terrain>();
     terrain->SetViewMask(VIEW_MASK_TERRAIN);
     terrain->SetPatchSize(64);
     terrain->SetSpacing(Vector3(2.0f, 1.0f, 2.0f)); // Spacing between vertices and vertical resolution of the height map
     terrain->SetSmoothing(true);
-    terrain->SetHeightMap(gCache->GetResource<Image>("Landscape/land1.png"));
-    terrain->SetMaterial(gCache->GetResource<Material>("Landscape/Terrain.xml"));
+    terrain->SetHeightMap(TheCache->GetResource<Image>("Landscape/land1.png"));
+    terrain->SetMaterial(TheCache->GetResource<Material>("Landscape/Terrain.xml"));
     // The terrain consists of large triangles, which fits well for occlusion rendering, as a hill can occlude all
     // terrain patches and other objects behind it
     terrain->SetOccluder(true);
@@ -258,13 +258,13 @@ void Battler::CreateScene()
     CollisionShape* shape = terrainNode->CreateComponent<CollisionShape>();
     shape->SetTerrain();
 
-    //gScene->GetComponent<PhysicsWorld>()->SetFps(300);
+    //TheScene->GetComponent<PhysicsWorld>()->SetFps(300);
 }
 
 
 void Battler::SubscribeToEvents()
 {
-    if (gTypeApplication == Type_Client)
+    if (TheTypeApplication == Type_Client)
     {
         SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Battler, HandleKeyDown));
         SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(Battler, HandleKeyUp));
@@ -279,7 +279,7 @@ void Battler::SubscribeToEvents()
 void Battler::CreateUI()
 {
 #ifdef WIN32
-    XMLFile* uiStyle = gCache->GetResource<XMLFile>("UI/TankistStyle.xml");
+    XMLFile* uiStyle = TheCache->GetResource<XMLFile>("UI/TankistStyle.xml");
     // Set style to the UI root so that elements will inherit it
     gUIRoot->SetDefaultStyle(uiStyle);
 
@@ -313,12 +313,12 @@ void Battler::CreateUI()
 
 void Battler::UpdateCamera()
 {
-    if (gTypeApplication != Type_Server)
+    if (TheTypeApplication != Type_Server)
     gUI->GetCursor()->SetVisible(!gInput->GetMouseButtonDown(MOUSEB_RIGHT));
 
     gCamera->MoveFromMouse();
 
-    if (gTypeApplication == Type_Client)
+    if (TheTypeApplication == Type_Client)
     {
         static bool cameraIsAttached = false;
 
@@ -332,7 +332,7 @@ void Battler::UpdateCamera()
 
 void Battler::SetWindowTitleAndIcon()
 {
-    Image* icon = gCache->GetResource<Image>("Textures/UrhoIcon.png");
+    Image* icon = TheCache->GetResource<Image>("Textures/UrhoIcon.png");
     gGraphics->SetWindowIcon(icon);
     //gGraphics->SetWindowTitle("Battler WaT");
 }
@@ -340,7 +340,7 @@ void Battler::SetWindowTitleAndIcon()
 
 void Battler::CreateConsoleAndDebugHud()
 {
-    XMLFile* xmlFile = gCache->GetResource<XMLFile>("UI/TankistStyle.xml");
+    XMLFile* xmlFile = TheCache->GetResource<XMLFile>("UI/TankistStyle.xml");
 
     Console* console = engine_->CreateConsole();
     gConsole = GetSubsystem<Console>();
@@ -402,7 +402,7 @@ void Battler::CreateInstructions()
 {
     Text *instructionText = gUIRoot->CreateChild<Text>();
     instructionText->SetText("Press F12 to help");
-    instructionText->SetFont(gCache->GetResource<Font>("Fonts/CRL.ttf"), 10);
+    instructionText->SetFont(TheCache->GetResource<Font>("Fonts/CRL.ttf"), 10);
 
     instructionText->SetHorizontalAlignment(HA_LEFT);
     instructionText->SetVerticalAlignment(VA_TOP);
@@ -410,7 +410,7 @@ void Battler::CreateInstructions()
 
     instructionText = gUIRoot->CreateChild<Text>(INSTRUCTION);
 
-    instructionText->SetFont(gCache->GetResource<Font>("Fonts/CRL.ttf"), 15);
+    instructionText->SetFont(TheCache->GetResource<Font>("Fonts/CRL.ttf"), 15);
     instructionText->SetTextAlignment(HA_CENTER);
     instructionText->SetHorizontalAlignment(HA_CENTER);
     instructionText->SetVerticalAlignment(VA_CENTER);

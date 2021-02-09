@@ -8,9 +8,9 @@
 
 Client::Client(Context *context) : Object(context)
 {
-    gNetwork->RegisterRemoteEvent(E_CLIENTOBJECTID);
+    TheNetwork->RegisterRemoteEvent(E_CLIENTOBJECTID);
     SubscribeToEvent(E_CLIENTOBJECTID, URHO3D_HANDLER(Client, HandleClientObjectID));
-    gNetwork->RegisterRemoteEvent(E_STRING_MESSAGE);
+    TheNetwork->RegisterRemoteEvent(E_STRING_MESSAGE);
     SubscribeToEvent(E_STRING_MESSAGE, URHO3D_HANDLER(Client, HandleStringMessage));
 
     SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(Client, HandleServerConnected));
@@ -31,17 +31,17 @@ bool Client::ConnectToServer()
 {
     towerID = 0;
 
-    return GetSubsystem<Network>()->Connect(gIPAddress, gNumPort, gScene);
+    return GetSubsystem<Network>()->Connect(gIPAddress, gNumPort, TheScene);
 }
 
 
 void Client::Disconnect()
 {
-    Connection *serverConnnection = gNetwork->GetServerConnection();
+    Connection *serverConnnection = TheNetwork->GetServerConnection();
     if (serverConnnection)
     {
         serverConnnection->Disconnect();
-        gScene->Clear(true, false);
+        TheScene->Clear(true, false);
         towerID = 0;
     }
 }
@@ -66,7 +66,7 @@ void Client::HandleStringMessage(StringHash, VariantMap& eventData)
 
 bool Client::AttachCameraToNode()
 {
-    return gCamera->SetCameraMode(ModeCommander, gScene->GetNode(towerID));
+    return gCamera->SetCameraMode(ModeCommander, TheScene->GetNode(towerID));
 }
 
 
@@ -85,10 +85,10 @@ void Client::HandleServerDisconnected(StringHash, VariantMap &)
 void Client::HandleConnectFailed(StringHash, VariantMap &)
 {
     URHO3D_LOGINFOF("%s", __FUNCTION__);
-    float timeStart = gTime->GetElapsedTime();
+    float timeStart = TheTime->GetElapsedTime();
     ConnectToServer();
     static int count = 0;
-    URHO3D_LOGERRORF("Failed connection %d, time %f ms", count++, (gTime->GetElapsedTime() - timeStart) * 1000.0f);
+    URHO3D_LOGERRORF("Failed connection %d, time %f ms", count++, (TheTime->GetElapsedTime() - timeStart) * 1000.0f);
 }
 
 
@@ -103,7 +103,7 @@ void Client::HandleNetworkMessage(StringHash, VariantMap &eventData)
 
     if(msgID == MSG_PING)
     {
-        gTankist->SetPing(gTime->GetElapsedTime() - timePing);
+        gTankist->SetPing(TheTime->GetElapsedTime() - timePing);
     }
     else if(msgID == MSG_LOAD_CPU)
     {
@@ -130,20 +130,20 @@ void Client::TranslateChatMessage(const String &message)
 {
     VectorBuffer buffer;
     buffer.WriteString(message);
-    gNetwork->GetServerConnection()->SendMessage(MSG_CHAT, true, true, buffer);
+    TheNetwork->GetServerConnection()->SendMessage(MSG_CHAT, true, true, buffer);
 }
 */
 
 
 void Client::RequestSystemInformation()
 {
-    Connection *connection = gNetwork->GetServerConnection();
+    Connection *connection = TheNetwork->GetServerConnection();
 
     if(connection)
     {
         VectorBuffer buffer;
         connection->SendMessage(MSG_PING, true, false, buffer);
-        timePing = gTime->GetElapsedTime();
+        timePing = TheTime->GetElapsedTime();
         connection->SendMessage(MSG_LOAD_CPU, true, false, buffer);
         connection->SendMessage(MSG_NUM_CLIENTS, true, false, buffer);
         connection->SendMessage(MSG_SERVER_SPEED, true, false, buffer);
@@ -160,5 +160,5 @@ void Client::MessageControl(Control control, TypeControl type)
     VectorBuffer buffer;
     buffer.WriteInt(control);
     buffer.WriteInt(type);
-    gNetwork->GetServerConnection()->SendMessage(MSG_CONTROL, true, false, buffer);
+    TheNetwork->GetServerConnection()->SendMessage(MSG_CONTROL, true, false, buffer);
 }

@@ -204,17 +204,17 @@ static BOOL CALLBACK RecordingCallback(HRECORD /*handle*/, const void *buffer, D
     static int allBytes = 0;
     static int recvBytes = 0;
 
-    if(gTime->GetElapsedTime() - prevTime >= 1.0f)
+    if(TheTime->GetElapsedTime() - prevTime >= 1.0f)
     {
         //LOG_INFOF("bytes : all - %d, transmitted - %d", allBytes, recvBytes);
-        prevTime = gTime->GetElapsedTime();
+        prevTime = TheTime->GetElapsedTime();
         allBytes = 0;
         recvBytes = 0;
     }
 
     allBytes += length;
 
-    if(gChat)
+    if(TheChat)
     {
         uint8 *pointer = (uint8*)buffer;
 
@@ -234,7 +234,7 @@ static BOOL CALLBACK RecordingCallback(HRECORD /*handle*/, const void *buffer, D
 
             if(data)
             {
-                gChat->SendAudioData(data, (uint)numBytes);
+                TheChat->SendAudioData(data, (uint)numBytes);
             }
 
             pointer += sendBytes;
@@ -270,7 +270,7 @@ bool AudioCapturer::Start()
 {
     Init();
 
-    if(gTypeApplication == Type_Client)
+    if(TheTypeApplication == Type_Client)
     {
         if(!BASS_RecordInit(-1))
         {

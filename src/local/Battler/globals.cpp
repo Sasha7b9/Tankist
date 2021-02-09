@@ -4,15 +4,15 @@
 
 
 // For server and client
-Log *gLog = nullptr;
-Network *gNetwork = nullptr;
-FileSystem *gFileSystem = nullptr;
-ResourceCache *gCache = nullptr;
-Scene *gScene = nullptr;
-Time *gTime = nullptr;
+Log *TheLog = nullptr;
+Network *TheNetwork = nullptr;
+FileSystem *TheFileSystem = nullptr;
+ResourceCache *TheCache = nullptr;
+Scene *TheScene = nullptr;
+Time *TheTime = nullptr;
 
-Server *gServer = nullptr;
-TypeApplication gTypeApplication = Type_None;
+Server *TheServer = nullptr;
+TypeApplication TheTypeApplication = Type_None;
 
 
 // For client only
@@ -34,12 +34,12 @@ Client *gClient = nullptr;
 String gIPAddress = "";
 unsigned short gNumPort = 0;
 
-Context *gContext = nullptr;
+Context *TheContext = nullptr;
 
 Battler *gTankist = nullptr;
-Chat *gChat = nullptr;
+Chat *TheChat = nullptr;
 Game *gGame = nullptr;
-ChatLog *gChatLog = nullptr;
+ChatLog *TheChatLog = nullptr;
 AudioCapturer *gAudioCapturer = nullptr;
 WindowGameESC *gWindowGameESC = nullptr;
 WindowSettings *gWindowSettings = nullptr;
