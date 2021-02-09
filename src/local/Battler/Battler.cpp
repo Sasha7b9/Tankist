@@ -365,11 +365,14 @@ bool Battler::ParseArguments(Vector<String> &arguments, TypeApplication &type, S
 
     if (arguments.Size() == 3 && arguments[0] == "-client")
     {
-        if (arguments[1].Length() > 9)   // "-address:"
-        {
-            address = arguments[1].Substring(9);
+        String &arg1 = arguments[1];
+        String &arg2 = arguments[2];
 
-            if (GetNumPort(arguments[2], port))
+        if (arg1.Length() > 9)   // "-address:"
+        {
+            address = arg1.Substring(4);
+
+            if (GetNumPort(arg2, port))
             {
                 type = Type_Client;
                 return true;
