@@ -66,7 +66,10 @@ void Tankist::Setup()
     gFileSystem = GetSubsystem<FileSystem>();
     gCache = GetSubsystem<ResourceCache>();
 
-    gCache->AddResourceDir(gFileSystem->GetProgramDir() + "TankistData");
+
+    //gCache->AddResourceDir(gFileSystem->GetProgramDir() + "TankistData");
+    
+    gCache->AddResourceDir(gFileSystem->GetProgramDir() + "../../../../../../out/debug/TankistData");
     //gCache->AddResourceDir(gFileSystem->GetProgramDir() + "distr\\TankistData");
     //gCache->AddResourceDir(gFileSystem->GetProgramDir() + "..\\..\\out\\distr\\TankistData");
 
@@ -99,7 +102,8 @@ void Tankist::Setup()
     if (!engineParameters_.Contains("ResourcePrefixPaths"))
     {
         engineParameters_["ResourcePrefixPaths"] =
-            "d:\\My\\TankistU3D\\out\\debug\\;d:\\My\\TankistU3D\\out\\debug\\TankistData";
+            //            "d:\\My\\TankistU3D\\out\\debug\\;d:\\My\\TankistU3D\\out\\debug\\TankistData";
+            "c:/My/prog/TankistU3D/out/debug";
     }
 }
 
