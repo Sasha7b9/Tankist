@@ -11,14 +11,14 @@
 #ifdef WIN32
 #pragma warning(push, 0)
 #endif
-URHO3D_DEFINE_APPLICATION_MAIN(Tankist)
+URHO3D_DEFINE_APPLICATION_MAIN(Battler)
 #ifdef WIN32
 #pragma warning(pop)
 #endif
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Tankist::Tankist(Context* context) :
+Battler::Battler(Context* context) :
     Application(context)
 {
     Vehicle::RegisterObject(context);
@@ -29,7 +29,7 @@ Tankist::Tankist(Context* context) :
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::Setup()
+void Battler::Setup()
 {
     Vector<String> argumensts = GetArguments();
 
@@ -83,7 +83,7 @@ void Tankist::Setup()
     }
 
     engineParameters_["Headless"] = gTypeApplication == Type_Server;
-    engineParameters_["WindowTitle"] = "Tankist WaT";
+    engineParameters_["WindowTitle"] = "Battler WaT";
     engineParameters_["LogName"] = gFileSystem->GetAppPreferencesDir("urho3d", "logs") + GetTypeName() + ".log";
 
     engineParameters_["FrameLimiter"] = false;
@@ -108,7 +108,7 @@ void Tankist::Setup()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::Start()
+void Battler::Start()
 {
     if (gTypeApplication == Type_Client)
     {
@@ -178,7 +178,7 @@ void Tankist::Start()
 }
 
 
-void Tankist::Stop()
+void Battler::Stop()
 {
     if (gClient)
     {
@@ -208,7 +208,7 @@ void Tankist::Stop()
 }
 
 
-void Tankist::CreateScene()
+void Battler::CreateScene()
 {
     gScene = new Scene(context_);
 
@@ -262,21 +262,21 @@ void Tankist::CreateScene()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SubscribeToEvents()
+void Battler::SubscribeToEvents()
 {
     if (gTypeApplication == Type_Client)
     {
-        SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Tankist, HandleKeyDown));
-        SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(Tankist, HandleKeyUp));
-        SubscribeToEvent(E_CHANGELANGUAGE, URHO3D_HANDLER(Tankist, HandleLanguageChanged));
-        SubscribeToEvent(E_POSTRENDERUPDATE, URHO3D_HANDLER(Tankist, HandlePostRenderUpdate));
+        SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Battler, HandleKeyDown));
+        SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(Battler, HandleKeyUp));
+        SubscribeToEvent(E_CHANGELANGUAGE, URHO3D_HANDLER(Battler, HandleLanguageChanged));
+        SubscribeToEvent(E_POSTRENDERUPDATE, URHO3D_HANDLER(Battler, HandlePostRenderUpdate));
     }
 
-    SubscribeToEvent(E_POSTUPDATE, URHO3D_HANDLER(Tankist, HandlePostUpdate));
+    SubscribeToEvent(E_POSTUPDATE, URHO3D_HANDLER(Battler, HandlePostUpdate));
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::CreateUI()
+void Battler::CreateUI()
 {
 #ifdef WIN32
     XMLFile* uiStyle = gCache->GetResource<XMLFile>("UI/TankistStyle.xml");
@@ -311,7 +311,7 @@ void Tankist::CreateUI()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::UpdateCamera()
+void Battler::UpdateCamera()
 {
     if (gTypeApplication != Type_Server)
     gUI->GetCursor()->SetVisible(!gInput->GetMouseButtonDown(MOUSEB_RIGHT));
@@ -330,15 +330,15 @@ void Tankist::UpdateCamera()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetWindowTitleAndIcon()
+void Battler::SetWindowTitleAndIcon()
 {
     Image* icon = gCache->GetResource<Image>("Textures/UrhoIcon.png");
     gGraphics->SetWindowIcon(icon);
-    //gGraphics->SetWindowTitle("Tankist WaT");
+    //gGraphics->SetWindowTitle("Battler WaT");
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::CreateConsoleAndDebugHud()
+void Battler::CreateConsoleAndDebugHud()
 {
     XMLFile* xmlFile = gCache->GetResource<XMLFile>("UI/TankistStyle.xml");
 
@@ -352,7 +352,7 @@ void Tankist::CreateConsoleAndDebugHud()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-bool Tankist::ParseArguments(Vector<String> &arguments, TypeApplication &type, String &address, unsigned short &port)
+bool Battler::ParseArguments(Vector<String> &arguments, TypeApplication &type, String &address, unsigned short &port)
 {
     if (arguments.Size() == 2 && arguments[0] == "-server")
     {
@@ -381,7 +381,7 @@ bool Tankist::ParseArguments(Vector<String> &arguments, TypeApplication &type, S
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-bool Tankist::GetNumPort(String &str, unsigned short &port)
+bool Battler::GetNumPort(String &str, unsigned short &port)
 {
     String strPort = str.Substring(6);
 
@@ -398,7 +398,7 @@ bool Tankist::GetNumPort(String &str, unsigned short &port)
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::CreateInstructions()
+void Battler::CreateInstructions()
 {
     Text *instructionText = gUIRoot->CreateChild<Text>();
     instructionText->SetText("Press F12 to help");
@@ -419,7 +419,7 @@ void Tankist::CreateInstructions()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::UpdateStatisticWindow()
+void Battler::UpdateStatisticWindow()
 {
     statisticsWindow->SetText(ToString("%d users online\n\n", numClients) +
                               String("speed in = ") + String((int)(bytesInPerSec / 1024.0f + 0.5f)) + String(" kB/s\n") +
@@ -432,56 +432,56 @@ void Tankist::UpdateStatisticWindow()
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetPing(float pingMS)
+void Battler::SetPing(float pingMS)
 {
     this->ping = pingMS;
     UpdateStatisticWindow();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetLoadCPU(float loadCPU_)
+void Battler::SetLoadCPU(float loadCPU_)
 {
     loadCPU = loadCPU_;
     UpdateStatisticWindow();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetNumClients(int numClients_)
+void Battler::SetNumClients(int numClients_)
 {
     numClients = numClients_;
     UpdateStatisticWindow();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetBytesInPerSec(float bytesInPerSec_)
+void Battler::SetBytesInPerSec(float bytesInPerSec_)
 {
     bytesInPerSec = bytesInPerSec_;
     UpdateStatisticWindow();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetBytesOutPerSec(float bytesOutPerSec_)
+void Battler::SetBytesOutPerSec(float bytesOutPerSec_)
 {
     bytesOutPerSec = bytesOutPerSec_;
     UpdateStatisticWindow();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetBytesInPerSecServer(float bytes)
+void Battler::SetBytesInPerSecServer(float bytes)
 {
     bytesInPerSecServer = bytes;
     UpdateStatisticWindow();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::SetBytesOutPerSecServer(float bytes)
+void Battler::SetBytesOutPerSecServer(float bytes)
 {
     bytesOutPerSecServer = bytes;
     UpdateStatisticWindow();
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::Exit()
+void Battler::Exit()
 {
     engine_->Exit();
 }

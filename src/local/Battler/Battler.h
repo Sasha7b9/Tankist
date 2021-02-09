@@ -17,14 +17,14 @@ enum TypeApplication
 class Tank;
 
 
-class Tankist : public Application
+class Battler : public Application
 {
-    URHO3D_OBJECT(Tankist, Application);
+    URHO3D_OBJECT(Battler, Application);
 
     friend class Client;
 
 public:
-    Tankist(Context* context);
+    Battler(Context* context);
     
     /// Функция вызывается движком перед во время инициализации
     virtual void Setup();
@@ -80,8 +80,8 @@ private:
 
     void SubscribeToEvents();
 
-    Tankist(Tankist const&) : Application(nullptr) {};
-    Tankist operator=(Tankist const &) { return *this; };
+    Battler(Battler const&) : Application(nullptr) {};
+    Battler operator=(Battler const &) { return *this; };
 
     bool exit = false;
 

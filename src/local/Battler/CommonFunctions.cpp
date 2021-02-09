@@ -15,7 +15,7 @@ void CreateListFiles()
     files.Remove(".");
     files.Remove("..");
     files.Remove("files.txt");
-    files.Remove("Tankist");
+    files.Remove("Battler");
 
     for (String fileName : files)
     {

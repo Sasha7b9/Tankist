@@ -88,7 +88,7 @@ extern WindowGameESC *gWindowGameESC;
 extern String  gIPAddress;
 extern unsigned short gNumPort;
 
-extern Tankist *gTankist;
+extern Battler *gTankist;
 extern Game *gGame;
 extern WindowSettings *gWindowSettings;
 extern Settings *gSet;

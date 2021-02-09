@@ -12,7 +12,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Tankist::HandleKeyDown(StringHash, VariantMap& eventData)
+void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
     {
 #ifdef WIN32
     using namespace KeyDown;
@@ -246,7 +246,7 @@ void Tankist::HandleKeyDown(StringHash, VariantMap& eventData)
 #define SEND_CONTROL_MODECAMERA_OFF(k, mode, ctrl) if(key == k && mode) { gClient->MessageControl(ctrl, CTRL_OFF); }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::HandleKeyUp(StringHash, VariantMap& eventData)
+void Battler::HandleKeyUp(StringHash, VariantMap& eventData)
 {
 #ifdef WIN32
     using namespace KeyDown;
@@ -280,7 +280,7 @@ void Tankist::HandleKeyUp(StringHash, VariantMap& eventData)
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::HandlePostUpdate(StringHash, VariantMap &)
+void Battler::HandlePostUpdate(StringHash, VariantMap &)
 {
     gCounters->Update();
 
@@ -312,7 +312,7 @@ void Tankist::HandlePostUpdate(StringHash, VariantMap &)
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::HandleLanguageChanged(StringHash, VariantMap&)
+void Battler::HandleLanguageChanged(StringHash, VariantMap&)
 {
     PODVector<UIElement*> elements;
     gUIRoot->GetChildren(elements, true);
@@ -338,7 +338,7 @@ void Tankist::HandleLanguageChanged(StringHash, VariantMap&)
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Tankist::HandlePostRenderUpdate(StringHash, VariantMap&)
+void Battler::HandlePostRenderUpdate(StringHash, VariantMap&)
 {
     if(gDebugRenderer && gScene->GetComponent<PhysicsWorld>())
     {

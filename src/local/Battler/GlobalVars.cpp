@@ -36,7 +36,7 @@ unsigned short gNumPort = 0;
 
 Context *gContext = nullptr;
 
-Tankist *gTankist = nullptr;
+Battler *gTankist = nullptr;
 Chat *gChat = nullptr;
 Game *gGame = nullptr;
 ChatLog *gChatLog = nullptr;
