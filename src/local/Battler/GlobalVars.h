@@ -1,5 +1,5 @@
 #pragma once
-#include "Tankist.h"
+#include "Battler.h"
 #include "Objects/CameraUni.h"
 #include "Network/Client.h"
 #include "Network/Chat.h"

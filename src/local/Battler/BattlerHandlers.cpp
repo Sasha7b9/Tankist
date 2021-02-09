@@ -1,6 +1,6 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #include <stdafx.h>
-#include "Tankist.h"
+#include "Battler.h"
 #include "GlobalVars.h"
 #include "defines.h"
 #include "Objects/Vehicle.h"

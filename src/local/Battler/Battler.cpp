@@ -1,7 +1,7 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #include <stdafx.h>
 #include "Objects/Vehicle.h"
-#include "Tankist.h"
+#include "Battler.h"
 #include "GlobalVars.h"
 #include "CommonFunctions.h"
 #include "Network/Chat.h"
@@ -67,7 +67,7 @@ void Tankist::Setup()
     gCache = GetSubsystem<ResourceCache>();
 
 
-    //gCache->AddResourceDir(gFileSystem->GetProgramDir() + "TankistData");
+    gCache->AddResourceDir(gFileSystem->GetProgramDir() + "TankistData");
     
     gCache->AddResourceDir(gFileSystem->GetProgramDir() + "../../../../../../out/debug/TankistData");
     //gCache->AddResourceDir(gFileSystem->GetProgramDir() + "distr\\TankistData");

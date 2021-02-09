@@ -119,6 +119,6 @@ using namespace Urho3D;
 #include "GUI/Elements/DropDownListButtons.h"
 #include "GUI/Elements/Governor.h"
 #include "Network/Server.h"
-#include "Tankist.h"
+#include "Battler.h"
 #include "GlobalVars.h"
 #include "Utils/_LogU.h"
