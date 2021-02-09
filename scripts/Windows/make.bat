@@ -21,6 +21,10 @@ goto HINT
 set current_dir=%CD%
 cd ../..
 rmdir generated\%1\TankistU3D /S /Q
+
+set CMAKE_PROJECT_DIR="generated/%1/TankistU3D"
+set TANKIST_OUT_DIR=%PROJECT_TANKIST_DIR%\out\%1
+
 cd src
 @echo on
 cmake . -B..\generated\%1\TankistU3D -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_GENERATOR="Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
