@@ -32,7 +32,7 @@ Sight::Sight(Context *context) : Window(context)
     int y0 = gUIRoot->GetHeight() / 2;
 
     imageSight->DrawCircle((float)x0, (float)y0, radius, {0.0f, 0.0f, 0.0f, 0.0f}, 0.01f);
-    imageSight->FillRegion((int)(x0 + 0.5f), (int)(y0 + 0.5f), {0.0f, 0.0f, 0.0f, 0.0f});
+    //imageSight->FillRegion((int)(x0 + 0.5f), (int)(y0 + 0.5f), {0.0f, 0.0f, 0.0f, 0.0f});
 
     float delta = radius / 100.0f;
     float kDelta = 1.035f;
