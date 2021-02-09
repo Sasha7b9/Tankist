@@ -11,7 +11,7 @@ Chat::Chat(Context *context, Type type) : Object(context)
 
     if (type == Chat_Client)
     {
-        SharedPtr<UIElement> container(gUIRoot->CreateChild<UIElement>());
+        SharedPtr<UIElement> container(TheUIRoot->CreateChild<UIElement>());
         container->SetFixedSize(200, 300);
         container->SetPosition(0, 30);
         container->SetLayoutMode(LM_VERTICAL);
@@ -43,8 +43,8 @@ static void CallbackClientOnRecieve(uint8 typeMessage, void *buffer, int sizeBuf
     else if(typeMessage == MSG_VOICE_CHAT)
     {
 #ifdef WIN32
-        void *buf = gAudioCapturer->OPUS_Decode(buffer, &sizeBuffer);
-        gAudioCapturer->PlayData(buf, (uint)sizeBuffer);
+        void *buf = TheAudioCapturer->OPUS_Decode(buffer, &sizeBuffer);
+        TheAudioCapturer->PlayData(buf, (uint)sizeBuffer);
 #endif
     }
 }
@@ -122,7 +122,7 @@ void Chat::UpdateChat()
 
     do
     {
-        if(historyText->GetHeight() > 0.8f * gUIRoot->GetHeight())
+        if(historyText->GetHeight() > 0.8f * TheUIRoot->GetHeight())
         {
             messages.Erase(0);
         }
@@ -134,7 +134,7 @@ void Chat::UpdateChat()
 
         historyText->SetText(allRows);
 
-    } while(historyText->GetHeight() > 0.8f * gUIRoot->GetHeight());
+    } while(historyText->GetHeight() > 0.8f * TheUIRoot->GetHeight());
 }
 
 

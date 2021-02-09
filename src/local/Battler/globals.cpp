@@ -16,33 +16,33 @@ TypeApplication TheTypeApplication = Type_None;
 
 
 // For client only
-UI *gUI = nullptr;
-UIElement *gUIRoot = nullptr;
-Input *gInput = nullptr;
-Renderer *gRenderer = nullptr;
-Graphics *gGraphics = nullptr;
-Console *gConsole = nullptr;
-DebugHud *gDebugHud = nullptr;
-Audio *gAudio = nullptr;
-Localization *gLocale = nullptr;
-DebugRenderer *gDebugRenderer = nullptr;
-PhysicsWorld *gPhysicsWorld = nullptr;
+UI *TheUI = nullptr;
+UIElement *TheUIRoot = nullptr;
+Input *TheInput = nullptr;
+Renderer *TheRenderer = nullptr;
+Graphics *TheGraphics = nullptr;
+Console *TheConsole = nullptr;
+DebugHud *TheDebugHud = nullptr;
+Audio *TheAudio = nullptr;
+Localization *TheLocale = nullptr;
+DebugRenderer *TheDebugRenderer = nullptr;
+PhysicsWorld *ThePhysicsWorld = nullptr;
 
-CameraUni *gCamera = nullptr;
-Client *gClient = nullptr;
+CameraUni *TheCamera = nullptr;
+Client *TheClient = nullptr;
 
-String gIPAddress = "";
-unsigned short gNumPort = 0;
+String TheIPAddress = "";
+unsigned short TheNumPort = 0;
 
 Context *TheContext = nullptr;
 
-Battler *gTankist = nullptr;
+Battler *TheTankist = nullptr;
 Chat *TheChat = nullptr;
-Game *gGame = nullptr;
+Game *TheGame = nullptr;
 ChatLog *TheChatLog = nullptr;
-AudioCapturer *gAudioCapturer = nullptr;
-WindowGameESC *gWindowGameESC = nullptr;
-WindowSettings *gWindowSettings = nullptr;
-Settings *gSet = nullptr;
-Counters *gCounters = nullptr;
-GameGUI *gGameGUI = nullptr;
+AudioCapturer *TheAudioCapturer = nullptr;
+WindowGameESC *TheWindowGameESC = nullptr;
+WindowSettings *TheWindowSettings = nullptr;
+Settings *TheSet = nullptr;
+Counters *TheCounters = nullptr;
+GameGUI *TheGameGUI = nullptr;

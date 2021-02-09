@@ -9,7 +9,7 @@
 CameraUni::CameraUni(Context *context) : Object(context)
 {
     sight = new Sight(context);
-    gUIRoot->AddChild(sight);
+    TheUIRoot->AddChild(sight);
     sight->SetVisible(false);
     this->node = TheScene->CreateChild("CameraNode", LOCAL);
     camera = this->node->CreateComponent<Camera>();
@@ -37,9 +37,9 @@ void CameraUni::MoveFromMouse()
 {
     const float MOUSE_SENSITIVITY = 0.1f;
 
-    if (!gUI->GetCursor()->IsVisible())
+    if (!TheUI->GetCursor()->IsVisible())
     {
-        IntVector2 mouseMove = gInput->GetMouseMove();
+        IntVector2 mouseMove = TheInput->GetMouseMove();
         yaw += MOUSE_SENSITIVITY * mouseMove.x_;
         pitch += MOUSE_SENSITIVITY * mouseMove.y_;
         pitch = Clamp(pitch, 1.0f, 90.0f);

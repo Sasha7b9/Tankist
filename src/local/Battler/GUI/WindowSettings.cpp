@@ -6,11 +6,11 @@
 
 WindowSettings::WindowSettings(Context *context) : Object(context)
 {
-    window = gUI->LoadLayout(TheCache->GetResource<XMLFile>("UI/Elements/WindowSettings.xml"));
-    gUIRoot->AddChild(window);
+    window = TheUI->LoadLayout(TheCache->GetResource<XMLFile>("UI/Elements/WindowSettings.xml"));
+    TheUIRoot->AddChild(window);
 
-    int posX = gUIRoot->GetWidth() / 2 - window->GetWidth() / 2;
-    int posY = gUIRoot->GetHeight() / 2 - window->GetHeight() / 2;
+    int posX = TheUIRoot->GetWidth() / 2 - window->GetWidth() / 2;
+    int posY = TheUIRoot->GetHeight() / 2 - window->GetHeight() / 2;
 
     window->SetPosition(posX, posY);
 
@@ -42,7 +42,7 @@ WindowSettings::WindowSettings(Context *context) : Object(context)
 
 void WindowSettings::FillDropDownListResolutions()
 {
-    PODVector<IntVector3> resolutions = gGraphics->GetResolutions(0);   // \todo –азобратьс€ с несколькими мониторами
+    PODVector<IntVector3> resolutions = TheGraphics->GetResolutions(0);   // \todo –азобратьс€ с несколькими мониторами
 
     for(IntVector3 &resolution : resolutions)
     {
@@ -56,14 +56,14 @@ void WindowSettings::FillControlsFromSettings()
 {
     CheckBox *chbFullscreen = (CheckBox*)window->GetChild("chbFullscreen", true);
 
-    chbFullscreen->SetChecked(gSet->Get(FULLSCREEN));
+    chbFullscreen->SetChecked(TheSet->Get(FULLSCREEN));
 
-    String currentResolution = String(gSet->Get(WINDOW_WIDTH)) + " x " + String(gSet->Get(WINDOW_HEIGHT));
+    String currentResolution = String(TheSet->Get(WINDOW_WIDTH)) + " x " + String(TheSet->Get(WINDOW_HEIGHT));
     ddlbResolution->SetCurrentItem(currentResolution);
 
-    gGameVolume->SetValue(gSet->Get(VOLUME_GAME));
-    gChatVolume->SetValue(gSet->Get(VOLUME_CHAT));
-    gMicLevel->SetValue(gSet->Get(MIC_LEVEL));
+    gGameVolume->SetValue(TheSet->Get(VOLUME_GAME));
+    gChatVolume->SetValue(TheSet->Get(VOLUME_CHAT));
+    gMicLevel->SetValue(TheSet->Get(MIC_LEVEL));
 }
 
 
@@ -82,9 +82,9 @@ void WindowSettings::Show()
 void WindowSettings::HandleButtonApplyChanges(StringHash, VariantMap&)
 {
     // Screen mode
-    bool fullscreen = gSet->Get(FULLSCREEN);
-    int width = gSet->Get(WINDOW_WIDTH);
-    int height = gSet->Get(WINDOW_HEIGHT);
+    bool fullscreen = TheSet->Get(FULLSCREEN);
+    int width = TheSet->Get(WINDOW_WIDTH);
+    int height = TheSet->Get(WINDOW_HEIGHT);
 
     CheckBox *chbFullscreen = (CheckBox*)window->GetChild("chbFullscreen", true);
     bool newFullscreen = chbFullscreen->IsChecked();
@@ -100,23 +100,23 @@ void WindowSettings::HandleButtonApplyChanges(StringHash, VariantMap&)
     {
         if(newFullscreen != fullscreen)
         {
-            gGraphics->ToggleFullscreen();
+            TheGraphics->ToggleFullscreen();
         }
 
-        gSet->Set(FULLSCREEN, newFullscreen);
-        gSet->Set(WINDOW_WIDTH, newWidth);
-        gSet->Set(WINDOW_HEIGHT, newHeight);
+        TheSet->Set(FULLSCREEN, newFullscreen);
+        TheSet->Set(WINDOW_WIDTH, newWidth);
+        TheSet->Set(WINDOW_HEIGHT, newHeight);
 
-        gGraphics->SetMode(newWidth, newHeight);
+        TheGraphics->SetMode(newWidth, newHeight);
 
-        if(!gGraphics->GetFullscreen())
+        if(!TheGraphics->GetFullscreen())
         {
-            IntVector2 desktopResolution = gGraphics->GetDesktopResolution(0);
+            IntVector2 desktopResolution = TheGraphics->GetDesktopResolution(0);
 
-            int posX = desktopResolution.x_ / 2 - gSet->Get(WINDOW_WIDTH) / 2;
-            int posY = desktopResolution.y_ / 2 - gSet->Get(WINDOW_HEIGHT) / 2;
+            int posX = desktopResolution.x_ / 2 - TheSet->Get(WINDOW_WIDTH) / 2;
+            int posY = desktopResolution.y_ / 2 - TheSet->Get(WINDOW_HEIGHT) / 2;
 
-            gGraphics->SetWindowPosition(posX, posY);
+            TheGraphics->SetWindowPosition(posX, posY);
         }
     }
 }
@@ -132,8 +132,8 @@ void WindowSettings::HandleChangedScreenMode(StringHash, VariantMap&)
 {
     using namespace ScreenMode;
 
-    int width = gUIRoot->GetWidth();
-    int height = gUIRoot->GetHeight();
+    int width = TheUIRoot->GetWidth();
+    int height = TheUIRoot->GetHeight();
 
     window->SetPosition(width / 2 - window->GetWidth() / 2, height / 2 - window->GetHeight() / 2);
 }

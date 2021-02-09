@@ -64,7 +64,7 @@ void Game::ClientDisconnected(Connection *connection)
 
     if (objects.Size() == 0)
     {
-        gTankist->Exit();
+        TheTankist->Exit();
     }
 
 #endif
@@ -94,6 +94,6 @@ Vehicle* Game::CreateTank()
 void Game::Shot()
 {
     VariantMap eventData;
-    eventData[P_ID_TRUNK] = gClient->trunkID;
+    eventData[P_ID_TRUNK] = TheClient->trunkID;
     TheNetwork->GetServerConnection()->SendRemoteEvent(E_SHOOT, true, eventData);
 }

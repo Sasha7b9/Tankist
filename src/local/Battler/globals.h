@@ -42,43 +42,43 @@ extern Chat *TheChat;
 
 // Переменные для клиента
 // Указатель на графическую подсистему
-extern UI *gUI;
+extern UI *TheUI;
 // Корневой элемент ГИП (Графический интерфейс пользователя - GUI)
-extern UIElement *gUIRoot;
+extern UIElement *TheUIRoot;
 // Указатель на подсистему ввода
-extern Input *gInput;
+extern Input *TheInput;
 // Указатель на рендер
-extern Renderer *gRenderer;
+extern Renderer *TheRenderer;
 // Указатель на графическую подсистему
-extern Graphics *gGraphics;
+extern Graphics *TheGraphics;
 // Консоль
-extern Console *gConsole;
+extern Console *TheConsole;
 // Отладочный интерфейс
-extern DebugHud *gDebugHud;
+extern DebugHud *TheDebugHud;
 // Звуковая подсистема
-extern Audio *gAudio;
+extern Audio *TheAudio;
 // Захват звука с микрофона
-extern AudioCapturer *gAudioCapturer;
+extern AudioCapturer *TheAudioCapturer;
 // Подсистема локализации
-extern Localization *gLocale;
+extern Localization *TheLocale;
 // Подсистема отладочного рендера
-extern DebugRenderer *gDebugRenderer;
+extern DebugRenderer *TheDebugRenderer;
 // Подсистема физической симуляции
-extern PhysicsWorld *gPhysicsWorld;
+extern PhysicsWorld *ThePhysicsWorld;
 // Видовая камера
-extern CameraUni *gCamera;
+extern CameraUni *TheCamera;
 // Сетевой клиент для связи по сети
-extern Client *gClient;
+extern Client *TheClient;
 // Игровой ГИП
-extern GameGUI *gGameGUI;
+extern GameGUI *TheGameGUI;
 // Окно, открывающееся в игре по нажатию клавиши Esc
-extern WindowGameESC *gWindowGameESC;
+extern WindowGameESC *TheWindowGameESC;
 
-extern String  gIPAddress;
-extern unsigned short gNumPort;
+extern String  TheIPAddress;
+extern unsigned short TheNumPort;
 
-extern Battler *gTankist;
-extern Game *gGame;
-extern WindowSettings *gWindowSettings;
-extern Settings *gSet;
-extern Counters *gCounters;
+extern Battler *TheTankist;
+extern Game *TheGame;
+extern WindowSettings *TheWindowSettings;
+extern Settings *TheSet;
+extern Counters *TheCounters;

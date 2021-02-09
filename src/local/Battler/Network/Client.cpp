@@ -31,7 +31,7 @@ bool Client::ConnectToServer()
 {
     towerID = 0;
 
-    return GetSubsystem<Network>()->Connect(gIPAddress, gNumPort, TheScene);
+    return GetSubsystem<Network>()->Connect(TheIPAddress, TheNumPort, TheScene);
 }
 
 
@@ -60,13 +60,13 @@ void Client::HandleStringMessage(StringHash, VariantMap& eventData)
     String var = eventData[P_STRING_VAR].GetString();
     String value = eventData[P_STRING_VALUE].GetString();
 
-    gGameGUI->SetVar(var, value);
+    TheGameGUI->SetVar(var, value);
 }
 
 
 bool Client::AttachCameraToNode()
 {
-    return gCamera->SetCameraMode(ModeCommander, TheScene->GetNode(towerID));
+    return TheCamera->SetCameraMode(ModeCommander, TheScene->GetNode(towerID));
 }
 
 
@@ -103,24 +103,24 @@ void Client::HandleNetworkMessage(StringHash, VariantMap &eventData)
 
     if(msgID == MSG_PING)
     {
-        gTankist->SetPing(TheTime->GetElapsedTime() - timePing);
+        TheTankist->SetPing(TheTime->GetElapsedTime() - timePing);
     }
     else if(msgID == MSG_LOAD_CPU)
     {
         float loadCPU = msg.ReadFloat();
-        gTankist->SetLoadCPU(loadCPU);
+        TheTankist->SetLoadCPU(loadCPU);
     }
     else if(msgID == MSG_NUM_CLIENTS)
     {
         int numClients = msg.ReadInt();
-        gTankist->SetNumClients(numClients);
+        TheTankist->SetNumClients(numClients);
     }
     else if(msgID == MSG_SERVER_SPEED)
     {
         float speedIn = msg.ReadFloat();
         float speedOut = msg.ReadFloat();
-        gTankist->SetBytesInPerSecServer(speedIn);
-        gTankist->SetBytesOutPerSecServer(speedOut);
+        TheTankist->SetBytesInPerSecServer(speedIn);
+        TheTankist->SetBytesOutPerSecServer(speedOut);
     }
 }
 
@@ -149,8 +149,8 @@ void Client::RequestSystemInformation()
         connection->SendMessage(MSG_SERVER_SPEED, true, false, buffer);
 
 
-        gTankist->SetBytesInPerSec(connection->GetBytesInPerSec() + gCounters->GetClientIn());
-        gTankist->SetBytesOutPerSec(connection->GetBytesOutPerSec() + gCounters->GetClientOut());
+        TheTankist->SetBytesInPerSec(connection->GetBytesInPerSec() + TheCounters->GetClientIn());
+        TheTankist->SetBytesOutPerSec(connection->GetBytesOutPerSec() + TheCounters->GetClientOut());
     }
 }
 

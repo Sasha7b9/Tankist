@@ -25,7 +25,7 @@ Battler::Battler(Context* context) :
 
     TheContext = context_;
 
-    gSet = new Settings();
+    TheSet = new Settings();
 }
 
 
@@ -33,7 +33,7 @@ void Battler::Setup()
 {
     Vector<String> argumensts = GetArguments();
 
-    if (!ParseArguments(argumensts, TheTypeApplication, gIPAddress, gNumPort))
+    if (!ParseArguments(argumensts, TheTypeApplication, TheIPAddress, TheNumPort))
     {
 #ifdef WIN32
         URHO3D_LOGERROR("To rum application type tankist.exe -{client|server} [-ip:xxx.xxx.xxx.xxx] -port:xxx");
@@ -55,11 +55,11 @@ void Battler::Setup()
         TheLog->Open("server.log");
     }
 
-    gAudio = GetSubsystem<Audio>();
+    TheAudio = GetSubsystem<Audio>();
 
 #ifdef WIN32
-    gAudioCapturer = new AudioCapturer();
-    gAudioCapturer->Start();
+    TheAudioCapturer = new AudioCapturer();
+    TheAudioCapturer->Start();
 #endif
 
     TheNetwork = GetSubsystem<Network>();
@@ -77,9 +77,9 @@ void Battler::Setup()
 
     if (TheTypeApplication == Type_Client)
     {
-        gUI = GetSubsystem<UI>();
-        gUIRoot = gUI->GetRoot();
-        gInput = GetSubsystem<Input>();
+        TheUI = GetSubsystem<UI>();
+        TheUIRoot = TheUI->GetRoot();
+        TheInput = GetSubsystem<Input>();
     }
 
     engineParameters_["Headless"] = TheTypeApplication == Type_Server;
@@ -87,10 +87,10 @@ void Battler::Setup()
     engineParameters_["LogName"] = TheFileSystem->GetAppPreferencesDir("urho3d", "logs") + GetTypeName() + ".log";
 
     engineParameters_["FrameLimiter"] = false;
-    engineParameters_["FullScreen"] = gSet->Get(FULLSCREEN);
+    engineParameters_["FullScreen"] = TheSet->Get(FULLSCREEN);
     engineParameters_["Sound"] = true;
-    engineParameters_["WindowWidth"] = gSet->Get(WINDOW_WIDTH);
-    engineParameters_["WindowHeight"] = gSet->Get(WINDOW_HEIGHT);
+    engineParameters_["WindowWidth"] = TheSet->Get(WINDOW_WIDTH);
+    engineParameters_["WindowHeight"] = TheSet->Get(WINDOW_HEIGHT);
     //engineParameters_["WindowPositionY"] = 20;
     //engineParameters_["WindowPositionX"] = gTypeConnection == Connection_Server ? 20 : 700;
 
@@ -112,21 +112,21 @@ void Battler::Start()
 {
     if (TheTypeApplication == Type_Client)
     {
-        gLocale = GetSubsystem<Localization>();
-        gLocale->LoadJSONFile("Strings.json");
-        gLocale->SetLanguage(gSet->Get(LANGUAGE) == 0 ? "ru" : "en");
-        gLocale->SetLanguage(gSet->Get(LANGUAGE) == 0 ? "en" : "ru");
+        TheLocale = GetSubsystem<Localization>();
+        TheLocale->LoadJSONFile("Strings.json");
+        TheLocale->SetLanguage(TheSet->Get(LANGUAGE) == 0 ? "ru" : "en");
+        TheLocale->SetLanguage(TheSet->Get(LANGUAGE) == 0 ? "en" : "ru");
 
-        gGraphics = GetSubsystem<Graphics>();
-        gRenderer = GetSubsystem<Renderer>();
+        TheGraphics = GetSubsystem<Graphics>();
+        TheRenderer = GetSubsystem<Renderer>();
 
-        if(gSet->FirstStart())
+        if(TheSet->FirstStart())
         {
             /*
-            IntVector2 res = gGraphics->GetDesktopResolution();
-            gSet->Set(WINDOW_WIDTH, res.x_);
-            gSet->Set(WINDOW_HEIGHT, res.y_);
-            gGraphics->SetMode(gSet->Get(WINDOW_WIDTH), gSet->Get(WINDOW_HEIGHT));
+            IntVector2 res = TheGraphics->GetDesktopResolution();
+            TheSet->Set(WINDOW_WIDTH, res.x_);
+            TheSet->Set(WINDOW_HEIGHT, res.y_);
+            TheGraphics->SetMode(TheSet->Get(WINDOW_WIDTH), TheSet->Get(WINDOW_HEIGHT));
             */
         }
 
@@ -141,14 +141,14 @@ void Battler::Start()
 
     SubscribeToEvents();
 
-    gTankist = this;
+    TheTankist = this;
 
-    gCounters = new Counters();
+    TheCounters = new Counters();
 
     if (TheTypeApplication == Type_Server)
     {
         TheServer = new Server(context_);
-        TheServer->Start(gNumPort);
+        TheServer->Start(TheNumPort);
 
         CreateListFiles();
 
@@ -161,33 +161,33 @@ void Battler::Start()
     
     if (TheTypeApplication == Type_Client)
     {
-        gCamera = new CameraUni(context_);
-        gCamera->SetupViewport();
+        TheCamera = new CameraUni(context_);
+        TheCamera->SetupViewport();
 
-        gClient = new Client(context_);
-        gClient->ConnectToServer();
+        TheClient = new Client(context_);
+        TheClient->ConnectToServer();
 
         CreateInstructions();
 
         TheChat = new Chat(TheContext, Chat::Chat_Client);
-        TheChat->Connect(gIPAddress.CString(), PORT_CHAT);
+        TheChat->Connect(TheIPAddress.CString(), PORT_CHAT);
     }
 
-    gGame = new Game(TheContext);
-    gGame->Start();
+    TheGame = new Game(TheContext);
+    TheGame->Start();
 }
 
 
 void Battler::Stop()
 {
-    if (gClient)
+    if (TheClient)
     {
-        gClient->Disconnect();
-        gSet->Save();
+        TheClient->Disconnect();
+        TheSet->Save();
     }
 
 #ifdef WIN32
-    gAudioCapturer->Stop();
+    TheAudioCapturer->Stop();
 #endif
 
     //engine_->DumpResources(true);
@@ -196,11 +196,11 @@ void Battler::Stop()
     LOG_WRITE("out");
     TheLog->Close();
 
-    SAFE_DELETE(gCounters);
-    SAFE_DELETE(gGame);
-    SAFE_DELETE(gCamera);
+    SAFE_DELETE(TheCounters);
+    SAFE_DELETE(TheGame);
+    SAFE_DELETE(TheCamera);
     SAFE_DELETE(TheLog);
-    SAFE_DELETE(gClient);
+    SAFE_DELETE(TheClient);
     SAFE_DELETE(TheServer);
     SAFE_DELETE(TheScene);
     SAFE_DELETE(TheChat);
@@ -213,11 +213,11 @@ void Battler::CreateScene()
     TheScene = new Scene(context_);
 
     TheScene->CreateComponent<Octree>(LOCAL);
-    gPhysicsWorld = TheScene->CreateComponent<PhysicsWorld>(LOCAL);
+    ThePhysicsWorld = TheScene->CreateComponent<PhysicsWorld>(LOCAL);
 
     if(TheTypeApplication == Type_Client)
     {
-        gDebugRenderer = TheScene->CreateComponent<DebugRenderer>(LOCAL);
+        TheDebugRenderer = TheScene->CreateComponent<DebugRenderer>(LOCAL);
     }
 
     Node* zoneNode = TheScene->CreateChild("Zone", LOCAL);
@@ -281,32 +281,32 @@ void Battler::CreateUI()
 #ifdef WIN32
     XMLFile* uiStyle = TheCache->GetResource<XMLFile>("UI/TankistStyle.xml");
     // Set style to the UI root so that elements will inherit it
-    gUIRoot->SetDefaultStyle(uiStyle);
+    TheUIRoot->SetDefaultStyle(uiStyle);
 
     // Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will
     // control the camera, and when visible, it can interact with the login UI
     SharedPtr<Cursor> cursor(new Cursor(context_));
     cursor->SetStyleAuto(uiStyle);
-    gUI->SetCursor(cursor);
+    TheUI->SetCursor(cursor);
     // Set starting position of the cursor at the rendering window center
-    cursor->SetPosition(gGraphics->GetWidth() / 2, gGraphics->GetHeight() / 2);
+    cursor->SetPosition(TheGraphics->GetWidth() / 2, TheGraphics->GetHeight() / 2);
 
-    SharedPtr<UIElement> container(gUIRoot->CreateChild<UIElement>());
+    SharedPtr<UIElement> container(TheUIRoot->CreateChild<UIElement>());
     container->SetFixedSize(200, 300);
     container->SetPosition(0, 100);
     container->SetLayoutMode(LM_VERTICAL);
     container->SetStyleAuto();
 
-    statisticsWindow = gUIRoot->CreateChild<Text>();
+    statisticsWindow = TheUIRoot->CreateChild<Text>();
     statisticsWindow->SetStyleAuto();
-    statisticsWindow->SetPosition(gUIRoot->GetWidth() - 200, 0);
+    statisticsWindow->SetPosition(TheUIRoot->GetWidth() - 200, 0);
     statisticsWindow->SetColor(Color::BLACK);
 
-    gWindowGameESC = new WindowGameESC(context_);
+    TheWindowGameESC = new WindowGameESC(context_);
 
-    gWindowSettings = new WindowSettings(context_);
+    TheWindowSettings = new WindowSettings(context_);
 
-    gGameGUI = new GameGUI(context_);
+    TheGameGUI = new GameGUI(context_);
 #endif
 }
 
@@ -314,9 +314,9 @@ void Battler::CreateUI()
 void Battler::UpdateCamera()
 {
     if (TheTypeApplication != Type_Server)
-    gUI->GetCursor()->SetVisible(!gInput->GetMouseButtonDown(MOUSEB_RIGHT));
+    TheUI->GetCursor()->SetVisible(!TheInput->GetMouseButtonDown(MOUSEB_RIGHT));
 
-    gCamera->MoveFromMouse();
+    TheCamera->MoveFromMouse();
 
     if (TheTypeApplication == Type_Client)
     {
@@ -324,7 +324,7 @@ void Battler::UpdateCamera()
 
         if (!cameraIsAttached)
         {
-            cameraIsAttached = gClient->AttachCameraToNode();
+            cameraIsAttached = TheClient->AttachCameraToNode();
         }
     }
 }
@@ -333,8 +333,8 @@ void Battler::UpdateCamera()
 void Battler::SetWindowTitleAndIcon()
 {
     Image* icon = TheCache->GetResource<Image>("Textures/UrhoIcon.png");
-    gGraphics->SetWindowIcon(icon);
-    //gGraphics->SetWindowTitle("Battler WaT");
+    TheGraphics->SetWindowIcon(icon);
+    //TheGraphics->SetWindowTitle("Battler WaT");
 }
 
 
@@ -343,12 +343,12 @@ void Battler::CreateConsoleAndDebugHud()
     XMLFile* xmlFile = TheCache->GetResource<XMLFile>("UI/TankistStyle.xml");
 
     Console* console = engine_->CreateConsole();
-    gConsole = GetSubsystem<Console>();
+    TheConsole = GetSubsystem<Console>();
     console->SetDefaultStyle(xmlFile);
     console->GetBackground()->SetOpacity(0.8f);
 
-    gDebugHud = engine_->CreateDebugHud();
-    gDebugHud->SetDefaultStyle(xmlFile);
+    TheDebugHud = engine_->CreateDebugHud();
+    TheDebugHud->SetDefaultStyle(xmlFile);
 }
 
 
@@ -400,7 +400,7 @@ bool Battler::GetNumPort(String &str, unsigned short &port)
 
 void Battler::CreateInstructions()
 {
-    Text *instructionText = gUIRoot->CreateChild<Text>();
+    Text *instructionText = TheUIRoot->CreateChild<Text>();
     instructionText->SetText("Press F12 to help");
     instructionText->SetFont(TheCache->GetResource<Font>("Fonts/CRL.ttf"), 10);
 
@@ -408,13 +408,13 @@ void Battler::CreateInstructions()
     instructionText->SetVerticalAlignment(VA_TOP);
     instructionText->SetPosition(0, 0);
 
-    instructionText = gUIRoot->CreateChild<Text>(INSTRUCTION);
+    instructionText = TheUIRoot->CreateChild<Text>(INSTRUCTION);
 
     instructionText->SetFont(TheCache->GetResource<Font>("Fonts/CRL.ttf"), 15);
     instructionText->SetTextAlignment(HA_CENTER);
     instructionText->SetHorizontalAlignment(HA_CENTER);
     instructionText->SetVerticalAlignment(VA_CENTER);
-    instructionText->SetPosition(0, gUI->GetRoot()->GetHeight() / 4);
+    instructionText->SetPosition(0, TheUI->GetRoot()->GetHeight() / 4);
     instructionText->SetVisible(false);
 }
 

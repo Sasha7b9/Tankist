@@ -140,7 +140,7 @@ void ServerTCP::SendMessage(SOCKET numClient, uint8 typeMessage, void* data, uin
     send(numClient, (char*)&size, 4, 0);
     send(numClient, (char*)data, (int)size, 0);
 
-    gCounters->AddServerOut(1 + 4 + (int)size);
+    TheCounters->AddServerOut(1 + 4 + (int)size);
 }
 
 

@@ -6,11 +6,11 @@
 
 WindowGameESC::WindowGameESC(Context *context) : Object(context)
 {
-    window = gUI->LoadLayout(TheCache->GetResource<XMLFile>("UI/Elements/WindowGameESC.xml"));
-    gUIRoot->AddChild(window);
+    window = TheUI->LoadLayout(TheCache->GetResource<XMLFile>("UI/Elements/WindowGameESC.xml"));
+    TheUIRoot->AddChild(window);
 
-    int posX = gUIRoot->GetWidth() / 2 - window->GetWidth() / 2;
-    int posY = gUIRoot->GetHeight() / 2 - window->GetHeight() / 2;
+    int posX = TheUIRoot->GetWidth() / 2 - window->GetWidth() / 2;
+    int posY = TheUIRoot->GetHeight() / 2 - window->GetHeight() / 2;
 
     window->SetPosition(posX, posY);
 
@@ -46,19 +46,19 @@ void WindowGameESC::Show()
 
 void WindowGameESC::HandleButtonExit(StringHash, VariantMap&)
 {
-    gTankist->Exit();
+    TheTankist->Exit();
 }
 
 
 void WindowGameESC::HandleButtonLanguage(StringHash, VariantMap&)
 {
-    gSet->Set(LANGUAGE, gLocale->GetLanguage() == String("ru") ? 0 : 1);
-    gLocale->SetLanguage(gSet->Get(LANGUAGE) == 0 ? "en" : "ru");
+    TheSet->Set(LANGUAGE, TheLocale->GetLanguage() == String("ru") ? 0 : 1);
+    TheLocale->SetLanguage(TheSet->Get(LANGUAGE) == 0 ? "en" : "ru");
 }
 
 
 void WindowGameESC::HandleButtonSettings(StringHash, VariantMap&)
 {
     Hide();
-    gWindowSettings->Show();
+    TheWindowSettings->Show();
 }

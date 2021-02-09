@@ -62,7 +62,7 @@ static void CallbackOnRecieve(SOCKET sock, void *buffer, int sizeBuffer, bool *r
     {
         int numBytes = recv(sock, (char*)buffer, sizeBuffer, 0);
         funcOnRecieve(clientTCP, buffer, numBytes);
-        gCounters->AddClientIn(numBytes);
+        TheCounters->AddClientIn(numBytes);
     }
 }
 
@@ -101,7 +101,7 @@ void SocketClientTCP::Transmit(void *data, int size)
 {
     send((SOCKET)sockClient, (char*)data, size, 0);
 
-    gCounters->AddClientOut(size);
+    TheCounters->AddClientOut(size);
 }
 
 

@@ -7,8 +7,8 @@
 
 
 
-#define SEND_CONTROL(k, ctrl)                  if(key == k && !repeat) { gClient->MessageControl(ctrl, CTRL_ON); }
-#define SEND_CONTROL_MODECAMERA(k, mode, ctrl) if(key == k && mode)    { gClient->MessageControl(ctrl, CTRL_ON); }
+#define SEND_CONTROL(k, ctrl)                  if(key == k && !repeat) { TheClient->MessageControl(ctrl, CTRL_ON); }
+#define SEND_CONTROL_MODECAMERA(k, mode, ctrl) if(key == k && mode)    { TheClient->MessageControl(ctrl, CTRL_ON); }
 
 
 
@@ -20,10 +20,10 @@ void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
     int key = eventData[P_KEY].GetInt();
     bool repeat = eventData[P_REPEAT].GetBool();
 
-    if(!gUI->GetFocusElement())
+    if(!TheUI->GetFocusElement())
     {
-        bool modeShooter = gCamera->GetMode() == ModeShooter;
-        bool modeCommander = gCamera->GetMode() == ModeCommander;
+        bool modeShooter = TheCamera->GetMode() == ModeShooter;
+        bool modeCommander = TheCamera->GetMode() == ModeCommander;
 
         SEND_CONTROL(KEY_W,         CTRL_FORWARD)
         else SEND_CONTROL(KEY_S,    CTRL_BACK)
@@ -46,27 +46,27 @@ void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
     // Close console (if open) or exit when ESC is pressed
     if(key == KEY_ESCAPE)
     {
-        if(gConsole->IsVisible())
+        if(TheConsole->IsVisible())
         {
-            gConsole->SetVisible(false);
+            TheConsole->SetVisible(false);
         }
         else
         {
-            if(gGame->GetState() == InProcess)
+            if(TheGame->GetState() == InProcess)
             {
-                gWindowGameESC->Show();
-                gGame->SetState(State_WindowGameESC);
+                TheWindowGameESC->Show();
+                TheGame->SetState(State_WindowGameESC);
             }
             else
             {
-                gWindowGameESC->Hide();
-                gGame->SetState(InProcess);
+                TheWindowGameESC->Hide();
+                TheGame->SetState(InProcess);
             }
         }
     }
     else if(key == KEY_RETURN)
     {
-        if(!gConsole->IsVisible())
+        if(!TheConsole->IsVisible())
         {
             if(!TheChat->IsActive())
             {
@@ -82,168 +82,168 @@ void Battler::HandleKeyDown(StringHash, VariantMap& eventData)
     // Toggle console with F1
     else if(key == KEY_F1)
     {
-        gConsole->Toggle();
+        TheConsole->Toggle();
     }
 
     // Toggle debug HUD with F2
     else if(key == KEY_F2)
     {
-        if(gDebugHud->GetMode() == 0 || gDebugHud->GetMode() == DEBUGHUD_SHOW_MEMORY)
+        if(TheDebugHud->GetMode() == 0 || TheDebugHud->GetMode() == DEBUGHUD_SHOW_MEMORY)
         {
-            gDebugHud->SetMode(DEBUGHUD_SHOW_ALL);
+            TheDebugHud->SetMode(DEBUGHUD_SHOW_ALL);
         }
         else
         {
-            gDebugHud->SetMode(DEBUGHUD_SHOW_NONE);
+            TheDebugHud->SetMode(DEBUGHUD_SHOW_NONE);
         }
     }
     else if(key == KEY_F3)
     {
-        if(gDebugHud->GetMode() == 0 || gDebugHud->GetMode() == DEBUGHUD_SHOW_ALL)
+        if(TheDebugHud->GetMode() == 0 || TheDebugHud->GetMode() == DEBUGHUD_SHOW_ALL)
         {
-            gDebugHud->SetMode(DEBUGHUD_SHOW_MEMORY);
+            TheDebugHud->SetMode(DEBUGHUD_SHOW_MEMORY);
         }
         else
         {
-            gDebugHud->SetMode(DEBUGHUD_SHOW_NONE);
+            TheDebugHud->SetMode(DEBUGHUD_SHOW_NONE);
         }
     }
 
     else if(key == KEY_KP_ENTER)
     {
-        gAudioCapturer->Pause(false);
+        TheAudioCapturer->Pause(false);
     }
 
     else if(key == KEY_KP_PLUS)
     {
-        gCamera->IncFov();
+        TheCamera->IncFov();
     }
 
     else if(key == KEY_KP_MINUS)
     {
-        gCamera->DecFov();
+        TheCamera->DecFov();
     }
 
     else if(key == KEY_KP_MULTIPLY)
     {
-        gCamera->DefaultFov();
+        TheCamera->DefaultFov();
     }
 
     else if(key == KEY_SPACE)
     {
-        gCamera->SetCameraMode(ModeShooter, TheScene->GetNode(gClient->trunkID));
+        TheCamera->SetCameraMode(ModeShooter, TheScene->GetNode(TheClient->trunkID));
     }
 
     else if(key == KEY_F9)
     {
-        gCamera->SetCameraMode(ModeCommander, TheScene->GetNode(gClient->towerID));
+        TheCamera->SetCameraMode(ModeCommander, TheScene->GetNode(TheClient->towerID));
     }
 
     else if(key == KEY_CTRL)
     {
         if(!eventData[P_REPEAT].GetBool())
         {
-            gGame->Shot();
+            TheGame->Shot();
         }
     }
 
     // Common rendering quality controls, only when UI has no focused element
-    else if(!gUI->GetFocusElement())
+    else if(!TheUI->GetFocusElement())
     {
         // Texture quality
         if(key == '1')
         {
-            uint quality = gRenderer->GetTextureQuality();
+            uint quality = TheRenderer->GetTextureQuality();
             ++quality;
             if(quality > QUALITY_HIGH)
             {
                 quality = QUALITY_LOW;
             }
-            gRenderer->SetTextureQuality((MaterialQuality)quality);
+            TheRenderer->SetTextureQuality((MaterialQuality)quality);
         }
 
         // Material quality
         else if(key == '2')
         {
-            uint quality = gRenderer->GetMaterialQuality();
+            uint quality = TheRenderer->GetMaterialQuality();
             ++quality;
             if(quality > QUALITY_HIGH)
             {
                 quality = QUALITY_LOW;
             }
-            gRenderer->SetMaterialQuality((MaterialQuality)quality);
+            TheRenderer->SetMaterialQuality((MaterialQuality)quality);
         }
 
         // Specular lighting
         else if(key == '3')
         {
-            gRenderer->SetSpecularLighting(!gRenderer->GetSpecularLighting());
+            TheRenderer->SetSpecularLighting(!TheRenderer->GetSpecularLighting());
         }
 
         // Shadow rendering
         else if(key == '4')
         {
-            gRenderer->SetDrawShadows(!gRenderer->GetDrawShadows());
+            TheRenderer->SetDrawShadows(!TheRenderer->GetDrawShadows());
         }
 
         // Shadow map resolution
         else if(key == '5')
         {
-            int shadowMapSize = gRenderer->GetShadowMapSize();
+            int shadowMapSize = TheRenderer->GetShadowMapSize();
             shadowMapSize *= 2;
             if(shadowMapSize > 2048)
             {
                 shadowMapSize = 512;
             }
-            gRenderer->SetShadowMapSize(shadowMapSize);
+            TheRenderer->SetShadowMapSize(shadowMapSize);
         }
 
         // Shadow depth and filtering quality
         else if(key == '6')
         {
-            ShadowQuality quality = gRenderer->GetShadowQuality();
+            ShadowQuality quality = TheRenderer->GetShadowQuality();
             quality = (ShadowQuality)(quality + 1);
             if(quality > SHADOWQUALITY_BLUR_VSM)
             {
                 quality = SHADOWQUALITY_SIMPLE_16BIT;
             }
-            gRenderer->SetShadowQuality(quality);
+            TheRenderer->SetShadowQuality(quality);
         }
 
         // Occlusion culling
         else if(key == '7')
         {
-            bool occlusion = gRenderer->GetMaxOccluderTriangles() > 0;
+            bool occlusion = TheRenderer->GetMaxOccluderTriangles() > 0;
             occlusion = !occlusion;
-            gRenderer->SetMaxOccluderTriangles(occlusion ? 5000 : 0);
+            TheRenderer->SetMaxOccluderTriangles(occlusion ? 5000 : 0);
         }
 
         // Instancing
         else if(key == '8')
         {
-            gRenderer->SetDynamicInstancing(!gRenderer->GetDynamicInstancing());
+            TheRenderer->SetDynamicInstancing(!TheRenderer->GetDynamicInstancing());
         }
 
         // Take screenshot
         else if(key == '9')
         {
             Image screenshot(context_);
-            gGraphics->TakeScreenShot(screenshot);
+            TheGraphics->TakeScreenShot(screenshot);
             // Here we save in the Data folder with date and time appended
             screenshot.SavePNG(TheFileSystem->GetProgramDir() + "Data/Screenshot_" +
                                Time::GetTimeStamp().Replaced(':', '_').Replaced('.', '_').Replaced(' ', '_') + ".png");
         }
         else if(key == KEY_F12)
         {
-            UIElement *instr = gUI->GetRoot()->GetChild(INSTRUCTION);
+            UIElement *instr = TheUI->GetRoot()->GetChild(INSTRUCTION);
             instr->SetVisible(!instr->IsVisible());
         }
     }
 #endif
 }
 
-#define SEND_CONTROL_OFF(k, ctrl) if(key == k) { gClient->MessageControl(ctrl, CTRL_OFF); }
-#define SEND_CONTROL_MODECAMERA_OFF(k, mode, ctrl) if(key == k && mode) { gClient->MessageControl(ctrl, CTRL_OFF); }
+#define SEND_CONTROL_OFF(k, ctrl) if(key == k) { TheClient->MessageControl(ctrl, CTRL_OFF); }
+#define SEND_CONTROL_MODECAMERA_OFF(k, mode, ctrl) if(key == k && mode) { TheClient->MessageControl(ctrl, CTRL_OFF); }
 
 
 void Battler::HandleKeyUp(StringHash, VariantMap& eventData)
@@ -253,8 +253,8 @@ void Battler::HandleKeyUp(StringHash, VariantMap& eventData)
 
     int key = eventData[P_KEY].GetInt();
 
-    bool modeShooter = gCamera->GetMode() == ModeShooter;
-    bool modeCommander = gCamera->GetMode() == ModeCommander;
+    bool modeShooter = TheCamera->GetMode() == ModeShooter;
+    bool modeCommander = TheCamera->GetMode() == ModeCommander;
 
     SEND_CONTROL_OFF(KEY_A, CTRL_LEFT)
     else SEND_CONTROL_OFF(KEY_D, CTRL_RIGHT)
@@ -273,7 +273,7 @@ void Battler::HandleKeyUp(StringHash, VariantMap& eventData)
 
     if(key == KEY_KP_ENTER)
     {
-        gAudioCapturer->Pause(true);
+        TheAudioCapturer->Pause(true);
     }
 #endif
 }
@@ -282,7 +282,7 @@ void Battler::HandleKeyUp(StringHash, VariantMap& eventData)
 
 void Battler::HandlePostUpdate(StringHash, VariantMap &)
 {
-    gCounters->Update();
+    TheCounters->Update();
 
     static float prevTime = 0.0f;
 
@@ -290,7 +290,7 @@ void Battler::HandlePostUpdate(StringHash, VariantMap &)
 
     if((curTime - prevTime) > 1.0f)
     {
-        gClient->RequestSystemInformation();
+        TheClient->RequestSystemInformation();
         prevTime = curTime;
     }
 
@@ -315,7 +315,7 @@ void Battler::HandlePostUpdate(StringHash, VariantMap &)
 void Battler::HandleLanguageChanged(StringHash, VariantMap&)
 {
     PODVector<UIElement*> elements;
-    gUIRoot->GetChildren(elements, true);
+    TheUIRoot->GetChildren(elements, true);
 
     for(UIElement *element : elements)
     {
@@ -326,7 +326,7 @@ void Battler::HandleLanguageChanged(StringHash, VariantMap&)
                name != "TextValue"                                                          // This controls for information
                )
             {
-                String text = gLocale->Get(name);
+                String text = TheLocale->Get(name);
                 if(!text.Empty())
                 {
                     ((Text*)element)->SetText(text);
@@ -340,7 +340,7 @@ void Battler::HandleLanguageChanged(StringHash, VariantMap&)
 
 void Battler::HandlePostRenderUpdate(StringHash, VariantMap&)
 {
-    if(gDebugRenderer && TheScene->GetComponent<PhysicsWorld>())
+    if(TheDebugRenderer && TheScene->GetComponent<PhysicsWorld>())
     {
         TheScene->GetComponent<PhysicsWorld>()->DrawDebugGeometry(true);
 
@@ -353,7 +353,7 @@ void Battler::HandlePostRenderUpdate(StringHash, VariantMap&)
                 CollisionShape *shape = node->GetComponent<CollisionShape>();
                 if(shape)
                 {
-                    shape->DrawDebugGeometry(gDebugRenderer, true);
+                    shape->DrawDebugGeometry(TheDebugRenderer, true);
                 }
             }
 

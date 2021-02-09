@@ -18,7 +18,7 @@ static void DrawTriangle(ImageT *image, int x, int y)
 Sight::Sight(Context *context) : Window(context)
 {
     ImageT *imageSight = new ImageT(context_);
-    imageSight->SetSize(gUIRoot->GetWidth(), gUIRoot->GetHeight());
+    imageSight->SetSize(TheUIRoot->GetWidth(), TheUIRoot->GetHeight());
     imageSight->Clear({0.0f, 0.0f, 0.0f, 1.0f});
 
     SharedPtr<Texture2D> texture(new Texture2D(context_));
@@ -26,10 +26,10 @@ Sight::Sight(Context *context) : Window(context)
 
     SetSize(texture->GetWidth(), texture->GetHeight());
 
-    float radius = gUIRoot->GetHeight() / 2.0f * 0.975f;
+    float radius = TheUIRoot->GetHeight() / 2.0f * 0.975f;
 
-    int x0 = gUIRoot->GetWidth() / 2;
-    int y0 = gUIRoot->GetHeight() / 2;
+    int x0 = TheUIRoot->GetWidth() / 2;
+    int y0 = TheUIRoot->GetHeight() / 2;
 
     imageSight->DrawCircle((float)x0, (float)y0, radius, {0.0f, 0.0f, 0.0f, 0.0f}, 0.01f);
     //imageSight->FillRegion((int)(x0 + 0.5f), (int)(y0 + 0.5f), {0.0f, 0.0f, 0.0f, 0.0f});

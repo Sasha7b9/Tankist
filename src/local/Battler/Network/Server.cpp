@@ -94,7 +94,7 @@ void Server::HandleClientConnected(StringHash, VariantMap &eventData)
 
     newConnection->SetScene(TheScene);
 
-    Vehicle* tank = gGame->ClientConnected(newConnection);
+    Vehicle* tank = TheGame->ClientConnected(newConnection);
 
     tanks.Push(tank);
     connections.Push(newConnection);
@@ -185,8 +185,8 @@ void Server::HandleNetworkMessage(StringHash, VariantMap &eventData)
             speedOut += conn->GetBytesOutPerSec();
         }
 
-        buffer.WriteFloat(speedIn + gCounters->GetServerIn());
-        buffer.WriteFloat(speedOut + gCounters->GetServerOut());
+        buffer.WriteFloat(speedIn + TheCounters->GetServerIn());
+        buffer.WriteFloat(speedOut + TheCounters->GetServerOut());
         connection->SendMessage(MSG_SERVER_SPEED, true, true, buffer);
     }
     else if(msgID == MSG_CONTROL)
@@ -235,7 +235,7 @@ void Server::HandleCloseConnection(StringHash, VariantMap &eventData)
 {
     Connection *connection = static_cast<Connection*>(eventData[CloseConnection::P_CONNECT].GetPtr());
 
-    gGame->ClientDisconnected(connection);
+    TheGame->ClientDisconnected(connection);
 }
 
 

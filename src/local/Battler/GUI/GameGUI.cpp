@@ -6,15 +6,15 @@
 
 GameGUI::GameGUI(Context *context) : Object(context)
 {
-    window = gUIRoot->CreateChild<Text>();
+    window = TheUIRoot->CreateChild<Text>();
     window->SetStyleAuto();
     window->SetFontSize(20);
-    window->SetPosition(0, gUIRoot->GetHeight() - 200);
+    window->SetPosition(0, TheUIRoot->GetHeight() - 200);
     window->SetColor(Color::BLACK);
 
     SubscribeToEvent(E_NEW_VAR, URHO3D_HANDLER(GameGUI, HandleNewVar));
 
-    window->SetText(gLocale->Get("tSpeed"));
+    window->SetText(TheLocale->Get("tSpeed"));
 }
 
 
