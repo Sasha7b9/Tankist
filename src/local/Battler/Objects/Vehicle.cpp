@@ -219,6 +219,11 @@ void Vehicle::PostUpdate(float timeStep)
     float planeAccel = Vector3(accel.x_, 0.0f, accel.z_).Length();
     for (int i = 0; i < vehicle->GetNumWheels(); i++)
     {
+        if (particleEmitterNodeList_.Size() == 0)
+        {
+            break;
+        }
+
         Node* emitter = particleEmitterNodeList_[(uint)i];
         auto* particleEmitter = emitter->GetComponent<ParticleEmitter>();
         if (vehicle->WheelIsGrounded(i) && (vehicle->GetWheelSkidInfoCumulative(i) < 0.9f || vehicle->GetBrake(i) > 2.0f ||
