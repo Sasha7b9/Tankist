@@ -4,7 +4,7 @@
 #include <Urho3D/UI/UIEvents.h>
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 DropDownListButtons::DropDownListButtons(Context *context, UIElement *parent, const char *nameDDLB) : Object(context)
 {
     UIElement *ddlb = parent->GetChild(nameDDLB, true);
