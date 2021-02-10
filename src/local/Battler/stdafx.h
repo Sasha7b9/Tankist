@@ -78,6 +78,8 @@
 
 #include <Urho3D/DebugNew.h>
 
+#include <Urho3D/UI/UI.h>
+
 #include <Urho3D/Urho2D/Sprite2D.h>
 #include <Urho3D/Urho2D/StaticSprite2D.h>
 
@@ -112,13 +114,4 @@
 
 using namespace Urho3D;
 
-//For client only
-//#include "Objects/CameraUni.h"
-//#include "Network/Client.h"
-
-//#include "GUI/Elements/DropDownListButtons.h"
-//#include "GUI/Elements/Governor.h"
-//#include "Network/Server.h"
-//#include "Battler.h"
 #include "glob_engine.h"
-//#include "Utils/_LogU.h"

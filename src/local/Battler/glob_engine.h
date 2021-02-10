@@ -1,6 +1,6 @@
 /* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #pragma once
-#include <Urho3D/UI/UI.h>
+
 
 /*
 *   Глобальыне указатели на подсистемы движка
