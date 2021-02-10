@@ -1,9 +1,6 @@
 #include "stdafx.h"
 
 
-const float CAMERA_DISTANCE = 10.0f;
-
-
 #ifdef WIN32
 #pragma warning(push, 0)
 #endif
@@ -322,27 +319,8 @@ void Battler::HandlePostUpdate(StringHash , VariantMap& )
     {
         return;
     }
-    Node* vehicleNode = vehicle_->GetNode();
-    // Physics update has completed. Position camera behind vehicle
-    Quaternion dir(vehicleNode->GetRotation().YawAngle(), Vector3::UP);
-    dir = dir * Quaternion(vehicle_->controls_.yaw_, Vector3::UP);
-    dir = dir * Quaternion(vehicle_->controls_.pitch_, Vector3::RIGHT);
-    Vector3 cameraTargetPos =
-        vehicleNode->GetPosition() - dir * Vector3(0.0f, 0.0f, CAMERA_DISTANCE);
-    Vector3 cameraStartPos = vehicleNode->GetPosition();
-    // Raycast camera against static objects (physics collision mask 2)
-    // and move it closer to the vehicle if something in between
-    Ray cameraRay(cameraStartPos, cameraTargetPos - cameraStartPos);
-    float cameraRayLength = (cameraTargetPos - cameraStartPos).Length();
-    PhysicsRaycastResult result;
-    TheScene->GetComponent<PhysicsWorld>()->RaycastSingle(result, cameraRay, cameraRayLength, 2);
-    if (result.body_)
-    {
-        cameraTargetPos = cameraStartPos + cameraRay.direction_ * (result.distance_ - 0.5f);
-    }
 
-    TheMainCamera->node->SetPosition(cameraTargetPos);
-    TheMainCamera->node->SetRotation(dir);
+    TheMainCamera->SetOnNode(vehicle_->GetNode(), vehicle_->controls_.yaw_, vehicle_->controls_.pitch_);
 }
 
 
