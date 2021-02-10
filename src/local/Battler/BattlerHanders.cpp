@@ -37,7 +37,7 @@ void Battler::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
             if (GetPlatform() == "Web")
             {
                 TheInput->SetMouseVisible(true);
-                if (useMouseMode_ != MM_ABSOLUTE)
+                if (TheMouse->mode != MM_ABSOLUTE)
                     TheInput->SetMouseMode(MM_FREE);
             }
             else
@@ -135,27 +135,6 @@ void Battler::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
         }
     }
 }
-
-
-// If the user clicks the canvas, attempt to switch to relative mouse mode on web platform
-void Battler::HandleMouseModeRequest(StringHash /*eventType*/, VariantMap &)
-{
-    if (TheConsole && TheConsole->IsVisible())
-        return;
-    if (useMouseMode_ == MM_ABSOLUTE)
-        TheInput->SetMouseVisible(false);
-    else if (useMouseMode_ == MM_FREE)
-        TheInput->SetMouseVisible(true);
-    TheInput->SetMouseMode(useMouseMode_);
-}
-
-
-void Battler::HandleMouseModeChange(StringHash /*eventType*/, VariantMap &eventData)
-{
-    bool mouseLocked = eventData[MouseModeChanged::P_MOUSELOCKED].GetBool();
-    TheInput->SetMouseVisible(!mouseLocked);
-}
-
 
 
 void Battler::HandleSceneUpdate(StringHash /*eventType*/, VariantMap &)

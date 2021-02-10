@@ -10,8 +10,7 @@ URHO3D_DEFINE_APPLICATION_MAIN(Battler)
 #endif
 
 Battler::Battler(Context* context)
-    : Application(context),
-    useMouseMode_(MM_ABSOLUTE)
+    : Application(context)
 {
     // Register factory and attributes for the Vehicle component so it can be created via CreateComponent, and loaded / saved
     VehicleLogic::RegisterObject(context);
@@ -83,14 +82,16 @@ void Battler::Start()
 
     // Subscribe to necessary events
     SubscribeToEvents();
-    // Set the mouse mode to use in the sample
-    InitMouseMode(MM_RELATIVE);
+
+    TheMouse = new MouseT(context_);
 }
 
 
 void Battler::Stop()
 {
     engine_->DumpResources(true);
+
+    delete TheMouse;
 
     delete vehicle;
 
@@ -107,31 +108,6 @@ void Battler::SetWindowTitleAndIcon()
     Image *icon = TheCache->GetResource<Image>("Textures/UrhoIcon.png");
     TheGraphics->SetWindowIcon(icon);
     TheGraphics->SetWindowTitle(GetTypeName());
-}
-
-
-void Battler::InitMouseMode(MouseMode mode)
-{
-    useMouseMode_ = mode;
-
-    if (GetPlatform() != "Web")
-    {
-        if (useMouseMode_ == MM_FREE)
-            TheInput->SetMouseVisible(true);
-
-        if (useMouseMode_ != MM_ABSOLUTE)
-        {
-            TheInput->SetMouseMode(useMouseMode_);
-            if (TheConsole && TheConsole->IsVisible())
-                TheInput->SetMouseMode(MM_ABSOLUTE, true);
-        }
-    }
-    else
-    {
-        TheInput->SetMouseVisible(true);
-        SubscribeToEvent(E_MOUSEBUTTONDOWN, URHO3D_HANDLER(Battler, HandleMouseModeRequest));
-        SubscribeToEvent(E_MOUSEMODECHANGED, URHO3D_HANDLER(Battler, HandleMouseModeChange));
-    }
 }
 
 
@@ -203,12 +179,11 @@ void Battler::CreateScene()
 void Battler::SubscribeToEvents()
 {
     // Subscribe to Update event for setting the vehicle controls before physics simulation
-    SubscribeToEvent(E_UPDATE,
-                     URHO3D_HANDLER(Battler, HandleUpdate));
+    SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(Battler, HandleUpdate));
+
     // Subscribe to PostUpdate event for updating the camera position after physics simulation
-    SubscribeToEvent(E_POSTUPDATE,
-                     URHO3D_HANDLER(Battler,
-                                    HandlePostUpdate));
+    SubscribeToEvent(E_POSTUPDATE, URHO3D_HANDLER(Battler, HandlePostUpdate));
+
     // Unsubscribe the SceneUpdate event from base class as the camera node is being controlled in HandlePostUpdate() in this sample
     UnsubscribeFromEvent(E_SCENEUPDATE);
 }

@@ -115,6 +115,7 @@ using namespace Urho3D;
 #include "Battler.h"
 #include "GUI/Instructions.h"
 #include "GUI/Logo.h"
+#include "GUI/MouseT.h"
 #include "Objects/Vehicle.h"
 #include "Objects/Cameras/MainCamera.h"
 #include "glob_engine.h"

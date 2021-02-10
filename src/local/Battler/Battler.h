@@ -39,14 +39,17 @@ private:
     /// Subscribe to necessary events.
     void SubscribeToEvents();
 
-    /// Initialize mouse mode on non-web platform.
-    void InitMouseMode(MouseMode mode);
+    /// The controllable vehicle component.
+    WeakPtr<Vehicle> vehicle;
+
+    WeakPtr<Logo> logo;
+
 
     /// Handle application update. Set controls to vehicle.
-    void HandleUpdate(StringHash eventType, VariantMap& eventData);
+    void HandleUpdate(StringHash eventType, VariantMap &eventData);
 
     /// Handle application post-update. Update camera position after vehicle has moved.
-    void HandlePostUpdate(StringHash eventType, VariantMap& eventData);
+    void HandlePostUpdate(StringHash eventType, VariantMap &eventData);
 
     /// Handle key down event to process key controls common to all samples.
     void HandleKeyDown(StringHash eventType, VariantMap &eventData);
@@ -54,20 +57,6 @@ private:
     /// Handle key up event to process key controls common to all samples.
     void HandleKeyUp(StringHash eventType, VariantMap &eventData);
 
-    /// Handle request for mouse mode on web platform.
-    void HandleMouseModeRequest(StringHash eventType, VariantMap &eventData);
-
-    /// Handle request for mouse mode change on web platform.
-    void HandleMouseModeChange(StringHash eventType, VariantMap &eventData);
-
     /// Handle scene update event to control camera's pitch and yaw for all samples.
     void HandleSceneUpdate(StringHash eventType, VariantMap &eventData);
-
-    /// The controllable vehicle component.
-    WeakPtr<Vehicle> vehicle;
-
-    WeakPtr<Logo> logo;
-
-    /// Mouse mode option to use in the sample.
-    MouseMode useMouseMode_;
 };

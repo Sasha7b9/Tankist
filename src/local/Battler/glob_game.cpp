@@ -2,4 +2,5 @@
 #include "stdafx.h"
 
 
-MainCamera *TheMainCamera;
+MainCamera *TheMainCamera = nullptr;
+MouseT     *TheMouse = nullptr;

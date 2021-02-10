@@ -8,3 +8,4 @@
 
 
 extern MainCamera *TheMainCamera;
+extern MouseT     *TheMouse;
