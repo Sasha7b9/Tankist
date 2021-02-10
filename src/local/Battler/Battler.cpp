@@ -44,6 +44,8 @@ void Battler::Setup()
 void Battler::Start()
 {
     TheCache = GetSubsystem<ResourceCache>();
+    TheUI = GetSubsystem<UI>();
+    TheGraphics = GetSubsystem<Graphics>();
 
     // Create logo
     CreateLogo();
@@ -77,9 +79,7 @@ void Battler::CreateLogo()
     if (!logoTexture)
         return;
 
-    // Create logo sprite and add to the UI layout
-    UI *ui = GetSubsystem<UI>();
-    logoSprite_ = ui->GetRoot()->CreateChild<Sprite>();
+    logoSprite_ = TheUI->GetRoot()->CreateChild<Sprite>();
 
     // Set logo sprite texture
     logoSprite_->SetTexture(logoTexture);
@@ -109,11 +109,9 @@ void Battler::CreateLogo()
 
 void Battler::SetWindowTitleAndIcon()
 {
-    ResourceCache *cache = GetSubsystem<ResourceCache>();
-    Graphics *graphics = GetSubsystem<Graphics>();
-    Image *icon = cache->GetResource<Image>("Textures/UrhoIcon.png");
-    graphics->SetWindowIcon(icon);
-    graphics->SetWindowTitle("Urho3D Sample");
+    Image *icon = TheCache->GetResource<Image>("Textures/UrhoIcon.png");
+    TheGraphics->SetWindowIcon(icon);
+    TheGraphics->SetWindowTitle("Urho3D Sample");
 }
 
 
