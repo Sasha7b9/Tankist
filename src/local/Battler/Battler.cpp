@@ -170,10 +170,9 @@ void Battler::CreateScene()
     TheScene->CreateComponent<PhysicsWorld>();
     // Create camera and define viewport. We will be doing load / save, so it's convenient to create the camera outside the scene,
     // so that it won't be destroyed and recreated, and we don't have to redefine the viewport on load
-    cameraNode_ = new Node(context_);
-    auto* camera = cameraNode_->CreateComponent<Camera>();
-    camera->SetFarClip(500.0f);
-    TheRenderer->SetViewport(0, new Viewport(context_, TheScene, camera));
+
+    TheMainCamera = new MainCamera(context_);
+
     // Create static scene content. First create a zone for ambient lighting and fog control
     Node* zoneNode = TheScene->CreateChild("Zone");
     auto* zone = zoneNode->CreateComponent<Zone>();
@@ -341,8 +340,9 @@ void Battler::HandlePostUpdate(StringHash , VariantMap& )
     {
         cameraTargetPos = cameraStartPos + cameraRay.direction_ * (result.distance_ - 0.5f);
     }
-    cameraNode_->SetPosition(cameraTargetPos);
-    cameraNode_->SetRotation(dir);
+
+    TheMainCamera->node->SetPosition(cameraTargetPos);
+    TheMainCamera->node->SetRotation(dir);
 }
 
 

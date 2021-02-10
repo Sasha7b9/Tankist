@@ -3,8 +3,9 @@
 
 class MainCamera
 {
-    MainCamera();
-
 public:
+
+    MainCamera(Context *context);
+
     SharedPtr<Node> node;
 };
