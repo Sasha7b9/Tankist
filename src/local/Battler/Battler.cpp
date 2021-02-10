@@ -49,6 +49,7 @@ void Battler::Start()
     TheGraphics = GetSubsystem<Graphics>();
     TheInput = GetSubsystem<Input>();
     TheRenderer = GetSubsystem<Renderer>();
+    TheConsole = GetSubsystem<Console>();
 
     // Create logo
     CreateLogo();
@@ -355,14 +356,13 @@ void Battler::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
     // Close console (if open) or exit when ESC is pressed
     if (key == KEY_ESCAPE)
     {
-        Console *console = GetSubsystem<Console>();
-        if (console->IsVisible())
-            console->SetVisible(false);
+        if (TheConsole->IsVisible())
+            TheConsole->SetVisible(false);
         else
         {
             if (GetPlatform() == "Web")
             {
-                GetSubsystem<Input>()->SetMouseVisible(true);
+                TheInput->SetMouseVisible(true);
                 if (useMouseMode_ != MM_ABSOLUTE)
                     GetSubsystem<Input>()->SetMouseMode(MM_FREE);
             }
@@ -465,23 +465,20 @@ void Battler::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
 // If the user clicks the canvas, attempt to switch to relative mouse mode on web platform
 void Battler::HandleMouseModeRequest(StringHash /*eventType*/, VariantMap &)
 {
-    Console *console = GetSubsystem<Console>();
-    if (console && console->IsVisible())
+    if (TheConsole && TheConsole->IsVisible())
         return;
-    Input *input = GetSubsystem<Input>();
     if (useMouseMode_ == MM_ABSOLUTE)
-        input->SetMouseVisible(false);
+        TheInput->SetMouseVisible(false);
     else if (useMouseMode_ == MM_FREE)
-        input->SetMouseVisible(true);
-    input->SetMouseMode(useMouseMode_);
+        TheInput->SetMouseVisible(true);
+    TheInput->SetMouseMode(useMouseMode_);
 }
 
 
 void Battler::HandleMouseModeChange(StringHash /*eventType*/, VariantMap &eventData)
 {
-    Input *input = GetSubsystem<Input>();
     bool mouseLocked = eventData[MouseModeChanged::P_MOUSELOCKED].GetBool();
-    input->SetMouseVisible(!mouseLocked);
+    TheInput->SetMouseVisible(!mouseLocked);
 }
 
 
