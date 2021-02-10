@@ -50,8 +50,6 @@ file(GLOB NETWORK                             Network/HandlersNetworkEventsHanga
                            ../../common_files/Network/_MessagesServer.*
                            ../../common_files/Network/_MasterServer.*
                            ../../common_files/Network/_SocketsTCP.*)
-file(GLOB NETWORK_MESSAGES ../../common_files/Network/Messages/_MessagesHangar.*
-                           ../../common_files/Network/Messages/_MessagesServer.*)
 file(GLOB UTILS            ../../common_files/Utils/_Log.*
                            ../../common_files/Utils/_StringUtils.*
                            ../../common_files/Utils/_SystemFunctions.*
@@ -60,14 +58,13 @@ file(GLOB UTILS            ../../common_files/Utils/_Log.*
 source_group(src               FILES ${SRC})
 source_group(FileSystem        FILES ${FILE_SYSTEM})
 source_group(Network           FILES ${NETWORK})
-source_group(Network\\Messages FILES ${NETWORK_MESSAGES})
 source_group(Utils             FILES ${UTILS})
 
 if(WIN32)
     set_source_files_properties(stdafx.cpp PROPERTIES COMPILE_FLAGS "/Ycstdafx.h")
 endif()
 
-add_executable(${PROJECT_NAME} ${SRC} ${FILE_SYSTEM} ${NETWORK} ${NETWORK_MESSAGES} ${UTILS})
+add_executable(${PROJECT_NAME} ${SRC} ${FILE_SYSTEM} ${NETWORK} ${UTILS})
 
 include(../../RuntimeLibrary.cmake)
 

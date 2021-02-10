@@ -1,4 +1,4 @@
-#include "defines.h"
+#include "stdafx.h"
 
 
 Server::Server(Context *context) : Object(context)
@@ -7,6 +7,20 @@ Server::Server(Context *context) : Object(context)
     SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(Server, HandleServerConnected));
     SubscribeToEvent(E_SERVERDISCONNECTED, URHO3D_HANDLER(Server, HandleServerDisconnected));
     SubscribeToEvent(E_CONNECTFAILED, URHO3D_HANDLER(Server, HandleConnectFailed));
+}
+
+
+void Server::SendMessage(const String &message)
+{
+    Connection *connection = TheNetwork->GetServerConnection();
+
+    if (connection)
+    {
+        VectorBuffer msg;
+        msg.WriteString(message);
+
+        connection->SendMessage(MSG_USER, true, true, msg);
+    }
 }
 
 

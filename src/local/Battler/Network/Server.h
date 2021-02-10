@@ -15,6 +15,8 @@ public:
 
     void Connect(const String &address, uint16 port);
 
+    void SendMessage(const String &message);
+
 private:
 
     void HandleMessage(StringHash, VariantMap &);

@@ -1,5 +1,0 @@
-#include "stdafx.h"
-#include "Network/Messages/_MessagesHangar.h"
-#include "Network/Messages/_MessagesServer.h"
-#include "Chat.h"
-#include "Hangar.h"

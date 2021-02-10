@@ -1,7 +1,5 @@
 #include <stdafx.h>
 #include "globals.h"
-#include "Chat.h"
-#include "Hangar.h"
 #include "Network/MainServer.h"
 
 

@@ -18,9 +18,21 @@ bool Server::Start(uint16 port)
 }
 
 
-void Server::HandleMessage(StringHash, VariantMap &)
+void Server::HandleMessage(StringHash, VariantMap &eventData)
 {
     LOG_FUNC_ENTER();
+
+    using namespace NetworkMessage;
+
+    if (eventData[P_MESSAGEID].GetInt() == MSG_USER)
+    {
+        const PODVector<uint8> &data = eventData[P_DATA].GetBuffer();
+
+        MemoryBuffer msg(data);
+        String text = msg.ReadString();
+
+        URHO3D_LOGINFOF("Receive message : \"%s\"", text.CString());
+    }
 }
 
 
