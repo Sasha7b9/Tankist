@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Vehicle.h"
 #include <Urho3D/Core/Context.h>
 #include <Urho3D/Graphics/DebugRenderer.h>
