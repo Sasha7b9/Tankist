@@ -17,7 +17,9 @@ using namespace Urho3D;
 
 
 #include "glob_engine.h"
-#include "glob_game.h"
 #include "defines.h"
 
 #include "Battle.h"
+#include "Network/Server.h"
+
+#include "glob_game.h"

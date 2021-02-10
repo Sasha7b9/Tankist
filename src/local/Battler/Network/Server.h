@@ -5,9 +5,17 @@
 *  Класс для коммуникаций с сервером
 */
 
-class Server
+class Server : public Object
 {
+    URHO3D_OBJECT(Server, Object);
+
 public:
-    void Connect(const String &address, int port);
+
+    Server(Context *context);
+
+    void Connect(const String &address, uint16 port);
+
 private:
+
+    void HandleServerConnected(StringHash, VariantMap &);
 };

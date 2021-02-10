@@ -34,8 +34,9 @@ void Battle::Start()
 {
     TheNetwork = GetSubsystem<Network>();
 
+    TheServer = new Server();
 
-    TheNetwork->StartServer(SERVER_PORT);
+    TheServer->Start(SERVER_PORT);
 }
 
 

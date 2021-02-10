@@ -81,7 +81,7 @@ void Battler::Start()
 
     TheMouse = new MouseT(context_);
 
-    TheServer = new Server();
+    TheServer = new Server(context_);
 
     TheServer->Connect("127.0.0.1", 30000);
 }
@@ -90,6 +90,8 @@ void Battler::Start()
 void Battler::Stop()
 {
     engine_->DumpResources(true);
+
+    delete TheServer;
 
     delete TheMouse;
 

@@ -56,12 +56,14 @@ else()
 
 endif()
 
-file(GLOB SRC              ../../common_files/_defines.h
-                                              *.h *.cpp)
+file(GLOB SRC         ../../common_files/_defines.h
+                                         *.h *.cpp)
+file(GLOB NETWORK                        Network/*.*)
 
-source_group(src               FILES ${SRC})
+source_group(src                         FILES ${SRC})
+source_group(Network                     FILES ${NETWORK})
 
-add_executable(${PROJECT_NAME} ${SRC})
+add_executable(${PROJECT_NAME} ${SRC} ${NETWORK})
 
 include(../../RuntimeLibrary.cmake)
 
