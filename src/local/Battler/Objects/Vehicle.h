@@ -109,6 +109,8 @@ public:
 
     Vehicle(Context *context);
 
+    virtual ~Vehicle() {};
+
     void Update();
 
     WeakPtr<VehicleLogic> logic;

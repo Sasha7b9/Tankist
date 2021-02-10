@@ -64,8 +64,8 @@ void Battler::Start()
 
     TheMainCamera = new MainCamera(context_);
 
-    // Create logo
-    CreateLogo();
+    logo = new Logo(context_);
+
     // Set custom window Title & Icon
     SetWindowTitleAndIcon();
     // Create console and debug HUD
@@ -81,8 +81,8 @@ void Battler::Start()
 
     vehicle = new Vehicle(context_);
 
-    // Create the UI content
-    CreateInstructions();
+    Instructions::Create();
+
     // Subscribe to necessary events
     SubscribeToEvents();
     // Set the mouse mode to use in the sample
@@ -94,44 +94,13 @@ void Battler::Stop()
 {
     engine_->DumpResources(true);
 
+    delete vehicle;
+
+    delete logo;
+
     delete TheMainCamera;
 
     delete TheScene;
-}
-
-
-void Battler::CreateLogo()
-{
-    // Get logo texture
-    Texture2D *logoTexture = TheCache->GetResource<Texture2D>("Textures/FishBoneLogo.png");
-    if (!logoTexture)
-        return;
-
-    logoSprite_ = TheUI->GetRoot()->CreateChild<Sprite>();
-
-    // Set logo sprite texture
-    logoSprite_->SetTexture(logoTexture);
-
-    int textureWidth = logoTexture->GetWidth();
-    int textureHeight = logoTexture->GetHeight();
-
-    // Set logo sprite scale
-    logoSprite_->SetScale(256.0f / textureWidth);
-
-    // Set logo sprite size
-    logoSprite_->SetSize(textureWidth, textureHeight);
-
-    // Set logo sprite hot spot
-    logoSprite_->SetHotSpot(textureWidth, textureHeight);
-
-    // Set logo sprite alignment
-    logoSprite_->SetAlignment(HA_RIGHT, VA_BOTTOM);
-
-    // Make logo not fully opaque to show the scene underneath
-    logoSprite_->SetOpacity(0.9f);
-
-    // Set a low priority for the logo so that other UI elements can be drawn on top
-    logoSprite_->SetPriority(-100);
 }
 
 
@@ -235,23 +204,6 @@ void Battler::CreateScene()
         auto* s = objectNode->CreateComponent<CollisionShape>();
         s->SetTriangleMesh(object->GetModel(), 0);
     }
-}
-
-
-void Battler::CreateInstructions()
-{
-    // Construct new Text object, set string to display and font to use
-    auto* instructionText = TheUI->GetRoot()->CreateChild<Text>();
-    instructionText->SetText(
-        "Use WASD keys to drive, F to brake, mouse/touch to rotate camera\n"
-        "F5 to save scene, F7 to load");
-    instructionText->SetFont(TheCache->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 15);
-    // The text has multiple rows. Center them in relation to each other
-    instructionText->SetTextAlignment(HA_CENTER);
-    // Position the text relative to the screen center
-    instructionText->SetHorizontalAlignment(HA_CENTER);
-    instructionText->SetVerticalAlignment(VA_CENTER);
-    instructionText->SetPosition(0, TheUI->GetRoot()->GetHeight() / 4);
 }
 
 

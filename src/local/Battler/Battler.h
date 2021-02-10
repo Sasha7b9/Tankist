@@ -7,6 +7,8 @@ namespace Urho3D
     class Scene;
 }
 
+
+class Logo;
 class Vehicle;
 
 
@@ -28,9 +30,6 @@ public:
 
 private:
 
-    /// Create logo.
-    void CreateLogo();
-
     /// Set custom window Title & Icon
     void SetWindowTitleAndIcon();
 
@@ -39,9 +38,6 @@ private:
 
     /// Create static scene content.
     void CreateScene();
-
-    /// Construct an instruction text to the UI.
-    void CreateInstructions();
 
     /// Subscribe to necessary events.
     void SubscribeToEvents();
@@ -73,8 +69,7 @@ private:
     /// The controllable vehicle component.
     WeakPtr<Vehicle> vehicle;
 
-    /// Logo sprite.
-    SharedPtr<Sprite> logoSprite_;
+    WeakPtr<Logo> logo;
 
     /// Mouse mode option to use in the sample.
     MouseMode useMouseMode_;

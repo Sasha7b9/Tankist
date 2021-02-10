@@ -44,10 +44,12 @@ else()
 endif()
 
 file(GLOB SRC                 *.h *.cpp)
+file(GLOB GUI                 GUI/*.*)
 file(GLOB OBJECTS             Objects/*.*)
-file(GLOB OBJECTS_CAMERAS     Objects/Cameras/*)
+file(GLOB OBJECTS_CAMERAS     Objects/Cameras/*.*)
 
 source_group(src              FILES ${SRC})
+source_group(GUI              FILES ${GUI})
 source_group(Objects          FILES ${OBJECTS})
 source_group(Objects\\Cameras FILES ${OBJECTS_CAMERAS})
 
@@ -58,7 +60,7 @@ set_source_files_properties(stdafx.cpp
 )
 endif()
 
-add_executable(${PROJECT_NAME} ${SRC} ${OBJECTS} ${OBJECTS_CAMERAS})
+add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${OBJECTS} ${OBJECTS_CAMERAS})
 
 target_link_libraries(${PROJECT_NAME} opus)
 
