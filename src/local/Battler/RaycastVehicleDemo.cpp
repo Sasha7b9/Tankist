@@ -139,10 +139,10 @@ void RaycastVehicleDemo::CreateScene()
         object->SetModel(cache->GetResource<Model>("Models/Mushroom.mdl"));
         object->SetMaterial(cache->GetResource<Material>("Materials/Mushroom.xml"));
         object->SetCastShadows(true);
-        auto* body = objectNode->CreateComponent<RigidBody>();
-        body->SetCollisionLayer(2);
-        auto* shape = objectNode->CreateComponent<CollisionShape>();
-        shape->SetTriangleMesh(object->GetModel(), 0);
+        auto* b = objectNode->CreateComponent<RigidBody>();
+        b->SetCollisionLayer(2);
+        auto* s = objectNode->CreateComponent<CollisionShape>();
+        s->SetTriangleMesh(object->GetModel(), 0);
     }
 }
 
@@ -187,8 +187,8 @@ void RaycastVehicleDemo::SubscribeToEvents()
     UnsubscribeFromEvent(E_SCENEUPDATE);
 }
 
-void RaycastVehicleDemo::HandleUpdate(StringHash eventType,
-                                 VariantMap& eventData)
+void RaycastVehicleDemo::HandleUpdate(StringHash ,
+                                 VariantMap& )
 {
     using namespace Update;
     auto* input = GetSubsystem<Input>();
@@ -257,7 +257,7 @@ void RaycastVehicleDemo::HandleUpdate(StringHash eventType,
     }
 }
 
-void RaycastVehicleDemo::HandlePostUpdate(StringHash eventType, VariantMap& eventData)
+void RaycastVehicleDemo::HandlePostUpdate(StringHash , VariantMap& )
 {
     if (!vehicle_)
     {

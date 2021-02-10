@@ -48,8 +48,6 @@ Sample::Sample(Context* context) :
     pitch_(0.0f),
     touchEnabled_(false),
     useMouseMode_(MM_ABSOLUTE),
-    screenJoystickIndex_(M_MAX_UNSIGNED),
-    screenJoystickSettingsIndex_(M_MAX_UNSIGNED),
     paused_(false)
 {
 }
@@ -243,16 +241,6 @@ void Sample::HandleKeyDown(StringHash /*eventType*/, VariantMap& eventData)
         if (key == KEY_SELECT && touchEnabled_)
         {
             paused_ = !paused_;
-
-            Input* input = GetSubsystem<Input>();
-            if (screenJoystickSettingsIndex_ == M_MAX_UNSIGNED)
-            {
-                // Lazy initialization
-                ResourceCache* cache = GetSubsystem<ResourceCache>();
-                screenJoystickSettingsIndex_ = (unsigned)input->AddScreenJoystick(cache->GetResource<XMLFile>("UI/ScreenJoystickSettings_Samples.xml"), cache->GetResource<XMLFile>("UI/DefaultStyle.xml"));
-            }
-            else
-                input->SetScreenJoystickVisible(screenJoystickSettingsIndex_, paused_);
         }
 
         // Texture quality
@@ -328,7 +316,7 @@ void Sample::HandleKeyDown(StringHash /*eventType*/, VariantMap& eventData)
     }
 }
 
-void Sample::HandleSceneUpdate(StringHash /*eventType*/, VariantMap& eventData)
+void Sample::HandleSceneUpdate(StringHash /*eventType*/, VariantMap& )
 {
     // Move the camera by touch, if the camera node is initialized by descendant sample class
     if (touchEnabled_ && cameraNode_)
@@ -366,7 +354,7 @@ void Sample::HandleSceneUpdate(StringHash /*eventType*/, VariantMap& eventData)
 
 
 // If the user clicks the canvas, attempt to switch to relative mouse mode on web platform
-void Sample::HandleMouseModeRequest(StringHash /*eventType*/, VariantMap& eventData)
+void Sample::HandleMouseModeRequest(StringHash /*eventType*/, VariantMap& )
 {
     Console* console = GetSubsystem<Console>();
     if (console && console->IsVisible())

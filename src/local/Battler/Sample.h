@@ -106,10 +106,6 @@ private:
     /// Handle scene update event to control camera's pitch and yaw for all samples.
     void HandleSceneUpdate(StringHash eventType, VariantMap& eventData);
 
-    /// Screen joystick index for navigational controls (mobile platforms only).
-    unsigned screenJoystickIndex_;
-    /// Screen joystick index for settings (mobile platforms only).
-    unsigned screenJoystickSettingsIndex_;
     /// Pause flag.
     bool paused_;
 };
