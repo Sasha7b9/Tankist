@@ -24,37 +24,51 @@
 
 #include "Sample.h"
 
-/// This first example, maintaining tradition, prints a "Hello World" message.
-/// Furthermore it shows:
-///     - Using the Sample / Application classes, which initialize the Urho3D engine and run the main loop
-///     - Adding a Text element to the graphical user interface
-///     - Subscribing to and handling of update events
-class HelloWorld : public Sample
+namespace Urho3D
 {
-    URHO3D_OBJECT(HelloWorld, Sample);
+    class Node;
+    class Scene;
+}
+
+class Vehicle;
+
+/// Vehicle example.
+/// This sample demonstrates:
+///     - Creating a heightmap terrain with collision
+///     - Constructing 100 raycast vehicles
+///     - Defining attributes (including node and component references) of a custom component
+///     (Saving and loading is broken now)
+
+class RaycastVehicleDemo : public Sample
+{
+    URHO3D_OBJECT(RaycastVehicleDemo, Sample);
 
 public:
     /// Construct.
-    explicit HelloWorld(Context* context);
+    explicit RaycastVehicleDemo(Context* context);
 
     /// Setup after engine initialization and before running the main loop.
     void Start() override;
 
-protected:
-    /// Return XML patch instructions for screen joystick layout for a specific sample app, if any.
-    String GetScreenJoystickPatchString() const override { return
-        "<patch>"
-        "    <add sel=\"/element/element[./attribute[@name='Name' and @value='Hat0']]\">"
-        "        <attribute name=\"Is Visible\" value=\"false\" />"
-        "    </add>"
-        "</patch>";
-    }
-
 private:
-    /// Construct a new Text instance, containing the 'Hello World' String, and add it to the UI root element.
-    void CreateText();
-    /// Subscribe to application-wide logic update events.
+    /// Create static scene content.
+    void CreateScene();
+
+    /// Create the vehicle.
+    void CreateVehicle();
+
+    /// Construct an instruction text to the UI.
+    void CreateInstructions();
+
+    /// Subscribe to necessary events.
     void SubscribeToEvents();
-    /// Handle the logic update event.
+
+    /// Handle application update. Set controls to vehicle.
     void HandleUpdate(StringHash eventType, VariantMap& eventData);
+
+    /// Handle application post-update. Update camera position after vehicle has moved.
+    void HandlePostUpdate(StringHash eventType, VariantMap& eventData);
+
+    /// The controllable vehicle component.
+    WeakPtr<Vehicle> vehicle_;
 };

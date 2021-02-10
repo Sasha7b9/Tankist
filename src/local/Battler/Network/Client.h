@@ -24,7 +24,7 @@ public:
     // Запрос пинга, загрузки ЩПУ, числа клиентов
     void RequestSystemInformation();
 
-    void MessageControl(Control control, TypeControl type);
+//    void MessageControl(Control control, TypeControl type);
 
     unsigned towerID = 0;
 

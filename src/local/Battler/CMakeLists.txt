@@ -53,7 +53,7 @@ else()
     SET(LDFLAGS "${LDFLAGS} -ldl")
 endif()
 
-file(GLOB SRC                HelloWorld.*
+file(GLOB SRC                RaycastVehicleDemo.*
                              Sample.*
                              stdafx.*
                              globals.*)
@@ -90,7 +90,8 @@ ${GRAPHICS}
 #${GUI}
 ${GUI_ELEMENTS} ${AUDIO_CAPTURE}
 #${NETWORK}
-${OBJECTS} ${UTILS})
+${OBJECTS}
+${UTILS})
 
 target_link_libraries(${PROJECT_NAME} opus)
 
