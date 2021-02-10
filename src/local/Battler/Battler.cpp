@@ -1,10 +1,8 @@
 #include "stdafx.h"
-#include "Battler.h"
-#include "Objects/Vehicle.h"
 
-#include <Urho3D/DebugNew.h>
 
 const float CAMERA_DISTANCE = 10.0f;
+
 
 #ifdef WIN32
 #pragma warning(push, 0)

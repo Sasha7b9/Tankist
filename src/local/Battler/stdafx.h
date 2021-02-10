@@ -26,6 +26,7 @@
 #include <Urho3D/Core/Thread.h>
 #include <Urho3D/Core/Variant.h>
 
+
 #include <Urho3D/Engine/Application.h>
 #include <Urho3D/Engine/Console.h>
 #include <Urho3D/Engine/DebugHud.h>
@@ -116,4 +117,8 @@
 
 using namespace Urho3D;
 
+#include "Battler.h"
+#include "Objects/Vehicle.h"
+
 #include "glob_engine.h"
+
