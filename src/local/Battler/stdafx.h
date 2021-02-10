@@ -113,7 +113,7 @@
 using namespace Urho3D;
 
 //For client only
-#include "Objects/CameraUni.h"
+//#include "Objects/CameraUni.h"
 #include "Network/Client.h"
 
 #include "GUI/Elements/DropDownListButtons.h"

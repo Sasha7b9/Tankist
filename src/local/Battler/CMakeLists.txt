@@ -59,7 +59,7 @@ file(GLOB SRC                RaycastVehicleDemo.*
                              globals.*)
 #file(GLOB AUDIO              Audio/*.*)
 #file(GLOB AUDIO_CAPTURE      Audio/Capture/*.*)
-file(GLOB GRAPHICS           Graphics/*.*)
+#file(GLOB GRAPHICS           Graphics/*.*)
 #file(GLOB GUI                GUI/*.*)
 file(GLOB GUI_ELEMENTS       GUI/Elements/*.*)
 #file(GLOB NETWORK            Network/*.*)
@@ -69,7 +69,7 @@ file(GLOB UTILS              ../../common_files/Utils/_LogU.*)
 source_group(src             FILES ${SRC})
 #source_group(Audio           FILES ${AUDIO})
 #source_group(Audio\\Capture  FILES ${AUDIO_CAPTURE})
-source_group(Graphics        FILES ${GRAPHICS})
+#source_group(Graphics        FILES ${GRAPHICS})
 #source_group(GUI             FILES ${GUI})
 source_group(GUI\\Elements   FILES ${GUI_ELEMENTS})
 #source_group(Network         FILES ${NETWORK})
@@ -86,7 +86,7 @@ endif()
 add_executable(${PROJECT_NAME} ${SRC}
 #${AUDIO}
 #${AUDIO_CAPTURE}
-${GRAPHICS}
+#${GRAPHICS}
 #${GUI}
 ${GUI_ELEMENTS} ${AUDIO_CAPTURE}
 #${NETWORK}

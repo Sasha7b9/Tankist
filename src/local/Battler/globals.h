@@ -1,6 +1,6 @@
 #pragma once
 #include "Battler.h"
-#include "Objects/CameraUni.h"
+//#include "Objects/CameraUni.h"
 #include "Network/Client.h"
 #include "Network/Chat.h"
 #include "Network/Server.h"
@@ -66,7 +66,7 @@ extern DebugRenderer *TheDebugRenderer;
 // Подсистема физической симуляции
 extern PhysicsWorld *ThePhysicsWorld;
 // Видовая камера
-extern CameraUni *TheCamera;
+//extern CameraUni *TheCamera;
 // Сетевой клиент для связи по сети
 extern Client *TheClient;
 // Игровой ГИП

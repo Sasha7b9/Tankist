@@ -28,7 +28,7 @@ Localization *TheLocale = nullptr;
 DebugRenderer *TheDebugRenderer = nullptr;
 PhysicsWorld *ThePhysicsWorld = nullptr;
 
-CameraUni *TheCamera = nullptr;
+//CameraUni *TheCamera = nullptr;
 Client *TheClient = nullptr;
 
 String TheIPAddress = "";
