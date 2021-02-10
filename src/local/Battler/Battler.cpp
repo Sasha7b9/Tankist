@@ -51,6 +51,18 @@ void Battler::Start()
     TheRenderer = GetSubsystem<Renderer>();
     TheConsole = GetSubsystem<Console>();
 
+    XMLFile *xmlFile = TheCache->GetResource<XMLFile>("UI/DefaultStyle.xml");
+
+    // Create console
+    TheConsole = engine_->CreateConsole();
+    TheConsole->SetDefaultStyle(xmlFile);
+    TheConsole->GetBackground()->SetOpacity(0.8f);
+
+    // Create debug HUD.
+    TheDebugHud = engine_->CreateDebugHud();
+    TheDebugHud->SetDefaultStyle(xmlFile);
+
+
     // Create logo
     CreateLogo();
     // Set custom window Title & Icon
@@ -121,16 +133,6 @@ void Battler::SetWindowTitleAndIcon()
 
 void Battler::CreateConsoleAndDebugHud()
 {
-    XMLFile *xmlFile = TheCache->GetResource<XMLFile>("UI/DefaultStyle.xml");
-
-    // Create console
-    TheConsole = engine_->CreateConsole();
-    TheConsole->SetDefaultStyle(xmlFile);
-    TheConsole->GetBackground()->SetOpacity(0.8f);
-
-    // Create debug HUD.
-    TheDebugHud = engine_->CreateDebugHud();
-    TheDebugHud->SetDefaultStyle(xmlFile);
 }
 
 
@@ -143,11 +145,10 @@ void Battler::InitMouseMode(MouseMode mode)
         if (useMouseMode_ == MM_FREE)
             TheInput->SetMouseVisible(true);
 
-        Console *console = GetSubsystem<Console>();
         if (useMouseMode_ != MM_ABSOLUTE)
         {
             TheInput->SetMouseMode(useMouseMode_);
-            if (console && console->IsVisible())
+            if (TheConsole && TheConsole->IsVisible())
                 TheInput->SetMouseMode(MM_ABSOLUTE, true);
         }
     }
@@ -171,7 +172,7 @@ void Battler::CreateScene()
     cameraNode_ = new Node(context_);
     auto* camera = cameraNode_->CreateComponent<Camera>();
     camera->SetFarClip(500.0f);
-    GetSubsystem<Renderer>()->SetViewport(0, new Viewport(context_, TheScene, camera));
+    TheRenderer->SetViewport(0, new Viewport(context_, TheScene, camera));
     // Create static scene content. First create a zone for ambient lighting and fog control
     Node* zoneNode = TheScene->CreateChild("Zone");
     auto* zone = zoneNode->CreateComponent<Zone>();
@@ -240,20 +241,18 @@ void Battler::CreateVehicle()
 
 void Battler::CreateInstructions()
 {
-    auto* cache = GetSubsystem<ResourceCache>();
-    auto* ui = GetSubsystem<UI>();
     // Construct new Text object, set string to display and font to use
-    auto* instructionText = ui->GetRoot()->CreateChild<Text>();
+    auto* instructionText = TheUI->GetRoot()->CreateChild<Text>();
     instructionText->SetText(
         "Use WASD keys to drive, F to brake, mouse/touch to rotate camera\n"
         "F5 to save scene, F7 to load");
-    instructionText->SetFont(cache->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 15);
+    instructionText->SetFont(TheCache->GetResource<Font>("Fonts/Anonymous Pro.ttf"), 15);
     // The text has multiple rows. Center them in relation to each other
     instructionText->SetTextAlignment(HA_CENTER);
     // Position the text relative to the screen center
     instructionText->SetHorizontalAlignment(HA_CENTER);
     instructionText->SetVerticalAlignment(VA_CENTER);
-    instructionText->SetPosition(0, ui->GetRoot()->GetHeight() / 4);
+    instructionText->SetPosition(0, TheUI->GetRoot()->GetHeight() / 4);
 }
 
 void Battler::SubscribeToEvents()
@@ -364,7 +363,7 @@ void Battler::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
             {
                 TheInput->SetMouseVisible(true);
                 if (useMouseMode_ != MM_ABSOLUTE)
-                    GetSubsystem<Input>()->SetMouseMode(MM_FREE);
+                    TheInput->SetMouseMode(MM_FREE);
             }
             else
                 engine_->Exit();
@@ -380,14 +379,14 @@ void Battler::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
 
     // Toggle console with F1
     if (key == KEY_F1)
-        GetSubsystem<Console>()->Toggle();
+        TheConsole->Toggle();
 
     // Toggle debug HUD with F2
     else if (key == KEY_F2)
-        GetSubsystem<DebugHud>()->ToggleAll();
+        TheDebugHud->ToggleAll();
 
     // Common rendering quality controls, only when UI has no focused element
-    else if (!GetSubsystem<UI>()->GetFocusElement())
+    else if (!TheUI->GetFocusElement())
     {
         // Texture quality
         if (key == '1')
