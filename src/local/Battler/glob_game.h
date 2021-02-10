@@ -1,0 +1,10 @@
+/* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
+#pragma once
+
+
+/*
+*   Глобальные указатели на игровые сущности
+*/
+
+
+extern MainCamera *TheMainCamera;

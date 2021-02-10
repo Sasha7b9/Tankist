@@ -43,11 +43,13 @@ else()
     SET(LDFLAGS "${LDFLAGS} -ldl")
 endif()
 
-file(GLOB SRC                *.h *.cpp)
-file(GLOB OBJECTS            Objects/*)
+file(GLOB SRC                 *.h *.cpp)
+file(GLOB OBJECTS             Objects/*.*)
+file(GLOB OBJECTS_CAMERAS     Objects/Cameras/*)
 
-source_group(src             FILES ${SRC})
-source_group(Objects         FILES ${OBJECTS})
+source_group(src              FILES ${SRC})
+source_group(Objects          FILES ${OBJECTS})
+source_group(Objects\\Cameras FILES ${OBJECTS_CAMERAS})
 
 if(WIN32)
 set_source_files_properties(stdafx.cpp
@@ -56,7 +58,7 @@ set_source_files_properties(stdafx.cpp
 )
 endif()
 
-add_executable(${PROJECT_NAME} ${SRC} ${OBJECTS})
+add_executable(${PROJECT_NAME} ${SRC} ${OBJECTS} ${OBJECTS_CAMERAS})
 
 target_link_libraries(${PROJECT_NAME} opus)
 

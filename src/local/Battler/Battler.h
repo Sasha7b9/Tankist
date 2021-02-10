@@ -77,7 +77,7 @@ private:
     WeakPtr<Vehicle> vehicle_;
 
     /// Camera scene node.
-    SharedPtr<Node> cameraNode_;
+//    SharedPtr<Node> cameraNode_;
 
     /// Logo sprite.
     SharedPtr<Sprite> logoSprite_;
