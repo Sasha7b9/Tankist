@@ -495,3 +495,8 @@ void Battler::HandleMouseModeChange(StringHash /*eventType*/, VariantMap &eventD
 void Battler::HandleSceneUpdate(StringHash /*eventType*/, VariantMap &)
 {
 }
+
+void Battler::Stop()
+{
+    engine_->DumpResources(true);
+}

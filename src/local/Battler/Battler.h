@@ -23,6 +23,9 @@ public:
 
     void Setup() override;
 
+    /// Cleanup after the main loop. Called by Application.
+    void Stop() override;
+
 private:
 
     /// Create logo.
