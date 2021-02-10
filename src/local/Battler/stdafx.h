@@ -29,6 +29,7 @@
 #include <Urho3D/Engine/Application.h>
 #include <Urho3D/Engine/Console.h>
 #include <Urho3D/Engine/DebugHud.h>
+#include <Urho3D/Engine/EngineDefs.h>
 
 #include <Urho3D/Graphics/Camera.h>
 #include <Urho3D/Graphics/Graphics.h>
@@ -74,6 +75,7 @@
 #include <Urho3D/Resource/ResourceEvents.h>
 
 #include <Urho3D/Scene/Scene.h>
+#include <Urho3D/Scene/SceneEvents.h>
 #include <Urho3D/Scene/LogicComponent.h>
 
 #include <Urho3D/DebugNew.h>
