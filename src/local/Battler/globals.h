@@ -6,7 +6,7 @@
 #include "Network/Server.h"
 #include "Game.h"
 #include "Network/ChatLog.h"
-#include "Audio/AudioCapturer.h"
+//#include "Audio/AudioCapturer.h"
 #include "GUI/WindowGameESC.h"
 #include "GUI/WindowSettings.h"
 #include "Settings.h"
@@ -58,7 +58,7 @@ extern DebugHud *TheDebugHud;
 // Звуковая подсистема
 extern Audio *TheAudio;
 // Захват звука с микрофона
-extern AudioCapturer *TheAudioCapturer;
+//extern AudioCapturer *TheAudioCapturer;
 // Подсистема локализации
 extern Localization *TheLocale;
 // Подсистема отладочного рендера
