@@ -51,6 +51,8 @@ void Server::HandleClientConnected(StringHash, VariantMap &eventData)
 void Server::HandleCliendDisconnected(StringHash, VariantMap &)
 {
     LOG_FUNC_ENTER();
+
+    TheBattle->Exit();
 }
 
 

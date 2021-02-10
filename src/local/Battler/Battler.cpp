@@ -84,6 +84,8 @@ void Battler::Start()
     TheServer = new Server(context_);
 
     TheServer->Connect("127.0.0.1", 30000);
+
+    TheBattler = this;
 }
 
 
@@ -200,4 +202,10 @@ void Battler::SubscribeToEvents()
 
     // Unsubscribe the SceneUpdate event from base class as the camera node is being controlled in HandlePostUpdate() in this sample
     UnsubscribeFromEvent(E_SCENEUPDATE);
+}
+
+
+void Battler::Exit()
+{
+    engine_->Exit();
 }

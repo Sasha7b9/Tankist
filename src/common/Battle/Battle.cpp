@@ -38,7 +38,7 @@ void Battle::Start()
 
     TheServer->Start(SERVER_PORT);
 
-    engine_->Exit();
+    TheBattle = this;
 }
 
 
@@ -49,4 +49,10 @@ void Battle::Stop()
     delete TheServer;
 
 //    engine_->DumpMemory();
+}
+
+
+void Battle::Exit()
+{
+    engine_->Exit();
 }

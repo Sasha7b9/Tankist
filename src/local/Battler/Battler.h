@@ -21,6 +21,8 @@ public:
     /// Cleanup after the main loop. Called by Application.
     virtual void Stop() override;
 
+    void Exit();
+
 private:
 
     /// Set custom window Title & Icon

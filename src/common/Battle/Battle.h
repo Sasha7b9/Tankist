@@ -15,5 +15,7 @@ public:
 
     virtual void Stop() override;
 
+    void Exit();
+
 private:
 };
