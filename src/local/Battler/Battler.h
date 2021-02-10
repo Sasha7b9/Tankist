@@ -1,13 +1,6 @@
 #pragma once
 
 
-namespace Urho3D
-{
-    class Node;
-    class Scene;
-}
-
-
 class Logo;
 class Vehicle;
 
@@ -21,12 +14,12 @@ public:
     explicit Battler(Context* context);
 
     /// Setup after engine initialization and before running the main loop.
-    void Start() override;
+    virtual void Start() override;
 
-    void Setup() override;
+    virtual void Setup() override;
 
     /// Cleanup after the main loop. Called by Application.
-    void Stop() override;
+    virtual void Stop() override;
 
 private:
 

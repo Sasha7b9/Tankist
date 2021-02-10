@@ -1,12 +1,27 @@
 project (Battle)
 
+if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
 include_directories(.
                     ../../common_files
-                    ../../ThirdParty/sockpp_/sockpp/include
-                    ../../ThirdParty/rapidjson_/rapidjson/include)
+                    ../../ThirdParty/bass
+                    ../../ThirdParty/opus/include
+                    ../../../../Urho3D/generated/debug/include
+                    ../../../../Urho3D/generated/debug/include/Urho3D/ThirdParty
+                    ../../../../Urho3D/Source
+                    ../../../../Urho3D/Source/ThirdParty
+                    ../../../../Urho3D/Source/ThirdParty/Bullet/src)
+else()
+include_directories(.
+                    ../../common_files
+                    ../../ThirdParty/bass
+                    ../../ThirdParty/opus/include
+                    ../../../../Urho3D/generated/release/include
+                    ../../../../Urho3D/generated/release/include/Urho3D/ThirdParty
+                    ../../../../Urho3D/Source
+                    ../../../../Urho3D/Source/ThirdParty
+                    ../../../../Urho3D/Source/ThirdParty/Bullet/src)
+endif()
 
-
-set(USE_SOCKPP 1)
 
 if(WIN32)
 
@@ -16,19 +31,20 @@ if(WIN32)
     set_source_files_properties(stdafx.cpp PROPERTIES COMPILE_FLAGS "/Ycstdafx.h")
 
 #    add_compile_options(/wd4355)    # 'this': used in base member initializer list
-#    add_compile_options(/wd4514)    # 'xxx': unreferenced inline function has been removed
+    add_compile_options(/wd4514)    # 'xxx': unreferenced inline function has been removed
 #    add_compile_options(/wd4595)    # 'operator 'xxx'': non-member operator new or delete functions may not be declared inline
 #    add_compile_options(/wd4623)    # 'xxx': default constructor was implicitly defined as deleted 
-#    add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted
-#    add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
-#    add_compile_options(/wd4710)    # 'function': function not inlined
-#    add_compile_options(/wd4711)    #  function 'xxx' selected for automatic inline expansion
+    add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted
+    add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
+    add_compile_options(/wd4710)    # 'function': function not inlined
+    add_compile_options(/wd4711)    #  function 'xxx' selected for automatic inline expansion
 #    add_compile_options(/wd4820)    # 'xxx': 'n' bytes padding added after base class 'yyy'
 #    add_compile_options(/wd4996)    # 
-#    add_compile_options(/wd5026)    # 'xxx': move constructor was implicitly defined as deleted
-#    add_compile_options(/wd5027)    # 'xxx': move assignment operator was implicitly defined as deleted
-#    add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+    add_compile_options(/wd5026)    # 'xxx': move constructor was implicitly defined as deleted
+    add_compile_options(/wd5027)    # 'xxx': move assignment operator was implicitly defined as deleted
+    add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 #    add_compile_options(/wd5220)    # 'xxx:yyy': a non-static data member with a volatile qualified type no longer implies that compiler generated copy/move constructors and copy/move assignment operators are not trivial
+    add_compile_options(/wd28251)
     
 else()
 
