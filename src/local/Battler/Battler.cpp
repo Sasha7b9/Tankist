@@ -1,25 +1,3 @@
-//
-// Copyright (c) 2008-2020 the Urho3D project.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-//
-
 #include <Urho3D/Core/CoreEvents.h>
 #include <Urho3D/Core/ProcessUtils.h>
 #include <Urho3D/Engine/Engine.h>
@@ -45,7 +23,7 @@
 #include <Urho3D/UI/Text.h>
 #include <Urho3D/UI/UI.h>
 
-#include "RaycastVehicleDemo.h"
+#include "Battler.h"
 #include "Objects/Vehicle.h"
 
 #include <Urho3D/DebugNew.h>
@@ -55,19 +33,19 @@ const float CAMERA_DISTANCE = 10.0f;
 #ifdef WIN32
 #pragma warning(push, 0)
 #endif
-URHO3D_DEFINE_APPLICATION_MAIN(RaycastVehicleDemo)
+URHO3D_DEFINE_APPLICATION_MAIN(Battler)
 #ifdef WIN32
 #pragma warning(pop)
 #endif
 
-RaycastVehicleDemo::RaycastVehicleDemo(Context* context)
+Battler::Battler(Context* context)
     : Sample(context)
 {
     // Register factory and attributes for the Vehicle component so it can be created via CreateComponent, and loaded / saved
     Vehicle::RegisterObject(context);
 }
 
-void RaycastVehicleDemo::Start()
+void Battler::Start()
 {
     // Execute base class startup
     Sample::Start();
@@ -83,7 +61,7 @@ void RaycastVehicleDemo::Start()
     Sample::InitMouseMode(MM_RELATIVE);
 }
 
-void RaycastVehicleDemo::CreateScene()
+void Battler::CreateScene()
 {
     auto* cache = GetSubsystem<ResourceCache>();
     scene_ = new Scene(context_);
@@ -152,7 +130,7 @@ void RaycastVehicleDemo::CreateScene()
     }
 }
 
-void RaycastVehicleDemo::CreateVehicle()
+void Battler::CreateVehicle()
 {
     Node* vehicleNode = scene_->CreateChild("Vehicle");
     vehicleNode->SetPosition(Vector3(0.0f, 25.0f, 0.0f));
@@ -162,7 +140,7 @@ void RaycastVehicleDemo::CreateVehicle()
     vehicle_->Init();
 }
 
-void RaycastVehicleDemo::CreateInstructions()
+void Battler::CreateInstructions()
 {
     auto* cache = GetSubsystem<ResourceCache>();
     auto* ui = GetSubsystem<UI>();
@@ -180,20 +158,20 @@ void RaycastVehicleDemo::CreateInstructions()
     instructionText->SetPosition(0, ui->GetRoot()->GetHeight() / 4);
 }
 
-void RaycastVehicleDemo::SubscribeToEvents()
+void Battler::SubscribeToEvents()
 {
     // Subscribe to Update event for setting the vehicle controls before physics simulation
     SubscribeToEvent(E_UPDATE,
-                     URHO3D_HANDLER(RaycastVehicleDemo, HandleUpdate));
+                     URHO3D_HANDLER(Battler, HandleUpdate));
     // Subscribe to PostUpdate event for updating the camera position after physics simulation
     SubscribeToEvent(E_POSTUPDATE,
-                     URHO3D_HANDLER(RaycastVehicleDemo,
+                     URHO3D_HANDLER(Battler,
                                     HandlePostUpdate));
     // Unsubscribe the SceneUpdate event from base class as the camera node is being controlled in HandlePostUpdate() in this sample
     UnsubscribeFromEvent(E_SCENEUPDATE);
 }
 
-void RaycastVehicleDemo::HandleUpdate(StringHash ,
+void Battler::HandleUpdate(StringHash ,
                                  VariantMap& )
 {
     using namespace Update;
@@ -238,13 +216,13 @@ void RaycastVehicleDemo::HandleUpdate(StringHash ,
             // Check for loading / saving the scene
             if (input->GetKeyPress(KEY_F5))
             {
-                File saveFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/RaycastVehicleDemo.xml",
+                File saveFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_WRITE);
                 scene_->SaveXML(saveFile);
             }
             if (input->GetKeyPress(KEY_F7))
             {
-                File loadFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/RaycastVehicleDemo.xml",
+                File loadFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_READ);
                 scene_->LoadXML(loadFile);
                 // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
@@ -263,7 +241,7 @@ void RaycastVehicleDemo::HandleUpdate(StringHash ,
     }
 }
 
-void RaycastVehicleDemo::HandlePostUpdate(StringHash , VariantMap& )
+void Battler::HandlePostUpdate(StringHash , VariantMap& )
 {
     if (!vehicle_)
     {
