@@ -16,14 +16,4 @@ public:
     virtual void Stop() override;
 
 private:
-
-    void SubscribeToEvents();
-
-    void HandleNetworkMessage(StringHash, VariantMap &);
-
-    void HandleConnectionStatus(StringHash, VariantMap &);
-
-    void HandleClientConnected(StringHash, VariantMap &);
-
-    void HandleCliendDisconnected(StringHash, VariantMap &);
 };
