@@ -67,12 +67,7 @@ void Battler::Start()
 
     // Set custom window Title & Icon
     SetWindowTitleAndIcon();
-    // Subscribe key down event
-    SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Battler, HandleKeyDown));
-    // Subscribe key up event
-    SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(Battler, HandleKeyUp));
-    // Subscribe scene update event
-    SubscribeToEvent(E_SCENEUPDATE, URHO3D_HANDLER(Battler, HandleSceneUpdate));
+
     // Create static scene content
     CreateScene();
 
@@ -116,8 +111,6 @@ void Battler::CreateScene()
     // Create scene subsystem components
     TheScene->CreateComponent<Octree>();
     TheScene->CreateComponent<PhysicsWorld>();
-    // Create camera and define viewport. We will be doing load / save, so it's convenient to create the camera outside the scene,
-    // so that it won't be destroyed and recreated, and we don't have to redefine the viewport on load
 
     // Create static scene content. First create a zone for ambient lighting and fog control
     Node* zoneNode = TheScene->CreateChild("Zone");
@@ -127,6 +120,7 @@ void Battler::CreateScene()
     zone->SetFogStart(300.0f);
     zone->SetFogEnd(500.0f);
     zone->SetBoundingBox(BoundingBox(-2000.0f, 2000.0f));
+
     // Create a directional light with cascaded shadow mapping
     Node* lightNode = TheScene->CreateChild("DirectionalLight");
     lightNode->SetDirection(Vector3(0.3f, -0.5f, 0.425f));
@@ -136,6 +130,7 @@ void Battler::CreateScene()
     light->SetShadowBias(BiasParameters(0.00025f, 0.5f));
     light->SetShadowCascade(CascadeParameters(10.0f, 50.0f, 200.0f, 0.0f, 0.8f));
     light->SetSpecularIntensity(0.5f);
+
     // Create heightmap terrain with collision
     Node* terrainNode = TheScene->CreateChild("Terrain");
     terrainNode->SetPosition(Vector3::ZERO);
@@ -145,14 +140,15 @@ void Battler::CreateScene()
     terrain->SetSmoothing(true);
     terrain->SetHeightMap(TheCache->GetResource<Image>("Textures/HeightMap.png"));
     terrain->SetMaterial(TheCache->GetResource<Material>("Materials/Terrain.xml"));
+
     // The terrain consists of large triangles, which fits well for occlusion rendering, as a hill can occlude all
     // terrain patches and other objects behind it
     terrain->SetOccluder(true);
     auto* body = terrainNode->CreateComponent<RigidBody>();
     body->SetCollisionLayer(2); // Use layer bitmask 2 for static geometry
-    auto* shape =
-        terrainNode->CreateComponent<CollisionShape>();
+    auto* shape = terrainNode->CreateComponent<CollisionShape>();
     shape->SetTerrain();
+
     // Create 1000 mushrooms in the terrain. Always face outward along the terrain normal
     const unsigned NUM_MUSHROOMS = 1000;
     for (unsigned i = 0; i < NUM_MUSHROOMS; ++i)
@@ -178,6 +174,15 @@ void Battler::CreateScene()
 
 void Battler::SubscribeToEvents()
 {
+    // Subscribe key down event
+    SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Battler, HandleKeyDown));
+
+    // Subscribe key up event
+    SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(Battler, HandleKeyUp));
+
+    // Subscribe scene update event
+    SubscribeToEvent(E_SCENEUPDATE, URHO3D_HANDLER(Battler, HandleSceneUpdate));
+
     // Subscribe to Update event for setting the vehicle controls before physics simulation
     SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(Battler, HandleUpdate));
 
