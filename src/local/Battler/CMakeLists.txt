@@ -28,6 +28,8 @@ if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 
+    set_source_files_properties(stdafx.cpp PROPERTIES COMPILE_FLAGS "/Ycstdafx.h")
+
     add_compile_options(/wd4514)    # 'xxx': unreferenced inline function has been removed
     add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted
     add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
@@ -36,7 +38,8 @@ if(WIN32)
     add_compile_options(/wd4820)    # 'xxx': 'n' bytes padding added after base class 'yyy'
     add_compile_options(/wd5026)    # 'xxx': move constructor was implicitly defined as deleted
     add_compile_options(/wd5027)    # 'xxx': move assignment operator was implicitly defined as deleted
-    add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+    add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch
+                                    # specified
     add_compile_options(/wd5219)    # implicit conversion from 'type-1' to 'type-2', possible loss of data
 else()
     SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread -lGL -lGLX -lX11 -lGLdispatch")
@@ -52,13 +55,6 @@ source_group(src              FILES ${SRC})
 source_group(GUI              FILES ${GUI})
 source_group(Objects          FILES ${OBJECTS})
 source_group(Objects\\Cameras FILES ${OBJECTS_CAMERAS})
-
-if(WIN32)
-set_source_files_properties(stdafx.cpp
-    PROPERTIES
-    COMPILE_FLAGS "/Ycstdafx.h"
-)
-endif()
 
 add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${OBJECTS} ${OBJECTS_CAMERAS})
 
