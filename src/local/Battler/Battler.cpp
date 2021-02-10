@@ -50,6 +50,7 @@ void Battler::Start()
     TheInput = GetSubsystem<Input>();
     TheRenderer = GetSubsystem<Renderer>();
     TheConsole = GetSubsystem<Console>();
+    TheFileSystem = GetSubsystem<FileSystem>();
 
     XMLFile *xmlFile = TheCache->GetResource<XMLFile>("UI/DefaultStyle.xml");
 
@@ -274,9 +275,8 @@ void Battler::HandleUpdate(StringHash ,
     using namespace Update;
     if (vehicle_)
     {
-        auto* ui = GetSubsystem<UI>();
         // Get movement controls and assign them to the vehicle component. If UI has a focused element, clear controls
-        if (!ui->GetFocusElement())
+        if (!TheUI->GetFocusElement())
         {
             vehicle_->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
             vehicle_->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
@@ -292,13 +292,13 @@ void Battler::HandleUpdate(StringHash ,
             // Check for loading / saving the scene
             if (TheInput->GetKeyPress(KEY_F5))
             {
-                File saveFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
+                File saveFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_WRITE);
                 TheScene->SaveXML(saveFile);
             }
             if (TheInput->GetKeyPress(KEY_F7))
             {
-                File loadFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
+                File loadFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_READ);
                 TheScene->LoadXML(loadFile);
                 // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
@@ -454,7 +454,7 @@ void Battler::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
             Image screenshot(context_);
             TheGraphics->TakeScreenShot(screenshot);
             // Here we save in the Data folder with date and time appended
-            screenshot.SavePNG(GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Screenshot_" +
+            screenshot.SavePNG(TheFileSystem->GetProgramDir() + "Data/Screenshot_" +
                 Time::GetTimeStamp().Replaced(':', '_').Replaced('.', '_').Replaced(' ', '_') + ".png");
         }
     }
