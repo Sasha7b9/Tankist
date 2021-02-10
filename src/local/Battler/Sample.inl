@@ -76,13 +76,6 @@ void Sample::Setup()
 
 void Sample::Start()
 {
-    if (GetPlatform() == "Android" || GetPlatform() == "iOS")
-        // On mobile platform, enable touch by adding a screen joystick
-        InitTouchInput();
-    else if (GetSubsystem<Input>()->GetNumJoysticks() == 0)
-        // On desktop platform, do not detect touch when we already got a joystick
-        SubscribeToEvent(E_TOUCHBEGIN, URHO3D_HANDLER(Sample, HandleTouchBegin));
-
     // Create logo
     CreateLogo();
 
@@ -103,25 +96,6 @@ void Sample::Start()
 void Sample::Stop()
 {
     engine_->DumpResources(true);
-}
-
-void Sample::InitTouchInput()
-{
-    touchEnabled_ = true;
-
-    ResourceCache* cache = GetSubsystem<ResourceCache>();
-    Input* input = GetSubsystem<Input>();
-    XMLFile* layout = cache->GetResource<XMLFile>("UI/ScreenJoystick_Samples.xml");
-    const String& patchString = GetScreenJoystickPatchString();
-    if (!patchString.Empty())
-    {
-        // Patch the screen joystick layout further on demand
-        SharedPtr<XMLFile> patchFile(new XMLFile(context_));
-        if (patchFile->FromString(patchString))
-            layout->Patch(patchFile);
-    }
-    screenJoystickIndex_ = (unsigned)input->AddScreenJoystick(layout, cache->GetResource<XMLFile>("UI/DefaultStyle.xml"));
-    input->SetScreenJoystickVisible(screenJoystickSettingsIndex_, true);
 }
 
 void Sample::InitMouseMode(MouseMode mode)
@@ -390,12 +364,6 @@ void Sample::HandleSceneUpdate(StringHash /*eventType*/, VariantMap& eventData)
     }
 }
 
-void Sample::HandleTouchBegin(StringHash /*eventType*/, VariantMap& eventData)
-{
-    // On some platforms like Windows the presence of touch input can only be detected dynamically
-    InitTouchInput();
-    UnsubscribeFromEvent("TouchBegin");
-}
 
 // If the user clicks the canvas, attempt to switch to relative mouse mode on web platform
 void Sample::HandleMouseModeRequest(StringHash /*eventType*/, VariantMap& eventData)

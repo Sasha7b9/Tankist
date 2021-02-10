@@ -68,8 +68,6 @@ public:
 protected:
     /// Return XML patch instructions for screen joystick layout for a specific sample app, if any.
     virtual String GetScreenJoystickPatchString() const { return String::EMPTY; }
-    /// Initialize touch input on mobile platform.
-    void InitTouchInput();
     /// Initialize mouse mode on non-web platform.
     void InitMouseMode(MouseMode mode);
     /// Control logo visibility.
@@ -107,8 +105,6 @@ private:
     void HandleKeyUp(StringHash eventType, VariantMap& eventData);
     /// Handle scene update event to control camera's pitch and yaw for all samples.
     void HandleSceneUpdate(StringHash eventType, VariantMap& eventData);
-    /// Handle touch begin event to initialize touch input on desktop platform.
-    void HandleTouchBegin(StringHash eventType, VariantMap& eventData);
 
     /// Screen joystick index for navigational controls (mobile platforms only).
     unsigned screenJoystickIndex_;
