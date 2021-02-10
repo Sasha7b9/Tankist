@@ -13,7 +13,8 @@ URHO3D_DEFINE_APPLICATION_MAIN(Battler)
 #endif
 
 Battler::Battler(Context* context)
-    : Application(context)
+    : Application(context),
+    useMouseMode_(MM_ABSOLUTE)
 {
     // Register factory and attributes for the Vehicle component so it can be created via CreateComponent, and loaded / saved
     Vehicle::RegisterObject(context);
@@ -46,6 +47,8 @@ void Battler::Start()
     TheCache = GetSubsystem<ResourceCache>();
     TheUI = GetSubsystem<UI>();
     TheGraphics = GetSubsystem<Graphics>();
+    TheInput = GetSubsystem<Input>();
+    TheRenderer = GetSubsystem<Renderer>();
 
     // Create logo
     CreateLogo();
@@ -117,18 +120,16 @@ void Battler::SetWindowTitleAndIcon()
 
 void Battler::CreateConsoleAndDebugHud()
 {
-    // Get default style
-    ResourceCache *cache = GetSubsystem<ResourceCache>();
-    XMLFile *xmlFile = cache->GetResource<XMLFile>("UI/DefaultStyle.xml");
+    XMLFile *xmlFile = TheCache->GetResource<XMLFile>("UI/DefaultStyle.xml");
 
     // Create console
-    Console *console = engine_->CreateConsole();
-    console->SetDefaultStyle(xmlFile);
-    console->GetBackground()->SetOpacity(0.8f);
+    TheConsole = engine_->CreateConsole();
+    TheConsole->SetDefaultStyle(xmlFile);
+    TheConsole->GetBackground()->SetOpacity(0.8f);
 
     // Create debug HUD.
-    DebugHud *debugHud = engine_->CreateDebugHud();
-    debugHud->SetDefaultStyle(xmlFile);
+    TheDebugHud = engine_->CreateDebugHud();
+    TheDebugHud->SetDefaultStyle(xmlFile);
 }
 
 
@@ -136,24 +137,22 @@ void Battler::InitMouseMode(MouseMode mode)
 {
     useMouseMode_ = mode;
 
-    Input *input = GetSubsystem<Input>();
-
     if (GetPlatform() != "Web")
     {
         if (useMouseMode_ == MM_FREE)
-            input->SetMouseVisible(true);
+            TheInput->SetMouseVisible(true);
 
         Console *console = GetSubsystem<Console>();
         if (useMouseMode_ != MM_ABSOLUTE)
         {
-            input->SetMouseMode(useMouseMode_);
+            TheInput->SetMouseMode(useMouseMode_);
             if (console && console->IsVisible())
-                input->SetMouseMode(MM_ABSOLUTE, true);
+                TheInput->SetMouseMode(MM_ABSOLUTE, true);
         }
     }
     else
     {
-        input->SetMouseVisible(true);
+        TheInput->SetMouseVisible(true);
         SubscribeToEvent(E_MOUSEBUTTONDOWN, URHO3D_HANDLER(Battler, HandleMouseModeRequest));
         SubscribeToEvent(E_MOUSEMODECHANGED, URHO3D_HANDLER(Battler, HandleMouseModeChange));
     }
@@ -162,7 +161,6 @@ void Battler::InitMouseMode(MouseMode mode)
 
 void Battler::CreateScene()
 {
-    auto* cache = GetSubsystem<ResourceCache>();
     TheScene = new Scene(context_);
     // Create scene subsystem components
     TheScene->CreateComponent<Octree>();
@@ -197,8 +195,8 @@ void Battler::CreateScene()
     terrain->SetPatchSize(64);
     terrain->SetSpacing(Vector3(3.0f, 0.1f, 3.0f)); // Spacing between vertices and vertical resolution of the height map
     terrain->SetSmoothing(true);
-    terrain->SetHeightMap(cache->GetResource<Image>("Textures/HeightMap.png"));
-    terrain->SetMaterial(cache->GetResource<Material>("Materials/Terrain.xml"));
+    terrain->SetHeightMap(TheCache->GetResource<Image>("Textures/HeightMap.png"));
+    terrain->SetMaterial(TheCache->GetResource<Material>("Materials/Terrain.xml"));
     // The terrain consists of large triangles, which fits well for occlusion rendering, as a hill can occlude all
     // terrain patches and other objects behind it
     terrain->SetOccluder(true);
@@ -219,8 +217,8 @@ void Battler::CreateScene()
         objectNode->SetRotation(Quaternion(Vector3::UP, terrain->GetNormal(position)));
         objectNode->SetScale(3.0f);
         auto* object = objectNode->CreateComponent<StaticModel>();
-        object->SetModel(cache->GetResource<Model>("Models/Mushroom.mdl"));
-        object->SetMaterial(cache->GetResource<Material>("Materials/Mushroom.xml"));
+        object->SetModel(TheCache->GetResource<Model>("Models/Mushroom.mdl"));
+        object->SetMaterial(TheCache->GetResource<Material>("Materials/Mushroom.xml"));
         object->SetCastShadows(true);
         auto* b = objectNode->CreateComponent<RigidBody>();
         b->SetCollisionLayer(2);
@@ -274,32 +272,31 @@ void Battler::HandleUpdate(StringHash ,
                                  VariantMap& )
 {
     using namespace Update;
-    auto* input = GetSubsystem<Input>();
     if (vehicle_)
     {
         auto* ui = GetSubsystem<UI>();
         // Get movement controls and assign them to the vehicle component. If UI has a focused element, clear controls
         if (!ui->GetFocusElement())
         {
-            vehicle_->controls_.Set(CTRL_FORWARD, input->GetKeyDown(KEY_W));
-            vehicle_->controls_.Set(CTRL_BACK, input->GetKeyDown(KEY_S));
-            vehicle_->controls_.Set(CTRL_LEFT, input->GetKeyDown(KEY_A));
-            vehicle_->controls_.Set(CTRL_RIGHT, input->GetKeyDown(KEY_D));
-            vehicle_->controls_.Set(CTRL_BRAKE, input->GetKeyDown(KEY_F));
+            vehicle_->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
+            vehicle_->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
+            vehicle_->controls_.Set(CTRL_LEFT, TheInput->GetKeyDown(KEY_A));
+            vehicle_->controls_.Set(CTRL_RIGHT, TheInput->GetKeyDown(KEY_D));
+            vehicle_->controls_.Set(CTRL_BRAKE, TheInput->GetKeyDown(KEY_F));
 
-            vehicle_->controls_.yaw_ += (float)input->GetMouseMoveX() * YAW_SENSITIVITY;
-            vehicle_->controls_.pitch_ += (float)input->GetMouseMoveY() * YAW_SENSITIVITY;
+            vehicle_->controls_.yaw_ += (float)TheInput->GetMouseMoveX() * YAW_SENSITIVITY;
+            vehicle_->controls_.pitch_ += (float)TheInput->GetMouseMoveY() * YAW_SENSITIVITY;
 
             // Limit pitch
             vehicle_->controls_.pitch_ = Clamp(vehicle_->controls_.pitch_, 0.0f, 80.0f);
             // Check for loading / saving the scene
-            if (input->GetKeyPress(KEY_F5))
+            if (TheInput->GetKeyPress(KEY_F5))
             {
                 File saveFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_WRITE);
                 TheScene->SaveXML(saveFile);
             }
-            if (input->GetKeyPress(KEY_F7))
+            if (TheInput->GetKeyPress(KEY_F7))
             {
                 File loadFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_READ);
@@ -392,74 +389,71 @@ void Battler::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
     // Common rendering quality controls, only when UI has no focused element
     else if (!GetSubsystem<UI>()->GetFocusElement())
     {
-        Renderer *renderer = GetSubsystem<Renderer>();
-
         // Texture quality
         if (key == '1')
         {
-            auto quality = (unsigned)renderer->GetTextureQuality();
+            auto quality = (unsigned)TheRenderer->GetTextureQuality();
             ++quality;
             if (quality > QUALITY_HIGH)
                 quality = QUALITY_LOW;
-            renderer->SetTextureQuality((MaterialQuality)quality);
+            TheRenderer->SetTextureQuality((MaterialQuality)quality);
         }
 
         // Material quality
         else if (key == '2')
         {
-            auto quality = (unsigned)renderer->GetMaterialQuality();
+            auto quality = (unsigned)TheRenderer->GetMaterialQuality();
             ++quality;
             if (quality > QUALITY_HIGH)
                 quality = QUALITY_LOW;
-            renderer->SetMaterialQuality((MaterialQuality)quality);
+            TheRenderer->SetMaterialQuality((MaterialQuality)quality);
         }
 
         // Specular lighting
         else if (key == '3')
-            renderer->SetSpecularLighting(!renderer->GetSpecularLighting());
+            TheRenderer->SetSpecularLighting(!TheRenderer->GetSpecularLighting());
 
         // Shadow rendering
         else if (key == '4')
-            renderer->SetDrawShadows(!renderer->GetDrawShadows());
+            TheRenderer->SetDrawShadows(!TheRenderer->GetDrawShadows());
 
         // Shadow map resolution
         else if (key == '5')
         {
-            int shadowMapSize = renderer->GetShadowMapSize();
+            int shadowMapSize = TheRenderer->GetShadowMapSize();
             shadowMapSize *= 2;
             if (shadowMapSize > 2048)
                 shadowMapSize = 512;
-            renderer->SetShadowMapSize(shadowMapSize);
+            TheRenderer->SetShadowMapSize(shadowMapSize);
         }
 
         // Shadow depth and filtering quality
         else if (key == '6')
         {
-            ShadowQuality quality = renderer->GetShadowQuality();
+            ShadowQuality quality = TheRenderer->GetShadowQuality();
             quality = (ShadowQuality)(quality + 1);
             if (quality > SHADOWQUALITY_BLUR_VSM)
                 quality = SHADOWQUALITY_SIMPLE_16BIT;
-            renderer->SetShadowQuality(quality);
+            TheRenderer->SetShadowQuality(quality);
         }
 
         // Occlusion culling
         else if (key == '7')
         {
-            bool occlusion = renderer->GetMaxOccluderTriangles() > 0;
+            bool occlusion = TheRenderer->GetMaxOccluderTriangles() > 0;
             occlusion = !occlusion;
-            renderer->SetMaxOccluderTriangles(occlusion ? 5000 : 0);
+            TheRenderer->SetMaxOccluderTriangles(occlusion ? 5000 : 0);
         }
 
         // Instancing
         else if (key == '8')
-            renderer->SetDynamicInstancing(!renderer->GetDynamicInstancing());
+            TheRenderer->SetDynamicInstancing(!TheRenderer->GetDynamicInstancing());
 
         // Take screenshot
         else if (key == '9')
         {
-            Graphics *graphics = GetSubsystem<Graphics>();
             Image screenshot(context_);
-            graphics->TakeScreenShot(screenshot);
+            TheGraphics->TakeScreenShot(screenshot);
             // Here we save in the Data folder with date and time appended
             screenshot.SavePNG(GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Screenshot_" +
                 Time::GetTimeStamp().Replaced(':', '_').Replaced('.', '_').Replaced(' ', '_') + ".png");
