@@ -37,6 +37,8 @@ void Battle::Start()
     TheServer = new Server(context_);
 
     TheServer->Start(SERVER_PORT);
+
+    engine_->Exit();
 }
 
 
@@ -44,5 +46,7 @@ void Battle::Stop()
 {
     engine_->DumpResources(true);
 
-    engine_->DumpMemory();
+    delete TheServer;
+
+//    engine_->DumpMemory();
 }

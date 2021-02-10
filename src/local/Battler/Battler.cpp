@@ -91,7 +91,7 @@ void Battler::Stop()
 {
     engine_->DumpResources(true);
 
-    engine_->DumpMemory();
+//    engine_->DumpMemory();
 
     delete TheServer;
 
