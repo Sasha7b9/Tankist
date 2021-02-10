@@ -33,9 +33,6 @@ private:
     /// Set custom window Title & Icon
     void SetWindowTitleAndIcon();
 
-    /// Create console and debug HUD.
-    void CreateConsoleAndDebugHud();
-
     /// Create static scene content.
     void CreateScene();
 

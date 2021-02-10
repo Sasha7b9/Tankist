@@ -68,8 +68,6 @@ void Battler::Start()
 
     // Set custom window Title & Icon
     SetWindowTitleAndIcon();
-    // Create console and debug HUD
-    CreateConsoleAndDebugHud();
     // Subscribe key down event
     SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Battler, HandleKeyDown));
     // Subscribe key up event
@@ -108,12 +106,7 @@ void Battler::SetWindowTitleAndIcon()
 {
     Image *icon = TheCache->GetResource<Image>("Textures/UrhoIcon.png");
     TheGraphics->SetWindowIcon(icon);
-    TheGraphics->SetWindowTitle("Urho3D Sample");
-}
-
-
-void Battler::CreateConsoleAndDebugHud()
-{
+    TheGraphics->SetWindowTitle(GetTypeName());
 }
 
 
