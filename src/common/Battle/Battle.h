@@ -22,4 +22,8 @@ private:
     void HandleNetworkMessage(StringHash, VariantMap &);
 
     void HandleConnectionStatus(StringHash, VariantMap &);
+
+    void HandleClientConnected(StringHash, VariantMap &);
+
+    void HandleCliendDisconnected(StringHash, VariantMap &);
 };

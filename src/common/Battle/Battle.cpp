@@ -51,6 +51,8 @@ void Battle::SubscribeToEvents()
     SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(Battle, HandleConnectionStatus));
     SubscribeToEvent(E_SERVERDISCONNECTED, URHO3D_HANDLER(Battle, HandleConnectionStatus));
     SubscribeToEvent(E_CONNECTFAILED, URHO3D_HANDLER(Battle, HandleConnectionStatus));
+    SubscribeToEvent(E_CLIENTCONNECTED, URHO3D_HANDLER(Battle, HandleClientConnected));
+    SubscribeToEvent(E_CLIENTDISCONNECTED, URHO3D_HANDLER(Battle, HandleCliendDisconnected));
 }
 
 
@@ -61,6 +63,24 @@ void Battle::HandleNetworkMessage(StringHash, VariantMap &)
 
 
 void Battle::HandleConnectionStatus(StringHash, VariantMap &)
+{
+
+}
+
+
+void Battle::HandleClientConnected(StringHash, VariantMap &eventData)
+{
+    URHO3D_LOGINFO("New client connected");
+
+    using namespace ClientConnected;
+
+    Connection *newConnection = (Connection *)eventData[P_CONNECTION].GetPtr();
+
+    connections.Push(newConnection);
+}
+
+
+void Battle::HandleCliendDisconnected(StringHash, VariantMap &)
 {
 
 }

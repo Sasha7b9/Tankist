@@ -4,3 +4,4 @@
 
 MainCamera *TheMainCamera = nullptr;
 MouseT     *TheMouse = nullptr;
+Server     *TheServer = nullptr;

@@ -9,3 +9,4 @@
 
 extern MainCamera *TheMainCamera;
 extern MouseT     *TheMouse;
+extern Server     *TheServer;

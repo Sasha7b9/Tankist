@@ -49,6 +49,7 @@ void Battler::Start()
     TheRenderer = GetSubsystem<Renderer>();
     TheConsole = GetSubsystem<Console>();
     TheFileSystem = GetSubsystem<FileSystem>();
+    TheNetwork = GetSubsystem<Network>();
 
     XMLFile *xmlFile = TheCache->GetResource<XMLFile>("UI/DefaultStyle.xml");
 
@@ -79,6 +80,10 @@ void Battler::Start()
     SubscribeToEvents();
 
     TheMouse = new MouseT(context_);
+
+    TheServer = new Server();
+
+    TheServer->Connect("127.0.0.1", 30000);
 }
 
 

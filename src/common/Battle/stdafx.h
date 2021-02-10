@@ -5,6 +5,7 @@
 #endif
 #include <Urho3D/Engine/Application.h>
 #include <Urho3D/Engine/EngineDefs.h>
+#include <Urho3D/IO/Log.h>
 #include <Urho3D/Network/Network.h>
 #include <Urho3D/Network/NetworkEvents.h>
 #ifdef WIN32
