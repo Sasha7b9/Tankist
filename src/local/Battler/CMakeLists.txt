@@ -54,24 +54,10 @@ else()
 endif()
 
 file(GLOB SRC                *.h *.cpp)
-#file(GLOB AUDIO              Audio/*.*)
-#file(GLOB AUDIO_CAPTURE      Audio/Capture/*.*)
-#file(GLOB GRAPHICS           Graphics/*.*)
-#file(GLOB GUI                GUI/*.*)
-file(GLOB GUI_ELEMENTS       GUI/Elements/*.*)
-#file(GLOB NETWORK            Network/*.*)
-file(GLOB OBJECTS            Objects/*.*)
-file(GLOB UTILS              ../../common_files/Utils/_LogU.*)
+file(GLOB OBJECTS            Objects/*)
 
 source_group(src             FILES ${SRC})
-#source_group(Audio           FILES ${AUDIO})
-#source_group(Audio\\Capture  FILES ${AUDIO_CAPTURE})
-#source_group(Graphics        FILES ${GRAPHICS})
-#source_group(GUI             FILES ${GUI})
-source_group(GUI\\Elements   FILES ${GUI_ELEMENTS})
-#source_group(Network         FILES ${NETWORK})
 source_group(Objects         FILES ${OBJECTS})
-source_group(Utils           FILES ${UTILS})
 
 if(WIN32)
 set_source_files_properties(stdafx.cpp
@@ -80,15 +66,7 @@ set_source_files_properties(stdafx.cpp
 )
 endif()
 
-add_executable(${PROJECT_NAME} ${SRC}
-#${AUDIO}
-#${AUDIO_CAPTURE}
-#${GRAPHICS}
-#${GUI}
-${GUI_ELEMENTS} ${AUDIO_CAPTURE}
-#${NETWORK}
-${OBJECTS}
-${UTILS})
+add_executable(${PROJECT_NAME} ${SRC} ${OBJECTS})
 
 target_link_libraries(${PROJECT_NAME} opus)
 

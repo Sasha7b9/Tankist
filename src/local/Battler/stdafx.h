@@ -114,11 +114,11 @@ using namespace Urho3D;
 
 //For client only
 //#include "Objects/CameraUni.h"
-#include "Network/Client.h"
+//#include "Network/Client.h"
 
-#include "GUI/Elements/DropDownListButtons.h"
-#include "GUI/Elements/Governor.h"
-#include "Network/Server.h"
+//#include "GUI/Elements/DropDownListButtons.h"
+//#include "GUI/Elements/Governor.h"
+//#include "Network/Server.h"
 //#include "Battler.h"
 #include "globals.h"
-#include "Utils/_LogU.h"
+//#include "Utils/_LogU.h"

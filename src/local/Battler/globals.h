@@ -1,17 +1,17 @@
 #pragma once
 //#include "Battler.h"
 //#include "Objects/CameraUni.h"
-#include "Network/Client.h"
-#include "Network/Chat.h"
-#include "Network/Server.h"
+//#include "Network/Client.h"
+//#include "Network/Chat.h"
+//#include "Network/Server.h"
 //#include "Game.h"
-#include "Network/ChatLog.h"
+//#include "Network/ChatLog.h"
 //#include "Audio/AudioCapturer.h"
-#include "GUI/WindowGameESC.h"
-#include "GUI/WindowSettings.h"
+//#include "GUI/WindowGameESC.h"
+//#include "GUI/WindowSettings.h"
 //#include "Settings.h"
 //#include "Counters.h"
-#include "GUI/GameGUI.h"
+//#include "GUI/GameGUI.h"
 #include <Urho3D/UI/UI.h>
 
 
@@ -21,7 +21,7 @@ extern Context *TheContext;
 // Подсистема логгирования
 extern Log *TheLog;
 // Лог чата
-extern ChatLog *TheChatLog;
+//extern ChatLog *TheChatLog;
 // Сетевая система
 extern Network *TheNetwork;
 // Подсистема для работы с файловой системы
@@ -33,11 +33,11 @@ extern Scene *TheScene;
 // Посистема времени
 extern Time *TheTime;
 // Сервер
-extern Server *TheServer;
+//extern Server *TheServer;
 // Тип приложения - клиент или сервер
 //extern TypeApplication TheTypeApplication;
 // Текстовый чат   
-extern Chat *TheChat;
+//extern Chat *TheChat;
 
 
 // Переменные для клиента
@@ -68,17 +68,17 @@ extern PhysicsWorld *ThePhysicsWorld;
 // Видовая камера
 //extern CameraUni *TheCamera;
 // Сетевой клиент для связи по сети
-extern Client *TheClient;
+//extern Client *TheClient;
 // Игровой ГИП
-extern GameGUI *TheGameGUI;
+//extern GameGUI *TheGameGUI;
 // Окно, открывающееся в игре по нажатию клавиши Esc
-extern WindowGameESC *TheWindowGameESC;
+//extern WindowGameESC *TheWindowGameESC;
 
 extern String  TheIPAddress;
 extern unsigned short TheNumPort;
 
 //extern Battler *TheTankist;
 //extern Game *TheGame;
-extern WindowSettings *TheWindowSettings;
+//extern WindowSettings *TheWindowSettings;
 //extern Settings *TheSet;
 //extern Counters *TheCounters;

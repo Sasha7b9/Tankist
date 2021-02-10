@@ -11,7 +11,7 @@ ResourceCache *TheCache = nullptr;
 Scene *TheScene = nullptr;
 Time *TheTime = nullptr;
 
-Server *TheServer = nullptr;
+//Server *TheServer = nullptr;
 //TypeApplication TheTypeApplication = Type_None;
 
 
@@ -29,7 +29,7 @@ DebugRenderer *TheDebugRenderer = nullptr;
 PhysicsWorld *ThePhysicsWorld = nullptr;
 
 //CameraUni *TheCamera = nullptr;
-Client *TheClient = nullptr;
+//Client *TheClient = nullptr;
 
 String TheIPAddress = "";
 unsigned short TheNumPort = 0;
@@ -37,12 +37,12 @@ unsigned short TheNumPort = 0;
 Context *TheContext = nullptr;
 
 //Battler *TheTankist = nullptr;
-Chat *TheChat = nullptr;
+//Chat *TheChat = nullptr;
 //Game *TheGame = nullptr;
-ChatLog *TheChatLog = nullptr;
+//ChatLog *TheChatLog = nullptr;
 //AudioCapturer *TheAudioCapturer = nullptr;
-WindowGameESC *TheWindowGameESC = nullptr;
-WindowSettings *TheWindowSettings = nullptr;
+//WindowGameESC *TheWindowGameESC = nullptr;
+//WindowSettings *TheWindowSettings = nullptr;
 //Settings *TheSet = nullptr;
 //Counters *TheCounters = nullptr;
-GameGUI *TheGameGUI = nullptr;
+//GameGUI *TheGameGUI = nullptr;
