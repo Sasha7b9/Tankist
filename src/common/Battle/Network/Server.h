@@ -15,9 +15,13 @@ private:
 
     void HandleMessage(StringHash, VariantMap &);
 
-    void HandleConnectionStatus(StringHash, VariantMap &);
+    void HandleServerConnected(StringHash, VariantMap &);
+
+    void HandleServerDisconnected(StringHash, VariantMap &);
 
     void HandleClientConnected(StringHash, VariantMap &);
 
     void HandleCliendDisconnected(StringHash, VariantMap &);
+
+    void HandleConnectFailed(StringHash, VariantMap &);
 };

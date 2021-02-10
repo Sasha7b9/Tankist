@@ -59,11 +59,13 @@ endif()
 file(GLOB SRC         ../../common_files/_defines.h
                                          *.h *.cpp)
 file(GLOB NETWORK                        Network/*.*)
+file(GLOB UTILS       ../../common_files/Utils/_LogU.*)
 
 source_group(src                         FILES ${SRC})
 source_group(Network                     FILES ${NETWORK})
+source_group(Utils                       FILES ${UTILS})
 
-add_executable(${PROJECT_NAME} ${SRC} ${NETWORK})
+add_executable(${PROJECT_NAME} ${SRC} ${NETWORK} ${UTILS})
 
 include(../../RuntimeLibrary.cmake)
 

@@ -119,5 +119,7 @@ using namespace Urho3D;
 #include "Network/Server.h"
 #include "Objects/Vehicle.h"
 #include "Objects/Cameras/MainCamera.h"
+#include "Utils/_LogU.h"
+
 #include "glob_engine.h"
 #include "glob_game.h"

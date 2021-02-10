@@ -21,5 +21,6 @@ using namespace Urho3D;
 
 #include "Battle.h"
 #include "Network/Server.h"
+#include "Utils/_LogU.h"
 
 #include "glob_game.h"

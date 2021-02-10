@@ -42,5 +42,7 @@ void Battle::Start()
 
 void Battle::Stop()
 {
+    engine_->DumpResources(true);
 
+    engine_->DumpMemory();
 }

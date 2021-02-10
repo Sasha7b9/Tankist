@@ -91,6 +91,8 @@ void Battler::Stop()
 {
     engine_->DumpResources(true);
 
+    engine_->DumpMemory();
+
     delete TheServer;
 
     delete TheMouse;

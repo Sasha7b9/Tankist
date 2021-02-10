@@ -1,9 +1,9 @@
 #pragma once
 
 
-#define LOG_WRITE(...) LogT::Write(__FILE__, __LINE__, __VA_ARGS__)
-#define LOG_FUNC_ENTER LogT::Write(__FILE__, __LINE__, "%s enter", __FUNCTION__);
-#define LOG_FUNC_LEAVE LogT::Write(__FILE__, __LINE__, "%s leave", __FUNCTION__);
+#define LOG_WRITE(...)   LogT::Write(__FILE__, __LINE__, __VA_ARGS__)
+#define LOG_FUNC_ENTER() URHO3D_LOGINFOF("%s enter", __FUNCTION__);
+#define LOG_FUNC_LEAVE() URHO3D_LOGINFOF("%s leave", __FUNCTION__);
 
 
 class LogT

@@ -15,5 +15,5 @@ void Server::Connect(const String &address, uint16 port)
 
 void Server::HandleServerConnected(StringHash, VariantMap &)
 {
-
+    LOG_FUNC_ENTER();
 }

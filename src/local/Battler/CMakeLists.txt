@@ -52,14 +52,16 @@ file(GLOB GUI                 GUI/*.*)
 file(GLOB NETWORK             Network/*.*)
 file(GLOB OBJECTS             Objects/*.*)
 file(GLOB OBJECTS_CAMERAS     Objects/Cameras/*.*)
+file(GLOB UTILS               ../../common_files/Utils/_LogU.*)
 
 source_group(src              FILES ${SRC})
 source_group(GUI              FILES ${GUI})
 source_group(Network          FILES ${NETWORK})
 source_group(Objects          FILES ${OBJECTS})
 source_group(Objects\\Cameras FILES ${OBJECTS_CAMERAS})
+source_group(Utils                       FILES ${UTILS})
 
-add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${NETWORK} ${OBJECTS} ${OBJECTS_CAMERAS})
+add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${NETWORK} ${OBJECTS} ${OBJECTS_CAMERAS} ${UTILS})
 
 target_link_libraries(${PROJECT_NAME} opus)
 
