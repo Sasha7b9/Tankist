@@ -12,12 +12,12 @@ void Battler::HandleUpdate(StringHash, VariantMap &)
 
 void Battler::HandlePostUpdate(StringHash, VariantMap &)
 {
-    if (!vehicle)
-    {
-        return;
-    }
-
-    TheMainCamera->SetOnNode(vehicle->logic->GetNode(), vehicle->logic->controls_.yaw_, vehicle->logic->controls_.pitch_);
+//    if (!vehicle)
+//    {
+//        return;
+//    }
+//
+//    TheMainCamera->SetOnNode(vehicle->logic->GetNode(), vehicle->logic->controls_.yaw_, vehicle->logic->controls_.pitch_);
 }
 
 

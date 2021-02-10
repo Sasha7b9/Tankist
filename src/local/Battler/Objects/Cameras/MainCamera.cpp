@@ -4,12 +4,13 @@
 const float CAMERA_DISTANCE = 10.0f;
 
 
-MainCamera::MainCamera(Context *context)
+MainCamera::MainCamera(Node *node, Context *context)
 {
-    node = new Node(context);
-    Camera *camera = node->CreateComponent<Camera>();
+    Camera *camera = (new Node(context))->CreateComponent<Camera>();
+    camera->GetNode()->SetPosition({ 0.0, 2.0, -3.0 });
     camera->SetFarClip(500.0f);
     TheRenderer->SetViewport(0, new Viewport(context, TheScene, camera));
+    node->AddChild(camera->GetNode());
 }
 
 

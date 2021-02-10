@@ -5,7 +5,7 @@ class MainCamera
 {
 public:
 
-    MainCamera(Context *context);
+    MainCamera(Node *node, Context *context);
 
     void SetOnNode(Node *target, float yaw, float pitch);
 

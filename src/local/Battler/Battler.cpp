@@ -61,8 +61,6 @@ void Battler::Start()
     TheDebugHud = engine_->CreateDebugHud();
     TheDebugHud->SetDefaultStyle(xmlFile);
 
-    TheMainCamera = new MainCamera(context_);
-
     logo = new Logo(context_);
 
     // Set custom window Title & Icon
@@ -72,6 +70,8 @@ void Battler::Start()
     CreateScene();
 
     vehicle = new Vehicle(context_);
+
+    TheMainCamera = new MainCamera(vehicle->logic->GetNode(), context_);
 
     Instructions::Create();
 
