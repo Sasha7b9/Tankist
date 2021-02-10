@@ -99,3 +99,17 @@ private:
     /// Do not recreate emitters if they are already created.
     bool emittersCreated;
 };
+
+
+class Vehicle : public Object
+{
+    URHO3D_OBJECT(Vehicle, Object);
+
+public:
+
+    Vehicle(Context *context);
+
+    void Update();
+
+    WeakPtr<VehicleLogic> logic;
+};

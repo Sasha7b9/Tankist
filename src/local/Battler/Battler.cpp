@@ -78,8 +78,9 @@ void Battler::Start()
     SubscribeToEvent(E_SCENEUPDATE, URHO3D_HANDLER(Battler, HandleSceneUpdate));
     // Create static scene content
     CreateScene();
-    // Create the controllable vehicle
-    CreateVehicle();
+
+    vehicle = new Vehicle(context_);
+
     // Create the UI content
     CreateInstructions();
     // Subscribe to necessary events
@@ -236,18 +237,6 @@ void Battler::CreateScene()
     }
 }
 
-void Battler::CreateVehicle()
-{
-    Node* vehicleNode = TheScene->CreateChild("Vehicle");
-
-    vehicleNode->SetPosition(Vector3(0.0f, 25.0f, 0.0f));
-
-    // Create the vehicle logic component
-    vehicle_ = vehicleNode->CreateComponent<VehicleLogic>();
-
-    // Create the rendering and physics components
-    vehicle_->Init();
-}
 
 void Battler::CreateInstructions()
 {
@@ -265,6 +254,7 @@ void Battler::CreateInstructions()
     instructionText->SetPosition(0, TheUI->GetRoot()->GetHeight() / 4);
 }
 
+
 void Battler::SubscribeToEvents()
 {
     // Subscribe to Update event for setting the vehicle controls before physics simulation
@@ -278,62 +268,22 @@ void Battler::SubscribeToEvents()
     UnsubscribeFromEvent(E_SCENEUPDATE);
 }
 
-void Battler::HandleUpdate(StringHash ,
-                                 VariantMap& )
+void Battler::HandleUpdate(StringHash , VariantMap& )
 {
-    using namespace Update;
-    if (vehicle_)
+    if (vehicle)
     {
-        // Get movement controls and assign them to the vehicle component. If UI has a focused element, clear controls
-        if (!TheUI->GetFocusElement())
-        {
-            vehicle_->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
-            vehicle_->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
-            vehicle_->controls_.Set(CTRL_LEFT, TheInput->GetKeyDown(KEY_A));
-            vehicle_->controls_.Set(CTRL_RIGHT, TheInput->GetKeyDown(KEY_D));
-            vehicle_->controls_.Set(CTRL_BRAKE, TheInput->GetKeyDown(KEY_F));
-
-            vehicle_->controls_.yaw_ += (float)TheInput->GetMouseMoveX() * YAW_SENSITIVITY;
-            vehicle_->controls_.pitch_ += (float)TheInput->GetMouseMoveY() * YAW_SENSITIVITY;
-
-            // Limit pitch
-            vehicle_->controls_.pitch_ = Clamp(vehicle_->controls_.pitch_, 0.0f, 80.0f);
-            // Check for loading / saving the scene
-            if (TheInput->GetKeyPress(KEY_F5))
-            {
-                File saveFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml",
-                              FILE_WRITE);
-                TheScene->SaveXML(saveFile);
-            }
-            if (TheInput->GetKeyPress(KEY_F7))
-            {
-                File loadFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml",
-                              FILE_READ);
-                TheScene->LoadXML(loadFile);
-                // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
-                // Simply find the vehicle's scene node by name as there's only one of them
-                Node* vehicleNode = TheScene->GetChild("Vehicle", true);
-                if (vehicleNode)
-                {
-                    vehicle_ = vehicleNode->GetComponent<VehicleLogic>();
-                }
-            }
-        }
-        else
-        {
-            vehicle_->controls_.Set(CTRL_FORWARD | CTRL_BACK | CTRL_LEFT | CTRL_RIGHT | CTRL_BRAKE, false);
-        }
+        vehicle->Update();
     }
 }
 
 void Battler::HandlePostUpdate(StringHash , VariantMap& )
 {
-    if (!vehicle_)
+    if (!vehicle)
     {
         return;
     }
 
-    TheMainCamera->SetOnNode(vehicle_->GetNode(), vehicle_->controls_.yaw_, vehicle_->controls_.pitch_);
+    TheMainCamera->SetOnNode(vehicle->logic->GetNode(), vehicle->logic->controls_.yaw_, vehicle->logic->controls_.pitch_);
 }
 
 

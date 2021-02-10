@@ -7,7 +7,7 @@ namespace Urho3D
     class Scene;
 }
 
-class VehicleLogic;
+class Vehicle;
 
 
 class Battler : public Application
@@ -40,9 +40,6 @@ private:
     /// Create static scene content.
     void CreateScene();
 
-    /// Create the vehicle.
-    void CreateVehicle();
-
     /// Construct an instruction text to the UI.
     void CreateInstructions();
 
@@ -74,7 +71,7 @@ private:
     void HandleSceneUpdate(StringHash eventType, VariantMap &eventData);
 
     /// The controllable vehicle component.
-    WeakPtr<VehicleLogic> vehicle_;
+    WeakPtr<Vehicle> vehicle;
 
     /// Logo sprite.
     SharedPtr<Sprite> logoSprite_;
