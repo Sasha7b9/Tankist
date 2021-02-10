@@ -90,15 +90,14 @@
 #include <Urho3D/Urho2D/StaticSprite2D.h>
 
 
-#ifdef WIN32
-#pragma warning(pop)
-#endif
-
-
 #include <thread>
 
 #pragma comment(lib, "ws2_32.lib")
 #include <d3d9types.h>
+
+#ifdef WIN32
+#pragma warning(pop)
+#endif
 
 //#include <sys/types.h>
 //#include <sys/socket.h>
