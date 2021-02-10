@@ -43,6 +43,8 @@ void Battler::Setup()
 
 void Battler::Start()
 {
+    TheCache = GetSubsystem<ResourceCache>();
+
     // Create logo
     CreateLogo();
     // Set custom window Title & Icon
@@ -71,8 +73,7 @@ void Battler::Start()
 void Battler::CreateLogo()
 {
     // Get logo texture
-    ResourceCache *cache = GetSubsystem<ResourceCache>();
-    Texture2D *logoTexture = cache->GetResource<Texture2D>("Textures/FishBoneLogo.png");
+    Texture2D *logoTexture = TheCache->GetResource<Texture2D>("Textures/FishBoneLogo.png");
     if (!logoTexture)
         return;
 
