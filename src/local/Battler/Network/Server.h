@@ -17,5 +17,11 @@ public:
 
 private:
 
+    void HandleMessage(StringHash, VariantMap &);
+
     void HandleServerConnected(StringHash, VariantMap &);
+
+    void HandleServerDisconnected(StringHash, VariantMap &);
+
+    void HandleConnectFailed(StringHash, VariantMap &);
 };
