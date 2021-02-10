@@ -7,8 +7,11 @@ public:
 
     MainCamera(Node *node, Context *context);
 
-    void SetOnNode(Node *target, float yaw, float pitch);
+    void Update();
 
 private:
     SharedPtr<Node> node;
+
+    float yaw = 0.0f;
+    float pitch = 0.0f;
 };
