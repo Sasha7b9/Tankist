@@ -2,6 +2,7 @@
 *.lib
 *.exe
 *.swp
+archive.zip
 
 
 generated/*

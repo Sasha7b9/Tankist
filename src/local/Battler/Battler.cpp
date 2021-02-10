@@ -41,6 +41,8 @@ void Battler::Setup()
 
 void Battler::Start()
 {
+    TheScene = new Scene(context_);
+
     TheCache = GetSubsystem<ResourceCache>();
     TheUI = GetSubsystem<UI>();
     TheGraphics = GetSubsystem<Graphics>();
@@ -60,6 +62,7 @@ void Battler::Start()
     TheDebugHud = engine_->CreateDebugHud();
     TheDebugHud->SetDefaultStyle(xmlFile);
 
+    TheMainCamera = new MainCamera(context_);
 
     // Create logo
     CreateLogo();
@@ -83,6 +86,16 @@ void Battler::Start()
     SubscribeToEvents();
     // Set the mouse mode to use in the sample
     InitMouseMode(MM_RELATIVE);
+}
+
+
+void Battler::Stop()
+{
+    engine_->DumpResources(true);
+
+    delete TheMainCamera;
+
+    delete TheScene;
 }
 
 
@@ -161,14 +174,11 @@ void Battler::InitMouseMode(MouseMode mode)
 
 void Battler::CreateScene()
 {
-    TheScene = new Scene(context_);
     // Create scene subsystem components
     TheScene->CreateComponent<Octree>();
     TheScene->CreateComponent<PhysicsWorld>();
     // Create camera and define viewport. We will be doing load / save, so it's convenient to create the camera outside the scene,
     // so that it won't be destroyed and recreated, and we don't have to redefine the viewport on load
-
-    TheMainCamera = new MainCamera(context_);
 
     // Create static scene content. First create a zone for ambient lighting and fog control
     Node* zoneNode = TheScene->CreateChild("Zone");
@@ -462,9 +472,4 @@ void Battler::HandleMouseModeChange(StringHash /*eventType*/, VariantMap &eventD
 
 void Battler::HandleSceneUpdate(StringHash /*eventType*/, VariantMap &)
 {
-}
-
-void Battler::Stop()
-{
-    engine_->DumpResources(true);
 }
