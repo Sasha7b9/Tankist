@@ -52,7 +52,13 @@
 
 const float CAMERA_DISTANCE = 10.0f;
 
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
 URHO3D_DEFINE_APPLICATION_MAIN(RaycastVehicleDemo)
+#ifdef WIN32
+#pragma warning(pop)
+#endif
 
 RaycastVehicleDemo::RaycastVehicleDemo(Context* context)
     : Sample(context)

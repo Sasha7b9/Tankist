@@ -93,7 +93,7 @@ void Vehicle::Init()
     hullObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
     hullObject->SetCastShadows(true);
     float connectionHeight = -0.4f;
-    bool isFrontWheel = true;
+//    bool isFrontWheel = true;
     Vector3 wheelDirection(0, -1, 0);
     Vector3 wheelAxle(-1, 0, 0);
     // We use not scaled coordinates here as everything will be scaled.
@@ -151,7 +151,7 @@ void Vehicle::CreateEmitter(Vector3 place)
 /// Applying attributes
 void Vehicle::ApplyAttributes()
 {
-    auto* vehicle = node_->GetOrCreateComponent<RaycastVehicle>();
+//    auto* vehicle = node_->GetOrCreateComponent<RaycastVehicle>();
     if (emittersCreated)
         return;
     for (const auto& connectionPoint : connectionPoints_)
@@ -161,7 +161,7 @@ void Vehicle::ApplyAttributes()
     emittersCreated = true;
 }
 
-void Vehicle::FixedUpdate(float timeStep)
+void Vehicle::FixedUpdate(float)
 {
     float newSteering = 0.0f;
     float accelerator = 0.0f;
@@ -230,12 +230,12 @@ void Vehicle::PostUpdate(float timeStep)
     float planeAccel = Vector3(accel.x_, 0.0f, accel.z_).Length();
     for (int i = 0; i < vehicle->GetNumWheels(); i++)
     {
-        Node* emitter = particleEmitterNodeList_[i];
+        Node* emitter = particleEmitterNodeList_[(size_t)i];
         auto* particleEmitter = emitter->GetComponent<ParticleEmitter>();
         if (vehicle->WheelIsGrounded(i) && (vehicle->GetWheelSkidInfoCumulative(i) < 0.9f || vehicle->GetBrake(i) > 2.0f ||
             planeAccel > 15.0f))
         {
-            particleEmitterNodeList_[i]->SetWorldPosition(vehicle->GetContactPosition(i));
+            particleEmitterNodeList_[(size_t)i]->SetWorldPosition(vehicle->GetContactPosition(i));
             if (!particleEmitter->IsEmitting())
             {
                 particleEmitter->SetEmitting(true);
