@@ -2,7 +2,6 @@
 
 #ifdef WIN32
 #pragma warning(push, 0)
-#endif
 
 #include <Bullet/src/BulletDynamics/ConstraintSolver/btSliderConstraint.h>
 
@@ -91,30 +90,17 @@
 
 #include <thread>
 
-#ifdef WIN32
-
 #pragma comment(lib, "ws2_32.lib")
 #include <d3d9types.h>
 
-#else
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-
-#endif
-
-#ifdef WIN32
-#pragma warning(pop)
-#endif
-
-#ifndef WIN32
-#define SOCKET int
-#define closesocket close
-#define WSAGetLastError() errno
-#endif
+//#include <sys/types.h>
+//#include <sys/socket.h>
+//#include <netinet/in.h>
+//#include <arpa/inet.h>
+//#include <unistd.h>
+//#define SOCKET int
+//#define closesocket close
+//#define WSAGetLastError() errno
 
 #include "defines.h"
 
@@ -124,3 +110,4 @@ using namespace Urho3D;
 #include "Objects/Vehicle.h"
 #include "glob_engine.h"
 
+#endif
