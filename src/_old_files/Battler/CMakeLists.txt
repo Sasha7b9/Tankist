@@ -53,7 +53,10 @@ else()
     SET(LDFLAGS "${LDFLAGS} -ldl")
 endif()
 
-file(GLOB SRC                *.*)
+file(GLOB SRC                RaycastVehicleDemo.*
+                             Sample.*
+                             stdafx.*
+                             globals.*)
 #file(GLOB AUDIO              Audio/*.*)
 #file(GLOB AUDIO_CAPTURE      Audio/Capture/*.*)
 #file(GLOB GRAPHICS           Graphics/*.*)

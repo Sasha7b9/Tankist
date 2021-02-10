@@ -1,16 +1,16 @@
 #pragma once
-#include "Battler.h"
+//#include "Battler.h"
 //#include "Objects/CameraUni.h"
 #include "Network/Client.h"
 #include "Network/Chat.h"
 #include "Network/Server.h"
-#include "Game.h"
+//#include "Game.h"
 #include "Network/ChatLog.h"
 //#include "Audio/AudioCapturer.h"
 #include "GUI/WindowGameESC.h"
 #include "GUI/WindowSettings.h"
-#include "Settings.h"
-#include "Counters.h"
+//#include "Settings.h"
+//#include "Counters.h"
 #include "GUI/GameGUI.h"
 #include <Urho3D/UI/UI.h>
 
@@ -35,7 +35,7 @@ extern Time *TheTime;
 // Сервер
 extern Server *TheServer;
 // Тип приложения - клиент или сервер
-extern TypeApplication TheTypeApplication;
+//extern TypeApplication TheTypeApplication;
 // Текстовый чат   
 extern Chat *TheChat;
 
@@ -77,8 +77,8 @@ extern WindowGameESC *TheWindowGameESC;
 extern String  TheIPAddress;
 extern unsigned short TheNumPort;
 
-extern Battler *TheTankist;
-extern Game *TheGame;
+//extern Battler *TheTankist;
+//extern Game *TheGame;
 extern WindowSettings *TheWindowSettings;
-extern Settings *TheSet;
-extern Counters *TheCounters;
+//extern Settings *TheSet;
+//extern Counters *TheCounters;
