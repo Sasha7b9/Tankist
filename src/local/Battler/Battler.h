@@ -9,12 +9,6 @@ namespace Urho3D
 
 class Vehicle;
 
-/// Vehicle example.
-/// This sample demonstrates:
-///     - Creating a heightmap terrain with collision
-///     - Constructing 100 raycast vehicles
-///     - Defining attributes (including node and component references) of a custom component
-///     (Saving and loading is broken now)
 
 class Battler : public Application
 {

@@ -2,25 +2,25 @@
 #include "stdafx.h"
 
 
-Context          *TheContext;
-FileSystem       *TheFileSystem;
-Log              *TheLog;
-Network          *TheNetwork;
-ResourceCache    *TheCache;
-Scene            *TheScene;
-Time             *TheTime;
+Context          *TheContext = nullptr;
+FileSystem       *TheFileSystem = nullptr;
+Log              *TheLog = nullptr;
+Network          *TheNetwork = nullptr;
+ResourceCache    *TheCache = nullptr;
+Scene            *TheScene = nullptr;
+Time             *TheTime = nullptr;
 
-Audio            *TheAudio;
-Console          *TheConsole;
-DebugHud         *TheDebugHud;
-DebugRenderer    *TheDebugRenderer;
-Graphics         *TheGraphics;
-Input            *TheInput;
-Localization     *TheLocale;
-PhysicsWorld     *ThePhysicsWorld;
-Renderer         *TheRenderer;
-UI               *TheUI;
-UIElement        *TheUIRoot;
+Audio            *TheAudio = nullptr;
+Console          *TheConsole = nullptr;
+DebugHud         *TheDebugHud = nullptr;
+DebugRenderer    *TheDebugRenderer = nullptr;
+Graphics         *TheGraphics = nullptr;
+Input            *TheInput = nullptr;
+Localization     *TheLocale = nullptr;
+PhysicsWorld     *ThePhysicsWorld = nullptr;
+Renderer         *TheRenderer = nullptr;
+UI               *TheUI = nullptr;
+UIElement        *TheUIRoot = nullptr;
 
 String           TheIPAddress;
 unsigned short   TheNumPort;
