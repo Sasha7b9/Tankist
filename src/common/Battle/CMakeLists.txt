@@ -23,6 +23,9 @@ include_directories(.
 endif()
 
 
+add_definitions(-DURHO3D_LOGGING)
+
+
 if(WIN32)
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Yustdafx.h /FIstdafx.h")
