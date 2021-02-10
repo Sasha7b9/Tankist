@@ -7,7 +7,7 @@ namespace Urho3D
     class Scene;
 }
 
-class Vehicle;
+class VehicleLogic;
 
 
 class Battler : public Application
@@ -74,10 +74,7 @@ private:
     void HandleSceneUpdate(StringHash eventType, VariantMap &eventData);
 
     /// The controllable vehicle component.
-    WeakPtr<Vehicle> vehicle_;
-
-    /// Camera scene node.
-//    SharedPtr<Node> cameraNode_;
+    WeakPtr<VehicleLogic> vehicle_;
 
     /// Logo sprite.
     SharedPtr<Sprite> logoSprite_;

@@ -14,7 +14,7 @@ Battler::Battler(Context* context)
     useMouseMode_(MM_ABSOLUTE)
 {
     // Register factory and attributes for the Vehicle component so it can be created via CreateComponent, and loaded / saved
-    Vehicle::RegisterObject(context);
+    VehicleLogic::RegisterObject(context);
 }
 
 
@@ -239,9 +239,12 @@ void Battler::CreateScene()
 void Battler::CreateVehicle()
 {
     Node* vehicleNode = TheScene->CreateChild("Vehicle");
+
     vehicleNode->SetPosition(Vector3(0.0f, 25.0f, 0.0f));
+
     // Create the vehicle logic component
-    vehicle_ = vehicleNode->CreateComponent<Vehicle>();
+    vehicle_ = vehicleNode->CreateComponent<VehicleLogic>();
+
     // Create the rendering and physics components
     vehicle_->Init();
 }
@@ -312,7 +315,7 @@ void Battler::HandleUpdate(StringHash ,
                 Node* vehicleNode = TheScene->GetChild("Vehicle", true);
                 if (vehicleNode)
                 {
-                    vehicle_ = vehicleNode->GetComponent<Vehicle>();
+                    vehicle_ = vehicleNode->GetComponent<VehicleLogic>();
                 }
             }
         }

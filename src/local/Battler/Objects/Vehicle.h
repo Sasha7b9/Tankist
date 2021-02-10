@@ -21,15 +21,15 @@ const float MAX_WHEEL_ANGLE = 22.5f;
 
 // Vehicle component, responsible for physical movement according to controls.
 // Encapsulates RaycastVehicle
-class Vehicle : public LogicComponent
+class VehicleLogic : public LogicComponent
 {
-    URHO3D_OBJECT(Vehicle, LogicComponent)
+    URHO3D_OBJECT(VehicleLogic, LogicComponent)
 
 public :
     /// Construct.
-    explicit Vehicle(Context* context);
+    explicit VehicleLogic(Context* context);
     /// Destruct.
-    ~Vehicle() override;
+    ~VehicleLogic() override;
 
     /// Register object factory and attributes.
     static void RegisterObject(Context* context);

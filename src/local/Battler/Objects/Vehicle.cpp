@@ -4,15 +4,15 @@
 const float CHASSIS_WIDTH = 2.6f;
 
 
-void Vehicle::RegisterObject(Context* context)
+void VehicleLogic::RegisterObject(Context* context)
 {
-    context->RegisterFactory<Vehicle>();
+    context->RegisterFactory<VehicleLogic>();
     URHO3D_ATTRIBUTE("Steering", float, steering_, 0.0f, AM_DEFAULT);
     URHO3D_ATTRIBUTE("Controls Yaw", float, controls_.yaw_, 0.0f, AM_DEFAULT);
     URHO3D_ATTRIBUTE("Controls Pitch", float, controls_.pitch_, 0.0f, AM_DEFAULT);
 }
 
-Vehicle::Vehicle(Urho3D::Context* context)
+VehicleLogic::VehicleLogic(Urho3D::Context* context)
     : LogicComponent(context),
       steering_(0.0f)
 {
@@ -32,9 +32,9 @@ Vehicle::Vehicle(Urho3D::Context* context)
     emittersCreated = false;
 }
 
-Vehicle::~Vehicle() = default;
+VehicleLogic::~VehicleLogic() = default;
 
-void Vehicle::Init()
+void VehicleLogic::Init()
 {
     auto* vehicle = node_->CreateComponent<RaycastVehicle>();
     vehicle->Init();
@@ -98,7 +98,7 @@ void Vehicle::Init()
     vehicle->ResetWheels();
 }
 
-void Vehicle::CreateEmitter(Vector3 place)
+void VehicleLogic::CreateEmitter(Vector3 place)
 {
     auto* cache = GetSubsystem<ResourceCache>();
     Node* emitter = GetScene()->CreateChild();
@@ -111,7 +111,7 @@ void Vehicle::CreateEmitter(Vector3 place)
 }
 
 /// Applying attributes
-void Vehicle::ApplyAttributes()
+void VehicleLogic::ApplyAttributes()
 {
 //    auto* vehicle = node_->GetOrCreateComponent<RaycastVehicle>();
     if (emittersCreated)
@@ -123,7 +123,7 @@ void Vehicle::ApplyAttributes()
     emittersCreated = true;
 }
 
-void Vehicle::FixedUpdate(float)
+void VehicleLogic::FixedUpdate(float)
 {
     float newSteering = 0.0f;
     float accelerator = 0.0f;
@@ -183,7 +183,7 @@ void Vehicle::FixedUpdate(float)
     }
 }
 
-void Vehicle::PostUpdate(float timeStep)
+void VehicleLogic::PostUpdate(float timeStep)
 {
     auto* vehicle = node_->GetComponent<RaycastVehicle>();
     auto* vehicleBody = node_->GetComponent<RigidBody>();
