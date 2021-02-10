@@ -1,25 +1,8 @@
 #include "stdafx.h"
-#include "Vehicle.h"
-#include <Urho3D/Core/Context.h>
-#include <Urho3D/Graphics/DebugRenderer.h>
-#include <Urho3D/Graphics/DecalSet.h>
-#include <Urho3D/Graphics/Material.h>
-#include <Urho3D/Graphics/Model.h>
-#include <Urho3D/Graphics/ParticleEffect.h>
-#include <Urho3D/Graphics/ParticleEmitter.h>
-#include <Urho3D/Graphics/StaticModel.h>
-#include <Urho3D/IO/Log.h>
-#include <Urho3D/Physics/CollisionShape.h>
-#include <Urho3D/Physics/Constraint.h>
-#include <Urho3D/Physics/PhysicsEvents.h>
-#include <Urho3D/Physics/PhysicsWorld.h>
-#include <Urho3D/Physics/RaycastVehicle.h>
-#include <Urho3D/Resource/ResourceCache.h>
-#include <Urho3D/Scene/Scene.h>
 
-using namespace Urho3D;
 
 const float CHASSIS_WIDTH = 2.6f;
+
 
 void Vehicle::RegisterObject(Context* context)
 {

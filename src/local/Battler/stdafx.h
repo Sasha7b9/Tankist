@@ -38,6 +38,8 @@
 #include <Urho3D/Graphics/Light.h>
 #include <Urho3D/Graphics/Model.h>
 #include <Urho3D/Graphics/Octree.h>
+#include <Urho3D/Graphics/ParticleEffect.h>
+#include <Urho3D/Graphics/ParticleEmitter.h>
 #include <Urho3D/Graphics/Renderer.h>
 #include <Urho3D/Graphics/StaticModel.h>
 #include <Urho3D/Graphics/StaticModelGroup.h>
@@ -68,6 +70,7 @@
 #include <Urho3D/Physics/CollisionShape.h>
 #include <Urho3D/Physics/Constraint.h>
 #include <Urho3D/Physics/PhysicsWorld.h>
+#include <Urho3D/Physics/RaycastVehicle.h>
 #include <Urho3D/Physics/RigidBody.h>
 #include <Urho3D/Physics/PhysicsEvents.h>
 
@@ -119,6 +122,5 @@ using namespace Urho3D;
 
 #include "Battler.h"
 #include "Objects/Vehicle.h"
-
 #include "glob_engine.h"
 
