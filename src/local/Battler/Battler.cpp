@@ -164,18 +164,18 @@ void Battler::InitMouseMode(MouseMode mode)
 void Battler::CreateScene()
 {
     auto* cache = GetSubsystem<ResourceCache>();
-    scene_ = new Scene(context_);
+    TheScene = new Scene(context_);
     // Create scene subsystem components
-    scene_->CreateComponent<Octree>();
-    scene_->CreateComponent<PhysicsWorld>();
+    TheScene->CreateComponent<Octree>();
+    TheScene->CreateComponent<PhysicsWorld>();
     // Create camera and define viewport. We will be doing load / save, so it's convenient to create the camera outside the scene,
     // so that it won't be destroyed and recreated, and we don't have to redefine the viewport on load
     cameraNode_ = new Node(context_);
     auto* camera = cameraNode_->CreateComponent<Camera>();
     camera->SetFarClip(500.0f);
-    GetSubsystem<Renderer>()->SetViewport(0, new Viewport(context_, scene_, camera));
+    GetSubsystem<Renderer>()->SetViewport(0, new Viewport(context_, TheScene, camera));
     // Create static scene content. First create a zone for ambient lighting and fog control
-    Node* zoneNode = scene_->CreateChild("Zone");
+    Node* zoneNode = TheScene->CreateChild("Zone");
     auto* zone = zoneNode->CreateComponent<Zone>();
     zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
     zone->SetFogColor(Color(0.5f, 0.5f, 0.7f));
@@ -183,7 +183,7 @@ void Battler::CreateScene()
     zone->SetFogEnd(500.0f);
     zone->SetBoundingBox(BoundingBox(-2000.0f, 2000.0f));
     // Create a directional light with cascaded shadow mapping
-    Node* lightNode = scene_->CreateChild("DirectionalLight");
+    Node* lightNode = TheScene->CreateChild("DirectionalLight");
     lightNode->SetDirection(Vector3(0.3f, -0.5f, 0.425f));
     auto* light = lightNode->CreateComponent<Light>();
     light->SetLightType(LIGHT_DIRECTIONAL);
@@ -192,7 +192,7 @@ void Battler::CreateScene()
     light->SetShadowCascade(CascadeParameters(10.0f, 50.0f, 200.0f, 0.0f, 0.8f));
     light->SetSpecularIntensity(0.5f);
     // Create heightmap terrain with collision
-    Node* terrainNode = scene_->CreateChild("Terrain");
+    Node* terrainNode = TheScene->CreateChild("Terrain");
     terrainNode->SetPosition(Vector3::ZERO);
     auto* terrain = terrainNode->CreateComponent<Terrain>();
     terrain->SetPatchSize(64);
@@ -212,7 +212,7 @@ void Battler::CreateScene()
     const unsigned NUM_MUSHROOMS = 1000;
     for (unsigned i = 0; i < NUM_MUSHROOMS; ++i)
     {
-        Node* objectNode = scene_->CreateChild("Mushroom");
+        Node* objectNode = TheScene->CreateChild("Mushroom");
         Vector3 position(Random(2000.0f) - 1000.0f, 0.0f, Random(2000.0f) - 1000.0f);
         position.y_ = terrain->GetHeight(position) - 0.1f;
         objectNode->SetPosition(position);
@@ -232,7 +232,7 @@ void Battler::CreateScene()
 
 void Battler::CreateVehicle()
 {
-    Node* vehicleNode = scene_->CreateChild("Vehicle");
+    Node* vehicleNode = TheScene->CreateChild("Vehicle");
     vehicleNode->SetPosition(Vector3(0.0f, 25.0f, 0.0f));
     // Create the vehicle logic component
     vehicle_ = vehicleNode->CreateComponent<Vehicle>();
@@ -298,16 +298,16 @@ void Battler::HandleUpdate(StringHash ,
             {
                 File saveFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_WRITE);
-                scene_->SaveXML(saveFile);
+                TheScene->SaveXML(saveFile);
             }
             if (input->GetKeyPress(KEY_F7))
             {
                 File loadFile(context_, GetSubsystem<FileSystem>()->GetProgramDir() + "Data/Scenes/Battler.xml",
                               FILE_READ);
-                scene_->LoadXML(loadFile);
+                TheScene->LoadXML(loadFile);
                 // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
                 // Simply find the vehicle's scene node by name as there's only one of them
-                Node* vehicleNode = scene_->GetChild("Vehicle", true);
+                Node* vehicleNode = TheScene->GetChild("Vehicle", true);
                 if (vehicleNode)
                 {
                     vehicle_ = vehicleNode->GetComponent<Vehicle>();
@@ -340,7 +340,7 @@ void Battler::HandlePostUpdate(StringHash , VariantMap& )
     Ray cameraRay(cameraStartPos, cameraTargetPos - cameraStartPos);
     float cameraRayLength = (cameraTargetPos - cameraStartPos).Length();
     PhysicsRaycastResult result;
-    scene_->GetComponent<PhysicsWorld>()->RaycastSingle(result, cameraRay, cameraRayLength, 2);
+    TheScene->GetComponent<PhysicsWorld>()->RaycastSingle(result, cameraRay, cameraRayLength, 2);
     if (result.body_)
     {
         cameraTargetPos = cameraStartPos + cameraRay.direction_ * (result.distance_ - 0.5f);

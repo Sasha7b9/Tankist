@@ -73,9 +73,6 @@ private:
     /// The controllable vehicle component.
     WeakPtr<Vehicle> vehicle_;
 
-    /// Scene.
-    SharedPtr<Scene> scene_;
-
     /// Camera scene node.
     SharedPtr<Node> cameraNode_;
 
