@@ -2,6 +2,7 @@
 
 #ifdef WIN32
 #pragma warning(push, 0)
+#endif
 
 #include <Bullet/src/BulletDynamics/ConstraintSolver/btSliderConstraint.h>
 
@@ -88,6 +89,12 @@
 #include <Urho3D/Urho2D/Sprite2D.h>
 #include <Urho3D/Urho2D/StaticSprite2D.h>
 
+
+#ifdef WIN32
+#pragma warning(pop)
+#endif
+
+
 #include <thread>
 
 #pragma comment(lib, "ws2_32.lib")
@@ -109,5 +116,3 @@ using namespace Urho3D;
 #include "Battler.h"
 #include "Objects/Vehicle.h"
 #include "glob_engine.h"
-
-#endif
