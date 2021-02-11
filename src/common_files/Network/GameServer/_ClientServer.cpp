@@ -45,13 +45,13 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    if (IsSceneMessage(id))
+    if (id == MSG_SCENE_BUILD)
     {
-        using namespace SceneMessage;
+        TheScene->Create();
 
-        VariantMap &data = GetEventDataMap();
-        data[P_MESSAGEID] = id;
-        SendEvent(E_SCENEMESSAGE, data);
+        TheVehicle = new Vehicle(context_);
+
+        TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
     }
 }
 
@@ -64,7 +64,7 @@ bool ClientServer::IsSceneMessage(int id)
 
 void ClientServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    TheScene->Create(this);
+    TheServer->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD);
 }
 
 

@@ -30,9 +30,3 @@ private:
 
     static bool IsSceneMessage(int id);
 };
-
-
-URHO3D_EVENT(E_SCENEMESSAGE, SceneMessage)
-{
-    URHO3D_PARAM(P_MESSAGEID, MessageID);
-}

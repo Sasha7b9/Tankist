@@ -10,8 +10,7 @@ enum CommonMessages
 enum BuildSceneMessages
 {
     MSG_SCENE_REQUEST_FOR_BUILD = MSG_TEXTSTRING + 1000,
-    MSG_SCENE_CREATE_OCTREE,                                // scene->CreateComponent<Octree>()
-    MSG_SCENE_CREATE_PHYSICS_WORLD,                         // scene->CreateComponent<PhysicsWorld>()
+    MSG_SCENE_BUILD,
 
     MSG_SCENE_LAST = MSG_SCENE_REQUEST_FOR_BUILD + 999
 };
