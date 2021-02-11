@@ -32,12 +32,11 @@ void Battle::Setup()
 
 void Battle::Start()
 {
+    TheScene = new Scene(context_);
+    TheFileSystem = GetSubsystem<FileSystem>();
     TheNetwork = GetSubsystem<Network>();
-
     TheServer = new HeadServer(context_);
-
     TheServer->Start(SERVER_PORT);
-
     TheBattle = this;
 }
 

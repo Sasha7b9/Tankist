@@ -52,6 +52,7 @@ endif()
 file(GLOB SRC                                       *.h *.cpp)
 file(GLOB GUI                                       GUI/*.*)
 file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/_ClientServer.*
+                                 ../../common_files/Network/GameServer/_GameMessages.*
                                  ../../common_files/Network/GameServer/_GameServer.*)
 file(GLOB SCENE                  ../../common_files/Scene/*.*)
 file(GLOB SCENE_CAMERAS          ../../common_files/Scene/Cameras/*.*)
