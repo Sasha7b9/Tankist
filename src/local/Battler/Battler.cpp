@@ -81,7 +81,7 @@ void Battler::Start()
 
     TheMouse = new MouseT(context_);
 
-    TheServer = new Server(context_);
+    TheServer = new ClientServer(context_);
 
     TheServer->Connect("127.0.0.1", 30000);
 

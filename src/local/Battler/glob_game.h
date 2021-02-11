@@ -7,7 +7,7 @@
 */
 
 
-extern Battler    *TheBattler;
-extern MainCamera *TheMainCamera;
-extern MouseT     *TheMouse;
-extern Server     *TheServer;
+extern Battler      *TheBattler;
+extern MainCamera   *TheMainCamera;
+extern MouseT       *TheMouse;
+extern ClientServer *TheServer;

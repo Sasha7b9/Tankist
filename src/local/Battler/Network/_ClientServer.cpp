@@ -1,16 +1,16 @@
 #include "stdafx.h"
 
 
-Server::Server(Context *context) : Object(context)
+ClientServer::ClientServer(Context *context) : Object(context)
 {
-    SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(Server, HandleMessage));
-    SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(Server, HandleServerConnected));
-    SubscribeToEvent(E_SERVERDISCONNECTED, URHO3D_HANDLER(Server, HandleServerDisconnected));
-    SubscribeToEvent(E_CONNECTFAILED, URHO3D_HANDLER(Server, HandleConnectFailed));
+    SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(ClientServer, HandleMessage));
+    SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(ClientServer, HandleServerConnected));
+    SubscribeToEvent(E_SERVERDISCONNECTED, URHO3D_HANDLER(ClientServer, HandleServerDisconnected));
+    SubscribeToEvent(E_CONNECTFAILED, URHO3D_HANDLER(ClientServer, HandleConnectFailed));
 }
 
 
-void Server::SendMessage(const String &message)
+void ClientServer::SendMessage(const String &message)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
@@ -24,31 +24,31 @@ void Server::SendMessage(const String &message)
 }
 
 
-void Server::Connect(const String &address, uint16 port)
+void ClientServer::Connect(const String &address, uint16 port)
 {
     TheNetwork->Connect(address, port, nullptr);
 }
 
 
-void Server::HandleMessage(StringHash, VariantMap &)
+void ClientServer::HandleMessage(StringHash, VariantMap &)
 {
     LOG_FUNC_ENTER();
 }
 
 
-void Server::HandleServerConnected(StringHash, VariantMap &)
+void ClientServer::HandleServerConnected(StringHash, VariantMap &)
 {
     LOG_FUNC_ENTER();
 }
 
 
-void Server::HandleServerDisconnected(StringHash, VariantMap &)
+void ClientServer::HandleServerDisconnected(StringHash, VariantMap &)
 {
     LOG_FUNC_ENTER();
 }
 
 
-void Server::HandleConnectFailed(StringHash, VariantMap &)
+void ClientServer::HandleConnectFailed(StringHash, VariantMap &)
 {
     LOG_FUNC_ENTER();
 }

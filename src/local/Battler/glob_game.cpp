@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 
-Battler    *TheBattler = nullptr;
-MainCamera *TheMainCamera = nullptr;
-MouseT     *TheMouse = nullptr;
-Server     *TheServer = nullptr;
+Battler      *TheBattler = nullptr;
+MainCamera   *TheMainCamera = nullptr;
+MouseT       *TheMouse = nullptr;
+ClientServer *TheServer = nullptr;
