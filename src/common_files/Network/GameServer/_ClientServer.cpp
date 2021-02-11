@@ -41,9 +41,18 @@ void ClientServer::Connect(const String &address, uint16 port)
 }
 
 
-void ClientServer::HandleMessage(StringHash, VariantMap &)
+void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     LOG_FUNC_ENTER();
+
+    using namespace NetworkMessage;
+
+    int id = eventData[P_MESSAGEID].GetInt();
+
+    if (id == MSG_SCENE_REQUEST_FOR_BUILD)
+    {
+        SendEvent(E_SCENEMESSAGE);
+    }
 }
 
 

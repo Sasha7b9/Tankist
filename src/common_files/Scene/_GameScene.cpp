@@ -122,17 +122,8 @@ void GameScene::Create(ClientServer *server)
 void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
 {
     LOG_FUNC_ENTER();
-
-    using namespace NetworkMessage;
-
-    int id = eventData[P_MESSAGEID].GetInt();
-
-    if (id == MSG_SCENE_REQUEST_FOR_BUILD)
-    {
-        URHO3D_LOGINFO("Receive message for build scene");
-
-        Create();
-    }
+    
+    Create();
 }
 
 #endif
