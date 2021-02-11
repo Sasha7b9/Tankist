@@ -11,7 +11,10 @@ MainCamera::MainCamera(Node *node, Context *context)
     this->node->SetPosition({ 0.0f, 3.0f, -0.1f });
     camera->SetFarClip(500.0f);
     TheRenderer->SetViewport(0, new Viewport(context, TheScene->EngineScene(), camera));
-    node->AddChild(this->node);
+    if (node)
+    {
+        node->AddChild(this->node);
+    }
 }
 
 

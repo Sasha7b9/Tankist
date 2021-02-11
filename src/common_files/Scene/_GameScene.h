@@ -23,8 +23,6 @@ public:
 
     void LoadXML(File &file);
 
-private:
-
     WeakPtr<Scene> scene;
 
 public:

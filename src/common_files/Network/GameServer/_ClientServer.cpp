@@ -60,15 +60,15 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
     {
         TheScene->Create();
 
-        TheVehicle = new Vehicle(context_);
+//        TheVehicle = new Vehicle(context_);
 
-        TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
+        TheMainCamera = new MainCamera(nullptr, context_);
 
-        VectorBuffer data;
-        const Vector3 &position = TheVehicle->logic->GetNode()->GetPosition();
-        URHO3D_LOGINFOF("Create vehicle in positioin %s", position.ToString().CString());
-        data.WriteVector3(position);
-        SendMessage(MSG_CREATE_VEHICLE, data);
+//        VectorBuffer data;
+//        const Vector3 &position = TheVehicle->logic->GetNode()->GetPosition();
+//        URHO3D_LOGINFOF("Create vehicle in positioin %s", position.ToString().CString());
+//        data.WriteVector3(position);
+//        SendMessage(MSG_CREATE_VEHICLE, data);
     }
 }
 
