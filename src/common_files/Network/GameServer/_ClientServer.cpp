@@ -19,7 +19,7 @@ void ClientServer::SendMessage(const String &message)
         VectorBuffer msg;
         msg.WriteString(message);
 
-        connection->SendMessage(MSG_USER, true, true, msg);
+        connection->SendMessage(MSG_TEXTSTRING, true, true, msg);
     }
 }
 

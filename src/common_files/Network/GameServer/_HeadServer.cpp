@@ -24,7 +24,7 @@ void HeadServer::HandleMessage(StringHash, VariantMap &eventData)
 
     using namespace NetworkMessage;
 
-    if (eventData[P_MESSAGEID].GetInt() == MSG_USER)
+    if (eventData[P_MESSAGEID].GetInt() == MSG_TEXTSTRING)
     {
         const PODVector<uint8> &data = eventData[P_DATA].GetBuffer();
 
