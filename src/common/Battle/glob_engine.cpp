@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 
-FileSystem *TheFileSystem = nullptr;
-Network    *TheNetwork = nullptr;
-Scene      *TheScene = nullptr;
+FileSystem    *TheFileSystem = nullptr;
+Network       *TheNetwork = nullptr;
+ResourceCache *TheCache = nullptr;
+Scene         *TheScene = nullptr;

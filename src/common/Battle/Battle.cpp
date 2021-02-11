@@ -33,6 +33,7 @@ void Battle::Setup()
 void Battle::Start()
 {
     TheScene = new Scene(context_);
+    TheCache = GetSubsystem<ResourceCache>();
     TheFileSystem = GetSubsystem<FileSystem>();
     TheNetwork = GetSubsystem<Network>();
     TheServer = new HeadServer(context_);

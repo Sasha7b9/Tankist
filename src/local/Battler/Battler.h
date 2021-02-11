@@ -28,9 +28,6 @@ private:
     /// Set custom window Title & Icon
     void SetWindowTitleAndIcon();
 
-    /// Create static scene content.
-    void CreateScene();
-
     /// Subscribe to necessary events.
     void SubscribeToEvents();
 
