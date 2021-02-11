@@ -1,14 +1,26 @@
 #include "stdafx.h"
 
 
+GameScene::GameScene(Context *context) : Object(context)
+{
+    scene = new Scene(context);
+}
+
+
+GameScene::~GameScene()
+{
+    delete scene;
+}
+
+
 void GameScene::Create()
 {
     // Create scene subsystem components
-    TheScene->CreateComponent<Octree>();
-    TheScene->CreateComponent<PhysicsWorld>();
+    scene->CreateComponent<Octree>();
+    scene->CreateComponent<PhysicsWorld>();
 
     // Create static scene content. First create a zone for ambient lighting and fog control
-    Node *zoneNode = TheScene->CreateChild("Zone");
+    Node *zoneNode = scene->CreateChild("Zone");
     auto *zone = zoneNode->CreateComponent<Zone>();
     zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
     zone->SetFogColor(Color(0.5f, 0.5f, 0.7f));
@@ -17,7 +29,7 @@ void GameScene::Create()
     zone->SetBoundingBox(BoundingBox(-2000.0f, 2000.0f));
 
     // Create a directional light with cascaded shadow mapping
-    Node *lightNode = TheScene->CreateChild("DirectionalLight");
+    Node *lightNode = scene->CreateChild("DirectionalLight");
     lightNode->SetDirection(Vector3(0.3f, -0.5f, 0.425f));
     auto *light = lightNode->CreateComponent<Light>();
     light->SetLightType(LIGHT_DIRECTIONAL);
@@ -27,7 +39,7 @@ void GameScene::Create()
     light->SetSpecularIntensity(0.5f);
 
     // Create heightmap terrain with collision
-    Node *terrainNode = TheScene->CreateChild("Terrain");
+    Node *terrainNode = scene->CreateChild("Terrain");
     terrainNode->SetPosition(Vector3::ZERO);
     auto *terrain = terrainNode->CreateComponent<Terrain>();
     terrain->SetPatchSize(64);
@@ -48,7 +60,7 @@ void GameScene::Create()
     const unsigned NUM_MUSHROOMS = 1000;
     for (unsigned i = 0; i < NUM_MUSHROOMS; ++i)
     {
-        Node *objectNode = TheScene->CreateChild("Mushroom");
+        Node *objectNode = scene->CreateChild("Mushroom");
         Vector3 position(Random(2000.0f) - 1000.0f, 0.0f, Random(2000.0f) - 1000.0f);
         position.y_ = terrain->GetHeight(position) - 0.1f;
         objectNode->SetPosition(position);
@@ -64,4 +76,28 @@ void GameScene::Create()
         auto *s = objectNode->CreateComponent<CollisionShape>();
         s->SetTriangleMesh(object->GetModel(), 0);
     }
+}
+
+
+Node *GameScene::CreateChild(pchar name)
+{
+    return scene->CreateChild(name);
+}
+
+
+Node *GameScene::GetChild(pchar name, bool recursive)
+{
+    return scene->GetChild(name, recursive);
+}
+
+
+void GameScene::SaveXML(File &file)
+{
+    scene->SaveXML(file);
+}
+
+
+void GameScene::LoadXML(File &file)
+{
+    scene->LoadXML(file);
 }

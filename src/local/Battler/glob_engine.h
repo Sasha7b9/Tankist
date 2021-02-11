@@ -12,7 +12,6 @@ extern FileSystem       *TheFileSystem;     // Подсистема для работы с файловой 
 extern Log              *TheLog;            // Подсистема логгирования
 extern Network          *TheNetwork;        // Сетевая система
 extern ResourceCache    *TheCache;          // Подсистема ресурсов и кэширования
-extern Scene            *TheScene;          // Указатель на корневой элемент сцены
 extern Time             *TheTime;           // Посистема времени
 
 extern Audio            *TheAudio;          // Звуковая подсистема

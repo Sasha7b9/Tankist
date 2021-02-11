@@ -40,8 +40,6 @@ void Battler::Setup()
 
 void Battler::Start()
 {
-    TheScene = new Scene(context_);
-
     TheCache = GetSubsystem<ResourceCache>();
     TheUI = GetSubsystem<UI>();
     TheGraphics = GetSubsystem<Graphics>();
@@ -67,9 +65,9 @@ void Battler::Start()
     // Set custom window Title & Icon
     SetWindowTitleAndIcon();
 
-    GameScene *scene = new GameScene(context_);
+    TheScene = new GameScene(context_);
 
-    scene->Create();
+    TheScene->Create();
 
     vehicle = new Vehicle(context_);
 

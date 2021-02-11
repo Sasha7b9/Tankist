@@ -8,6 +8,8 @@
 
 
 extern Battler      *TheBattler;
+extern ClientServer *TheServer;
+extern GameScene    *TheScene;
 extern MainCamera   *TheMainCamera;
 extern MouseT       *TheMouse;
-extern ClientServer *TheServer;
+

@@ -62,6 +62,4 @@ union BitSet32
 };
 
 
-#define SAFE_DELETE(x)  \
-    if(x) delete x;     \
-    x = nullptr;
+#include "_defines.h"

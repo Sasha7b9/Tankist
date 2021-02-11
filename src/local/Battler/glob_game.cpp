@@ -3,6 +3,8 @@
 
 
 Battler      *TheBattler = nullptr;
+ClientServer *TheServer = nullptr;
+GameScene    *TheScene = nullptr;
 MainCamera   *TheMainCamera = nullptr;
 MouseT       *TheMouse = nullptr;
-ClientServer *TheServer = nullptr;
+

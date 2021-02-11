@@ -7,7 +7,6 @@ FileSystem       *TheFileSystem = nullptr;
 Log              *TheLog = nullptr;
 Network          *TheNetwork = nullptr;
 ResourceCache    *TheCache = nullptr;
-Scene            *TheScene = nullptr;
 Time             *TheTime = nullptr;
 
 Audio            *TheAudio = nullptr;
