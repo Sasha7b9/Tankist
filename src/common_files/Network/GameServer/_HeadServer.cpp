@@ -41,14 +41,6 @@ void HeadServer::HandleMessage(StringHash, VariantMap &eventData)
         data.WriteVector3({ 10.0f, 10.0f, 10.0f });     // Передаём координаты вновь созданной сущности игрока
         connection->SendMessage(MSG_SCENE_BUILD, true, true, data);
     }
-//    else if (id == MSG_CREATE_VEHICLE)
-//    {
-//        TheVehicle = new Vehicle(context_);
-//        MemoryBuffer msg(eventData[P_DATA].GetBuffer());
-//        const Vector3 position = msg.ReadVector3();
-//        URHO3D_LOGINFOF("Create vehicle in position %s", position.ToString().CString());
-//        TheVehicle->logic->GetNode()->SetPosition(position);
-//    }
 }
 
 

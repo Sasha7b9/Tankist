@@ -69,12 +69,6 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
         TheVehicle = new Vehicle(context_);
 
         TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
-
-//        VectorBuffer data;
-//        const Vector3 &position = TheVehicle->logic->GetNode()->GetPosition();
-//        URHO3D_LOGINFOF("Create vehicle in positioin %s", position.ToString().CString());
-//        data.WriteVector3(position);
-//        SendMessage(MSG_CREATE_VEHICLE, data);
     }
 }
 
