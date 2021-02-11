@@ -10,7 +10,7 @@ ClientServer::ClientServer(Context *context) : Object(context)
 }
 
 
-void ClientServer::SendMessage(const String &message)
+void ClientServer::SendTextMessage(const String &message)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
@@ -20,6 +20,17 @@ void ClientServer::SendMessage(const String &message)
         msg.WriteString(message);
 
         connection->SendMessage(MSG_TEXTSTRING, true, true, msg);
+    }
+}
+
+
+void ClientServer::SendMessage(int id)
+{
+    Connection *connection = TheNetwork->GetServerConnection();
+
+    if (connection)
+    {
+        connection->SendMessage(id, true, true, nullptr, 0);
     }
 }
 

@@ -15,7 +15,9 @@ public:
 
     void Connect(const String &address, uint16 port);
 
-    void SendMessage(const String &message);
+    void SendTextMessage(const String &message);
+    void SendMessage(int id);
+    void SendMessage(int id, const VectorBuffer &msg);
 
 private:
 

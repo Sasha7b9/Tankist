@@ -16,7 +16,7 @@ void Battler::HandleUpdate(StringHash, VariantMap &)
 
 void Battler::HandlePostUpdate(StringHash, VariantMap &)
 {
-    TheServer->SendMessage(__FUNCTION__);
+    TheServer->SendTextMessage(__FUNCTION__);
 
 //    if (!vehicle)
 //    {

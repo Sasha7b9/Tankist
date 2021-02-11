@@ -107,7 +107,7 @@ void GameScene::LoadXML(File &file)
 
 void GameScene::Create(ClientServer *server)
 {
-
+    server->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD);
 }
 
 #endif
