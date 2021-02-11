@@ -29,3 +29,9 @@ private:
 
     void HandleConnectFailed(StringHash, VariantMap &);
 };
+
+
+URHO3D_EVENT(E_SCENEMESSAGE, SceneMessage)
+{
+    URHO3D_PARAM(MESSAGEID, MessageID);
+}

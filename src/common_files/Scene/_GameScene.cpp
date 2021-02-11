@@ -122,8 +122,15 @@ void GameScene::Create(ClientServer *server)
 void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
 {
     LOG_FUNC_ENTER();
-    
-    Create();
+
+    using namespace SceneMessage;
+ 
+    int id = eventData[MESSAGEID].GetInt();
+
+    if (id == MSG_SCENE_BUILD)
+    {
+        Create();
+    }
 }
 
 #endif
