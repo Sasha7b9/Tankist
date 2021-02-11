@@ -23,7 +23,7 @@ include_directories(.
 endif()
 
 
-add_definitions(-DURHO3D_LOGGING)
+add_definitions(-DURHO3D_LOGGING -DSERVER)
 
 
 if(WIN32)

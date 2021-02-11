@@ -1,15 +1,15 @@
 #include "defines.h"
 
 
-class HeadServer : public GameServer
+class HeadServer : public Object
 {
-    URHO3D_OBJECT(HeadServer, GameServer);
+    URHO3D_OBJECT(HeadServer, Object);
 
 public:
 
     HeadServer(Context *context);
 
-    virtual bool Start(uint16 port) override;
+    bool Start(uint16 port);
 
 private:
 

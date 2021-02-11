@@ -2,6 +2,6 @@
 
 
 extern Battle     *TheBattle;
-extern GameServer *TheServer;
+extern HeadServer *TheServer;
 
 extern Vector<Connection *> connections;

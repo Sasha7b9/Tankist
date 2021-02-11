@@ -232,6 +232,8 @@ Vehicle::Vehicle(Context *context) : Object(context)
 
 void Vehicle::Update()
 {
+#ifdef CLIENT
+
     logic->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
     logic->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
     logic->controls_.Set(CTRL_LEFT, TheInput->GetKeyDown(KEY_A));
@@ -266,4 +268,7 @@ void Vehicle::Update()
             logic = vehicleNode->GetComponent<VehicleLogic>();
         }
     }
+
+#else
+#endif
 }

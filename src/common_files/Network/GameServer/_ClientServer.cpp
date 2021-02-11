@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-ClientServer::ClientServer(Context *context) : GameServer(context)
+ClientServer::ClientServer(Context *context) : Object(context)
 {
     SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(ClientServer, HandleMessage));
     SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(ClientServer, HandleServerConnected));
