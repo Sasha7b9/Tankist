@@ -118,8 +118,8 @@ using namespace Urho3D;
 #include "GUI/Logo.h"
 #include "GUI/MouseT.h"
 #include "Network/Server.h"
-#include "Scene/Objects/Vehicle.h"
-#include "Scene/Cameras/MainCamera.h"
+#include "Scene/Objects/_Vehicle.h"
+#include "Scene/Cameras/_MainCamera.h"
 #include "Utils/_LogU.h"
 
 #include "glob_engine.h"
