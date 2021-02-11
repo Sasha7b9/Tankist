@@ -6,10 +6,11 @@ void Battler::HandleUpdate(StringHash, VariantMap &)
     if (TheVehicle)
     {
         TheVehicle->Update();
-        if (TheMainCamera)
-        {
-            TheMainCamera->Update();
-        }
+    }
+
+    if (TheMainCamera)
+    {
+        TheMainCamera->Update();
     }
 }
 
