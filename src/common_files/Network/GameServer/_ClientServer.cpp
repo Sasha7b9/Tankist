@@ -43,8 +43,6 @@ void ClientServer::Connect(const String &address, uint16 port)
 
 void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 {
-    LOG_FUNC_ENTER();
-
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
     if (id == MSG_SCENE_BUILD)
@@ -63,19 +61,15 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 
 void ClientServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
-
     TheScene->Create(this);
 }
 
 
 void ClientServer::HandleServerDisconnected(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
 }
 
 
 void ClientServer::HandleConnectFailed(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
 }

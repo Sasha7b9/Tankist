@@ -79,8 +79,6 @@ void Battler::Start()
     TheServer->Connect("127.0.0.1", 30000);
 
     TheBattler = this;
-
-    TheScene->Create(TheServer);
 }
 
 

@@ -20,7 +20,7 @@ bool HeadServer::Start(uint16 port)
 
 void HeadServer::HandleMessage(StringHash, VariantMap &eventData)
 {
-    LOG_FUNC_ENTER();
+//    LOG_FUNC_ENTER();
 
     using namespace NetworkMessage;
 
@@ -46,19 +46,19 @@ void HeadServer::HandleMessage(StringHash, VariantMap &eventData)
 
 void HeadServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
+//    LOG_FUNC_ENTER();
 }
 
 
 void HeadServer::HandleServerDisconnected(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
+//    LOG_FUNC_ENTER();
 }
 
 
 void HeadServer::HandleClientConnected(StringHash, VariantMap &eventData)
 {
-    LOG_FUNC_ENTER();
+//    LOG_FUNC_ENTER();
 
     using namespace ClientConnected;
 
@@ -70,7 +70,7 @@ void HeadServer::HandleClientConnected(StringHash, VariantMap &eventData)
 
 void HeadServer::HandleCliendDisconnected(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
+//    LOG_FUNC_ENTER();
 
     TheBattle->Exit();
 }
@@ -78,5 +78,5 @@ void HeadServer::HandleCliendDisconnected(StringHash, VariantMap &)
 
 void HeadServer::HandleConnectFailed(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
+//    LOG_FUNC_ENTER();
 }

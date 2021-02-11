@@ -113,26 +113,18 @@ void GameScene::LoadXML(File &file)
 
 void GameScene::Create(ClientServer *server)
 {
-    LOG_FUNC_ENTER();
-
     server->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD);
 }
 
 
 void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
 {
-    LOG_FUNC_ENTER();
-
     using namespace SceneMessage;
  
     int id = eventData[P_MESSAGEID].GetInt();
 
-    static bool created = false;
-
-    if (id == MSG_SCENE_BUILD && !created)
+    if (id == MSG_SCENE_BUILD)
     {
-        created = true;
-
         Create();
 
         TheVehicle = new Vehicle(context_);
