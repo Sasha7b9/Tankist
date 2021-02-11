@@ -54,15 +54,21 @@ void ClientServer::Connect(const String &address, uint16 port)
 
 void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 {
+    using namespace NetworkMessage;;
+
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
+
+    MemoryBuffer msg(eventData[P_DATA].GetBuffer());
 
     if (id == MSG_SCENE_BUILD)
     {
         TheScene->Create();
 
-//        TheVehicle = new Vehicle(context_);
-
         TheMainCamera = new MainCamera(nullptr, context_);
+
+        TheVehicle = new Vehicle(context_);
+
+        TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
 
 //        VectorBuffer data;
 //        const Vector3 &position = TheVehicle->logic->GetNode()->GetPosition();
