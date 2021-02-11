@@ -45,9 +45,7 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     LOG_FUNC_ENTER();
 
-    using namespace NetworkMessage;
-
-    int id = eventData[P_MESSAGEID].GetInt();
+    int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
     if (id == MSG_SCENE_BUILD)
     {
@@ -56,7 +54,7 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
         using namespace SceneMessage;
 
         VariantMap &data = GetEventDataMap();
-        data[MESSAGEID] = MSG_SCENE_BUILD;
+        data[P_MESSAGEID] = MSG_SCENE_BUILD;
 
         SendEvent(E_SCENEMESSAGE, data);
     }

@@ -33,5 +33,5 @@ private:
 
 URHO3D_EVENT(E_SCENEMESSAGE, SceneMessage)
 {
-    URHO3D_PARAM(MESSAGEID, MessageID);
+    URHO3D_PARAM(P_MESSAGEID, MessageID);
 }

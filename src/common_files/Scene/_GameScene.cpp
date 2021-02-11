@@ -125,7 +125,7 @@ void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
 
     using namespace SceneMessage;
  
-    int id = eventData[MESSAGEID].GetInt();
+    int id = eventData[P_MESSAGEID].GetInt();
 
     if (id == MSG_SCENE_BUILD)
     {
