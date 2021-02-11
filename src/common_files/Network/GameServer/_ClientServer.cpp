@@ -45,14 +45,12 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    if (id == MSG_SCENE_BUILD)
+    if (id == MSG_SCENE_CREATE_OCTREE)
     {
-        URHO3D_LOGINFO("Receive request for build scene");
-
         using namespace SceneMessage;
 
         VariantMap &data = GetEventDataMap();
-        data[P_MESSAGEID] = MSG_SCENE_BUILD;
+        data[P_MESSAGEID] = MSG_SCENE_CREATE_OCTREE;
 
         SendEvent(E_SCENEMESSAGE, data);
     }

@@ -126,7 +126,7 @@ void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
  
     int id = eventData[P_MESSAGEID].GetInt();
 
-    if (id == MSG_SCENE_BUILD)
+    if (id == MSG_SCENE_CREATE_OCTREE)
     {
         // Create scene subsystem components
         scene->CreateComponent<Octree>();
