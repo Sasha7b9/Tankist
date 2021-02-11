@@ -232,46 +232,38 @@ Vehicle::Vehicle(Context *context) : Object(context)
 
 void Vehicle::Update()
 {
-    // Get movement controls and assign them to the vehicle component. If UI has a focused element, clear controls
-    if (!TheUI->GetFocusElement())
+    logic->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
+    logic->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
+    logic->controls_.Set(CTRL_LEFT, TheInput->GetKeyDown(KEY_A));
+    logic->controls_.Set(CTRL_RIGHT, TheInput->GetKeyDown(KEY_D));
+    logic->controls_.Set(CTRL_BRAKE, TheInput->GetKeyDown(KEY_F));
+
+    logic->controls_.yaw_ += (float)TheInput->GetMouseMoveX() * YAW_SENSITIVITY;
+    logic->controls_.pitch_ += (float)TheInput->GetMouseMoveY() * YAW_SENSITIVITY;
+
+    // Limit pitch
+    logic->controls_.pitch_ = Clamp(logic->controls_.pitch_, 0.0f, 80.0f);
+
+    // Check for loading / saving the scene
+    if (TheInput->GetKeyPress(KEY_F5))
     {
-        logic->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
-        logic->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
-        logic->controls_.Set(CTRL_LEFT, TheInput->GetKeyDown(KEY_A));
-        logic->controls_.Set(CTRL_RIGHT, TheInput->GetKeyDown(KEY_D));
-        logic->controls_.Set(CTRL_BRAKE, TheInput->GetKeyDown(KEY_F));
-
-        logic->controls_.yaw_ += (float)TheInput->GetMouseMoveX() * YAW_SENSITIVITY;
-        logic->controls_.pitch_ += (float)TheInput->GetMouseMoveY() * YAW_SENSITIVITY;
-
-        // Limit pitch
-        logic->controls_.pitch_ = Clamp(logic->controls_.pitch_, 0.0f, 80.0f);
-
-        // Check for loading / saving the scene
-        if (TheInput->GetKeyPress(KEY_F5))
-        {
-            File saveFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml", FILE_WRITE);
-            TheScene->SaveXML(saveFile);
-        }
-
-        if (TheInput->GetKeyPress(KEY_F7))
-        {
-            File loadFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml", FILE_READ);
-
-            TheScene->LoadXML(loadFile);
-
-            // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
-            // Simply find the vehicle's scene node by name as there's only one of them
-            Node *vehicleNode = TheScene->GetChild("Vehicle", true);
-
-            if (vehicleNode)
-            {
-                logic = vehicleNode->GetComponent<VehicleLogic>();
-            }
-        }
+        File saveFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml", FILE_WRITE);
+        TheScene->SaveXML(saveFile);
     }
-    else
+
+    if (TheInput->GetKeyPress(KEY_F7))
     {
-        logic->controls_.Set(CTRL_FORWARD | CTRL_BACK | CTRL_LEFT | CTRL_RIGHT | CTRL_BRAKE, false);
+        File loadFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml", FILE_READ);
+
+        TheScene->LoadXML(loadFile);
+
+        // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
+        // Simply find the vehicle's scene node by name as there's only one of them
+        Node *vehicleNode = TheScene->GetChild("Vehicle", true);
+
+        if (vehicleNode)
+        {
+            logic = vehicleNode->GetComponent<VehicleLogic>();
+        }
     }
 }

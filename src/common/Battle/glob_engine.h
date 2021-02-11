@@ -5,4 +5,3 @@ extern FileSystem *TheFileSystem;     // Подсистема для работы с файловой систем
 extern Input      *TheInput;          // Указатель на подсистему ввода
 extern Network    *TheNetwork;
 extern Scene      *TheScene;          // Указатель на корневой элемент сцены
-extern UI         *TheUI;             // Указатель на графическую подсистему
