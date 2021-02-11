@@ -69,6 +69,7 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
         TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
 
         TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
+        //TheMainCamera = new MainCamera(nullptr, context_);
     }
 }
 

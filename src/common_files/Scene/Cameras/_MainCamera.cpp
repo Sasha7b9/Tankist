@@ -11,7 +11,20 @@ MainCamera::MainCamera(Node *node, Context *context)
     this->node->SetPosition({ 0.0f, 30.0f, -0.1f });
     camera->SetFarClip(500.0f);
     TheRenderer->SetViewport(0, new Viewport(context, TheScene->EngineScene(), camera));
-    parent = node;
+
+    ConnectTo(node);
+}
+
+
+void MainCamera::ConnectTo(Node *n)
+{
+    if (parent)
+    {
+        parent->RemoveChild(this->node);
+    }
+
+    parent = n;
+
     if (parent)
     {
         parent->AddChild(this->node);

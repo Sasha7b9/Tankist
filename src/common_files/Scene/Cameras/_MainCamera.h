@@ -9,6 +9,8 @@ public:
 
     void Update();
 
+    void ConnectTo(Node *node);
+
 private:
     SharedPtr<Node> node;
     Node *parent = nullptr;
