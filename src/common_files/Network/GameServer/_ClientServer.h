@@ -17,7 +17,6 @@ public:
 
     void SendTextMessage(const String &message);
     void SendMessage(int id);
-    void SendMessage(int id, const VectorBuffer &msg);
 
 private:
 
@@ -28,6 +27,8 @@ private:
     void HandleServerDisconnected(StringHash, VariantMap &);
 
     void HandleConnectFailed(StringHash, VariantMap &);
+
+    static bool IsSceneMessage(int id);
 };
 
 

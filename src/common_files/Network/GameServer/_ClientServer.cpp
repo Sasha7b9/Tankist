@@ -45,15 +45,20 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    if (id == MSG_SCENE_CREATE_OCTREE)
+    if (IsSceneMessage(id))
     {
         using namespace SceneMessage;
 
         VariantMap &data = GetEventDataMap();
-        data[P_MESSAGEID] = MSG_SCENE_CREATE_OCTREE;
-
+        data[P_MESSAGEID] = id;
         SendEvent(E_SCENEMESSAGE, data);
     }
+}
+
+
+bool ClientServer::IsSceneMessage(int id)
+{
+    return (id >= MSG_SCENE_REQUEST_FOR_BUILD) && (id <= MSG_SCENE_LAST);
 }
 
 

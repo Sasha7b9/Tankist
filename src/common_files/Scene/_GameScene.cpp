@@ -128,8 +128,14 @@ void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
 
     if (id == MSG_SCENE_CREATE_OCTREE)
     {
-        // Create scene subsystem components
+        URHO3D_LOGINFO("MSG_SCENE_CREATE_OCTREE");
+
         scene->CreateComponent<Octree>();
+    }
+    else if (id == MSG_SCENE_CREATE_PHYSICS_WORLD)
+    {
+        URHO3D_LOGINFO("MSG_SCENE_CREATE_PHYSICS_WORLD");
+
         scene->CreateComponent<PhysicsWorld>();
 
         // Create static scene content. First create a zone for ambient lighting and fog control

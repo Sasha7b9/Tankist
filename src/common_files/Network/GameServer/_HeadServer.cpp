@@ -40,6 +40,8 @@ void HeadServer::HandleMessage(StringHash, VariantMap &eventData)
         URHO3D_LOGINFO("Send message for build scene");
 
         connection->SendMessage(MSG_SCENE_CREATE_OCTREE, true, true, nullptr, 0);
+        connection->SendAllBuffers();
+        connection->SendMessage(MSG_SCENE_CREATE_PHYSICS_WORLD, true, true, nullptr, 0);
     }
 }
 
