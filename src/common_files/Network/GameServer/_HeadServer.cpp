@@ -24,14 +24,22 @@ void HeadServer::HandleMessage(StringHash, VariantMap &eventData)
 
     using namespace NetworkMessage;
 
-    if (eventData[P_MESSAGEID].GetInt() == MSG_TEXTSTRING)
+    int id = eventData[P_MESSAGEID].GetInt();
+
+    Connection *connection = (Connection *)(eventData[P_CONNECTION].GetPtr());
+
+    if (id == MSG_TEXTSTRING)
     {
         const PODVector<uint8> &data = eventData[P_DATA].GetBuffer();
 
         MemoryBuffer msg(data);
         String text = msg.ReadString();
+    }
+    else if (id == MSG_SCENE_REQUEST_FOR_BUILD)
+    {
+        URHO3D_LOGINFO("Send message for build scene");
 
-        URHO3D_LOGINFOF("Receive message : \"%s\"", text.CString());
+        connection->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD, true, true, nullptr, 0);
     }
 }
 

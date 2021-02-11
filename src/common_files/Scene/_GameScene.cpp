@@ -7,7 +7,7 @@ GameScene::GameScene(Context *context) : Object(context)
 
 #ifdef CLIENT
 
-    SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(GameScene, HandleServerMessage));
+    SubscribeToEvent(E_SCENEMESSAGE, URHO3D_HANDLER(GameScene, HandleServerMessage));
 
 #endif
 }
@@ -113,13 +113,26 @@ void GameScene::LoadXML(File &file)
 
 void GameScene::Create(ClientServer *server)
 {
+    LOG_FUNC_ENTER();
+
     server->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD);
 }
 
 
-void GameScene::HandleServerMessage(StringHash, VariantMap &)
+void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
 {
+    LOG_FUNC_ENTER();
 
+    using namespace NetworkMessage;
+
+    int id = eventData[P_MESSAGEID].GetInt();
+
+    if (id == MSG_SCENE_REQUEST_FOR_BUILD)
+    {
+        URHO3D_LOGINFO("Receive message for build scene");
+
+        Create();
+    }
 }
 
 #endif

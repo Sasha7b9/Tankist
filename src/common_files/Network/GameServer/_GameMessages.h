@@ -13,3 +13,8 @@ enum BuildSceneMessages
     MSG_SCENE_CREATE_OCTREE,                            // scene->CreateComponent<Octree>()
     MSG_SCENE_CREATE_PHYSICS_WORLD                      // scene->CreateComponent<PhysicsWorld>()
 };
+
+
+URHO3D_EVENT(E_SCENEMESSAGE, SceneMessage)
+{
+}

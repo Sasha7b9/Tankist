@@ -16,14 +16,7 @@ void Battler::HandleUpdate(StringHash, VariantMap &)
 
 void Battler::HandlePostUpdate(StringHash, VariantMap &)
 {
-    TheServer->SendTextMessage(__FUNCTION__);
 
-//    if (!vehicle)
-//    {
-//        return;
-//    }
-//
-//    TheMainCamera->SetOnNode(vehicle->logic->GetNode(), vehicle->logic->controls_.yaw_, vehicle->logic->controls_.pitch_);
 }
 
 
