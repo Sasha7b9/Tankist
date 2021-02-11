@@ -14,3 +14,9 @@ enum BuildSceneMessages
 
     MSG_SCENE_LAST = MSG_SCENE_REQUEST_FOR_BUILD + 999
 };
+
+
+enum GameMessages
+{
+    MSG_CREATE_VEHICLE = MSG_SCENE_LAST + 1
+};

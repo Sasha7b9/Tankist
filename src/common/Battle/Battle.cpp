@@ -12,7 +12,7 @@ URHO3D_DEFINE_APPLICATION_MAIN(Battle)
 
 Battle::Battle(Context *context) : Application(context)
 {
-
+    VehicleLogic::RegisterObject(context);
 }
 
 
@@ -48,6 +48,8 @@ void Battle::Start()
 void Battle::Stop()
 {
     engine_->DumpResources(true);
+
+    delete TheVehicle;
 
     delete TheScene;
 

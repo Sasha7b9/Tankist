@@ -17,6 +17,7 @@ public:
 
     void SendTextMessage(const String &message);
     void SendMessage(int id);
+    void SendMessage(int id, const VectorBuffer &data);
 
 private:
 

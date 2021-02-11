@@ -35,6 +35,17 @@ void ClientServer::SendMessage(int id)
 }
 
 
+void ClientServer::SendMessage(int id, const VectorBuffer &data)
+{
+    Connection *connection = TheNetwork->GetServerConnection();
+
+    if (connection)
+    {
+        connection->SendMessage(id, true, true, data);
+    }
+}
+
+
 void ClientServer::Connect(const String &address, uint16 port)
 {
     TheNetwork->Connect(address, port, nullptr);
@@ -52,6 +63,12 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
         TheVehicle = new Vehicle(context_);
 
         TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
+
+        VectorBuffer data;
+        const Vector3 &position = TheVehicle->logic->GetNode()->GetPosition();
+        URHO3D_LOGINFOF("Create vehicle in positioin %s", position.ToString().CString());
+        data.WriteVector3(position);
+        SendMessage(MSG_CREATE_VEHICLE, data);
     }
 }
 
