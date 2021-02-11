@@ -11,8 +11,6 @@ public:
     GameScene(Context *context);
     ~GameScene();
 
-    void Create();
-
     Node *CreateChild(pchar name);
 
     Node *GetChild(pchar name, bool recursive = false);
@@ -28,6 +26,12 @@ private:
     WeakPtr<Scene> scene;
 
 public:
+
+#ifdef SERVER
+
+    void Create();
+
+#endif
 
 #ifdef CLIENT
 
