@@ -39,6 +39,8 @@ void ClientServer::HandleMessage(StringHash, VariantMap &)
 void ClientServer::HandleServerConnected(StringHash, VariantMap &)
 {
     LOG_FUNC_ENTER();
+
+    TheScene->Create(this);
 }
 
 

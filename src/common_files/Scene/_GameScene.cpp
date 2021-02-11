@@ -101,3 +101,14 @@ void GameScene::LoadXML(File &file)
 {
     scene->LoadXML(file);
 }
+
+
+#ifdef CLIENT
+
+void GameScene::Create(ClientServer *server)
+{
+
+}
+
+#endif
+

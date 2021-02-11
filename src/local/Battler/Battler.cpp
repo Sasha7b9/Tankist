@@ -67,8 +67,6 @@ void Battler::Start()
 
     TheScene = new GameScene(context_);
 
-    TheScene->Create();
-
     vehicle = new Vehicle(context_);
 
     TheMainCamera = new MainCamera(vehicle->logic->GetNode(), context_);

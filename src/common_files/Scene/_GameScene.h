@@ -26,4 +26,12 @@ public:
 private:
 
     WeakPtr<Scene> scene;
+
+public:
+
+#ifdef CLIENT
+
+    void Create(ClientServer *server);
+
+#endif
 };
