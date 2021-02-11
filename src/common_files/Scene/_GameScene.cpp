@@ -4,6 +4,12 @@
 GameScene::GameScene(Context *context) : Object(context)
 {
     scene = new Scene(context);
+
+#ifdef CLIENT
+
+    SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(GameScene, HandleServerMessage));
+
+#endif
 }
 
 
@@ -108,6 +114,12 @@ void GameScene::LoadXML(File &file)
 void GameScene::Create(ClientServer *server)
 {
     server->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD);
+}
+
+
+void GameScene::HandleServerMessage(StringHash, VariantMap &)
+{
+
 }
 
 #endif

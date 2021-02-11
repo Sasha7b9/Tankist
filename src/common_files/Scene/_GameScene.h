@@ -33,5 +33,8 @@ public:
 
     void Create(ClientServer *server);
 
+    // Обработчик сообщений от сервера
+    void HandleServerMessage(StringHash, VariantMap &);
+
 #endif
 };
