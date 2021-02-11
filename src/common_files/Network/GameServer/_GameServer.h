@@ -8,4 +8,8 @@ class GameServer : public Object
 public:
 
     GameServer(Context *context) : Object(context) {}
+
+
+    // Подключиться к порту для прослушивания
+    virtual bool Start(uint16 port) { (void)port; return false; };
 };

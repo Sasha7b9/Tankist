@@ -2,6 +2,6 @@
 
 
 Battle     *TheBattle = nullptr;
-HeadServer *TheServer = nullptr;
+GameServer *TheServer = nullptr;
 
 Vector<Connection *> connections;

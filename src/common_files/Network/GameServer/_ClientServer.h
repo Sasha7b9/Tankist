@@ -5,9 +5,9 @@
 *  Класс для коммуникаций с сервером
 */
 
-class ClientServer : public Object
+class ClientServer : public GameServer
 {
-    URHO3D_OBJECT(ClientServer, Object);
+    URHO3D_OBJECT(ClientServer, GameServer);
 
 public:
 
