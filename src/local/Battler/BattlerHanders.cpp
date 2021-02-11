@@ -3,9 +3,9 @@
 
 void Battler::HandleUpdate(StringHash, VariantMap &)
 {
-    if (vehicle)
+    if (TheVehicle)
     {
-        vehicle->Update();
+        TheVehicle->Update();
         if (TheMainCamera)
         {
             TheMainCamera->Update();

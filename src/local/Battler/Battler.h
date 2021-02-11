@@ -31,11 +31,7 @@ private:
     /// Subscribe to necessary events.
     void SubscribeToEvents();
 
-    /// The controllable vehicle component.
-    WeakPtr<Vehicle> vehicle;
-
     WeakPtr<Logo> logo;
-
 
     /// Handle application update. Set controls to vehicle.
     void HandleUpdate(StringHash eventType, VariantMap &eventData);

@@ -127,9 +127,17 @@ void GameScene::HandleServerMessage(StringHash, VariantMap &eventData)
  
     int id = eventData[P_MESSAGEID].GetInt();
 
-    if (id == MSG_SCENE_BUILD)
+    static bool created = false;
+
+    if (id == MSG_SCENE_BUILD && !created)
     {
+        created = true;
+
         Create();
+
+        TheVehicle = new Vehicle(context_);
+
+        TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
     }
 }
 

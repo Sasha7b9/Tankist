@@ -7,4 +7,5 @@ ClientServer *TheServer = nullptr;
 GameScene    *TheScene = nullptr;
 MainCamera   *TheMainCamera = nullptr;
 MouseT       *TheMouse = nullptr;
+Vehicle      *TheVehicle;
 

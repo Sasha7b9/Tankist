@@ -67,10 +67,6 @@ void Battler::Start()
 
     TheScene = new GameScene(context_);
 
-    vehicle = new Vehicle(context_);
-
-    TheMainCamera = new MainCamera(vehicle->logic->GetNode(), context_);
-
     Instructions::Create();
 
     // Subscribe to necessary events
@@ -98,7 +94,7 @@ void Battler::Stop()
 
     delete TheMouse;
 
-    delete vehicle;
+    delete TheVehicle;
 
     delete logo;
 
