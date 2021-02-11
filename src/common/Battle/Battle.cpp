@@ -32,19 +32,24 @@ void Battle::Setup()
 
 void Battle::Start()
 {
-    TheScene = new Scene(context_);
     TheCache = GetSubsystem<ResourceCache>();
     TheFileSystem = GetSubsystem<FileSystem>();
     TheNetwork = GetSubsystem<Network>();
     TheServer = new HeadServer(context_);
     TheServer->Start(SERVER_PORT);
     TheBattle = this;
+
+    TheScene = new GameScene(context_);
+
+    TheScene->Create();
 }
 
 
 void Battle::Stop()
 {
     engine_->DumpResources(true);
+
+    delete TheScene;
 
     delete TheServer;
 
