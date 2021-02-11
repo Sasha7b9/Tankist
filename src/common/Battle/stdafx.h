@@ -36,7 +36,7 @@ using namespace Urho3D;
 #include "defines.h"
 
 #include "Battle.h"
-#include "Network/Server.h"
+#include "Network/GameServer/_HeadServer.h"
 #include "Scene/Cameras/_MainCamera.h"
 #include "Scene/Objects/_Vehicle.h"
 #include "Utils/_LogU.h"

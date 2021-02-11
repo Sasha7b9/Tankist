@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-Battle *TheBattle = nullptr;
-Server *TheServer = nullptr;
+Battle     *TheBattle = nullptr;
+HeadServer *TheServer = nullptr;
 
 Vector<Connection *> connections;
