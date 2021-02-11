@@ -49,7 +49,6 @@ endif()
 
 file(GLOB SRC                                       *.h *.cpp)
 file(GLOB GUI                                       GUI/*.*)
-file(GLOB NETWORK                                   Network/*.*)
 file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/*.*)
 file(GLOB SCENE                  ../../common_files/Scene/*.*)
 file(GLOB SCENE_CAMERAS          ../../common_files/Scene/Cameras/*.*)
@@ -58,14 +57,13 @@ file(GLOB UTILS                  ../../common_files/Utils/_LogU.*)
 
 source_group(src                 FILES ${SRC})
 source_group(GUI                 FILES ${GUI})
-source_group(Network             FILES ${NETWORK})
 source_group(Network\\GameServer FILES ${NETWORK_GAMESERVER})
 source_group(Scene               FILES ${SCENE})
 source_group(Scene\\Cameras      FILES ${SCENE_CAMERAS})
 source_group(Scene\\Objects      FILES ${SCENE_OBJECTS})
 source_group(Utils               FILES ${UTILS})
 
-add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${NETWORK} ${NETWORK_GAMESERVER} ${SCENE} ${SCENE_CAMERAS} ${SCENE_OBJECTS}
+add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${NETWORK_GAMESERVER} ${SCENE} ${SCENE_CAMERAS} ${SCENE_OBJECTS}
     ${UTILS})
 
 target_link_libraries(${PROJECT_NAME} opus)

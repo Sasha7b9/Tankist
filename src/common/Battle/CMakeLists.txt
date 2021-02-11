@@ -62,7 +62,7 @@ endif()
 file(GLOB SRC                    ../../common_files/_defines.h
                                                     *.h *.cpp)
 file(GLOB NETWORK                                   Network/*.*)
-file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/*.*)
+file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/GameServer.*)
 file(GLOB SCENE                  ../../common_files/Scene/*.*)
 file(GLOB SCENE_OBJECTS          ../../common_files/Scene/Objects/*.*)
 file(GLOB UTILS                  ../../common_files/Utils/_LogU.*)
