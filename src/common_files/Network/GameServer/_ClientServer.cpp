@@ -64,11 +64,11 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
     {
         TheScene->Create();
 
-        TheMainCamera = new MainCamera(nullptr, context_);
-
         TheVehicle = new Vehicle(context_);
 
         TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
+
+        TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
     }
 }
 

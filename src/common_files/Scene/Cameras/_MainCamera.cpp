@@ -11,9 +11,10 @@ MainCamera::MainCamera(Node *node, Context *context)
     this->node->SetPosition({ 0.0f, 30.0f, -0.1f });
     camera->SetFarClip(500.0f);
     TheRenderer->SetViewport(0, new Viewport(context, TheScene->EngineScene(), camera));
-    if (node)
+    parent = node;
+    if (parent)
     {
-        node->AddChild(this->node);
+        parent->AddChild(this->node);
     }
 }
 
@@ -25,9 +26,7 @@ void MainCamera::Update()
 
     pitch = Clamp(pitch, 0.0f, 80.0f);
 
-//    Node *target = node->GetParent();
-
-    Quaternion dir(0.0f, Vector3::UP);  // Ќаправление машинки в горизонатальной плоскости
+    Quaternion dir(parent ? parent->GetRotation().YawAngle() : 0.0f, Vector3::UP);  // Ќаправление машинки в горизонатальной плоскости
 
     dir = dir * Quaternion(yaw, Vector3::UP);                       // ƒобавл€ем рысканье камеры
     dir = dir * Quaternion(pitch, Vector3::RIGHT);                  // ƒобавл€ем поворот камеры по вертикали
