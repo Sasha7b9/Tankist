@@ -4,5 +4,12 @@
 
 void ObjectState::Send() const
 {
-    Message::SendObjectState(*this).Send(true);
+#ifdef SERVER
+
+    if (connections.Size())
+    {
+        TConnection(connections[connections.Size() - 1]).SendMessage(true, Message::SendObjectState(*this));
+    }
+
+#endif
 }

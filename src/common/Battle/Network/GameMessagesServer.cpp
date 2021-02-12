@@ -2,12 +2,6 @@
 #include "stdafx.h"
 
 
-void Message::Message::Send(bool)
-{
-
-}
-
-
 void Message::RequestForBuildScene::Handle(const TConnection &connection)
 {
     TheVehicle = new Vehicle(TheContext);
