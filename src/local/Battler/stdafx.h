@@ -114,9 +114,9 @@
 using namespace Urho3D;
 
 #include "Battler.h"
-#include "GameInput.h"
 #include "GUI/Instructions.h"
 #include "GUI/Logo.h"
+#include "Input/GameInput.h"
 #include "Input/MouseT.h"
 #include "Network/GameServer/_ClientServer.h"
 #include "Network/GameServer/_GameMessages.h"
