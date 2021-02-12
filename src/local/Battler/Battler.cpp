@@ -72,7 +72,7 @@ void Battler::Start()
     // Subscribe to necessary events
     SubscribeToEvents();
 
-    TheMouse = new MouseT(context_);
+    TheMouse = new Mouse(context_);
 
     TheServer = new ClientServer(context_);
 

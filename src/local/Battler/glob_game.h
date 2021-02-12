@@ -12,6 +12,6 @@ extern ClientServer *TheServer;
 extern GameInput    *TheInput;
 extern GameScene    *TheScene;
 extern MainCamera   *TheMainCamera;
-extern MouseT       *TheMouse;
+extern Mouse        *TheMouse;
 extern Vehicle      *TheVehicle;
 

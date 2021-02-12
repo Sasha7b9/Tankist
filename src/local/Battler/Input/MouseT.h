@@ -1,12 +1,12 @@
 #pragma once
 
 
-class MouseT : public Object
+class Mouse : public Object
 {
-    URHO3D_OBJECT(MouseT, Object);
+    URHO3D_OBJECT(Mouse, Object);
 public:
 
-    MouseT(Context *context) : Object(context) { InitMode(MM_RELATIVE); }
+    Mouse(Context *context) : Object(context) { InitMode(MM_RELATIVE); }
 
     // Initialize mouse mode on non-web platform.
     void InitMode(MouseMode mode);

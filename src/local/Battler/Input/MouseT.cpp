@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-void MouseT::InitMode(MouseMode m)
+void Mouse::InitMode(MouseMode m)
 {
     mode = m;
 
@@ -21,13 +21,13 @@ void MouseT::InitMode(MouseMode m)
 }
 
 
-int MouseT::GetMoveX() const
+int Mouse::GetMoveX() const
 {
     return TheInput->input->GetMouseMoveX();
 }
 
 
-int MouseT::GetMoveY() const
+int Mouse::GetMoveY() const
 {
     return TheInput->input->GetMouseMoveY();
 }
