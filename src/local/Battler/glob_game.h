@@ -7,11 +7,11 @@
 */
 
 
-extern Battler      *TheBattler;
-extern ClientServer *TheServer;
-extern Keyboard     *TheInput;
-extern GameScene    *TheScene;
-extern MainCamera   *TheMainCamera;
-extern Mouse        *TheMouse;
-extern Vehicle      *TheVehicle;
+extern Battler    *TheBattler;
+extern Server     *TheServer;
+extern Keyboard   *TheInput;
+extern GameScene  *TheScene;
+extern MainCamera *TheMainCamera;
+extern Mouse      *TheMouse;
+extern Vehicle    *TheVehicle;
 

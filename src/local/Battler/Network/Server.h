@@ -5,13 +5,13 @@
 *  Класс для коммуникаций с сервером
 */
 
-class ClientServer : public Object
+class Server : public Object
 {
-    URHO3D_OBJECT(ClientServer, Object);
+    URHO3D_OBJECT(Server, Object);
 
 public:
 
-    ClientServer(Context *context);
+    Server(Context *context);
 
     void Connect(const String &address, uint16 port);
 

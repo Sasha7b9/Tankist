@@ -1,16 +1,16 @@
 #include "stdafx.h"
 
 
-ClientServer::ClientServer(Context *context) : Object(context)
+Server::Server(Context *context) : Object(context)
 {
-    SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(ClientServer, HandleMessage));
-    SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(ClientServer, HandleServerConnected));
-    SubscribeToEvent(E_SERVERDISCONNECTED, URHO3D_HANDLER(ClientServer, HandleServerDisconnected));
-    SubscribeToEvent(E_CONNECTFAILED, URHO3D_HANDLER(ClientServer, HandleConnectFailed));
+    SubscribeToEvent(E_NETWORKMESSAGE, URHO3D_HANDLER(Server, HandleMessage));
+    SubscribeToEvent(E_SERVERCONNECTED, URHO3D_HANDLER(Server, HandleServerConnected));
+    SubscribeToEvent(E_SERVERDISCONNECTED, URHO3D_HANDLER(Server, HandleServerDisconnected));
+    SubscribeToEvent(E_CONNECTFAILED, URHO3D_HANDLER(Server, HandleConnectFailed));
 }
 
 
-void ClientServer::SendTextMessage(const String &message, bool reliable)
+void Server::SendTextMessage(const String &message, bool reliable)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
@@ -24,7 +24,7 @@ void ClientServer::SendTextMessage(const String &message, bool reliable)
 }
 
 
-void ClientServer::SendMessage(int id, bool reliable)
+void Server::SendMessage(int id, bool reliable)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
@@ -35,13 +35,13 @@ void ClientServer::SendMessage(int id, bool reliable)
 }
 
 
-void ClientServer::SendMessage(int id, bool reliable, const DataNetwork &data)
+void Server::SendMessage(int id, bool reliable, const DataNetwork &data)
 {
 
 }
 
 
-//void ClientServer::SendMessage(int id, const VectorBuffer &data, bool reliable)
+//void Server::SendMessage(int id, const VectorBuffer &data, bool reliable)
 //{
 //    Connection *connection = TheNetwork->GetServerConnection();
 //
@@ -52,13 +52,13 @@ void ClientServer::SendMessage(int id, bool reliable, const DataNetwork &data)
 //}
 
 
-void ClientServer::Connect(const String &address, uint16 port)
+void Server::Connect(const String &address, uint16 port)
 {
     TheNetwork->Connect(address, port, nullptr);
 }
 
 
-void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
+void Server::HandleMessage(StringHash, VariantMap &eventData)
 {
     using namespace NetworkMessage;;
 
@@ -80,23 +80,23 @@ void ClientServer::HandleMessage(StringHash, VariantMap &eventData)
 }
 
 
-bool ClientServer::IsSceneMessage(int id)
+bool Server::IsSceneMessage(int id)
 {
     return (id >= MSG_SCENE_REQUEST_FOR_BUILD) && (id <= MSG_SCENE_LAST);
 }
 
 
-void ClientServer::HandleServerConnected(StringHash, VariantMap &)
+void Server::HandleServerConnected(StringHash, VariantMap &)
 {
     TheServer->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD, true);
 }
 
 
-void ClientServer::HandleServerDisconnected(StringHash, VariantMap &)
+void Server::HandleServerDisconnected(StringHash, VariantMap &)
 {
 }
 
 
-void ClientServer::HandleConnectFailed(StringHash, VariantMap &)
+void Server::HandleConnectFailed(StringHash, VariantMap &)
 {
 }

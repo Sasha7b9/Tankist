@@ -2,11 +2,11 @@
 #include "stdafx.h"
 
 
-Battler      *TheBattler = nullptr;
-ClientServer *TheServer = nullptr;
-Keyboard     *TheInput = nullptr;
-GameScene    *TheScene = nullptr;
-MainCamera   *TheMainCamera = nullptr;
-Mouse        *TheMouse = nullptr;
-Vehicle      *TheVehicle = nullptr;
+Battler    *TheBattler = nullptr;
+Server     *TheServer = nullptr;
+Keyboard   *TheInput = nullptr;
+GameScene  *TheScene = nullptr;
+MainCamera *TheMainCamera = nullptr;
+Mouse      *TheMouse = nullptr;
+Vehicle    *TheVehicle = nullptr;
 
