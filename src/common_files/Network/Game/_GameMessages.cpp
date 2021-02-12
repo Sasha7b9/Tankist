@@ -14,7 +14,7 @@ void Message::Handle(VariantMap &map)
     }
 #ifdef CLIENT
 
-    else if(id == MSG_SCENE_BUILD)
+    else if(id == MSG_BUILD_SCENE)
     {
         ((MessageBuildScene *)this)->Handle(msg);
     }

@@ -22,7 +22,7 @@ struct MessageBuildScene : public Message
     MessageBuildScene(
         const Vector3 &position             // позиция созданной сущности клиента
     ) :
-        Message(MSG_SCENE_BUILD)
+        Message(MSG_BUILD_SCENE)
     {
         buffer.WriteVector3(position);
     }

@@ -10,7 +10,7 @@ enum CommonMessages
 enum BuildSceneMessages
 {
     MSG_REQUEST_FOR_BUILD_SCENE = MSG_TEXTSTRING + 1000,
-    MSG_SCENE_BUILD,
+    MSG_BUILD_SCENE,
     MSG_SCENE_LAST = MSG_REQUEST_FOR_BUILD_SCENE + 999
 };
 
