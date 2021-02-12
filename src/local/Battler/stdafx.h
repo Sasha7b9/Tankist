@@ -123,6 +123,7 @@ using namespace Urho3D;
 #include "Input/Mouse.h"
 #include "Network/CServer.h"
 #include "Scene/_GameScene.h"
+#include "Scene/Objects/_ObjectState.h"
 #include "Scene/Objects/_Vehicle.h"
 #include "Scene/Cameras/_MainCamera.h"
 #include "Utils/_LogU.h"

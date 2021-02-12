@@ -21,7 +21,7 @@ const float ENGINE_POWER = 10.0f;
 const float MAX_WHEEL_ANGLE = 22.5f;
 
 
-struct VehicleLogicState
+struct VehicleLogicState : public ObjectState
 {
     float steering_ = 0.0f;                 // Current left/right steering amount (-1 to 1.)
     float vehicleSteering_ = 0.0f;          // Tmp storage for steering
