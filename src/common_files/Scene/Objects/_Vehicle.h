@@ -62,7 +62,7 @@ public :
 
 private:
     /// Creates particle emitter.
-    void CreateEmitter(Vector3 place);
+    void CreateEmitter(const Vector3 &place);
 
     /// Current left/right steering amount (-1 to 1.)
     float steering_;

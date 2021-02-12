@@ -98,7 +98,7 @@ void VehicleLogic::Init()
     vehicle->ResetWheels();
 }
 
-void VehicleLogic::CreateEmitter(Vector3 place)
+void VehicleLogic::CreateEmitter(const Vector3 &place)
 {
     auto* cache = GetSubsystem<ResourceCache>();
     Node* emitter = GetScene()->CreateChild();
@@ -151,7 +151,7 @@ void VehicleLogic::FixedUpdate(float)
         brake = true;
     }
     // When steering, wake up the wheel rigidbodies so that their orientation is updated
-    if (newSteering != 0.0f)
+    if (newSteering != 0.0f) //-V550
     {
         SetSteering(GetSteering() * 0.95f + newSteering * 0.05f);
     }
@@ -192,7 +192,7 @@ void VehicleLogic::PostUpdate(float timeStep)
     float planeAccel = Vector3(accel.x_, 0.0f, accel.z_).Length();
     for (int i = 0; i < vehicle->GetNumWheels(); i++)
     {
-        Node* emitter = particleEmitterNodeList_[(size_t)i];
+        Node* emitter = particleEmitterNodeList_[(uint)i];
         auto* particleEmitter = emitter->GetComponent<ParticleEmitter>();
         if (vehicle->WheelIsGrounded(i) && (vehicle->GetWheelSkidInfoCumulative(i) < 0.9f || vehicle->GetBrake(i) > 2.0f ||
             planeAccel > 15.0f))
