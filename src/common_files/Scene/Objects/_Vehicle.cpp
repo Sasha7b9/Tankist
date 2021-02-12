@@ -251,44 +251,6 @@ bool VehicleLogic::IsControlVehicle(Key key)
 }
 
 
-void Vehicle::Update()
-{
-#ifdef CLIENT
-
-    logic->controls_.yaw_ += (float)TheMouse->GetMoveX() * YAW_SENSITIVITY;
-    logic->controls_.pitch_ += (float)TheMouse->GetMoveY() * YAW_SENSITIVITY;
-
-    // Limit pitch
-    logic->controls_.pitch_ = Clamp(logic->controls_.pitch_, 0.0f, 80.0f);
-
-    // Check for loading / saving the scene
-    if (TheInput->GetKeyPress(KEY_F5))
-    {
-        File saveFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml", FILE_WRITE);
-        TheScene->SaveXML(saveFile);
-    }
-
-    if (TheInput->GetKeyPress(KEY_F7))
-    {
-        File loadFile(context_, TheFileSystem->GetProgramDir() + "Data/Scenes/Battler.xml", FILE_READ);
-
-        TheScene->LoadXML(loadFile);
-
-        // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
-        // Simply find the vehicle's scene node by name as there's only one of them
-        Node *vehicleNode = TheScene->GetChild("Vehicle", true);
-
-        if (vehicleNode)
-        {
-            logic = vehicleNode->GetComponent<VehicleLogic>();
-        }
-    }
-
-#else
-#endif
-}
-
-
 void VehicleLogicState::Compress(VectorBuffer &buffer) const
 {
     buffer.WriteVector3(node->GetPosition());
@@ -334,6 +296,6 @@ void VehicleLogicState::Decompress(MemoryBuffer &buffer)
     emittersCreated = buffer.ReadBool();
 
 #ifdef CLIENT
-//    TheMainCamera->ConnectTo(node);
+    TheMainCamera->ConnectTo(node);
 #endif
 }

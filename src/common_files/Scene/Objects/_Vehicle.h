@@ -131,7 +131,5 @@ public:
 
     virtual ~Vehicle() {};
 
-    void Update();
-
     WeakPtr<VehicleLogic> logic;
 };
