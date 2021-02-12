@@ -35,5 +35,8 @@ struct MessageTextString : public Message
     {
         buffer.WriteString(message);
     }
-    void Handle(MemoryBuffer &msg);
+    void Handle(MemoryBuffer &msg)
+    {
+        URHO3D_LOGINFO(msg.ReadString());
+    }
 };
