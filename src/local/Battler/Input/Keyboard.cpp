@@ -30,6 +30,8 @@ void Keyboard::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
 
     int key = eventData[P_KEY].GetInt();
 
+    MessageKeyEvent((Key)key, true).Send(true);
+
     // Toggle console with F1
     if (key == KEY_F1)
         TheConsole->Toggle();
@@ -119,6 +121,8 @@ void Keyboard::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
     using namespace KeyUp;
 
     int key = eventData[P_KEY].GetInt();
+
+    MessageKeyEvent((Key)key, false).Send(true);
 
     // Close console (if open) or exit when ESC is pressed
     if (key == KEY_ESCAPE)

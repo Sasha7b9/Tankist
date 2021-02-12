@@ -52,8 +52,8 @@ struct MessageTextString : public Message
     }
 };
 
-// Нажатие/отпускание кнопки
 
+                                                                                            // Нажатие/отпускание кнопки
 struct MessageKeyEvent : public Message
 {
     MessageKeyEvent(Key key,                    // Код клавиши

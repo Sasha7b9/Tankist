@@ -28,7 +28,7 @@ void Message::Handle(VariantMap &map)
     }
     else if (id == MSG_KEY_EVENT)
     {
-        ((MessageKeyEvent *)this)->Handle(msg);
+//        ((MessageKeyEvent *)this)->Handle(msg);
     }
 
 #endif
