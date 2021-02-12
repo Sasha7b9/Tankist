@@ -35,7 +35,8 @@ if(WIN32)
 
 #    add_compile_options(/wd4355)    # 'this': used in base member initializer list
     add_compile_options(/wd4514)    # 'xxx': unreferenced inline function has been removed
-#    add_compile_options(/wd4595)    # 'operator 'xxx'': non-member operator new or delete functions may not be declared inline
+#    add_compile_options(/wd4595)    # 'operator 'xxx'': non-member operator new or delete functions may not be declared
+                                    # inline
 #    add_compile_options(/wd4623)    # 'xxx': default constructor was implicitly defined as deleted 
     add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted
     add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
@@ -45,8 +46,11 @@ if(WIN32)
 #    add_compile_options(/wd4996)    # 
     add_compile_options(/wd5026)    # 'xxx': move constructor was implicitly defined as deleted
     add_compile_options(/wd5027)    # 'xxx': move assignment operator was implicitly defined as deleted
-    add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-#    add_compile_options(/wd5220)    # 'xxx:yyy': a non-static data member with a volatile qualified type no longer implies that compiler generated copy/move constructors and copy/move assignment operators are not trivial
+    add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch
+                                    # specified
+#    add_compile_options(/wd5220)    # 'xxx:yyy': a non-static data member with a volatile qualified type no longer
+                                    # implies that compiler generated copy/move constructors and copy/move assignment
+                                    # operators are not trivial
     add_compile_options(/wd28251)
     
 else()
@@ -61,7 +65,8 @@ endif()
 
 file(GLOB SRC                    ../../common_files/_defines.h
                                                     *.h *.cpp)
-file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/_GameServer.*
+file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/_DataNetwork.*
+                                 ../../common_files/Network/GameServer/_GameServer.*
                                  ../../common_files/Network/GameServer/_GameMessages.*
                                  ../../common_files/Network/GameServer/_HeadServer.*)
 file(GLOB SCENE                  ../../common_files/Scene/*.*)

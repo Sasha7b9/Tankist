@@ -37,9 +37,9 @@ void HeadServer::HandleMessage(StringHash, VariantMap &eventData)
     }
     else if (id == MSG_SCENE_REQUEST_FOR_BUILD)
     {
-        VectorBuffer data;
-        data.WriteVector3({ 10.0f, 10.0f, 10.0f });     // Передаём координаты вновь созданной сущности игрока
-        connection->SendMessage(MSG_SCENE_BUILD, true, true, data);
+        connection->SendMessage(MSG_SCENE_BUILD, true, true, 
+            DataNetwork({ 10.0f, 10.0f, 10.0f }                 // Передаём координаты вновь созданной сущности игрока
+            ).buffer);
     }
 }
 
