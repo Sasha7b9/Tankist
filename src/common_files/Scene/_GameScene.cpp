@@ -15,7 +15,10 @@ void GameScene::Create()
 {
     // Create scene subsystem components
     CreateComponent<Octree>();
+
+#ifdef SERVER
     CreateComponent<PhysicsWorld>();
+#endif
 
     // Create static scene content. First create a zone for ambient lighting and fog control
     Node *zoneNode = CreateChild("Zone");

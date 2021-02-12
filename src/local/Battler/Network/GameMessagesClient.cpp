@@ -21,7 +21,7 @@ void Message::BuildScene::Handle(MemoryBuffer &msg)
 
     TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
 
-    TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), TheContext);
+    TheMainCamera = new MainCamera(nullptr, TheContext);
 }
 
 
