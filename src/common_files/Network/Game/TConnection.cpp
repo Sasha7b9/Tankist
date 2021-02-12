@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-void TConnection::SendMessage(bool reliable, const Message::GameMessage &message) const
+void TConnection::SendMessage(bool reliable, const Message::Message &message) const
 {
     if (self)
     {

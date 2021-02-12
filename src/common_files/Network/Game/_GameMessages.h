@@ -5,9 +5,9 @@
 namespace Message
 {
 
-    struct GameMessage
+    struct Message
     {
-        GameMessage(int _id) : id(_id) {}
+        Message(int _id) : id(_id) {}
         void Handle(VariantMap &map);
         int id;
         VectorBuffer buffer;
@@ -20,10 +20,10 @@ namespace Message
 
 
     // По этому сообщению клиент стрОит сцену
-    struct BuildScene : public GameMessage
+    struct BuildScene : public Message
     {
         BuildScene(const Vector3 &position)             // позиция созданной сущности клиента
-            : GameMessage(MSG_BUILD_SCENE)
+            : Message(MSG_BUILD_SCENE)
         {
             buffer.WriteVector3(position);
         }
@@ -33,18 +33,18 @@ namespace Message
 
 
     // Запрос на построение сцены. Выполняется клиентом после инициализации
-    struct RequestForBuildScene : public GameMessage
+    struct RequestForBuildScene : public Message
     {
-        RequestForBuildScene() : GameMessage(MSG_REQUEST_FOR_BUILD_SCENE) {}
+        RequestForBuildScene() : Message(MSG_REQUEST_FOR_BUILD_SCENE) {}
 
         void Handle(const TConnection &connection);
     };
 
 
     // Передача текстовой строки
-    struct TextString : public GameMessage
+    struct TextString : public Message
     {
-        TextString(const String &message) : GameMessage(MSG_TEXTSTRING)
+        TextString(const String &message) : Message(MSG_TEXTSTRING)
         {
             buffer.WriteString(message);
         }
@@ -57,10 +57,10 @@ namespace Message
 
 
     // Нажатие/отпускание кнопки
-    struct KeyEvent : public GameMessage
+    struct KeyEvent : public Message
     {
         KeyEvent(Key key,                                       // Код клавиши
-            bool press) : GameMessage(MSG_KEY_EVENT)            // true - нажатие, false, отпускание
+            bool press) : Message(MSG_KEY_EVENT)            // true - нажатие, false, отпускание
         {
             buffer.WriteInt(key);
             buffer.WriteBool(press);

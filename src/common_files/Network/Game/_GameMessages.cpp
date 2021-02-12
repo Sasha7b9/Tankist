@@ -3,7 +3,7 @@
 
 namespace Message
 {
-    void GameMessage::Handle(VariantMap &map)
+    void Message::Handle(VariantMap &map)
     {
         TConnection connection((Connection *)map[NetworkMessage::P_CONNECTION].GetPtr());
 
