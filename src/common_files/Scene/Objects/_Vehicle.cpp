@@ -232,26 +232,23 @@ Vehicle::Vehicle(Context *context) : Object(context)
 
 void VehicleLogic::UpdateControls(Key key, bool press)
 {
-#ifdef CLIENT
-
     if (IsControlVehicle(key))
     {
+#ifdef CLIENT
+
         Message::KeyEvent(key, press).Send(true);
-    }
 
 #elif defined SERVER
 
-    if (IsControlVehicle(key))
-    {
         URHO3D_LOGINFOF("Key %d", key);
         if      (key == KEY_W) { controls_.Set(CTRL_FORWARD, press); }
         else if (key == KEY_S) { controls_.Set(CTRL_BACK, press); }
         else if (key == KEY_A) { controls_.Set(CTRL_LEFT, press); }
         else if (key == KEY_D) { controls_.Set(CTRL_RIGHT, press); }
         else if (key == KEY_F) { controls_.Set(CTRL_BRAKE, press); }
-    }
 
 #endif
+    }
 }
 
 
