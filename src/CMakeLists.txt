@@ -14,7 +14,7 @@ project (TankistU3D)
 
 set (TARGET_NAME TankistU3D)
 
-set(DIR $ENV{TANKIST_OUT_DIR})
+set(OUT_DIR $ENV{TANKIST_OUT_DIR})
 
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                              # Для отладочной версии
 
