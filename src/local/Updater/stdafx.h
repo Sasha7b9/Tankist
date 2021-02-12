@@ -34,7 +34,7 @@
 #include "FileSystem/_ConfigurationFile.h"
 #include "FileSystem/_FileSystem.h"
 
-#include "Network/_SocketsTCP.h"
+#include "Network/Other/_SocketsTCP.h"
 
 #include "Utils/_Log.h"
 #include "Utils/_StringUtils.h"

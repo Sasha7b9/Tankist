@@ -1,6 +1,6 @@
 #pragma once
 #include "FileSystem/_ConfigurationFile.h"
-#include "Network/_MasterServer.h"
+#include "Network/Other/_MasterServer.h"
 #include "Network/UploaderServer.h"
 
 

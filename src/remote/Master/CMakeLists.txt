@@ -36,7 +36,7 @@ file(GLOB SRC                           *.cpp
 file(GLOB CONTAINER   ../../common_files/Container/_Ptr.*)
 file(GLOB FILE_SYSTEM ../../common_files/FileSystem/_ConfigurationFile.*
                       ../../common_files/FileSystem/_FileSystem.*)
-file(GLOB NETWORK     ../../common_files/Network/_SocketsTCP.*)
+file(GLOB NETWORK     ../../common_files/Network/Other/_SocketsTCP.*)
 file(GLOB UTILS       ../../common_files/Utils/_Log.*
                       ../../common_files/Utils/_StringUtils.*
                       ../../common_files/Utils/_SystemFunctions.*

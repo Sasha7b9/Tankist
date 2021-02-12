@@ -29,8 +29,8 @@ file(GLOB SRC        ../../common_files/_defines.h
                                         *.h)
 file(GLOB FILESYSTEM ../../common_files/FileSystem/_ConfigurationFile.*
                      ../../common_files/FileSystem/_FileSystem.*)
-file(GLOB NETWORK    ../../common_files/Network/_HangarServer.*
-                     ../../common_files/Network/_SocketsTCP.*)
+file(GLOB NETWORK    ../../common_files/Network/Other/_HangarServer.*
+                     ../../common_files/Network/Other/_SocketsTCP.*)
 file(GLOB UTILS      ../../common_files/Utils/_Log.*
                      ../../common_files/Utils/_StringUtils.*
                      ../../common_files/Utils/_SystemFunctions.*

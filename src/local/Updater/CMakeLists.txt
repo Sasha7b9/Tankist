@@ -30,8 +30,8 @@ file(GLOB CONTAINER   ../../common_files/Container/_Ptr.*)
 file(GLOB FILE_SYSTEM ../../common_files/FileSystem/_ConfigurationFile.*
                       ../../common_files/FileSystem/_FileSystem.*
                       ../../common_files/FileSystem/_ListFiles.*)
-file(GLOB NETWORK     ../../common_files/Network/_MasterServer.*
-                      ../../common_files/Network/_SocketsTCP.*
+file(GLOB NETWORK     ../../common_files/Network/Other/_MasterServer.*
+                      ../../common_files/Network/Other/_SocketsTCP.*
                                          Network/UploaderServer.*)
 file(GLOB UTILS       ../../common_files/Utils/_Log.*
                       ../../common_files/Utils/_StringUtils.*

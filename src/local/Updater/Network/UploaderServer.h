@@ -1,6 +1,6 @@
 #pragma once
 #include "FileSystem/_FileSystem.h"
-#include "Network/_SocketsTCP.h"
+#include "Network/Other/_SocketsTCP.h"
 
 
 class UploaderServer

@@ -42,7 +42,7 @@
 #include "Interface/MainWindow.h"
 #include "Interface/Settings.h"
 
-#include "Network/_MasterServer.h"
+#include "Network/Other/_MasterServer.h"
 
 #include "Utils/_Log.h"
 #include "Utils/_StringUtils.h"

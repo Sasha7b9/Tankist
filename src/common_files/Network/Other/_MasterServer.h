@@ -1,5 +1,5 @@
 #pragma once
-#include "Network/_SocketsTCP.h"
+#include "Network/Other/_SocketsTCP.h"
 
 
 /*

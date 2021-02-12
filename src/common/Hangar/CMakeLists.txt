@@ -46,10 +46,10 @@ file(GLOB FILE_SYSTEM      ../../common_files/FileSystem/_ConfigurationFile.*
                            ../../common_files/FileSystem/_FileSystem.*)
 file(GLOB NETWORK                             Network/HandlersNetworkEventsHangar.cpp
                                               Network/MainServer.*
-                           ../../common_files/Network/_MessagesHangar.*
-                           ../../common_files/Network/_MessagesServer.*
-                           ../../common_files/Network/_MasterServer.*
-                           ../../common_files/Network/_SocketsTCP.*)
+                           ../../common_files/Network/Other/_MessagesHangar.*
+                           ../../common_files/Network/Other/_MessagesServer.*
+                           ../../common_files/Network/Other/_MasterServer.*
+                           ../../common_files/Network/Other/_SocketsTCP.*)
 file(GLOB UTILS            ../../common_files/Utils/_Log.*
                            ../../common_files/Utils/_StringUtils.*
                            ../../common_files/Utils/_SystemFunctions.*
