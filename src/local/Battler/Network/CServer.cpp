@@ -24,11 +24,9 @@ void CServer::Connect(const String &address, uint16 port)
 
 void CServer::HandleMessage(StringHash, VariantMap &eventData)
 {
-    using namespace NetworkMessage;;
-
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    MemoryBuffer msg(eventData[P_DATA].GetBuffer());
+    MemoryBuffer msg(eventData[NetworkMessage::P_DATA].GetBuffer());
 
     if (id == MSG_SCENE_BUILD)
     {
@@ -39,7 +37,6 @@ void CServer::HandleMessage(StringHash, VariantMap &eventData)
         TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
 
         TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
-        //TheMainCamera = new MainCamera(nullptr, context_);
     }
 }
 
