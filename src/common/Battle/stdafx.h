@@ -43,7 +43,7 @@ using namespace Urho3D;
 #include "defines.h"
 
 #include "Battle.h"
-#include "Network/Server.h"
+#include "Network/SServer.h"
 #include "Network/Game/_DataNetwork.h"
 #include "Network/Game/_TConnection.h"
 #include "Network/Game/_GameMessages.h"

@@ -120,7 +120,7 @@ using namespace Urho3D;
 #include "Input/Keyboard.h"
 #include "Input/Mouse.h"
 #include "Network/Game/_DataNetwork.h"
-#include "Network/Server.h"
+#include "Network/CServer.h"
 #include "Network/Game/_GameMessages.h"
 #include "Scene/_GameScene.h"
 #include "Scene/Objects/_Vehicle.h"
