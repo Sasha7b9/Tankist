@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-void GMessage::BuildScene::Handle(MemoryBuffer &msg)
+void Message::BuildScene::Handle(MemoryBuffer &msg)
 {
     TheScene->Create();
 

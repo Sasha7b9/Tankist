@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-namespace GMessage
+namespace Message
 {
     void GameMessage::Handle(VariantMap &map)
     {

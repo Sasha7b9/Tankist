@@ -2,7 +2,7 @@
 #include "_GameMessagesID.h"
 
 
-namespace GMessage
+namespace Message
 {
 
     struct GameMessage

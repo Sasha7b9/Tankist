@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-void GMessage::RequestForBuildScene::Handle(const TConnection &connection)
+void Message::RequestForBuildScene::Handle(const TConnection &connection)
 {
-    connection.SendMessage(true, GMessage::BuildScene({ 10.0f, 10.0f, 10.0f }));
+    connection.SendMessage(true, Message::BuildScene({ 10.0f, 10.0f, 10.0f }));
 }
