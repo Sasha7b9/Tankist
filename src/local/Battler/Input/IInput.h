@@ -7,7 +7,7 @@ class IInput : public Object
 
 public:
 
-    IInput(Context *context);
+    IInput(Context *context) : Object(context) { input = GetSubsystem<Input>(); }
 
 protected:
 
