@@ -7,15 +7,15 @@ void Mouse::InitMode(MouseMode m)
 
     if (mode == MM_FREE)
     {
-        TheInput->input->SetMouseVisible(true);
+        input->SetMouseVisible(true);
     }
 
     if (mode != MM_ABSOLUTE)
     {
-        TheInput->input->SetMouseMode(mode);
+        input->SetMouseMode(mode);
         if (TheConsole && TheConsole->IsVisible())
         {
-            TheInput->input->SetMouseMode(MM_ABSOLUTE, true);
+            input->SetMouseMode(MM_ABSOLUTE, true);
         }
     }
 }
@@ -23,11 +23,11 @@ void Mouse::InitMode(MouseMode m)
 
 int Mouse::GetMoveX() const
 {
-    return TheInput->input->GetMouseMoveX();
+    return input->GetMouseMoveX();
 }
 
 
 int Mouse::GetMoveY() const
 {
-    return TheInput->input->GetMouseMoveY();
+    return input->GetMouseMoveY();
 }

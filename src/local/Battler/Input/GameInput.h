@@ -3,8 +3,6 @@
 
 class GameInput : public Object
 {
-friend class Mouse;
- 
     URHO3D_OBJECT(GameInput, Object);
 
 public:
