@@ -8,4 +8,5 @@ struct ObjectState
     void Send();
 
     virtual void Compress(VectorBuffer &buffer) const = 0;
+    virtual void Decompress(VectorBuffer &buffer) = 0;
 };

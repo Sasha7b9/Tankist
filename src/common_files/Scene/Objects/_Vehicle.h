@@ -39,6 +39,7 @@ struct VehicleLogicState : public ObjectState
     bool emittersCreated = false;           // Do not recreate emitters if they are already created.
 
     virtual void Compress(VectorBuffer &buffer) const override;
+    virtual void Decompress(VectorBuffer &buffer) override;
 };
 
 

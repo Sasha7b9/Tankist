@@ -305,3 +305,23 @@ void VehicleLogicState::Compress(VectorBuffer &buffer) const
 
     buffer.WriteBool(emittersCreated);
 }
+
+
+void VehicleLogicState::Decompress(VectorBuffer &buffer)
+{
+    steering_ = buffer.ReadFloat();
+    vehicleSteering_ = buffer.ReadFloat();
+    engineForce_ = buffer.ReadFloat();
+    brakingForce_ = buffer.ReadFloat();
+    maxEngineForce_ = buffer.ReadFloat();
+    wheelRadius_ = buffer.ReadFloat();
+    suspensionRestLength_ = buffer.ReadFloat();
+    wheelWidth_ = buffer.ReadFloat();
+    suspensionStiffness_ = buffer.ReadFloat();
+    suspensionDamping_ = buffer.ReadFloat();
+    suspensionCompression_ = buffer.ReadFloat();
+    wheelFriction_ = buffer.ReadFloat();
+    rollInfluence_ = buffer.ReadFloat();
+
+    emittersCreated = buffer.ReadBool();
+}
