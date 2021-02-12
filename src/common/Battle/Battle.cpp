@@ -77,15 +77,3 @@ void Battle::SubscribeToEvents()
     // Subscribe to PostUpdate event for updating the camera position after physics simulation
     SubscribeToEvent(E_POSTUPDATE, URHO3D_HANDLER(Battle, HandlePostUpdate));
 }
-
-
-void Battle::HandleUpdate(StringHash , VariantMap &)
-{
-    LOG_FUNC_ENTER();
-}
-
-
-void Battle::HandlePostUpdate(StringHash , VariantMap &)
-{
-    LOG_FUNC_ENTER();
-}
