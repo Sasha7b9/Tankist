@@ -4,5 +4,8 @@
 
 struct ObjectState
 {
+    virtual ~ObjectState() {};
     void Send();
+
+    virtual void Compress(VectorBuffer &buffer) const = 0;
 };

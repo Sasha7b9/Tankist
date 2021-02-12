@@ -38,6 +38,7 @@ struct VehicleLogicState : public ObjectState
     float rollInfluence_ = 0.12f;           // Wheel roll influence (how much car will turn sidewise)
     bool emittersCreated = false;           // Do not recreate emitters if they are already created.
 
+    virtual void Compress(VectorBuffer &buffer) const override;
 };
 
 

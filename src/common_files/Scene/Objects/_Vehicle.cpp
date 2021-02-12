@@ -285,3 +285,9 @@ void Vehicle::Update()
 #else
 #endif
 }
+
+
+void VehicleLogicState::Compress(VectorBuffer &buffer) const
+{
+
+}
