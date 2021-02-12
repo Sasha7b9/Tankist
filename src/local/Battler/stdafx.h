@@ -119,7 +119,6 @@ using namespace Urho3D;
 #include "Input/IInput.h"
 #include "Input/Keyboard.h"
 #include "Input/Mouse.h"
-#include "Network/Game/_DataNetwork.h"
 #include "Network/Game/_GameMessages.h"
 #include "Network/Game/_TConnection.h"
 #include "Network/CServer.h"
