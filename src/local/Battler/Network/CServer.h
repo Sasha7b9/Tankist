@@ -19,7 +19,6 @@ public:
 
     void SendTextMessage(const String &message, bool reliable);
     void SendMessage(int id, bool reliable);
-    //void SendMessage(int id, const VectorBuffer &data, bool reliable);
 
 private:
 

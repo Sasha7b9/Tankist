@@ -37,19 +37,8 @@ void CServer::SendMessage(int id, bool reliable)
 
 void CServer::SendMessage(int id, bool reliable, const DataNetwork &data)
 {
-
+    TConnection(TheNetwork->GetServerConnection()).SendMessage(id, reliable, data);
 }
-
-
-//void CServer::SendMessage(int id, const VectorBuffer &data, bool reliable)
-//{
-//    Connection *connection = TheNetwork->GetServerConnection();
-//
-//    if (connection)
-//    {
-//        connection->SendMessage(id, reliable, reliable, data);
-//    }
-//}
 
 
 void CServer::Connect(const String &address, uint16 port)
