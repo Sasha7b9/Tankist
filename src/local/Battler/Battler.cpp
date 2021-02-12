@@ -40,6 +40,7 @@ void Battler::Setup()
 
 void Battler::Start()
 {
+    TheContext = context_;
     TheCache = GetSubsystem<ResourceCache>();
     TheUI = GetSubsystem<UI>();
     TheGraphics = GetSubsystem<Graphics>();

@@ -12,12 +12,22 @@ void Message::Handle(VariantMap &map)
         ((MessageTextString *)this)->Handle(msg);
 
     }
-    else if (id == MSG_REQUEST_FOR_BUILD_SCENE)
+    else
     {
-        ((MessageRequestForBuildScene *)this)->Handle(connection);
+#ifdef CLIENT
+
+        if (id == MSG_SCENE_BUILD)
+        {
+            ((MessageBuildScene *)this)->Handle(msg);
+        }
+
+#elif defined SERVER
+
+        if (id == MSG_REQUEST_FOR_BUILD_SCENE)
+        {
+            ((MessageRequestForBuildScene *)this)->Handle(connection);
+        }
+
+#endif
     }
-    //else if (id == MSG_SCENE_BUILD)
-    //{
-    //    ((MessageBuildScene *)this)->Handle(connection, msg);
-    //}
 }

@@ -22,10 +22,7 @@ struct MessageBuildScene : public Message
         buffer.WriteVector3(position);
     }
 
-    //    void Handle(const Connection &connection, MemoryBuffer &)
-    //    {
-    //        connection.SendMessage(true, MessageBuildScene)
-    //    }
+    void Handle(MemoryBuffer &msg);
 };
 
 
@@ -34,10 +31,7 @@ struct MessageRequestForBuildScene : public Message
 {
     MessageRequestForBuildScene() : Message(MSG_REQUEST_FOR_BUILD_SCENE) {}
 
-    void Handle(const TConnection &connection)
-    {
-        connection.SendMessage(true, MessageBuildScene({ 10.0f, 10.0f, 10.0f }));
-    }
+    void Handle(const TConnection &connection);
 };
 
 

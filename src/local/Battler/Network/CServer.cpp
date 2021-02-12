@@ -25,18 +25,7 @@ void CServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    MemoryBuffer msg(eventData[NetworkMessage::P_DATA].GetBuffer());
-
-    if (id == MSG_SCENE_BUILD)
-    {
-        TheScene->Create();
-
-        TheVehicle = new Vehicle(context_);
-
-        TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
-
-        TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), context_);
-    }
+    Message(id).Handle(eventData);
 }
 
 
