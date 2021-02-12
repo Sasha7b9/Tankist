@@ -97,14 +97,14 @@ private:
     float &engineForce_ = state.engineForce_;
     float &brakingForce_ = state.brakingForce_;
     float &maxEngineForce_ = state.maxEngineForce_;
-    float &wheelRadius_ = wheelRadius_;
-    float &suspensionRestLength_ = suspensionRestLength_;
-    float &wheelWidth_ = wheelWidth_;
-    float &suspensionStiffness_ = suspensionStiffness_;
-    float &suspensionDamping_ = suspensionDamping_;
-    float &suspensionCompression_ = suspensionCompression_;
-    float &wheelFriction_ = wheelFriction_;
-    float &rollInfluence_ = rollInfluence_;
+    float &wheelRadius_ = state.wheelRadius_;
+    float &suspensionRestLength_ = state.suspensionRestLength_;
+    float &wheelWidth_ = state.wheelWidth_;
+    float &suspensionStiffness_ = state.suspensionStiffness_;
+    float &suspensionDamping_ = state.suspensionDamping_;
+    float &suspensionCompression_ = state.suspensionCompression_;
+    float &wheelFriction_ = state.wheelFriction_;
+    float &rollInfluence_ = state.rollInfluence_;
 
     bool &emittersCreated = state.emittersCreated;
     
