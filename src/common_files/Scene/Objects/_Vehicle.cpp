@@ -240,8 +240,8 @@ void Vehicle::Update()
     logic->controls_.Set(CTRL_RIGHT, TheInput->GetKeyDown(KEY_D));
     logic->controls_.Set(CTRL_BRAKE, TheInput->GetKeyDown(KEY_F));
 
-    logic->controls_.yaw_ += (float)TheInput->GetMouseMoveX() * YAW_SENSITIVITY;
-    logic->controls_.pitch_ += (float)TheInput->GetMouseMoveY() * YAW_SENSITIVITY;
+    logic->controls_.yaw_ += (float)TheMouse->GetMoveX() * YAW_SENSITIVITY;
+    logic->controls_.pitch_ += (float)TheMouse->GetMoveY() * YAW_SENSITIVITY;
 
     // Limit pitch
     logic->controls_.pitch_ = Clamp(logic->controls_.pitch_, 0.0f, 80.0f);

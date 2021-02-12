@@ -43,7 +43,7 @@ void Battler::Start()
     TheCache = GetSubsystem<ResourceCache>();
     TheUI = GetSubsystem<UI>();
     TheGraphics = GetSubsystem<Graphics>();
-    TheInput = GetSubsystem<Input>();
+    TheInput = new GameInput(context_);
     TheRenderer = GetSubsystem<Renderer>();
     TheConsole = GetSubsystem<Console>();
     TheFileSystem = GetSubsystem<FileSystem>();
@@ -80,7 +80,7 @@ void Battler::Start()
 
     TheBattler = this;
 
-    TheGameInput = new GameInput(context_);
+    TheInput = new GameInput(context_);
 }
 
 
@@ -90,7 +90,7 @@ void Battler::Stop()
 
 //    engine_->DumpMemory();
 
-    delete TheGameInput;
+    delete TheInput;
     delete TheServer;
     delete TheMouse;
     delete TheVehicle;

@@ -19,7 +19,6 @@ extern Console          *TheConsole;        // Консоль
 extern DebugHud         *TheDebugHud;       // Отладочный интерфейс
 extern DebugRenderer    *TheDebugRenderer;  // Подсистема отладочного рендера
 extern Graphics         *TheGraphics;       // Указатель на графическую подсистему
-extern Input            *TheInput;          // Указатель на подсистему ввода
 extern Localization     *TheLocale;         // Подсистема локализации
 extern PhysicsWorld     *ThePhysicsWorld;   // Подсистема физической симуляции
 extern Renderer         *TheRenderer;       // Указатель на рендер

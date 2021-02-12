@@ -34,8 +34,8 @@ void MainCamera::ConnectTo(Node *n)
 
 void MainCamera::Update()
 {
-    yaw += (float)TheInput->GetMouseMoveX() * YAW_SENSITIVITY;
-    pitch += (float)TheInput->GetMouseMoveY() * YAW_SENSITIVITY;
+    yaw += (float)TheMouse->GetMoveX() * YAW_SENSITIVITY;
+    pitch += (float)TheMouse->GetMoveY() * YAW_SENSITIVITY;
 
     pitch = Clamp(pitch, 0.0f, 80.0f);
 

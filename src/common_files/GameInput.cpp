@@ -3,7 +3,14 @@
 
 GameInput::GameInput(Context *context) : Object(context)
 {
+    input = GetSubsystem<Input>();
+
     SubscribeToEvents();
+}
+
+
+GameInput::~GameInput()
+{
 }
 
 
@@ -117,17 +124,33 @@ void GameInput::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
     if (key == KEY_ESCAPE)
     {
         if (TheConsole->IsVisible())
+        {
             TheConsole->SetVisible(false);
+        }
         else
         {
             if (GetPlatform() == "Web")
             {
-                TheInput->SetMouseVisible(true);
+                TheInput->input->SetMouseVisible(true);
                 if (TheMouse->mode != MM_ABSOLUTE)
-                    TheInput->SetMouseMode(MM_FREE);
+                {
+                    TheInput->input->SetMouseMode(MM_FREE);
+                }
             }
             else
                 TheBattler->Exit();
         }
     }
+}
+
+
+bool GameInput::GetKeyDown(Key key) const
+{
+    return input->GetKeyDown(key);
+}
+
+
+bool GameInput::GetKeyPress(Key key) const
+{
+    return input->GetKeyPress(key);
 }

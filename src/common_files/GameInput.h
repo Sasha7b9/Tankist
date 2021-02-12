@@ -3,12 +3,18 @@
 
 class GameInput : public Object
 {
-
+friend class MouseT;
+ 
     URHO3D_OBJECT(GameInput, Object);
 
 public:
 
     GameInput(Context *context);
+
+    virtual ~GameInput();
+
+    bool GetKeyDown(Key key) const;
+    bool GetKeyPress(Key key) const;
 
 private:
 
@@ -19,4 +25,6 @@ private:
 
     // Handle key up event to process key controls common to all samples.
     void HandleKeyUp(StringHash eventType, VariantMap &eventData);
+
+    Input *input = nullptr;          // ”казатель на подсистему ввода
 };

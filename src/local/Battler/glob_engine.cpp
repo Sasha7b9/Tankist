@@ -14,7 +14,6 @@ Console          *TheConsole = nullptr;
 DebugHud         *TheDebugHud = nullptr;
 DebugRenderer    *TheDebugRenderer = nullptr;
 Graphics         *TheGraphics = nullptr;
-Input            *TheInput = nullptr;
 Localization     *TheLocale = nullptr;
 PhysicsWorld     *ThePhysicsWorld = nullptr;
 Renderer         *TheRenderer = nullptr;
