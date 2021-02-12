@@ -26,6 +26,10 @@ void Message::Handle(VariantMap &map)
     {
         ((MessageRequestForBuildScene *)this)->Handle(connection);
     }
+    else if (id == MSG_KEY_EVENT)
+    {
+        ((MessageKeyEvent *)this)->Handle(msg);
+    }
 
 #endif
 }

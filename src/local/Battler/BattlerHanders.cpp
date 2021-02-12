@@ -3,7 +3,7 @@
 
 void Battler::HandleUpdate(StringHash, VariantMap &)
 {
-    MessageTextString("Update").Send(true);
+//    MessageTextString("Update").Send(true);
 
     if (TheVehicle)
     {
