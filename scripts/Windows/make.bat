@@ -22,7 +22,6 @@ set current_dir=%CD%
 cd ../..
 rmdir generated\%1\TankistU3D /S /Q
 
-set CMAKE_PROJECT_DIR="generated/%1/TankistU3D"
 set TANKIST_OUT_DIR=%PROJECT_TANKIST_DIR%\out\%1
 
 cd src
