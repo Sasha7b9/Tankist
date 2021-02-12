@@ -23,37 +23,19 @@ endif()
 
     set(OUT_DIR $ENV{PROJECT_TANKIST_DIR}\\out\\${SUB_DIR})
 
-if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                              # Для отладочной версии
-
-    if(WIN32)
-        link_directories($ENV{PROJECT_TANKIST_DIR}/generated/debug/ThirdParty/sockpp_/sockpp/Debug
-                         ../../Urho3D/generated/debug/lib
-                         ThirdParty/bass
-                         ThirdParty/opus/generated/Release)
-    else()
-        link_directories(../generated/debug/ThirdParty/bin
-                         ../../Urho3D/generated/debug/lib
-                         ThirdParty/opus/generated
-                         ../../Urho3D/generated/debug/Source/ThirdParty/Bullet)
-        add_definitions(-g -Og)
-    endif()
-
-elseif(${CMAKE_BUILD_TYPE} STREQUAL Release)                                        # Для релизной версии
-
-    if(WIN32)
-        link_directories($ENV{PROJECT_TANKIST_DIR}/generated/release/ThirdParty/sockpp_/sockpp/Release
-                         ../../Urho3D/generated/release/lib
-                         ThirdParty/bass
-                         ThirdParty/opus/generated/Release)
-    else()
-        link_directories(../generated/release/ThirdParty/bin
-                         ../../Urho3D/generated/release/lib
-                         ThirdParty/opus/generated
-                         ThirdParty/bass
-                         ../../Urho3D/generated/release/Source/ThirdParty/Bullet)
-    endif()
-
+if(WIN32)
+    link_directories($ENV{PROJECT_TANKIST_DIR}/generated/${SUB_DIR}/ThirdParty/sockpp_/sockpp/${CMAKE_BUILD_TYPE}
+                     ../../Urho3D/generated/${SUB_DIR}/lib
+                     ThirdParty/bass
+                     ThirdParty/opus/generated/Release)
+else()
+    link_directories(../generated/${SUB_DIR}/ThirdParty/bin
+                     ../../Urho3D/generated/${SUB_DIR}/lib
+                     ThirdParty/opus/generated
+                     ../../Urho3D/generated/${SUB_DIR}/Source/ThirdParty/Bullet)
+    add_definitions(-g -Og)
 endif()
+
 
 if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall /std:c++17")
