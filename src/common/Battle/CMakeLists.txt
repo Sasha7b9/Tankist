@@ -1,26 +1,14 @@
 project (Battle)
 
-if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
 include_directories(.
                     ../../common_files
                     ../../ThirdParty/bass
                     ../../ThirdParty/opus/include
-                    ../../../../Urho3D/generated/debug/include
-                    ../../../../Urho3D/generated/debug/include/Urho3D/ThirdParty
+                    ../../../../Urho3D/generated/${SUB_DIR}/include
+                    ../../../../Urho3D/generated/${SUB_DIR}/include/Urho3D/ThirdParty
                     ../../../../Urho3D/Source
                     ../../../../Urho3D/Source/ThirdParty
                     ../../../../Urho3D/Source/ThirdParty/Bullet/src)
-else()
-include_directories(.
-                    ../../common_files
-                    ../../ThirdParty/bass
-                    ../../ThirdParty/opus/include
-                    ../../../../Urho3D/generated/release/include
-                    ../../../../Urho3D/generated/release/include/Urho3D/ThirdParty
-                    ../../../../Urho3D/Source
-                    ../../../../Urho3D/Source/ThirdParty
-                    ../../../../Urho3D/Source/ThirdParty/Bullet/src)
-endif()
 
 
 add_definitions(-DURHO3D_LOGGING -DSERVER)

@@ -10,10 +10,11 @@ CServer::CServer(Context *context) : Object(context)
 }
 
 
-void CServer::SendMessage(bool reliable, const Message &message)
+void Message::Send(bool reliable)
 {
-    TConnection(TheNetwork->GetServerConnection()).SendMessage(message.id, reliable, message.buffer);
+    TConnection(TheNetwork->GetServerConnection()).SendMessage(id, reliable, buffer);
 }
+
 
 void CServer::Connect(const String &address, uint16 port)
 {
@@ -37,7 +38,7 @@ bool CServer::IsSceneMessage(int id)
 
 void CServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    TheServer->SendMessage(true, MessageRequestForBuildScene());
+    MessageRequestForBuildScene().Send(true);
 }
 
 
