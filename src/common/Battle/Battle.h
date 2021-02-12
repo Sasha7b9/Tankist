@@ -1,3 +1,4 @@
+/* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #pragma once
 
 
@@ -18,4 +19,12 @@ public:
     void Exit();
 
 private:
+
+    void SubscribeToEvents();
+
+    // Handle application update. Set controls to vehicle.
+    void HandleUpdate(StringHash eventType, VariantMap &eventData);
+
+    // Handle application post-update. Update camera position after vehicle has moved.
+    void HandlePostUpdate(StringHash eventType, VariantMap &eventData);
 };

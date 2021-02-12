@@ -3,6 +3,7 @@
 #ifdef WIN32
 #pragma warning(push, 0)
 #endif
+#include <Urho3D/Core/CoreEvents.h>
 #include <Urho3D/Engine/Application.h>
 #include <Urho3D/Engine/EngineDefs.h>
 #include <Urho3D/Graphics/Camera.h>

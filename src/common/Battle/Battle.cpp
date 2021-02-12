@@ -1,3 +1,4 @@
+/* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #include "stdafx.h"
 
 
@@ -43,6 +44,8 @@ void Battle::Start()
     TheScene = new GameScene(context_);
 
     TheScene->Create();
+
+    SubscribeToEvents();
 }
 
 
@@ -63,4 +66,26 @@ void Battle::Stop()
 void Battle::Exit()
 {
     engine_->Exit();
+}
+
+
+void Battle::SubscribeToEvents()
+{
+    // Subscribe to Update event for setting the vehicle controls before physics simulation
+    SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(Battle, HandleUpdate));
+
+    // Subscribe to PostUpdate event for updating the camera position after physics simulation
+    SubscribeToEvent(E_POSTUPDATE, URHO3D_HANDLER(Battle, HandlePostUpdate));
+}
+
+
+void Battle::HandleUpdate(StringHash , VariantMap &)
+{
+    LOG_FUNC_ENTER();
+}
+
+
+void Battle::HandlePostUpdate(StringHash , VariantMap &)
+{
+    LOG_FUNC_ENTER();
 }

@@ -1,3 +1,4 @@
+/* (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by */
 #include "stdafx.h"
 
 
@@ -109,17 +110,11 @@ void Battler::SetWindowTitleAndIcon()
 
 void Battler::SubscribeToEvents()
 {
-    // Subscribe scene update event
-    SubscribeToEvent(E_SCENEUPDATE, URHO3D_HANDLER(Battler, HandleSceneUpdate));
-
     // Subscribe to Update event for setting the vehicle controls before physics simulation
     SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(Battler, HandleUpdate));
 
     // Subscribe to PostUpdate event for updating the camera position after physics simulation
     SubscribeToEvent(E_POSTUPDATE, URHO3D_HANDLER(Battler, HandlePostUpdate));
-
-    // Unsubscribe the SceneUpdate event from base class as the camera node is being controlled in HandlePostUpdate() in this sample
-    UnsubscribeFromEvent(E_SCENEUPDATE);
 }
 
 
