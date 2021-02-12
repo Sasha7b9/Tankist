@@ -14,8 +14,7 @@ void VehicleLogic::RegisterObject(Context* context)
 }
 
 VehicleLogic::VehicleLogic(Context* context)
-    : LogicComponent(context),
-    state(GetNode())
+    : LogicComponent(context)
 {
     SetUpdateEventMask(USE_FIXEDUPDATE | USE_POSTUPDATE);
 }
@@ -24,6 +23,8 @@ VehicleLogic::~VehicleLogic() = default;
 
 void VehicleLogic::Init()
 {
+    state.node = GetNode();
+
     auto* vehicle = node_->CreateComponent<RaycastVehicle>();
     vehicle->Init();
     auto* hullBody = node_->GetComponent<RigidBody>();
