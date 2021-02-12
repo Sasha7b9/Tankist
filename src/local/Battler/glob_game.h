@@ -8,7 +8,7 @@
 
 
 extern Battler    *TheBattler;
-extern Server     *TheServer;
+extern CServer    *TheServer;
 extern Keyboard   *TheInput;
 extern GameScene  *TheScene;
 extern MainCamera *TheMainCamera;

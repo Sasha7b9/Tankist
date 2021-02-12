@@ -3,7 +3,7 @@
 
 
 Battler    *TheBattler = nullptr;
-Server     *TheServer = nullptr;
+CServer    *TheServer = nullptr;
 Keyboard   *TheInput = nullptr;
 GameScene  *TheScene = nullptr;
 MainCamera *TheMainCamera = nullptr;
