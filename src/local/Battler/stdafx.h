@@ -117,7 +117,7 @@ using namespace Urho3D;
 #include "GameInput.h"
 #include "GUI/Instructions.h"
 #include "GUI/Logo.h"
-#include "GUI/MouseT.h"
+#include "Input/MouseT.h"
 #include "Network/GameServer/_ClientServer.h"
 #include "Network/GameServer/_GameMessages.h"
 #include "Scene/_GameScene.h"
