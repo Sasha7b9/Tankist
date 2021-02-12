@@ -10,12 +10,6 @@ CServer::CServer(Context *context) : Object(context)
 }
 
 
-void CServer::SendMessage(int id, bool reliable, const DataNetwork &data)
-{
-    TConnection(TheNetwork->GetServerConnection()).SendMessage(id, reliable, data);
-}
-
-
 void CServer::SendMessage(bool reliable, const Message &message)
 {
     TConnection(TheNetwork->GetServerConnection()).SendMessage(message.id, reliable, message.buffer);
@@ -54,7 +48,7 @@ bool CServer::IsSceneMessage(int id)
 
 void CServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    TheServer->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD, true, DataNetwork());
+    TheServer->SendMessage(true, MessageRequestForBuildScene());
 }
 
 

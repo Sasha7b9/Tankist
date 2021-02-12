@@ -39,6 +39,12 @@ enum GameMessages
 };
 
 
+struct MessageRequestForBuildScene : public Message
+{
+    MessageRequestForBuildScene() : Message(MSG_SCENE_REQUEST_FOR_BUILD) {}
+};
+
+
 struct MessageTextString : public Message
 {
     MessageTextString(const String &message) : Message(MSG_TEXTSTRING)

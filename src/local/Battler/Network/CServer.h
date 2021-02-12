@@ -15,8 +15,6 @@ public:
 
     void Connect(const String &address, uint16 port);
 
-    void SendMessage(int id, bool reliable, const DataNetwork &data);
-
     void SendMessage(bool reliable, const Message &message);
 
 private:
