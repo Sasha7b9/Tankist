@@ -1,7 +1,10 @@
 #pragma once
 
 
-struct Message;
+namespace GMessage
+{
+    struct GameMessage;
+}
 
 
 class TConnection
@@ -9,7 +12,7 @@ class TConnection
 public:
     TConnection(Connection *connection) : self(connection) {}
 
-    void SendMessage(bool reliable, const Message &message) const;
+    void SendMessage(bool reliable, const GMessage::GameMessage &message) const;
 
     Connection *self = nullptr;
 };

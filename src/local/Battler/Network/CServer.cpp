@@ -10,7 +10,7 @@ CServer::CServer(Context *context) : Object(context)
 }
 
 
-void Message::Send(bool reliable)
+void GMessage::GameMessage::Send(bool reliable)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
@@ -31,13 +31,13 @@ void CServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    Message(id).Handle(eventData);
+    GMessage::GameMessage(id).Handle(eventData);
 }
 
 
 void CServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    MessageRequestForBuildScene().Send(true);
+    GMessage::RequestForBuildScene().Send(true);
 }
 
 

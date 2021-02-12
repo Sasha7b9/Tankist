@@ -22,7 +22,7 @@ void SServer::HandleMessage(StringHash, VariantMap &eventData)
 {
     int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    Message(id).Handle(eventData);
+    GMessage::GameMessage(id).Handle(eventData);
 }
 
 
