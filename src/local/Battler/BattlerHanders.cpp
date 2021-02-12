@@ -3,7 +3,7 @@
 
 void Battler::HandleUpdate(StringHash, VariantMap &)
 {
-//    TheServer->SendMessage(MSG_TEXTSTRING, true, DataNetwork("Update"));
+    TheServer->SendMessage(MSG_TEXTSTRING, true, { "Update" });
 
     if (TheVehicle)
     {
