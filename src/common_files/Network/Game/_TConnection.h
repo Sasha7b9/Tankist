@@ -1,10 +1,10 @@
 #pragma once
 
 
-class HeadConnection
+class TConnection
 {
 public:
-    HeadConnection(Connection *connection) : self(connection) {}
+    TConnection(Connection *connection) : self(connection) {}
     void SendMessage(int id, bool reliable, const DataNetwork &data)
     {
         self->SendMessage(id, reliable, reliable, data.buffer);

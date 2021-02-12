@@ -24,7 +24,7 @@ void SServer::HandleMessage(StringHash, VariantMap &eventData)
 
     int id = eventData[P_MESSAGEID].GetInt();
 
-    HeadConnection connection((Connection *)eventData[P_CONNECTION].GetPtr());
+    TConnection connection((Connection *)eventData[P_CONNECTION].GetPtr());
 
     if (id == MSG_TEXTSTRING)
     {
