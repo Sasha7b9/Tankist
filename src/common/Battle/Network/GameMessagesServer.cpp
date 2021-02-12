@@ -9,9 +9,13 @@ void Message::Message::Send(bool)
 
 void Message::RequestForBuildScene::Handle(const TConnection &connection)
 {
+    TheVehicle = new Vehicle(TheContext);
 
+    Vector3 position(10.0f, 10.0f, 10.0f);
 
-    connection.SendMessage(true, BuildScene({ 10.0f, 10.0f, 10.0f }));
+    TheVehicle->logic->GetNode()->SetPosition(position);
+
+    connection.SendMessage(true, BuildScene(position));
 }
 
 

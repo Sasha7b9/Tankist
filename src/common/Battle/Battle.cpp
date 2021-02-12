@@ -32,6 +32,7 @@ void Battle::Setup()
 
 void Battle::Start()
 {
+    TheContext = context_;
     TheCache = GetSubsystem<ResourceCache>();
     TheFileSystem = GetSubsystem<FileSystem>();
     TheNetwork = GetSubsystem<Network>();

@@ -30,7 +30,7 @@ namespace Message
         }
         else if (id == MSG_KEY_EVENT)
         {
-            //        ((KeyEvent *)this)->Handle(msg);
+            ((KeyEvent *)this)->Handle(msg);
         }
 
 #endif
