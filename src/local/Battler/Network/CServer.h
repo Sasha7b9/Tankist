@@ -18,7 +18,6 @@ public:
     void SendMessage(int id, bool reliable, const DataNetwork &data);
 
     void SendTextMessage(const String &message, bool reliable);
-    void SendMessage(int id, bool reliable);
 
 private:
 

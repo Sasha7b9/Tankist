@@ -24,17 +24,6 @@ void CServer::SendTextMessage(const String &message, bool reliable)
 }
 
 
-void CServer::SendMessage(int id, bool reliable)
-{
-    Connection *connection = TheNetwork->GetServerConnection();
-
-    if (connection)
-    {
-        connection->SendMessage(id, reliable, reliable, nullptr, 0);
-    }
-}
-
-
 void CServer::SendMessage(int id, bool reliable, const DataNetwork &data)
 {
     TConnection(TheNetwork->GetServerConnection()).SendMessage(id, reliable, data);
@@ -77,7 +66,7 @@ bool CServer::IsSceneMessage(int id)
 
 void CServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    TheServer->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD, true);
+    TheServer->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD, true, DataNetwork());
 }
 
 
