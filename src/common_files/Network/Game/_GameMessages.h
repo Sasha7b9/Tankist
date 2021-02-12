@@ -5,16 +5,11 @@
 struct Message
 {
     Message(int _id) : id(_id) {}
-    void Handle(MemoryBuffer &msg);
+    void Handle(VariantMap &map);
     int id;
     VectorBuffer buffer;
 };
 
-                                                 // Запрос на построение сцены. Выполняется клиентом после инициализации
-struct MessageRequestForBuildScene : public Message
-{
-    MessageRequestForBuildScene() : Message(MSG_SCENE_REQUEST_FOR_BUILD) {}
-};
 
                                                                                // По этому сообщению клиент стрОит сцену
 struct MessageBuildScene : public Message
@@ -26,7 +21,25 @@ struct MessageBuildScene : public Message
     {
         buffer.WriteVector3(position);
     }
+
+    //    void Handle(const Connection &connection, MemoryBuffer &)
+    //    {
+    //        connection.SendMessage(true, MessageBuildScene)
+    //    }
 };
+
+
+                                                 // Запрос на построение сцены. Выполняется клиентом после инициализации
+struct MessageRequestForBuildScene : public Message
+{
+    MessageRequestForBuildScene() : Message(MSG_SCENE_REQUEST_FOR_BUILD) {}
+
+    void Handle(const TConnection &connection)
+    {
+        connection.SendMessage(true, MessageBuildScene({ 10.0f, 10.0f, 10.0f }));
+    }
+};
+
 
                                                                                             // Передача текстовой строки
 struct MessageTextString : public Message
@@ -35,6 +48,7 @@ struct MessageTextString : public Message
     {
         buffer.WriteString(message);
     }
+
     void Handle(MemoryBuffer &msg)
     {
         URHO3D_LOGINFO(msg.ReadString());

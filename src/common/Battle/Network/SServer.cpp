@@ -30,11 +30,11 @@ void SServer::HandleMessage(StringHash, VariantMap &eventData)
 
     if (id == MSG_TEXTSTRING)
     {
-        Message(id).Handle(msg);
+        Message(id).Handle(eventData);
     }
     else if (id == MSG_SCENE_REQUEST_FOR_BUILD)
     {
-        connection.SendMessage(true, MessageBuildScene({ 10.0f, 10.0f, 10.0f }));
+        Message(id).Handle(eventData);
     }
 }
 
