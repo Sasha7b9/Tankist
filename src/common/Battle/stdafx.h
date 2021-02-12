@@ -47,10 +47,10 @@ using namespace Urho3D;
 #include "Battle.h"
 #include "Network/SServer.h"
 #include "Network/Game/_TConnection.h"
+#include "Scene/Objects/_ObjectState.h"
 #include "Network/Game/_GameMessages.h"
 #include "Scene/_GameScene.h"
 #include "Scene/Cameras/_MainCamera.h"
-#include "Scene/Objects/_ObjectState.h"
 #include "Scene/Objects/_Vehicle.h"
 #include "Utils/_LogU.h"
 

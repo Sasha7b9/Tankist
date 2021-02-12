@@ -40,6 +40,10 @@ struct VehicleLogicState : public ObjectState
 
     virtual void Compress(VectorBuffer &buffer) const override;
     virtual void Decompress(VectorBuffer &buffer) override;
+
+    Node *node = nullptr;
+
+    VehicleLogicState(Node *n) : node(n) {}
 };
 
 

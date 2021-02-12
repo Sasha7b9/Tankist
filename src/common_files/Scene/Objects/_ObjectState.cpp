@@ -4,5 +4,5 @@
 
 void ObjectState::Send() const
 {
-
+    Message::SendObjectState(*this).Send(true);
 }

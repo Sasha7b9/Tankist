@@ -68,4 +68,13 @@ namespace Message
         void Handle(MemoryBuffer &msg);
     };
 
+    struct SendObjectState : public Message
+    {
+        SendObjectState(const ObjectState &state) : Message(MSG_SEND_OBJECT_STATE)
+        {
+            state.Compress(buffer);
+        }
+
+        void Handle(MemoryBuffer &msg);
+    };
 }

@@ -14,7 +14,8 @@ void VehicleLogic::RegisterObject(Context* context)
 }
 
 VehicleLogic::VehicleLogic(Context* context)
-    : LogicComponent(context)
+    : LogicComponent(context),
+    state(GetNode())
 {
     SetUpdateEventMask(USE_FIXEDUPDATE | USE_POSTUPDATE);
 }
@@ -289,6 +290,8 @@ void Vehicle::Update()
 
 void VehicleLogicState::Compress(VectorBuffer &buffer) const
 {
+    buffer.WriteVector3(node->GetPosition());
+
     buffer.WriteFloat(steering_);
     buffer.WriteFloat(vehicleSteering_);
     buffer.WriteFloat(engineForce_);
@@ -309,6 +312,8 @@ void VehicleLogicState::Compress(VectorBuffer &buffer) const
 
 void VehicleLogicState::Decompress(VectorBuffer &buffer)
 {
+    node->SetPosition(buffer.ReadVector3());
+
     steering_ = buffer.ReadFloat();
     vehicleSteering_ = buffer.ReadFloat();
     engineForce_ = buffer.ReadFloat();

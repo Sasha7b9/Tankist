@@ -22,5 +22,10 @@ void Message::BuildScene::Handle(MemoryBuffer &msg)
     TheVehicle->logic->GetNode()->SetPosition(msg.ReadVector3());
 
     TheMainCamera = new MainCamera(TheVehicle->logic->GetNode(), TheContext);
+}
 
+
+void Message::SendObjectState::Handle(MemoryBuffer &msg)
+{
+    URHO3D_LOGINFO(msg.ReadVector3().ToString());
 }
