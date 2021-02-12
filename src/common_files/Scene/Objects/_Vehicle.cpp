@@ -289,5 +289,19 @@ void Vehicle::Update()
 
 void VehicleLogicState::Compress(VectorBuffer &buffer) const
 {
+    buffer.WriteFloat(steering_);
+    buffer.WriteFloat(vehicleSteering_);
+    buffer.WriteFloat(engineForce_);
+    buffer.WriteFloat(brakingForce_);
+    buffer.WriteFloat(maxEngineForce_);
+    buffer.WriteFloat(wheelRadius_);
+    buffer.WriteFloat(suspensionRestLength_);
+    buffer.WriteFloat(wheelWidth_);
+    buffer.WriteFloat(suspensionStiffness_);
+    buffer.WriteFloat(suspensionDamping_);
+    buffer.WriteFloat(suspensionCompression_);
+    buffer.WriteFloat(wheelFriction_);
+    buffer.WriteFloat(rollInfluence_);
 
+    buffer.WriteBool(emittersCreated);
 }
