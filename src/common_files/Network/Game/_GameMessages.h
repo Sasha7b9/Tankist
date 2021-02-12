@@ -32,7 +32,7 @@ struct MessageBuildScene : public Message
                                                  // Запрос на построение сцены. Выполняется клиентом после инициализации
 struct MessageRequestForBuildScene : public Message
 {
-    MessageRequestForBuildScene() : Message(MSG_SCENE_REQUEST_FOR_BUILD) {}
+    MessageRequestForBuildScene() : Message(MSG_REQUEST_FOR_BUILD_SCENE) {}
 
     void Handle(const TConnection &connection)
     {

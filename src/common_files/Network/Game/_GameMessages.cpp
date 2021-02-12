@@ -12,7 +12,7 @@ void Message::Handle(VariantMap &map)
         ((MessageTextString *)this)->Handle(msg);
 
     }
-    else if (id == MSG_SCENE_REQUEST_FOR_BUILD)
+    else if (id == MSG_REQUEST_FOR_BUILD_SCENE)
     {
         ((MessageRequestForBuildScene *)this)->Handle(connection);
     }

@@ -42,7 +42,7 @@ void CServer::HandleMessage(StringHash, VariantMap &eventData)
 
 bool CServer::IsSceneMessage(int id)
 {
-    return (id >= MSG_SCENE_REQUEST_FOR_BUILD) && (id <= MSG_SCENE_LAST);
+    return (id >= MSG_REQUEST_FOR_BUILD_SCENE) && (id <= MSG_SCENE_LAST);
 }
 
 

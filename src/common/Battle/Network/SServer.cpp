@@ -20,22 +20,9 @@ bool SServer::Start(uint16 port)
 
 void SServer::HandleMessage(StringHash, VariantMap &eventData)
 {
-    using namespace NetworkMessage;
+    int id = eventData[NetworkMessage::P_MESSAGEID].GetInt();
 
-    int id = eventData[P_MESSAGEID].GetInt();
-
-    TConnection connection((Connection *)eventData[P_CONNECTION].GetPtr());
-
-    MemoryBuffer msg(eventData[P_DATA].GetBuffer());
-
-    if (id == MSG_TEXTSTRING)
-    {
-        Message(id).Handle(eventData);
-    }
-    else if (id == MSG_SCENE_REQUEST_FOR_BUILD)
-    {
-        Message(id).Handle(eventData);
-    }
+    Message(id).Handle(eventData);
 }
 
 
