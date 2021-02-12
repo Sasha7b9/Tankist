@@ -20,6 +20,27 @@ const float YAW_SENSITIVITY = 0.1f;
 const float ENGINE_POWER = 10.0f;
 const float MAX_WHEEL_ANGLE = 22.5f;
 
+
+struct VehicleLogicState
+{
+    float steering_ = 0.0f;                 // Current left/right steering amount (-1 to 1.)
+    float vehicleSteering_ = 0.0f;          // Tmp storage for steering
+    float engineForce_ = 0.0f;              // Linear momentum supplied by engine to RigidBody
+    float brakingForce_ = 50.0f;            // Rotational momentum preventing (dampening) wheels rotation
+    float maxEngineForce_ = 2500.0f;        // Maximum linear momentum supplied by engine to RigidBody
+    float wheelRadius_ = 0.5f;              // Stored wheel radius
+    float suspensionRestLength_ = 0.6f;     // Suspension rest length (in meters)
+    float wheelWidth_ = 0.4f;               // Width of wheel (used only in calculation of wheel placement)
+    float suspensionStiffness_ = 14.0f;     // Suspension stiffness
+    float suspensionDamping_ = 2.0f;        // Suspension damping
+    float suspensionCompression_ = 4.0f;    // Suspension compression
+    float wheelFriction_ = 1000.0f;         // Wheel friction
+    float rollInfluence_ = 0.12f;           // Wheel roll influence (how much car will turn sidewise)
+    bool emittersCreated = false;           // Do not recreate emitters if they are already created.
+
+};
+
+
 // Vehicle component, responsible for physical movement according to controls.
 // Encapsulates RaycastVehicle
 class VehicleLogic : public LogicComponent
@@ -69,40 +90,28 @@ private:
     /// Creates particle emitter.
     void CreateEmitter(const Vector3 &place);
 
-    /// Current left/right steering amount (-1 to 1.)
-    float steering_;
-    /// Tmp storage for steering
-    float vehicleSteering_;
-    /// Linear momentum supplied by engine to RigidBody
-    float engineForce_;
-    /// Rotational momentum preventing (dampening) wheels rotation
-    float brakingForce_;
-    /// Maximum linear momentum supplied by engine to RigidBody
-    float maxEngineForce_;
-    /// Stored wheel radius
-    float wheelRadius_;
-    /// Suspension rest length (in meters)
-    float suspensionRestLength_;
-    /// Width of wheel (used only in calculation of wheel placement)
-    float wheelWidth_;
-    /// Suspension stiffness
-    float suspensionStiffness_;
-    /// Suspension damping
-    float suspensionDamping_;
-    /// Suspension compression
-    float suspensionCompression_;
-    /// Wheel friction
-    float wheelFriction_;
-    /// Wheel roll influence (how much car will turn sidewise)
-    float rollInfluence_;
-    /// Emitter data for saving.
-    Vector<Node*> particleEmitterNodeList_;
-    /// Value to calculate acceleration.
-    Vector3 prevVelocity_;
-    /// Storing points for emitters
-    Vector3 connectionPoints_[4];
-    /// Do not recreate emitters if they are already created.
-    bool emittersCreated;
+    VehicleLogicState state;
+
+    float &steering_ = state.steering_;
+    float &vehicleSteering_ = state.vehicleSteering_;
+    float &engineForce_ = state.engineForce_;
+    float &brakingForce_ = state.brakingForce_;
+    float &maxEngineForce_ = state.maxEngineForce_;
+    float &wheelRadius_ = wheelRadius_;
+    float &suspensionRestLength_ = suspensionRestLength_;
+    float &wheelWidth_ = wheelWidth_;
+    float &suspensionStiffness_ = suspensionStiffness_;
+    float &suspensionDamping_ = suspensionDamping_;
+    float &suspensionCompression_ = suspensionCompression_;
+    float &wheelFriction_ = wheelFriction_;
+    float &rollInfluence_ = rollInfluence_;
+
+    bool &emittersCreated = state.emittersCreated;
+    
+    Vector<Node*> particleEmitterNodeList_;     // Emitter data for saving.
+    Vector3 prevVelocity_;                      // Value to calculate acceleration.
+    Vector3 connectionPoints_[4];               // Storing points for emitters
+    
 };
 
 

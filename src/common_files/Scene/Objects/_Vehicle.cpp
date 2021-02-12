@@ -12,24 +12,10 @@ void VehicleLogic::RegisterObject(Context* context)
     URHO3D_ATTRIBUTE("Controls Pitch", float, controls_.pitch_, 0.0f, AM_DEFAULT);
 }
 
-VehicleLogic::VehicleLogic(Urho3D::Context* context)
-    : LogicComponent(context),
-      steering_(0.0f)
+VehicleLogic::VehicleLogic(Context* context)
+    : LogicComponent(context)
 {
     SetUpdateEventMask(USE_FIXEDUPDATE | USE_POSTUPDATE);
-    engineForce_ = 0.0f;
-    brakingForce_ = 50.0f;
-    vehicleSteering_ = 0.0f;
-    maxEngineForce_ = 2500.0f;
-    wheelRadius_ = 0.5f;
-    suspensionRestLength_ = 0.6f;
-    wheelWidth_ = 0.4f;
-    suspensionStiffness_ = 14.0f;
-    suspensionDamping_ = 2.0f;
-    suspensionCompression_ = 4.0f;
-    wheelFriction_ = 1000.0f;
-    rollInfluence_ = 0.12f;
-    emittersCreated = false;
 }
 
 VehicleLogic::~VehicleLogic() = default;
