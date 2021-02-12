@@ -1,9 +1,9 @@
 #pragma once
 
 
-class GameInput : public Object
+class GameInput : public IInput
 {
-    URHO3D_OBJECT(GameInput, Object);
+    URHO3D_OBJECT(GameInput, IInput);
 
 public:
 
@@ -23,6 +23,4 @@ private:
 
     // Handle key up event to process key controls common to all samples.
     void HandleKeyUp(StringHash eventType, VariantMap &eventData);
-
-    Input *input = nullptr;          // ”казатель на подсистему ввода
 };

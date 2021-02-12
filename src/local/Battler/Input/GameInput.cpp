@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-GameInput::GameInput(Context *context) : Object(context)
+GameInput::GameInput(Context *context) : IInput(context)
 {
     input = GetSubsystem<Input>();
 
