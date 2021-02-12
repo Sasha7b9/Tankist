@@ -4,10 +4,10 @@
 class HeadConnection
 {
 public:
-    HeadConnection(Connection *conn) : connection(conn) {}
+    HeadConnection(Connection *connection) : self(connection) {}
     void SendMessage(int id, bool reliable, const DataNetwork &data)
     {
-        connection->SendMessage(id, reliable, reliable, data.buffer);
+        self->SendMessage(id, reliable, reliable, data.buffer);
     }
-    Connection *connection = nullptr;
+    Connection *self = nullptr;
 };
