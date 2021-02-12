@@ -79,6 +79,8 @@ void Battler::Start()
     TheServer->Connect("127.0.0.1", 30000);
 
     TheBattler = this;
+
+    TheGameInput = new GameInput(context_);
 }
 
 
@@ -88,16 +90,12 @@ void Battler::Stop()
 
 //    engine_->DumpMemory();
 
+    delete TheGameInput;
     delete TheServer;
-
     delete TheMouse;
-
     delete TheVehicle;
-
     delete logo;
-
     delete TheMainCamera;
-
     delete TheScene;
 }
 
