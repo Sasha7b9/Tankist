@@ -35,7 +35,7 @@ void Battle::Start()
     TheCache = GetSubsystem<ResourceCache>();
     TheFileSystem = GetSubsystem<FileSystem>();
     TheNetwork = GetSubsystem<Network>();
-    TheServer = new Server(context_);
+    TheServer = new SServer(context_);
     TheServer->Start(SERVER_PORT);
     TheBattle = this;
 

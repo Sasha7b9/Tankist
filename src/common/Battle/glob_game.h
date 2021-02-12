@@ -3,7 +3,7 @@
 
 extern Battle    *TheBattle;
 extern GameScene *TheScene;
-extern Server    *TheServer;
+extern SServer   *TheServer;
 extern Vehicle   *TheVehicle;
 
 extern Vector<Connection *> connections;

@@ -3,7 +3,7 @@
 
 Battle    *TheBattle = nullptr;
 GameScene *TheScene = nullptr;
-Server    *TheServer = nullptr;
+SServer   *TheServer = nullptr;
 Vehicle   *TheVehicle = nullptr;
 
 Vector<Connection *> connections;
