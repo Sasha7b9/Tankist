@@ -66,11 +66,7 @@ endif()
 file(GLOB SRC                    ../../common_files/_defines.h
                                                     *.h *.cpp)
 file(GLOB NETWORK                                   Network/*.*
-                                 ../../common_files/Network/Game/_DataNetwork.*
-                                 ../../common_files/Network/Game/_GameServer.*
-                                 ../../common_files/Network/Game/_GameMessages.*
-                                 ../../common_files/Network/Game/_HeadServer.*
-                                 ../../common_files/Network/Game/_TConnection.*)
+                                 ../../common_files/Network/Game/*.*)
 file(GLOB SCENE                  ../../common_files/Scene/*.*)
 file(GLOB SCENE_OBJECTS          ../../common_files/Scene/Objects/*.*)
 file(GLOB UTILS                  ../../common_files/Utils/_LogU.*)

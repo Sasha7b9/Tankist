@@ -40,10 +40,8 @@ file(GLOB SRC                    ../../common_files/GameInput.*
                                                     *.h *.cpp)
 file(GLOB GUI                                       GUI/*.*)
 file(GLOB INPUT                                     Input/*.*)
-file(GLOB NETWORK                ../../common_files/Network/Game/_DataNetwork.*
-                                 ../../common_files/Network/Game/_ClientServer.*
-                                 ../../common_files/Network/Game/_GameMessages.*
-                                 ../../common_files/Network/Game/_GameServer.*)
+file(GLOB NETWORK                                   Network/*.*
+                                 ../../common_files/Network/Game/*.*)
 file(GLOB SCENE                  ../../common_files/Scene/*.*)
 file(GLOB SCENE_CAMERAS          ../../common_files/Scene/Cameras/*.*)
 file(GLOB SCENE_OBJECTS          ../../common_files/Scene/Objects/*.*)
