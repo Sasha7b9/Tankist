@@ -26,14 +26,11 @@ void SServer::HandleMessage(StringHash, VariantMap &eventData)
 
     TConnection connection((Connection *)eventData[P_CONNECTION].GetPtr());
 
+    MemoryBuffer msg(eventData[P_DATA].GetBuffer());
+
     if (id == MSG_TEXTSTRING)
     {
-        const PODVector<uint8> &data = eventData[P_DATA].GetBuffer();
-
-        MemoryBuffer msg(data);
-        String text = msg.ReadString();
-
-        URHO3D_LOGINFO(text.CString());
+        URHO3D_LOGINFO(msg.ReadString().CString());
     }
     else if (id == MSG_SCENE_REQUEST_FOR_BUILD)
     {
