@@ -45,6 +45,16 @@ struct MessageRequestForBuildScene : public Message
 };
 
 
+struct MessageBuildScene : public Message
+{
+    // position - позиция созданной сущности клиента
+    MessageBuildScene(const Vector3 &position) : Message(MSG_SCENE_BUILD)
+    {
+        buffer.WriteVector3(position);
+    }
+};
+
+
 struct MessageTextString : public Message
 {
     MessageTextString(const String &message) : Message(MSG_TEXTSTRING)
