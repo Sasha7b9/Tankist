@@ -9,23 +9,25 @@ struct Message
     VectorBuffer buffer;
 };
 
-
+                                                 // Запрос на построение сцены. Выполняется клиентом после инициализации
 struct MessageRequestForBuildScene : public Message
 {
     MessageRequestForBuildScene() : Message(MSG_SCENE_REQUEST_FOR_BUILD) {}
 };
 
-
+                                                                               // По этому сообщению клиент стрОит сцену
 struct MessageBuildScene : public Message
 {
-    // position - позиция созданной сущности клиента
-    MessageBuildScene(const Vector3 &position) : Message(MSG_SCENE_BUILD)
+    MessageBuildScene(
+        const Vector3 &position             // позиция созданной сущности клиента
+    ) :
+        Message(MSG_SCENE_BUILD)
     {
         buffer.WriteVector3(position);
     }
 };
 
-
+                                                                                            // Передача текстовой строки
 struct MessageTextString : public Message
 {
     MessageTextString(const String &message) : Message(MSG_TEXTSTRING)
