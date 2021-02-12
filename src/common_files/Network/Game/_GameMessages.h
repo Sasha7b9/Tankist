@@ -5,6 +5,7 @@
 struct Message
 {
     Message(int _id) : id(_id) {}
+    void Handle(MemoryBuffer &msg);
     int id;
     VectorBuffer buffer;
 };
@@ -34,4 +35,5 @@ struct MessageTextString : public Message
     {
         buffer.WriteString(message);
     }
+    void Handle(MemoryBuffer &msg);
 };

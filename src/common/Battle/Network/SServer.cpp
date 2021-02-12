@@ -30,7 +30,7 @@ void SServer::HandleMessage(StringHash, VariantMap &eventData)
 
     if (id == MSG_TEXTSTRING)
     {
-        URHO3D_LOGINFO(msg.ReadString().CString());
+        Message(id).Handle(msg);
     }
     else if (id == MSG_SCENE_REQUEST_FOR_BUILD)
     {
