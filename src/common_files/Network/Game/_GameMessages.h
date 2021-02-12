@@ -58,18 +58,13 @@ namespace Message
     struct KeyEvent : public Message
     {
         KeyEvent(Key key,                                       // Код клавиши
-            bool press) : Message(MSG_KEY_EVENT)            // true - нажатие, false, отпускание
+            bool press) : Message(MSG_KEY_EVENT)                // true - нажатие, false, отпускание
         {
             buffer.WriteInt(key);
             buffer.WriteBool(press);
         }
 
-        void Handle(MemoryBuffer &msg)
-        {
-            int key = msg.ReadInt();
-            String press(msg.ReadBool() ? "press" : "leave");
-            URHO3D_LOGINFOF("Key : %d, %s", key, press.CString());
-        }
+        void Handle(MemoryBuffer &msg);
     };
 
 }
