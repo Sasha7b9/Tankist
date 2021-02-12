@@ -16,7 +16,16 @@ enum BuildSceneMessages
 };
 
 
-//enum GameMessages
-//{
-//    MSG_CREATE_VEHICLE = MSG_SCENE_LAST + 1
-//};
+enum GameMessages
+{
+    MSG_KEYBOARD_KEY,
+        // Key      - клавиша
+        // bool     - нажата или отпущена
+    MSG_MOUSE_YAW,
+        // int      - рысканье
+    MSB_MOUSE_PITCH,
+        // int      - склонение
+    MSG_MOUSE_KEY,
+        // MouseKey
+        // bool     - нажата или отпущена
+};
