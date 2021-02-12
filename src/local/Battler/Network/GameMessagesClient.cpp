@@ -1,6 +1,17 @@
 #include "stdafx.h"
 
 
+void Message::Message::Send(bool reliable)
+{
+    Connection *connection = TheNetwork->GetServerConnection();
+
+    if (connection)
+    {
+        connection->SendMessage(id, reliable, reliable, buffer);
+    }
+}
+
+
 void Message::BuildScene::Handle(MemoryBuffer &msg)
 {
     TheScene->Create();

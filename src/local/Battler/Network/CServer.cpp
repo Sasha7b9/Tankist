@@ -10,17 +10,6 @@ CServer::CServer(Context *context) : Object(context)
 }
 
 
-void Message::Message::Send(bool reliable)
-{
-    Connection *connection = TheNetwork->GetServerConnection();
-
-    if (connection)
-    {
-        connection->SendMessage(id, reliable, reliable, buffer);
-    }
-}
-
-
 void CServer::Connect(const String &address, uint16 port)
 {
     TheNetwork->Connect(address, port, nullptr);

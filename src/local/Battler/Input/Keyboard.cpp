@@ -30,7 +30,10 @@ void Keyboard::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
 
     int key = eventData[P_KEY].GetInt();
 
-    Message::KeyEvent((Key)key, true).Send(true);
+    if (TheVehicle)
+    {
+        TheVehicle->logic->UpdateControls((Key)key, true);
+    }
 
     // Toggle console with F1
     if (key == KEY_F1)
@@ -122,7 +125,10 @@ void Keyboard::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
 
     int key = eventData[P_KEY].GetInt();
 
-    Message::KeyEvent((Key)key, false).Send(true);
+    if (TheVehicle)
+    {
+        TheVehicle->logic->UpdateControls((Key)key, false);
+    }
 
     // Close console (if open) or exit when ESC is pressed
     if (key == KEY_ESCAPE)

@@ -230,15 +230,34 @@ Vehicle::Vehicle(Context *context) : Object(context)
 }
 
 
+void VehicleLogic::UpdateControls(Key key, bool press)
+{
+    if (IsControlVehicle(key))
+    {
+        Message::KeyEvent(key, press).Send(true);
+    }
+}
+
+
+bool VehicleLogic::IsControlVehicle(Key key)
+{
+    return (key == KEY_W) ||
+        (key == KEY_S) ||
+        (key == KEY_A) ||
+        (key == KEY_D) ||
+        (key == KEY_F);
+}
+
+
 void Vehicle::Update()
 {
 #ifdef CLIENT
 
-    logic->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
-    logic->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
-    logic->controls_.Set(CTRL_LEFT, TheInput->GetKeyDown(KEY_A));
-    logic->controls_.Set(CTRL_RIGHT, TheInput->GetKeyDown(KEY_D));
-    logic->controls_.Set(CTRL_BRAKE, TheInput->GetKeyDown(KEY_F));
+//    logic->controls_.Set(CTRL_FORWARD, TheInput->GetKeyDown(KEY_W));
+//    logic->controls_.Set(CTRL_BACK, TheInput->GetKeyDown(KEY_S));
+//    logic->controls_.Set(CTRL_LEFT, TheInput->GetKeyDown(KEY_A));
+//    logic->controls_.Set(CTRL_RIGHT, TheInput->GetKeyDown(KEY_D));
+//    logic->controls_.Set(CTRL_BRAKE, TheInput->GetKeyDown(KEY_F));
 
     logic->controls_.yaw_ += (float)TheMouse->GetMoveX() * YAW_SENSITIVITY;
     logic->controls_.pitch_ += (float)TheMouse->GetMoveY() * YAW_SENSITIVITY;

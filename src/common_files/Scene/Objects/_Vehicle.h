@@ -60,6 +60,10 @@ public :
     /// Get wheel width.
     float GetWheelWidth() { return wheelWidth_; }
 
+    void UpdateControls(Key key, bool press);
+
+    bool IsControlVehicle(Key key);
+
 private:
     /// Creates particle emitter.
     void CreateEmitter(const Vector3 &place);
