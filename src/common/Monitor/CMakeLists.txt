@@ -21,7 +21,6 @@ include(../../RuntimeLibrary.cmake)
 include(../../LinkLibraries.cmake)
 
 if(WIN32)
-    set(DIR $ENV{TANKIST_OUT_DIR})
     include(../../CopyToDirEXE.cmake)
     include(../../SetWorkingDirectory.cmake)
 endif()

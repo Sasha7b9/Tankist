@@ -68,7 +68,6 @@ add_executable(${PROJECT_NAME} ${SRC} ${FILE_SYSTEM} ${NETWORK} ${UTILS})
 
 include(../../RuntimeLibrary.cmake)
 
-set(DIR $ENV{TANKIST_OUT_DIR})
 include(../../CopyToDirEXE.cmake)
 include(../../SetWorkingDirectory.cmake)
 

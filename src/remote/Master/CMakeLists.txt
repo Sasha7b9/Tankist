@@ -58,7 +58,6 @@ endif()
 add_executable(${PROJECT_NAME} ${SRC} ${CONTAINER} ${FILE_SYSTEM} ${NETWORK} ${UTILS})
 
 if(WIN32)
-    set(DIR $ENV{TANKIST_OUT_DIR})
     include(../../RuntimeLibrary.cmake)      # »сключаем зависимости от динамических библиотек VS времени выполнени€ релизной версии
     include(../../CopyToDirEXE.cmake)
     include(../../SetWorkingDirectory.cmake)

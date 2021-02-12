@@ -20,7 +20,6 @@ include(../../RuntimeLibrary.cmake)      # Исключаем зависимос
 include(../../LinkLibraries.cmake)          # Подключаем дополнительные библиотеки
 
 if(WIN32)
-    set(DIR $ENV{TANKIST_OUT_DIR})
     include(../../CopyToDirEXE.cmake)
     include(../../SetWorkingDirectory.cmake)
 endif()
