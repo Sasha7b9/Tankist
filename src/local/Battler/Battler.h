@@ -39,12 +39,6 @@ private:
     /// Handle application post-update. Update camera position after vehicle has moved.
     void HandlePostUpdate(StringHash eventType, VariantMap &eventData);
 
-    /// Handle key down event to process key controls common to all samples.
-    void HandleKeyDown(StringHash eventType, VariantMap &eventData);
-
-    /// Handle key up event to process key controls common to all samples.
-    void HandleKeyUp(StringHash eventType, VariantMap &eventData);
-
     /// Handle scene update event to control camera's pitch and yaw for all samples.
     void HandleSceneUpdate(StringHash eventType, VariantMap &eventData);
 };

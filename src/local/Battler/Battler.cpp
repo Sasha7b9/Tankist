@@ -112,12 +112,6 @@ void Battler::SetWindowTitleAndIcon()
 
 void Battler::SubscribeToEvents()
 {
-    // Subscribe key down event
-    SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Battler, HandleKeyDown));
-
-    // Subscribe key up event
-    SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(Battler, HandleKeyUp));
-
     // Subscribe scene update event
     SubscribeToEvent(E_SCENEUPDATE, URHO3D_HANDLER(Battler, HandleSceneUpdate));
 

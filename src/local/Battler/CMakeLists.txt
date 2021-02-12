@@ -49,7 +49,8 @@ else()
     SET(LDFLAGS "${LDFLAGS} -ldl")
 endif()
 
-file(GLOB SRC                                       *.h *.cpp)
+file(GLOB SRC                    ../../common_files/GameInput.*
+                                                    *.h *.cpp)
 file(GLOB GUI                                       GUI/*.*)
 file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/_ClientServer.*
                                  ../../common_files/Network/GameServer/_GameMessages.*
