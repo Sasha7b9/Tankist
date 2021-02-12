@@ -4,9 +4,9 @@
 
 Battler      *TheBattler = nullptr;
 ClientServer *TheServer = nullptr;
-GameInput    *TheInput = nullptr;
+Keyboard     *TheInput = nullptr;
 GameScene    *TheScene = nullptr;
 MainCamera   *TheMainCamera = nullptr;
 Mouse        *TheMouse = nullptr;
-Vehicle      *TheVehicle;
+Vehicle      *TheVehicle = nullptr;
 

@@ -1,15 +1,15 @@
 #pragma once
 
 
-class GameInput : public IInput
+class Keyboard : public IInput
 {
-    URHO3D_OBJECT(GameInput, IInput);
+    URHO3D_OBJECT(Keyboard, IInput);
 
 public:
 
-    GameInput(Context *context);
+    Keyboard(Context *context);
 
-    virtual ~GameInput();
+    virtual ~Keyboard();
 
     bool GetKeyDown(Key key) const;
     bool GetKeyPress(Key key) const;

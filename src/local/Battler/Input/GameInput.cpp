@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-GameInput::GameInput(Context *context) : IInput(context)
+Keyboard::Keyboard(Context *context) : IInput(context)
 {
     input = GetSubsystem<Input>();
 
@@ -9,22 +9,22 @@ GameInput::GameInput(Context *context) : IInput(context)
 }
 
 
-GameInput::~GameInput()
+Keyboard::~Keyboard()
 {
 }
 
 
-void GameInput::SubscribeToEvents()
+void Keyboard::SubscribeToEvents()
 {
     // Subscribe key down event
-    SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(GameInput, HandleKeyDown));
+    SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(Keyboard, HandleKeyDown));
 
     // Subscribe key up event
-    SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(GameInput, HandleKeyUp));
+    SubscribeToEvent(E_KEYUP, URHO3D_HANDLER(Keyboard, HandleKeyUp));
 }
 
 
-void GameInput::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
+void Keyboard::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
 {
     using namespace KeyDown;
 
@@ -114,7 +114,7 @@ void GameInput::HandleKeyDown(StringHash /*eventType*/, VariantMap &eventData)
 }
 
 
-void GameInput::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
+void Keyboard::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
 {
     using namespace KeyUp;
 
@@ -144,13 +144,13 @@ void GameInput::HandleKeyUp(StringHash /*eventType*/, VariantMap &eventData)
 }
 
 
-bool GameInput::GetKeyDown(Key key) const
+bool Keyboard::GetKeyDown(Key key) const
 {
     return input->GetKeyDown(key);
 }
 
 
-bool GameInput::GetKeyPress(Key key) const
+bool Keyboard::GetKeyPress(Key key) const
 {
     return input->GetKeyPress(key);
 }

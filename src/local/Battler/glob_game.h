@@ -9,7 +9,7 @@
 
 extern Battler      *TheBattler;
 extern ClientServer *TheServer;
-extern GameInput    *TheInput;
+extern Keyboard     *TheInput;
 extern GameScene    *TheScene;
 extern MainCamera   *TheMainCamera;
 extern Mouse        *TheMouse;

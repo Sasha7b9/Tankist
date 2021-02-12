@@ -43,7 +43,7 @@ void Battler::Start()
     TheCache = GetSubsystem<ResourceCache>();
     TheUI = GetSubsystem<UI>();
     TheGraphics = GetSubsystem<Graphics>();
-    TheInput = new GameInput(context_);
+    TheInput = new Keyboard(context_);
     TheRenderer = GetSubsystem<Renderer>();
     TheConsole = GetSubsystem<Console>();
     TheFileSystem = GetSubsystem<FileSystem>();
@@ -79,8 +79,6 @@ void Battler::Start()
     TheServer->Connect("127.0.0.1", 30000);
 
     TheBattler = this;
-
-    TheInput = new GameInput(context_);
 }
 
 
