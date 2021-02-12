@@ -6,9 +6,13 @@ struct Message
 {
     Message(int _id) : id(_id) {}
     void Handle(VariantMap &map);
-    void Send(bool reliable);
     int id;
     VectorBuffer buffer;
+
+#ifdef CLIENT
+    void Send(bool reliable);           // Метод действителен только для клиента. Серверу нужно ещё знать, в какое сое-
+                                        // нение засылать
+#endif
 };
 
 
