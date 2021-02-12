@@ -27,5 +27,8 @@ void Message::BuildScene::Handle(MemoryBuffer &msg)
 
 void Message::SendObjectState::Handle(MemoryBuffer &msg)
 {
-    URHO3D_LOGINFO(msg.ReadVector3().ToString());
+    if (TheVehicle)
+    {
+        TheVehicle->logic->GetState()->Decompress(msg);
+    }
 }

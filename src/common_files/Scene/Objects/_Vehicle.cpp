@@ -311,7 +311,7 @@ void VehicleLogicState::Compress(VectorBuffer &buffer) const
 }
 
 
-void VehicleLogicState::Decompress(VectorBuffer &buffer)
+void VehicleLogicState::Decompress(MemoryBuffer &buffer)
 {
     node->SetPosition(buffer.ReadVector3());
 

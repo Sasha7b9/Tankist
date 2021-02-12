@@ -39,7 +39,7 @@ struct VehicleLogicState : public ObjectState
     bool emittersCreated = false;           // Do not recreate emitters if they are already created.
 
     virtual void Compress(VectorBuffer &buffer) const override;
-    virtual void Decompress(VectorBuffer &buffer) override;
+    virtual void Decompress(MemoryBuffer &buffer) override;
 
     Node *node = nullptr;
 };
@@ -90,7 +90,7 @@ public :
 
     bool IsControlVehicle(Key key);
 
-    const VehicleLogicState *GetState() const { return &state; };
+    VehicleLogicState *GetState() { return &state; };
 
 private:
     /// Creates particle emitter.
