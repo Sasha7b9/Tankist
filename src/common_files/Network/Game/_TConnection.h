@@ -12,5 +12,12 @@ public:
             self->SendMessage(id, reliable, reliable, data.buffer);
         }
     }
+    void SendMessage(int id, bool reliable, const VectorBuffer &buffer)
+    {
+        if (self)
+        {
+            self->SendMessage(id, reliable, reliable, buffer);
+        }
+    }
     Connection *self = nullptr;
 };

@@ -1,6 +1,14 @@
 #pragma once
 
 
+struct Message
+{
+    Message(int _id) : id(_id) {}
+    int id;
+    VectorBuffer buffer;
+};
+
+
 enum CommonMessages
 {
     MSG_TEXTSTRING = MSG_USER
@@ -28,4 +36,13 @@ enum GameMessages
     MSG_MOUSE_KEY,
         // MouseKey
         // bool     - нажата или отпущена
+};
+
+
+struct MessageTextString : public Message
+{
+    MessageTextString(const String &message) : Message(MSG_TEXTSTRING)
+    {
+        buffer.WriteString(message);
+    }
 };

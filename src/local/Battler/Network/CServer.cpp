@@ -16,6 +16,11 @@ void CServer::SendMessage(int id, bool reliable, const DataNetwork &data)
 }
 
 
+void CServer::SendMessage(bool reliable, const Message &message)
+{
+    TConnection(TheNetwork->GetServerConnection()).SendMessage(message.id, reliable, message.buffer);
+}
+
 void CServer::Connect(const String &address, uint16 port)
 {
     TheNetwork->Connect(address, port, nullptr);

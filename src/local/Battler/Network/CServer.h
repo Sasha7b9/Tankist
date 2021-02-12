@@ -17,6 +17,8 @@ public:
 
     void SendMessage(int id, bool reliable, const DataNetwork &data);
 
+    void SendMessage(bool reliable, const Message &message);
+
 private:
 
     void HandleMessage(StringHash, VariantMap &);
