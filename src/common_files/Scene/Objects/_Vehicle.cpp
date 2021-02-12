@@ -332,4 +332,8 @@ void VehicleLogicState::Decompress(MemoryBuffer &buffer)
     rollInfluence_ = buffer.ReadFloat();
 
     emittersCreated = buffer.ReadBool();
+
+#ifdef CLIENT
+//    TheMainCamera->ConnectTo(node);
+#endif
 }
