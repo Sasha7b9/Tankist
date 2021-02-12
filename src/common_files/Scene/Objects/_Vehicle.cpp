@@ -292,6 +292,7 @@ void Vehicle::Update()
 void VehicleLogicState::Compress(VectorBuffer &buffer) const
 {
     buffer.WriteVector3(node->GetPosition());
+    buffer.WriteQuaternion(node->GetRotation());
 
     buffer.WriteFloat(steering_);
     buffer.WriteFloat(vehicleSteering_);
@@ -314,6 +315,7 @@ void VehicleLogicState::Compress(VectorBuffer &buffer) const
 void VehicleLogicState::Decompress(MemoryBuffer &buffer)
 {
     node->SetPosition(buffer.ReadVector3());
+    node->SetRotation(buffer.ReadQuaternion());
 
     steering_ = buffer.ReadFloat();
     vehicleSteering_ = buffer.ReadFloat();
