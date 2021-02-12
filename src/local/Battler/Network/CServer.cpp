@@ -10,18 +10,18 @@ CServer::CServer(Context *context) : Object(context)
 }
 
 
-void CServer::SendTextMessage(const String &message, bool reliable)
-{
-    Connection *connection = TheNetwork->GetServerConnection();
-
-    if (connection)
-    {
-        VectorBuffer msg;
-        msg.WriteString(message);
-
-        connection->SendMessage(MSG_TEXTSTRING, reliable, reliable, msg);
-    }
-}
+//void CServer::SendTextMessage(const String &message, bool reliable)
+//{
+//    Connection *connection = TheNetwork->GetServerConnection();
+//
+//    if (connection)
+//    {
+//        VectorBuffer msg;
+//        msg.WriteString(message);
+//
+//        connection->SendMessage(MSG_TEXTSTRING, reliable, reliable, msg);
+//    }
+//}
 
 
 void CServer::SendMessage(int id, bool reliable, const DataNetwork &data)
