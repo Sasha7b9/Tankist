@@ -30,12 +30,6 @@ void CServer::HandleMessage(StringHash, VariantMap &eventData)
 }
 
 
-bool CServer::IsSceneMessage(int id)
-{
-    return (id >= MSG_REQUEST_FOR_BUILD_SCENE) && (id <= MSG_SCENE_LAST);
-}
-
-
 void CServer::HandleServerConnected(StringHash, VariantMap &)
 {
     MessageRequestForBuildScene().Send(true);

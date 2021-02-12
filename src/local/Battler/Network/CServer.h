@@ -24,6 +24,4 @@ private:
     void HandleServerDisconnected(StringHash, VariantMap &);
 
     void HandleConnectFailed(StringHash, VariantMap &);
-
-    static bool IsSceneMessage(int id);
 };
