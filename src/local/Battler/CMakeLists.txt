@@ -40,6 +40,7 @@ file(GLOB SRC                    ../../common_files/GameInput.*
                                                     *.h *.cpp)
 file(GLOB GUI                                       GUI/*.*)
 file(GLOB INPUT                                     Input/*.*)
+file(GLOB NETWORK                ../../common_files/Network/_DataNetwork.*)
 file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/_ClientServer.*
                                  ../../common_files/Network/GameServer/_GameMessages.*
                                  ../../common_files/Network/GameServer/_GameServer.*)
@@ -51,14 +52,15 @@ file(GLOB UTILS                  ../../common_files/Utils/_LogU.*)
 source_group(src                 FILES ${SRC})
 source_group(GUI                 FILES ${GUI})
 source_group(Input               FILES ${INPUT})
+source_group(Network             FILES ${NETWORK})
 source_group(Network\\GameServer FILES ${NETWORK_GAMESERVER})
 source_group(Scene               FILES ${SCENE})
 source_group(Scene\\Cameras      FILES ${SCENE_CAMERAS})
 source_group(Scene\\Objects      FILES ${SCENE_OBJECTS})
 source_group(Utils               FILES ${UTILS})
 
-add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${INPUT} ${NETWORK_GAMESERVER} ${SCENE} ${SCENE_CAMERAS} ${SCENE_OBJECTS}
-    ${UTILS})
+add_executable(${PROJECT_NAME} ${SRC} ${GUI} ${INPUT} ${NETWORK} ${NETWORK_GAMESERVER} ${SCENE} ${SCENE_CAMERAS}
+    ${SCENE_OBJECTS} ${UTILS})
 
 target_link_libraries(${PROJECT_NAME} opus)
 

@@ -35,15 +35,21 @@ void ClientServer::SendMessage(int id, bool reliable)
 }
 
 
-void ClientServer::SendMessage(int id, const VectorBuffer &data, bool reliable)
+void ClientServer::SendMessage(int id, bool reliable, const DataNetwork &data)
 {
-    Connection *connection = TheNetwork->GetServerConnection();
 
-    if (connection)
-    {
-        connection->SendMessage(id, reliable, reliable, data);
-    }
 }
+
+
+//void ClientServer::SendMessage(int id, const VectorBuffer &data, bool reliable)
+//{
+//    Connection *connection = TheNetwork->GetServerConnection();
+//
+//    if (connection)
+//    {
+//        connection->SendMessage(id, reliable, reliable, data);
+//    }
+//}
 
 
 void ClientServer::Connect(const String &address, uint16 port)

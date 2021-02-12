@@ -15,9 +15,11 @@ public:
 
     void Connect(const String &address, uint16 port);
 
+    void SendMessage(int id, bool reliable, const DataNetwork &data);
+
     void SendTextMessage(const String &message, bool reliable);
     void SendMessage(int id, bool reliable);
-    void SendMessage(int id, const VectorBuffer &data, bool reliable);
+    //void SendMessage(int id, const VectorBuffer &data, bool reliable);
 
 private:
 
