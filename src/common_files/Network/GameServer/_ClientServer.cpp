@@ -10,7 +10,7 @@ ClientServer::ClientServer(Context *context) : Object(context)
 }
 
 
-void ClientServer::SendTextMessage(const String &message)
+void ClientServer::SendTextMessage(const String &message, bool reliable)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
@@ -19,29 +19,29 @@ void ClientServer::SendTextMessage(const String &message)
         VectorBuffer msg;
         msg.WriteString(message);
 
-        connection->SendMessage(MSG_TEXTSTRING, true, true, msg);
+        connection->SendMessage(MSG_TEXTSTRING, reliable, reliable, msg);
     }
 }
 
 
-void ClientServer::SendMessage(int id)
+void ClientServer::SendMessage(int id, bool reliable)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
     if (connection)
     {
-        connection->SendMessage(id, true, true, nullptr, 0);
+        connection->SendMessage(id, reliable, reliable, nullptr, 0);
     }
 }
 
 
-void ClientServer::SendMessage(int id, const VectorBuffer &data)
+void ClientServer::SendMessage(int id, const VectorBuffer &data, bool reliable)
 {
     Connection *connection = TheNetwork->GetServerConnection();
 
     if (connection)
     {
-        connection->SendMessage(id, true, true, data);
+        connection->SendMessage(id, reliable, reliable, data);
     }
 }
 
@@ -82,7 +82,7 @@ bool ClientServer::IsSceneMessage(int id)
 
 void ClientServer::HandleServerConnected(StringHash, VariantMap &)
 {
-    TheServer->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD);
+    TheServer->SendMessage(MSG_SCENE_REQUEST_FOR_BUILD, true);
 }
 
 
