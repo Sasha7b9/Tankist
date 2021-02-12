@@ -44,6 +44,7 @@ using namespace Urho3D;
 
 #include "Battle.h"
 #include "Network/GameServer/_DataNetwork.h"
+#include "Network/HeadConnection.h"
 #include "Network/GameServer/_GameMessages.h"
 #include "Network/GameServer/_HeadServer.h"
 #include "Scene/_GameScene.h"

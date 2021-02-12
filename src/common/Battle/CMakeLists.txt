@@ -65,6 +65,7 @@ endif()
 
 file(GLOB SRC                    ../../common_files/_defines.h
                                                     *.h *.cpp)
+file(GLOB NETWORK                                   Network/*.*)
 file(GLOB NETWORK_GAMESERVER     ../../common_files/Network/GameServer/_DataNetwork.*
                                  ../../common_files/Network/GameServer/_GameServer.*
                                  ../../common_files/Network/GameServer/_GameMessages.*
@@ -74,12 +75,13 @@ file(GLOB SCENE_OBJECTS          ../../common_files/Scene/Objects/*.*)
 file(GLOB UTILS                  ../../common_files/Utils/_LogU.*)
 
 source_group(src                 FILES ${SRC})
+source_group(Network             FILES ${NETWORK})
 source_group(Network\\GameServer FILES ${NETWORK_GAMESERVER})
 source_group(Scene               FILES ${SCENE})
 source_group(Scene\\Objects      FILES ${SCENE_OBJECTS})
 source_group(Utils               FILES ${UTILS})
 
-add_executable(${PROJECT_NAME} ${SRC} ${NETWORK_GAMESERVER} ${SCENE} ${SCENE_OBJECTS} ${UTILS})
+add_executable(${PROJECT_NAME} ${SRC} ${NETWORK} ${NETWORK_GAMESERVER} ${SCENE} ${SCENE_OBJECTS} ${UTILS})
 
 include(../../RuntimeLibrary.cmake)
 
