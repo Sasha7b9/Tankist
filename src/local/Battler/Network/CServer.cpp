@@ -12,7 +12,12 @@ CServer::CServer(Context *context) : Object(context)
 
 void Message::Send(bool reliable)
 {
-    TConnection(TheNetwork->GetServerConnection()).SendMessage(id, reliable, buffer);
+    Connection *connection = TheNetwork->GetServerConnection();
+
+    if (connection)
+    {
+        connection->SendMessage(id, reliable, reliable, buffer);
+    }
 }
 
 
