@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 
-void ObjectState::Send()
+void ObjectState::Send() const
 {
 
 }

@@ -88,6 +88,8 @@ public :
 
     bool IsControlVehicle(Key key);
 
+    const VehicleLogicState *GetState() const { return &state; };
+
 private:
     /// Creates particle emitter.
     void CreateEmitter(const Vector3 &place);

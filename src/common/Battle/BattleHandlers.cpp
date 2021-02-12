@@ -4,11 +4,14 @@
 
 void Battle::HandleUpdate(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
+
 }
 
 
 void Battle::HandlePostUpdate(StringHash, VariantMap &)
 {
-    LOG_FUNC_ENTER();
+    if (TheVehicle)
+    {
+        TheVehicle->logic->GetState()->Send();
+    }
 }
