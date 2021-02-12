@@ -14,11 +14,13 @@ project (TankistU3D)
 
 set (TARGET_NAME TankistU3D)
 
-set(OUT_DIR $ENV{TANKIST_OUT_DIR})
+# set(OUT_DIR $ENV{TANKIST_OUT_DIR})
 
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                              # Для отладочной версии
 
     add_definitions(-DDEBUG)
+
+    set(OUT_DIR $ENV{PROJECT_TANKIST_DIR}\\out\\debug)
 
     if(WIN32)
         link_directories($ENV{PROJECT_TANKIST_DIR}/generated/debug/ThirdParty/sockpp_/sockpp/Debug
@@ -34,6 +36,8 @@ if(${CMAKE_BUILD_TYPE} STREQUAL Debug)                                          
     endif()
 
 elseif(${CMAKE_BUILD_TYPE} STREQUAL Release)                                        # Для релизной версии
+
+    set(OUT_DIR $ENV{PROJECT_TANKIST_DIR}\\out\\release)
 
     if(WIN32)
         link_directories($ENV{PROJECT_TANKIST_DIR}/generated/release/ThirdParty/sockpp_/sockpp/Release
