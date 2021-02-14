@@ -1,9 +1,15 @@
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
-    install(TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/../out/debug"
+    if(WIN32)
+        install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/../out/debug"
+    else()
+        install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/../../../out/debug"
+    endif()
 )
 else()
-    install(TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/../out/release"
+    if(WIN32)
+        install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/../out/release"
+    else()
+        install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/../../../out/release"
+    endif()
 )
 endif()
