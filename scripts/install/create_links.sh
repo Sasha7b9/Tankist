@@ -34,6 +34,9 @@ MakeDirectory "out/release"
 MakeDirectory "out/debug/log"
 MakeDirectory "out/release/log"
 
-LinkDirectory "out/debug/conf" "out/release/conf"
+LinkDirectory "out/debug/conf"        "out/release/conf"
+LinkDirectory "out/debug/CoreData"    "out/release/CoreData"
+LinkDirectory "out/debug/Data"        "out/release/Data"
+LinkDirectory "out/debug/TankistData" "out/release/TankistData"
 
 cd $dir
