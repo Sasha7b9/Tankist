@@ -60,7 +60,7 @@ void VehicleLogic::Init()
     // Back right
     connectionPoints_[3] = Vector3(wheelX, connectionHeight, -2.5f + GetWheelRadius() * 2.0f);
     const Color LtBrown(0.972f, 0.780f, 0.412f);
-    for (int id = 0; id < sizeof(connectionPoints_) / sizeof(connectionPoints_[0]); id++)
+    for (uint id = 0; id < sizeof(connectionPoints_) / sizeof(connectionPoints_[0]); id++)
     {
         Node* wheelNode = GetScene()->CreateChild();
         Vector3 connectionPoint = connectionPoints_[id];

@@ -13,8 +13,11 @@ char FS::delimiter = '\\';
 
 #else
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 char FS::delimiter = '/';
-#include "C4PrefixLinux.h"
 
 #endif
 

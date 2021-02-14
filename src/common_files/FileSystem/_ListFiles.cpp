@@ -7,7 +7,8 @@
 
 #ifdef WIN32
 #else
-#include "C4PrefixLinux.h"
+#include <sys/types.h>
+#include <dirent.h>
 #endif
 
 #include <sstream>
