@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# *** Create links ***
-
 dir=$PWD
 
 cd install
 ./tune_ports.sh
+
+# *** Create links ***
 ./create_links.sh
 cd $dir
 
@@ -15,10 +15,10 @@ cd install/Urho3D
 cd $dir
 
 # *** Build third party ***
-
-# cd install\ThirdParty
-# call make_build_all.bat
-# cd %start_dir%
+cd install/ThirdParty
+./assembly.sh full all
+./build_opus.sh
+cd $dir
 
 # rem *** Build Tankist ***
 # cd Windows
