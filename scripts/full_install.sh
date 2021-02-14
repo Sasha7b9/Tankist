@@ -6,7 +6,7 @@ dir=$PWD
 
 cd install
 ./tune_ports.sh
-./create_linsk.sh
+./create_links.sh
 cd $dir
 
 # *** Clone and build Urho3D ***
