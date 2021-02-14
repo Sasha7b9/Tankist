@@ -15,16 +15,12 @@ cd install/Urho3D
 cd $dir
 
 # *** Build third party ***
-cd install/ThirdParty
+# cd install/ThirdParty
+# ./assembly.sh full all
+# ./build_opus.sh
+# cd $dir
+
+# *** Build Tankist ***
+cd Linux
 ./assembly.sh full all
-./build_opus.sh
 cd $dir
-
-# rem *** Build Tankist ***
-# cd Windows
-# call make.bat build all
-# cd %start_dir%
-
-# call copy_dll.bat
-
-
