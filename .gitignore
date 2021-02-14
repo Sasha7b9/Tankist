@@ -8,6 +8,8 @@ archive.zip
 generated/*
 out/debug/*.exe
 out/debug/*.log
+out/debug/*.so
+out/debug/*.so.*
 out/debug/log/*
 out/release/*
 
