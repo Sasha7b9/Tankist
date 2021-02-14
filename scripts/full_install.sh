@@ -15,10 +15,10 @@ cd install/Urho3D
 cd $dir
 
 # *** Build third party ***
-# cd install/ThirdParty
-# ./assembly.sh full all
-# ./build_opus.sh
-# cd $dir
+cd install/ThirdParty
+./assembly.sh full all
+./build_opus.sh
+cd $dir
 
 # *** Build Tankist ***
 cd Linux
