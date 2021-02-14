@@ -74,6 +74,11 @@ dir=$PWD
 
 cd ../../../..
 
+if [ -d Urho3D ]
+then
+    $1=build
+fi
+
 if [ ! -d Urho3D ]
 then
     git clone https://github.com/urho3d/Urho3D.git
