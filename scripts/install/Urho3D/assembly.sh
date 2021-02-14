@@ -76,19 +76,15 @@ cd ../../../..
 
 if [ -d Urho3D ]
 then
-    $1=build
+    isMake=0
+    isBuild=1
 fi
 
 if [ ! -d Urho3D ]
 then
     git clone https://github.com/urho3d/Urho3D.git
-fi
-
-cd Urho3D
-
-git pull
-
-case $1 in
+    
+    case $1 in
     "make"  ) isMake=1  ;;
 
     "build" ) isBuild=1 ;;
@@ -98,7 +94,12 @@ case $1 in
 
     *       ) ShowHint
               exit      ;;
-esac
+    esac
+fi
+
+cd Urho3D
+
+git pull
 
 case $2 in
     "debug"   ) isDebug=1   ;;
