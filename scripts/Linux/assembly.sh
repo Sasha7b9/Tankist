@@ -37,13 +37,6 @@ function BuildProject {
     make -j$(nproc)
     make install
     cd $dir
-#    cp ../../generated/$1/Engine/Tankist/remote/DataBase/DataBase ../../Tankist/out/$1
-#    cp ../../generated/$1/Engine/Tankist/remote/Master/Master ../../Tankist/out/$1
-#    cp ../../generated/$1/Engine/Tankist/common/Battle/Battle ../../Tankist/out/$1
-#    cp ../../generated/$1/Engine/Tankist/common/Configurator/Configurator ../../Tankist/out/$1
-#    cp ../../generated/$1/Engine/Tankist/common/Hangar/Hangar ../../Tankist/out/$1
-#    cp ../../generated/$1/Engine/Tankist/common/Monitor/Monitor ../../Tankist/out/$1
-#    cp ../../generated/$1/Engine/Tankist/common/Uploader/Uploader ../../Tankist/out/$1
 }
 
 
