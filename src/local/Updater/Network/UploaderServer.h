@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "FileSystem/_FileSystem.h"
 #include "Network/Other/_SocketsTCP.h"
